@@ -1,3 +1,7 @@
+package grind.welt.movables.impl;
+
+import grind.welt.movables.ISchatz;
+
 public abstract class Schatz implements ISchatz {
 
     int posX;

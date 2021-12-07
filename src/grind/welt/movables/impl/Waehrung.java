@@ -1,3 +1,7 @@
+package grind.welt.movables.impl;
+
+import grind.welt.movables.ISpielfigur;
+
 public abstract class Waehrung extends Schatz {
 
     public Waehrung(int posX, int posY) {
