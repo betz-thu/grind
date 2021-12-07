@@ -1,4 +1,4 @@
 public interface IKachel {
-    boolean istBetratbar();
+    boolean istBetretbar();
     boolean istHindernis();
 }
