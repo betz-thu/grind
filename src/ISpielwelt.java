@@ -1,5 +1,5 @@
 public interface ISpielwelt {
-//    public abstract Szene getSzene();
+    public abstract ISzene getSzene();
     public abstract int getAnzahlSzenen();
 
 }

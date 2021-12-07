@@ -8,4 +8,9 @@ public class Spielwelt implements ISpielwelt{
     public int getAnzahlSzenen() {
         return this.szenen.size();
     }
+
+    @Override
+    public ISzene getSzene() {
+        return null;
+    }
 }
