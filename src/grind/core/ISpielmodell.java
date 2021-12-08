@@ -1,6 +1,6 @@
 package grind.core;
 
-import grind.welt.movables.ISpielfigur;
+import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
 public interface ISpielmodell {

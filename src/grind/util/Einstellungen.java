@@ -1,4 +1,4 @@
-package grind.allgemein;
+package grind.util;
 
 public class Einstellungen {
     public static final int ANZAHL_KACHELN_X = 30;

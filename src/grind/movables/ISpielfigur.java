@@ -1,6 +1,6 @@
-package grind.welt.movables;
+package grind.movables;
 
-import grind.allgemein.Richtung;
+import grind.util.Richtung;
 
 public interface ISpielfigur extends IMovable {
 

@@ -1,4 +1,4 @@
-package grind.allgemein;
+package grind.util;
 
 public enum Richtung {
     N,  // Norden

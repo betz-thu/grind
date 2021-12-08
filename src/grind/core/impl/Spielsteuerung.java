@@ -1,8 +1,8 @@
 package grind.core.impl;
 
-import grind.allgemein.Richtung;
+import grind.util.Richtung;
 import grind.core.ISpielmodell;
-import grind.welt.impl.LeereSpielwelt;
+import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 
 public class Spielsteuerung extends PApplet {
@@ -10,7 +10,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
 
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new LeereSpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
         this.spielmodell.betreteSzene(1);
     }
 
@@ -59,8 +59,4 @@ public class Spielsteuerung extends PApplet {
         // nur notwendig, falls Maus benötigt wird
     }
 
-    public static void main(String[] args) {
-        String[] params = {"Beispiel 1"};
-        PApplet.runSketch(params, new Spielsteuerung());
-    }
 }
