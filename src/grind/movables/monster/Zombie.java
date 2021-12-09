@@ -8,6 +8,8 @@ public class Zombie extends Monster{
 
     public Zombie(float posX, float posY) {
         super(posX, posY);
+
+
     }
 
     @Override
