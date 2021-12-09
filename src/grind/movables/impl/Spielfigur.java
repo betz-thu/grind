@@ -4,14 +4,19 @@ import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private static final float GESCHWINDIGKEIT = 3f;
 
     int gold = 0;
+    private List<Gegenstand> inventar;
 
     public Spielfigur(float posX, float posY) {
         super(posX, posY);
+        inventar = new ArrayList<>();
     }
 
     @Override
@@ -22,6 +27,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
+        System.out.println(inventar);
     }
 
     @Override
@@ -51,6 +57,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhoeheGold(int betrag) {
         System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+    }
+
+    @Override
+    public List<Gegenstand> getInventar(){
+        return this.inventar;
     }
 
 
