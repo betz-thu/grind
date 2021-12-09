@@ -90,4 +90,10 @@ public class Spielmodell implements ISpielmodell {
     public ISpielfigur getFigur() {
         return this.figur;
     }
+
+    // nicht sicher ob wir das so machen wollen
+
+    public List<ISchatz> getSchaetze() {
+        return schaetze;
+    }
 }

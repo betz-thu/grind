@@ -29,7 +29,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
 
-        // Zeichne Inventar Y: 700-750 X: 1000-1150
+        // Zeichne Inventar
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);

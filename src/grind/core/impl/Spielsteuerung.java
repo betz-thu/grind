@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.movables.ISchatz;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.DummySpielwelt;
@@ -29,6 +30,7 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+        pruefeKollisionen();
     }
 
     private void eingabe() {
@@ -52,11 +54,26 @@ public class Spielsteuerung extends PApplet {
 
     private void zeichne() {
         spielmodell.zeichne(this);
+        System.out.println(this.spielmodell.getFigur().getInventar());
     }
 
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+    }
+
+    public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
+        int FigurX = this.spielmodell.getFigur().getPosX();
+        int FigurY = this.spielmodell.getFigur().getPosY();
+        for(ISchatz schatz: this.spielmodell.getSchaetze()){
+           if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
+                schatz.beimSammeln(this.spielmodell.getFigur());
+                System.out.println("Eingesammelt!");
+           }
+        }
+
+
+
     }
 
 }
