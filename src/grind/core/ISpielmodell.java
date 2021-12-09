@@ -12,4 +12,8 @@ public interface ISpielmodell {
     void zeichne(PApplet app);
 
     ISpielfigur getFigur();
+
+    int getSzeneNr();
+
+    void setSzeneNr(int szeneNR);
 }

@@ -5,16 +5,56 @@ import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import processing.core.PApplet;
 
+import java.util.Random;
+
 public class TileMap implements ITileMap {
 
     int hoehe;
     int breite;
     IKachel[][] kacheln;
+    IKachel baum;
+    IKachel fels;
+    IKachel wasser;
+    IKachel weg;
+    IKachel wiese;
+    IKachel holzbrücke;
+    IKachel levelende;
+    int zufall = 0;
+    Random rand = new Random();
 
     public TileMap() {
         this.hoehe = Einstellungen.ANZAHL_KACHELN_Y;
         this.breite = Einstellungen.ANZAHL_KACHELN_X;
         this.kacheln = new IKachel[this.hoehe][this.breite];
+        this.fels = new Fels();
+        this.baum = new Baum();
+        this.wasser = new Wasser();
+        this.weg = new Weg();
+        this.wiese = new Wiese();
+        this.holzbrücke = new Holzbrücke();
+        this.levelende = new LevelEnde();
+
+        for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
+            for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
+               this.zufall = rand.nextInt(5);
+               if (zufall == 0){
+                   this.kacheln[i][j] = this.baum;
+               } else if (zufall == 1){
+                   this.kacheln[i][j] = this.fels;
+               } else if (zufall == 2){
+                   this.kacheln[i][j] = this.wasser;
+               } else if (zufall == 3){
+                   this.kacheln[i][j] = this.weg;
+               } else if (zufall == 4){
+                   this.kacheln[i][j] = this.wiese;
+               } else if (zufall == 5){
+                   this.kacheln[i][j] = this.holzbrücke;
+               }
+            }
+        }
+
+        this.kacheln[9][0] = this.levelende; //Vorerst festgelegtes Levelende
+
     }
 
     @Override

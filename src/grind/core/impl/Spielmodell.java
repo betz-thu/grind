@@ -16,6 +16,8 @@ import java.util.List;
 
 public class Spielmodell implements ISpielmodell {
 
+    int szeneNr = 0;
+
     ISpielwelt spielwelt;
     ILevel level;
     ITileMap tileMap;
@@ -89,5 +91,13 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
+    }
+
+    public int getSzeneNr(){
+        return this.szeneNr;
+    }
+
+    public void setSzeneNr(int szeneNR){
+        this.szeneNr = szeneNR;
     }
 }

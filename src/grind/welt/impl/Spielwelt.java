@@ -6,11 +6,11 @@ import grind.welt.ISzene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DummySpielwelt implements ISpielwelt {
+public class Spielwelt implements ISpielwelt {
 
     private List<ISzene> szenen = new ArrayList<>();
 
-    public DummySpielwelt(){
+    public Spielwelt(){
         this.szenen.add(0,new LevelEins());
         this.szenen.add(1,new LevelEins());
         this.szenen.add(2,new LevelEins());

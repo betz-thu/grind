@@ -3,26 +3,25 @@ package grind.kacheln.impl;
 import grind.kacheln.IKachel;
 import processing.core.PApplet;
 
-public class LeereKachel implements IKachel {
+public class Fels implements IKachel {
 
     @Override
     public boolean istBetretbar() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean istHindernis() {
-        return false;
+        return true;
     }
 
     @Override
     public void zeichne(PApplet app, int x, int y) {
         app.pushStyle();
-        app.fill(25);
-        app.stroke(255);
+        app.fill(91,58,41); //Braun
+        app.stroke(120);
         app.strokeWeight(2f);
         app.rect(x, y, 39, 39);
         app.popStyle();
     }
-
 }

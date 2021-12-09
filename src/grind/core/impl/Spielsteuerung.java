@@ -2,16 +2,16 @@ package grind.core.impl;
 
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
-import grind.welt.impl.DummySpielwelt;
+import grind.welt.impl.Spielwelt;
 import processing.core.PApplet;
 
 public class Spielsteuerung extends PApplet {
 
     ISpielmodell spielmodell;
-
+    boolean pressed = false;
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
-        this.spielmodell.betreteSzene(1);
+        this.spielmodell = new Spielmodell(new Spielwelt());
+        this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
     }
 
     @Override
@@ -32,6 +32,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void eingabe() {
+
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 spielmodell.getFigur().bewege(Richtung.W);
@@ -42,6 +43,18 @@ public class Spielsteuerung extends PApplet {
             } else if (key == 'd' || keyCode == RIGHT) {
                 spielmodell.getFigur().bewege(Richtung.O);
             }
+        }
+
+        //F12 neue Szene
+        if (keyPressed && !pressed){
+            if (keyCode == 123) {
+                pressed = true;
+            }
+        } else if(!keyPressed && pressed){
+            pressed = false;
+            System.out.println("F12");
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
 
