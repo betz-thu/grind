@@ -6,7 +6,7 @@ import processing.core.PApplet;
 import grind.util.Einstellungen;
 
 public class Geist extends Monster{
-    int deltaX;
+    int deltaX = 10;
     int deltaY;
 
     public Geist(float posX, float posY) {
