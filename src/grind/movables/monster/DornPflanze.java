@@ -11,6 +11,8 @@ public class DornPflanze extends Monster{
     int deltaY;
 
     public DornPflanze(float posX, float posY, int deltaX, int deltaY) {
+
+
         super(posX, posY);
     }
 
