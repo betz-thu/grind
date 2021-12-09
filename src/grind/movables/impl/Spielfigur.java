@@ -21,13 +21,27 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void zeichne(PApplet app) {
+        // Zeichne Spielfigur
         app.pushStyle();
         app.fill(80);
         app.color(50, 100, 150);
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
-        System.out.println(inventar);
+
+        // Zeichne Inventar Y: 700-750 X: 1000-1150
+        app.pushStyle();
+        app.fill(255,255,255);
+        app.stroke(255,255,255);
+        app.strokeWeight(2f);
+        app.textSize(24);
+        app.text("Inventar", 1120-4*30, 740);
+        app.fill(204, 102, 0);
+        for (int i = 0; i < 5; i++) {
+            app.rect(1120-i*30, 750, 30, 30);
+        }
+        app.popStyle();
+
     }
 
     @Override
