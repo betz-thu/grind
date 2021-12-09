@@ -10,6 +10,7 @@ import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
+import grind.movables.monster.IMonster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,10 @@ public class Spielmodell implements ISpielmodell {
     ILevel level;
     ITileMap tileMap;
 
+
     ISpielfigur figur = new Spielfigur(0, 0);
     List<IMovable> movables = new ArrayList<>();
+    List<IMonster> monster = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
     public Spielmodell(ISpielwelt spielwelt) {
@@ -38,6 +41,7 @@ public class Spielmodell implements ISpielmodell {
             throw new UnsupportedOperationException("Siedlungen sind noch nicht implementiert.");
         }
     }
+
 
     private void betreteLevel(ILevel level) {
         this.level = level;
