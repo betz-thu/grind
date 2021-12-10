@@ -1,8 +1,10 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Spielfigur extends Movable implements ISpielfigur {
 
@@ -11,17 +13,21 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 0;
 
     public Spielfigur(float posX, float posY) {
-        super(posX, posY);
+        super(posX, posY
+        );
     }
 
     @Override
     public void zeichne(PApplet app) {
-        app.pushStyle();
+        PImage spielfigurOhneWaffe;
+        spielfigurOhneWaffe = app.loadImage("Spielfigur_ohne_Waffe.jpg");
+        app.image(spielfigurOhneWaffe,this.getPosX(), this.getPosY(),40, 40);
+        /*app.pushStyle();
         app.fill(80);
         app.color(50, 100, 150);
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
-        app.popStyle();
+        app.popStyle();*/
     }
 
     @Override

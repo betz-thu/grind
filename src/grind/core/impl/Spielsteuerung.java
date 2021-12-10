@@ -4,14 +4,14 @@ import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Spielsteuerung extends PApplet {
 
     ISpielmodell spielmodell;
-
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
-        this.spielmodell.betreteSzene(1);
+        this.spielmodell.betreteSzene(1);swsss
     }
 
     @Override
@@ -21,6 +21,7 @@ public class Spielsteuerung extends PApplet {
 
     @Override
     public void setup() {
+
 
     }
 
