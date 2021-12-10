@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.movables.impl.Spielfigur;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.Spielwelt;
@@ -9,6 +10,9 @@ public class Spielsteuerung extends PApplet {
 
     ISpielmodell spielmodell;
     boolean pressed = false;
+    boolean levelBeendet = false;
+
+
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new Spielwelt());
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
@@ -60,6 +64,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         spielmodell.bewege();
+        ueberpruefeLevelende();
 
     }
 
@@ -70,6 +75,19 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+    }
+
+    public boolean ueberpruefeLevelende() {
+
+        if(spielmodell.getFigur().getPosY()>10*39 && spielmodell.getFigur().getPosX()>29*39 && spielmodell.getFigur().getPosY()<11*39){
+            System.out.println("Das Ende des Levels wurde erreicht");
+            levelBeendet = true;
+        }
+//        else if(spielmodell.getInventar().contains("Levelende Bedingung")){
+//            System.out.println("Levelende Bedingung wurde gefunden");
+//            levelBeendet = true;
+//        }
+        return levelBeendet;
     }
 
 }
