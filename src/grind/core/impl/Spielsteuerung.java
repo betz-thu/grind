@@ -11,7 +11,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
-        this.spielmodell.betreteSzene(1);swsss
+        this.spielmodell.betreteSzene(1);
     }
 
     @Override
