@@ -2,8 +2,10 @@ package grind.kacheln.impl;
 
 import grind.kacheln.IKachel;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class DummyHindernis implements IKachel {
+    PImage img;
 
     @Override
     public boolean istBetretbar() {
@@ -24,5 +26,9 @@ public class DummyHindernis implements IKachel {
         app.rect(x, y, 39, 39);
         app.popStyle();
     }
-
+//    @Override
+//    public void ladeDatei(String dateiname, PApplet app, int breite, int hoehe) {
+//        img = app.loadImage(dateiname);
+//        img.resize(breite, hoehe);
+//    }
 }

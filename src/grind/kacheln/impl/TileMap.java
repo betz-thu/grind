@@ -18,7 +18,7 @@ public class TileMap implements ITileMap {
     IKachel weg;
     IKachel wiese;
     IKachel holzbrücke;
-    IKachel levelende;
+    IKachel levelausgang;
     int zufall = 0;
     Random rand = new Random();
 
@@ -32,8 +32,7 @@ public class TileMap implements ITileMap {
         this.weg = new Weg();
         this.wiese = new Wiese();
         this.holzbrücke = new Holzbrücke();
-        this.levelende = new LevelEnde();
-
+        this.levelausgang = new Levelausgang();
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                this.zufall = rand.nextInt(5);
@@ -53,7 +52,7 @@ public class TileMap implements ITileMap {
             }
         }
 
-        this.kacheln[9][0] = this.levelende; //Vorerst festgelegtes Levelende
+        this.kacheln[10][0] = this.levelausgang; //Vorerst festgelegtes Levelende
 
     }
 
