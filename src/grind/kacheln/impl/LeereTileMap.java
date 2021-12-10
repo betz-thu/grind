@@ -10,6 +10,7 @@ public class LeereTileMap extends TileMap {
     int breite;
     IKachel leereKachel = new LeereKachel();
     IKachel hindernis = new DummyHindernis();
+    IKachel levelausgang = new Levelausgang();
 
     @Override
     public int getHoehe() {
@@ -25,7 +26,11 @@ public class LeereTileMap extends TileMap {
     public IKachel getKachel(int x, int y) {
         if (x == 10 && y < 10) {
             return hindernis;
-        } else {
+        }
+        else if (x == 10 && y == 29){
+            return levelausgang;
+        }
+        else {
             return leereKachel;
         }
     }
