@@ -19,8 +19,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void zeichne(PApplet app) {
-        PImage spielfigurOhneWaffe;
-        spielfigurOhneWaffe = app.loadImage("Spielfigur_ohne_Waffe.jpg");
+        PImage spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
         app.image(spielfigurOhneWaffe,this.getPosX(), this.getPosY(),40, 40);
         /*app.pushStyle();
         app.fill(80);
