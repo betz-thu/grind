@@ -1,11 +1,16 @@
 package grind.core.impl;
 
+import grind.movables.impl.Spielfigur;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * @Autor Megatronik
+ * Methode eingabe ergänzt; ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
+ */
 public class Spielsteuerung extends PApplet {
 
     ISpielmodell spielmodell;
@@ -32,16 +37,24 @@ public class Spielsteuerung extends PApplet {
         zeichne();
     }
 
+    /**
+     * Methode eingabe: ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
+     */
     private void eingabe() {
+        Spielfigur figur = (Spielfigur) spielmodell.getFigur();
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
-                spielmodell.getFigur().bewege(Richtung.W);
+                figur.setAusrichtung(Richtung.W);
+                figur.bewege(Richtung.W);
             } else if (key == 'w' || keyCode == UP) {
-                spielmodell.getFigur().bewege(Richtung.N);
+                figur.setAusrichtung(Richtung.N);
+                figur.bewege(Richtung.N);
             } else if (key == 's' || keyCode == DOWN) {
-                spielmodell.getFigur().bewege(Richtung.S);
+                figur.setAusrichtung(Richtung.S);
+                figur.bewege(Richtung.S);
             } else if (key == 'd' || keyCode == RIGHT) {
-                spielmodell.getFigur().bewege(Richtung.O);
+                figur.setAusrichtung(Richtung.O);
+                figur.bewege(Richtung.O);
             }
         }
     }

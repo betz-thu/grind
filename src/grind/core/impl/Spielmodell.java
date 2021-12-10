@@ -1,6 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -14,13 +15,17 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Autor Megatronik
+ * Instanziierung der Spielfigur nun mit Ausrichtung.
+ */
 public class Spielmodell implements ISpielmodell {
 
     ISpielwelt spielwelt;
     ILevel level;
     ITileMap tileMap;
 
-    ISpielfigur figur = new Spielfigur(0, 0);
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
