@@ -4,6 +4,8 @@ import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
+import java.util.List;
+
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private static final float GESCHWINDIGKEIT = 3f;
