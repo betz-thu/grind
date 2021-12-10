@@ -1,5 +1,6 @@
 package grind.kacheln.impl;
 
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -42,15 +43,7 @@ public class TileMap implements ITileMap {
             }
         }
     }
-    public IKachel getCurrentKachel(float Xpos, float Ypos) {
-        int x = 0;
-        int y = 0;
-        while(x*breite<= (int) Xpos){
-            x+=1;
-        }
-        while(y*hoehe<=(int) Ypos){
-            y+=y;
-        }
-        return getKachel(x,y);
-    }
+
+
+
 }

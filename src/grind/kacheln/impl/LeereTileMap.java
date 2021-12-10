@@ -30,13 +30,17 @@ public class LeereTileMap extends TileMap {
         }
     }
 
+    /**class LeereTileMap
+     * Bei this.getKachel(j,i).zeichne(app, x, y); waten j und i vertauscht
+     * @param app
+     */
     @Override
     public void zeichne(PApplet app) {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                 int y = i * Einstellungen.LAENGE_KACHELN_Y;
                 int x = j * Einstellungen.LAENGE_KACHELN_X;
-                this.getKachel(i, j).zeichne(app, x, y);
+                this.getKachel(j,i).zeichne(app, x, y);
             }
         }
     }

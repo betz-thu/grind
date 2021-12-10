@@ -1,6 +1,10 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.kacheln.impl.DummyHindernis;
+import grind.kacheln.impl.TileMap;
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -48,6 +52,7 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
+
     }
 
     private void kopiereTilemap() {
@@ -80,6 +85,8 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void zeichne(PApplet app) {
 
+
+
         if (this.level != null) {
             this.level.zeichne(app);
         }
@@ -89,10 +96,17 @@ public class Spielmodell implements ISpielmodell {
         }
 
         this.figur.zeichne(app);
+
     }
 
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
     }
+
+    public ITileMap getTileMap() {
+        return this.tileMap;
+    }
+
+
 }

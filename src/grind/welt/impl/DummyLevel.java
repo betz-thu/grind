@@ -33,7 +33,7 @@ public class DummyLevel implements ILevel {
     public List<IMovable> getPositionen() {
         ArrayList<IMovable> positionen = new ArrayList<>();
         positionen.add(new Gold(600, 200));
-        positionen.add(new Spielfigur(600, 400, Richtung.N));
+        positionen.add(new Spielfigur(600, 400,Richtung.N));
         return positionen;
     }
 

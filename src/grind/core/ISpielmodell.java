@@ -1,5 +1,6 @@
 package grind.core;
 
+import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
@@ -12,4 +13,6 @@ public interface ISpielmodell {
     void zeichne(PApplet app);
 
     ISpielfigur getFigur();
+
+    ITileMap getTileMap();
 }
