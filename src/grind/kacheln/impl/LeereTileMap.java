@@ -28,6 +28,7 @@ public class LeereTileMap extends TileMap {
             return hindernis;
         }
         else if (x == 10 && y == 29){
+            /* setzen des Levelausgangs auf eine Position */
             return levelausgang;
         }
         else {

@@ -3,6 +3,8 @@ package grind.kacheln.impl;
 import grind.kacheln.IKachel;
 import processing.core.PApplet;
 
+
+/* Der Levelausgang wird als grüne Kachel im Level dargestellt. */
 public class Levelausgang implements IKachel {
     @Override
     public boolean istBetretbar() {
