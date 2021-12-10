@@ -21,7 +21,7 @@ public class DummyHindernis implements IKachel {
         app.fill(220, 75, 25);
         app.stroke(120);
         app.strokeWeight(2f);
-        app.rect(x, y, 39, 39);
+        app.rect(x, y, 39,39);
         app.popStyle();
     }
 

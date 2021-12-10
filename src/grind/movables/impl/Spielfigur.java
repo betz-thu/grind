@@ -1,8 +1,13 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
+import grind.core.impl.Spielsteuerung.*;
+import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
+import grind.kacheln.impl.TileMap;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -66,21 +71,38 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void bewege(Richtung richtung) {
         switch (richtung) {
             case N:
-                this.posY -= GESCHWINDIGKEIT;
+                if (isBetretbar(this.posX,this.posY-GESCHWINDIGKEIT)){
+                    this.posY -= GESCHWINDIGKEIT;
+                }
                 break;
             case O:
-                this.posX += GESCHWINDIGKEIT;
+                if (isBetretbar(this.posX+GESCHWINDIGKEIT,this.posY)){
+                    this.posX += GESCHWINDIGKEIT;
+                }
                 break;
             case S:
-                this.posY += GESCHWINDIGKEIT;
+                if (isBetretbar(this.posX,this.posY+GESCHWINDIGKEIT)){
+                    this.posY += GESCHWINDIGKEIT;
+                }
                 break;
             case W:
-                this.posX -= GESCHWINDIGKEIT;
+                if (isBetretbar(this.posX-GESCHWINDIGKEIT,this.posY)){
+                    this.posX -= GESCHWINDIGKEIT;
+                }
                 break;
         }
     }
 
-
+    public boolean isBetretbar(float Xpos, float Ypos){
+        IKachel currentKachel = TileMap.
+                currentKachel(Xpos,Ypos);
+        System.out.println(currentKachel.istBetretbar());
+        if (Xpos <=20 || Xpos >= Spielsteuerung.getSpielfeldBreite()-20 ){
+            return false;
+        } else if (Ypos <=20 || Ypos >= Spielsteuerung.getSpielfeldHoehe()-20){
+            return false;
+        } else return true;
+    }
     @Override
     public void bewege() {
         // Spielfigur bewegt sich nicht von selbst

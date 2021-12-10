@@ -3,15 +3,20 @@ package grind.core.impl;
 import grind.movables.impl.Spielfigur;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
+import grind.welt.impl.DummyLevel;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PImage;
+import grind.kacheln.*;
+import grind.util.Einstellungen;
 
 /**
  * @Autor Megatronik
  * Methode eingabe ergänzt; ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
  */
 public class Spielsteuerung extends PApplet {
+    private static int SpielfeldBreite;
+    private static int SpielfeldHoehe;
 
     ISpielmodell spielmodell;
     public Spielsteuerung() {
@@ -21,7 +26,9 @@ public class Spielsteuerung extends PApplet {
 
     @Override
     public void settings() {
-        size(1200, 800);
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y*Einstellungen.ANZAHL_KACHELN_Y;
+        size(SpielfeldBreite,SpielfeldHoehe);
     }
 
     @Override
@@ -73,4 +80,19 @@ public class Spielsteuerung extends PApplet {
         // nur notwendig, falls Maus benötigt wird
     }
 
+    /**
+     * Methode getSpielfeldBreite gibt Spielfeldbreite zurück.
+     * @return Breite des Spielfelds
+     */
+    public static int getSpielfeldBreite() {
+        return SpielfeldBreite;
+    }
+
+    /**
+     * Methode getSpielfeldHoehe gibt Spielfeldhoehe zurück.
+     * @return Hoehe des Spielfelds
+     */
+    public static int getSpielfeldHoehe() {
+        return SpielfeldHoehe;
+    }
 }
