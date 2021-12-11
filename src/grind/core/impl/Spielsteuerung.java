@@ -80,7 +80,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     public boolean ueberpruefeLevelende() {
-
+        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39) instanceof Levelausgang){
             System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
             //levelBeendet = true;
