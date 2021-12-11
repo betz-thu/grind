@@ -3,7 +3,6 @@ package grind.core.impl;
 import grind.core.ISpielmodell;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
-import grind.welt.impl.Spielwelt;
 import processing.core.PApplet;
 
 public class Leveleditor extends PApplet {

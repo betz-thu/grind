@@ -1,12 +1,10 @@
 package grind.core.impl;
 
-import grind.kacheln.impl.Baum;
 import grind.kacheln.impl.Levelausgang;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
-import grind.welt.impl.Spielwelt;
+import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 
 public class Spielsteuerung extends PApplet {
@@ -17,7 +15,7 @@ public class Spielsteuerung extends PApplet {
 
 
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new Spielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
     }
 
