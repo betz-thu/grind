@@ -39,6 +39,7 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+
         pruefeKollisionen();
     }
 
@@ -71,7 +72,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         spielmodell.bewege();
-
+        levelBeendet = ueberpruefeLevelende();
     }
 
     private void zeichne() {
