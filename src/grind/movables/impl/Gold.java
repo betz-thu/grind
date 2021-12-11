@@ -21,4 +21,5 @@ public class Gold extends Waehrung {
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
     }
+
 }
