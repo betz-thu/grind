@@ -29,6 +29,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
+
         zeichneInventar(app);
 
     }
@@ -46,9 +47,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
             app.rect(1120-i*30, 750, 30, 30);
         }
         for(int j = 0;j<inventar.size(); j++){
-            inventar.get(j).setPosition(1015+j*30, 765);
-            inventar.get(j).zeichne(app);
-
+            if(j<5) {
+                inventar.get(j).setPosition(1015 + j * 30, 765);
+                inventar.get(j).zeichne(app);
+            }
         }
         app.popStyle();
 

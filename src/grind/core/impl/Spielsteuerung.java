@@ -58,7 +58,7 @@ public class Spielsteuerung extends PApplet {
 
     private void zeichne() {
         spielmodell.zeichne(this);
-        System.out.println(this.spielmodell.getFigur().getInventar());
+
     }
 
     @Override
@@ -76,7 +76,6 @@ public class Spielsteuerung extends PApplet {
                 schatz.beimSammeln(this.spielmodell.getFigur());
                 this.spielmodell.getMovables().remove(schatz);
                 toRemove = i;
-                System.out.println("Eingesammelt!");
             }
             i += 1;
         }

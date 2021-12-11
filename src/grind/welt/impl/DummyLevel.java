@@ -1,6 +1,7 @@
 package grind.welt.impl;
 
 import grind.movables.impl.Apfel;
+import grind.kacheln.impl.Levelausgang;
 import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.LeereTileMap;
