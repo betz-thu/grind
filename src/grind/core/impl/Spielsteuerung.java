@@ -116,17 +116,23 @@ public class Spielsteuerung extends PApplet {
     }
 
 
+    /**
+     * Für alle movables modifizieren-> dann könnten monster random laufen
+     * alle movables brauchen eine geschwindigkeit -> schatz hat 0
+     * @return
+     */
     public boolean isHinderniss() {
         Spielfigur figur = (Spielfigur) spielmodell.getFigur();
         ITileMap tileMap = (ITileMap) spielmodell.getTileMap();
         int xKachel = figur.getPosX() / Einstellungen.LAENGE_KACHELN_X;
         int yKachel = figur.getPosY() / Einstellungen.LAENGE_KACHELN_Y;
         IKachel aktuelleKachel = tileMap.getKachel(xKachel, yKachel);
+        figur.getGESCHWINDIGKEIT();
 
         switch (figur.getAusrichtung()){
             case N:
                 aktuelleKachel=tileMap.getKachel(xKachel,yKachel-1);
-                if(aktuelleKachel instanceof DummyHindernis){
+                if(!aktuelleKachel.istBetretbar()){
                     bewegungNordErlaubt=false;
                 }
                 break;

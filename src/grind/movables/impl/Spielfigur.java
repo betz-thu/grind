@@ -15,7 +15,11 @@ import processing.core.PImage;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    private static final float GESCHWINDIGKEIT = 3f;
+    public float getGESCHWINDIGKEIT() {
+        return GESCHWINDIGKEIT;
+    }
+
+    private final float GESCHWINDIGKEIT = 3f;
 
 
     int gold = 0;
@@ -105,17 +109,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
 
-    /**
-     * problem Kacheln abfragen
-     */
-    public void woIstWalter() {
-        int xKachel = (int) (this.posX/ Einstellungen.LAENGE_KACHELN_X);
-        int yKachel = (int) (this.posY / Einstellungen.LAENGE_KACHELN_Y);
-
-
-
-
-    }
 
 
 
@@ -131,6 +124,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void erhoeheGold(int betrag) {
         System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
+
 
 
 
