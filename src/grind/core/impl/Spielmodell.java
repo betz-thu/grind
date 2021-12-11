@@ -1,6 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
 import grind.movables.impl.Movable;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spielmodell implements ISpielmodell {
+
+    int szeneNr = 0;
 
     ISpielwelt spielwelt;
     ILevel level;
@@ -90,6 +93,18 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
+    }
+
+    public ISzene getSzene(){
+        return this.spielwelt.getSzene(getSzeneNr());
+    }
+
+    public int getSzeneNr(){
+        return this.szeneNr;
+    }
+
+    public void setSzeneNr(int szeneNR){
+        this.szeneNr = szeneNR;
     }
 
     // nicht sicher ob wir das so machen wollen

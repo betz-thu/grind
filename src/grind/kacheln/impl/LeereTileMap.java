@@ -24,7 +24,7 @@ public class LeereTileMap extends TileMap {
 
     @Override
     public IKachel getKachel(int x, int y) {
-        if (x == 10 && y < 10) {
+        if (x == 5 && y < 5) {
             return hindernis;
         }
         else if (x == 10 && y == 29){

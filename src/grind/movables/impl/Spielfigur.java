@@ -4,6 +4,7 @@ import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

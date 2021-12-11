@@ -5,26 +5,33 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class LeereKachel implements IKachel {
+public class Fels implements IKachel {
     PImage img;
+    boolean bildGeladen = false;
     @Override
     public boolean istBetretbar() {
-        return true;
-    }
-
-    @Override
-    public boolean istHindernis() {
         return false;
     }
 
     @Override
+    public boolean istHindernis() {
+        return true;
+    }
+
+    @Override
     public void zeichne(PApplet app, int x, int y) {
-        app.pushStyle();
-        app.fill(25);
-        app.stroke(255);
-        app.strokeWeight(2f);
-        app.rect(x, y, 39, 39);
-        app.popStyle();
+        if (!bildGeladen){
+            this.img = app.loadImage("fels.png");
+            img.resize(Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
+            bildGeladen = true;
+        }
+        app.image(img, x, y);
+//        app.pushStyle();
+//        app.fill(91,58,41); //Braun
+//        app.stroke(120);
+//        app.strokeWeight(2f);
+//        app.rect(x, y, 39, 39);
+//        app.popStyle();
     }
 
     @Override

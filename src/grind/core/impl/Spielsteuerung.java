@@ -1,5 +1,7 @@
 package grind.core.impl;
 
+import grind.kacheln.impl.Levelausgang;
+import grind.util.Einstellungen;
 import grind.movables.ISchatz;
 import grind.movables.impl.Schatz;
 import grind.util.Richtung;
@@ -13,10 +15,13 @@ import java.util.List;
 public class Spielsteuerung extends PApplet {
 
     ISpielmodell spielmodell;
+    boolean pressed = false;
+    boolean levelBeendet = false;
+
 
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
-        this.spielmodell.betreteSzene(1);
+        this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
     }
 
     @Override
@@ -34,10 +39,12 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+
         pruefeKollisionen();
     }
 
     private void eingabe() {
+
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 spielmodell.getFigur().bewege(Richtung.W);
@@ -49,11 +56,23 @@ public class Spielsteuerung extends PApplet {
                 spielmodell.getFigur().bewege(Richtung.O);
             }
         }
+
+        //F12 neue Szene
+        if (keyPressed && !pressed){
+            if (keyCode == 123) {
+                pressed = true;
+            }
+        } else if(!keyPressed && pressed){
+            pressed = false;
+            System.out.println("F12");
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+        }
     }
 
     private void aktualisiere() {
         spielmodell.bewege();
-
+        levelBeendet = ueberpruefeLevelende();
     }
 
     private void zeichne() {
@@ -64,6 +83,21 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+    }
+
+    public boolean ueberpruefeLevelende() {
+        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
+        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
+            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
+            //levelBeendet = true;
+
+//        else if(spielmodell.getInventar().contains("Levelende Bedingung")){
+//            System.out.println("Levelende Bedingung wurde gefunden");
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+            levelBeendet = true;
+        }
+        return levelBeendet;
     }
 
     public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
