@@ -4,24 +4,54 @@ import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private static final float GESCHWINDIGKEIT = 3f;
 
     int gold = 0;
+    int lebensenergie = 100;
+    private List<Gegenstand> inventar;
 
     public Spielfigur(float posX, float posY) {
         super(posX, posY);
+        inventar = new ArrayList<>();
     }
 
     @Override
     public void zeichne(PApplet app) {
+        // Zeichne Spielfigur
         app.pushStyle();
         app.fill(80);
         app.color(50, 100, 150);
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
+        zeichneInventar(app);
+
+    }
+
+    public void zeichneInventar(PApplet app){
+        // Zeichne Inventar
+        app.pushStyle();
+        app.fill(255,255,255);
+        app.stroke(255,255,255);
+        app.strokeWeight(2f);
+        app.textSize(24);
+        app.text("Inventar", 1120-4*30, 740);
+        app.fill(204, 102, 0);
+        for (int i = 0; i < 5; i++) {
+            app.rect(1120-i*30, 750, 30, 30);
+        }
+        for(int j = 0;j<inventar.size(); j++){
+            inventar.get(j).setPosition(1015+j*30, 765);
+            inventar.get(j).zeichne(app);
+
+        }
+        app.popStyle();
+
     }
 
     @Override
@@ -50,7 +80,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void erhoeheGold(int betrag) {
-        System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+        this.gold += betrag;
+        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+    }
+
+    @Override
+    public List<Gegenstand> getInventar(){
+        return this.inventar;
     }
 
 
