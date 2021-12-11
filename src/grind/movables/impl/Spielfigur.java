@@ -15,14 +15,13 @@ import processing.core.PImage;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
+    private final float GESCHWINDIGKEIT = 3f;
+    private int Lebensenergie = 100;
+    int gold = 25;
+
     public float getGESCHWINDIGKEIT() {
         return GESCHWINDIGKEIT;
     }
-
-    private final float GESCHWINDIGKEIT = 3f;
-
-
-    int gold = 0;
 
     /**
      * Konstruktor Spielfigur
@@ -44,9 +43,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
         PImage spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
-        app.translate(this.getPosX(), this.getPosY());
+        app.translate(this.posX, this.posY);
         int n =1;
-        switch (this.getAusrichtung()) {
+        switch (this.ausrichtung) {
             case N:
                 n = 0;
                 break;
@@ -62,34 +61,28 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
         app.popMatrix();
-
-
+        app.fill(0,150,0);
+        app.rect(this.posX-50,this.posY-40,Lebensenergie,10); //für Lebensbalken über Person, ist aber hässlich bei Top-Down
+        app.fill(255,215,0);
+        app.rect(10,10,gold*5,10);
+        app.text(Integer.toString(gold),20+gold*5,20);
     }
-
 
     @Override
     public void bewege(Richtung richtung) {
 
         switch (richtung) {
             case N:
-                if (isSpielfeldrand(this.posX,this.posY-GESCHWINDIGKEIT)) {
-                    this.posY -= GESCHWINDIGKEIT;
-                }
+                this.posY -= GESCHWINDIGKEIT;
                 break;
             case O:
-                if (isSpielfeldrand(this.posX+GESCHWINDIGKEIT,this.posY)){
-                    this.posX += GESCHWINDIGKEIT;
-                }
+                this.posX += GESCHWINDIGKEIT;
                 break;
             case S:
-                if (isSpielfeldrand(this.posX,this.posY+GESCHWINDIGKEIT)){
-                    this.posY += GESCHWINDIGKEIT;
-                }
+                this.posY += GESCHWINDIGKEIT;
                 break;
             case W:
-                if (isSpielfeldrand(this.posX-GESCHWINDIGKEIT,this.posY)){
-                    this.posX -= GESCHWINDIGKEIT;
-                }
+                this.posX -= GESCHWINDIGKEIT;
                 break;
         }
     }
@@ -100,6 +93,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param Ypos
      * @return
      */
+    /*
     public boolean isSpielfeldrand(float Xpos, float Ypos){
         if (Xpos <=20 || Xpos >= Spielsteuerung.getSpielfeldBreite()-20 ){
             return false;
@@ -107,18 +101,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
             return false;
         } else return true;
     }
-
-
-
-
-
-
+     */
 
     @Override
     public void bewege() {
         // Spielfigur bewegt sich nicht von selbst
     }
-
 
     @Override
     public void erhoeheGold(int betrag) {

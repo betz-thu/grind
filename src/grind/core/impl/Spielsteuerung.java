@@ -9,6 +9,8 @@ import processing.core.PApplet;
 import grind.kacheln.*;
 import grind.util.Einstellungen;
 
+import java.lang.invoke.SwitchPoint;
+
 /**
  * @Autor Megatronik
  * Methode eingabe ergänzt; ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
@@ -16,18 +18,24 @@ import grind.util.Einstellungen;
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
     private static int SpielfeldHoehe;
+    private Spielfigur Spieler;
+    private int SpielerGeschwindigkeit;
+    private ITileMap tileMap;
 
-
+    /*
     boolean bewegungNordErlaubt=true;
     boolean bewegungOstErlaubt=true;
     boolean bewegungWestErlaubt=true;
     boolean bewegungSuedErlaubt=true;
-
+     */
 
     ISpielmodell spielmodell;
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
         this.spielmodell.betreteSzene(1);
+        this.Spieler = (Spielfigur) spielmodell.getFigur();
+        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
     @Override
@@ -48,46 +56,42 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-        isHinderniss();
+        //isHinderniss();
     }
 
     /**
      * Methode eingabe: ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
      */
     private void eingabe() {
-        Spielfigur figur = (Spielfigur) spielmodell.getFigur();
+        int x = Spieler.getPosX();
+        int y = Spieler.getPosY();
         if (keyPressed) {
-            if ((key == 'a' || keyCode == LEFT)&&bewegungWestErlaubt) {
-                figur.setAusrichtung(Richtung.W);
-                figur.bewege(Richtung.W);
-                bewegungNordErlaubt=true;
-                bewegungSuedErlaubt=true;
-                bewegungOstErlaubt =true;
-            } else if ((key == 'w' || keyCode == UP)&&bewegungNordErlaubt) {
-                figur.setAusrichtung(Richtung.N);
-                figur.bewege(Richtung.N);
-                bewegungWestErlaubt=true;
-                bewegungSuedErlaubt=true;
-                bewegungOstErlaubt =true;
-            } else if ((key == 's' || keyCode == DOWN)&&bewegungSuedErlaubt) {
-                figur.setAusrichtung(Richtung.S);
-                figur.bewege(Richtung.S);
-                bewegungWestErlaubt=true;
-                bewegungNordErlaubt=true;;
-                bewegungOstErlaubt =true;
-            } else if ((key == 'd' || keyCode == RIGHT)&&bewegungOstErlaubt) {
-                figur.setAusrichtung(Richtung.O);
-                figur.bewege(Richtung.O);
-                bewegungWestErlaubt=true;
-                bewegungNordErlaubt=true;
-                bewegungSuedErlaubt=true;
+            if (key == 'a' || keyCode == LEFT) {
+                Spieler.setAusrichtung(Richtung.W);
+                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-20) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+20)){
+                    Spieler.bewege(Richtung.W);
+                }
+            } else if (key == 'w' || keyCode == UP) {
+                Spieler.setAusrichtung(Richtung.N);
+                if(isErlaubteKoordinate(x-20,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+20,y-SpielerGeschwindigkeit-20)){
+                    Spieler.bewege(Richtung.N);
+                }
+            } else if (key == 's' || keyCode == DOWN) {
+                Spieler.setAusrichtung(Richtung.S);
+                if(isErlaubteKoordinate(x-20,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+20,y+SpielerGeschwindigkeit+20)){
+                    Spieler.bewege(Richtung.S);
+                }
+            } else if (key == 'd' || keyCode == RIGHT) {
+                Spieler.setAusrichtung(Richtung.O);
+                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-20) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+20)){
+                    Spieler.bewege(Richtung.O);
+                }
             }
         }
     }
 
     private void aktualisiere() {
         spielmodell.bewege();
-
     }
 
     private void zeichne() {
@@ -121,11 +125,13 @@ public class Spielsteuerung extends PApplet {
      * alle movables brauchen eine geschwindigkeit -> schatz hat 0
      * @return
      */
+    /*
     public boolean isHinderniss() {
         Spielfigur figur = (Spielfigur) spielmodell.getFigur();
         ITileMap tileMap = (ITileMap) spielmodell.getTileMap();
         int xKachel = figur.getPosX() / Einstellungen.LAENGE_KACHELN_X;
         int yKachel = figur.getPosY() / Einstellungen.LAENGE_KACHELN_Y;
+        System.out.println(xKachel+" "+yKachel);
         IKachel aktuelleKachel = tileMap.getKachel(xKachel, yKachel);
         figur.getGESCHWINDIGKEIT();
 
@@ -161,5 +167,22 @@ public class Spielsteuerung extends PApplet {
         }
         return  false;
 
+    }*/
+
+    public IKachel getKachelByCoordinates(int x, int y) {
+        x = (int) x/Einstellungen.LAENGE_KACHELN_X;
+        y = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        return tileMap.getKachel(x,y);
     }
+
+    public boolean isSpielfeldrand(int Xpos, int Ypos){
+        return Xpos <= 0 || Xpos >= SpielfeldBreite || Ypos <= 0 || Ypos >= SpielfeldHoehe;
+    }
+
+    public boolean isErlaubteKoordinate(int x, int y) {
+        if(!isSpielfeldrand(x,y)){
+            return getKachelByCoordinates(x,y).istBetretbar();
+        } else return false;
+    }
+
 }
