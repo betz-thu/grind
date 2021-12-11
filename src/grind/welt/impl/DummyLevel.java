@@ -31,6 +31,13 @@ public class DummyLevel implements ILevel {
         positionen.add(new Gold(600, 200));
         positionen.add(new Spielfigur(600, 400));
         positionen.add(new Apfel(400,200));
+        positionen.add(new Apfel(300,200));
+        positionen.add(new Apfel(200,200));
+        positionen.add(new Apfel(100,200));
+        positionen.add(new Apfel(250,200));
+        positionen.add(new Apfel(10,200));
+        positionen.add(new Apfel(50,200));
+        positionen.add(new Apfel(20,200));
         return positionen;
     }
 
