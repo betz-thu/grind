@@ -7,8 +7,10 @@ import processing.core.PApplet;
 import grind.util.Einstellungen;
 
 public class Geist extends Monster{
-    private int deltaX = 5;
-    private int deltaY = 5;
+    private int geschwindigkeit = 5;
+    private int deltaX = geschwindigkeit;
+    private int deltaY = geschwindigkeit;
+
     ITileMap tileMap;
 
 
@@ -36,15 +38,15 @@ public class Geist extends Monster{
         int posY = this.getPosY();
 
         if (posX < 0) {
-            deltaX = 5;
+            deltaX = geschwindigkeit;
         } else if (posX > Einstellungen.ANZAHL_KACHELN_X*Einstellungen.LAENGE_KACHELN_X) {
-            deltaX = -5;
+            deltaX = -geschwindigkeit;
         }
 
         if (posY < 0) {
-            deltaY = 5;
+            deltaY = geschwindigkeit;
         } else if (posY > Einstellungen.ANZAHL_KACHELN_Y*Einstellungen.LAENGE_KACHELN_Y) {
-            deltaY = -5;
+            deltaY = -geschwindigkeit;
         }
 
 

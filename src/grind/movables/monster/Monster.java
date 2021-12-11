@@ -19,8 +19,7 @@ public abstract class Monster extends Movable implements IMonster {
         return lebensenergie;
     }
 
-    @Override
-    public void vorBetreten(IKachel kachel) {
 
-    }
+
+
 }

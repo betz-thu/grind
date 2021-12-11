@@ -7,14 +7,19 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Zombie extends Monster{
-    private int deltaX = -5;
-    private int deltaY = -5;
+    private int posX;
+    private int posY;
+    private int geschwindigkeit = 3;
+    private int deltaX = -geschwindigkeit;
+    private int deltaY = -geschwindigkeit;
     ITileMap tileMap;
 
 
     public Zombie(float posX, float posY, ITileMap tileMap) {
         super(posX, posY);
         this.tileMap = tileMap;
+        this.posX = (int)posX;
+        this.posY = (int)posY;
 
     }
 
@@ -34,33 +39,33 @@ public class Zombie extends Monster{
         int posX = this.getPosX();
         int posY = this.getPosY();
 
-        int altX = posX;
-        int altY = posY;
+
 
         if (posX < 0) {
-            deltaX = 5;
+            deltaX = geschwindigkeit;
         } else if (posX > Einstellungen.ANZAHL_KACHELN_X*Einstellungen.LAENGE_KACHELN_X) {
-            deltaX = -5;
+            deltaX = -geschwindigkeit;
         }
 
         if (posY < 0) {
-            deltaY = 5;
+            deltaY = geschwindigkeit;
         } else if (posY > Einstellungen.ANZAHL_KACHELN_Y*Einstellungen.LAENGE_KACHELN_Y) {
-            deltaY = -5;
+            deltaY = -geschwindigkeit;
         }
-
 
         posX += deltaX;
         posY += deltaY;
 
         IKachel kachel = tileMap.getKachel(posY/Einstellungen.LAENGE_KACHELN_Y, posX/Einstellungen.LAENGE_KACHELN_X);
+        vorBetreten(kachel);
 
 
+        this.setPosition(posX, posY);
+    }
 
+    @Override
+    public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
-
-            posX = altX;
-            posY = altY;
 
             if(deltaX < 0){
                 deltaX = Math.abs(deltaX);
@@ -77,13 +82,8 @@ public class Zombie extends Monster{
             posX += deltaX;
             posY += deltaY;
 
+            this.setPosition(posX, posY);
         }
-
-        this.setPosition(posX, posY);
     }
 
-    @Override
-    public void vorBetreten(IKachel kachel) {
-
-    }
 }
