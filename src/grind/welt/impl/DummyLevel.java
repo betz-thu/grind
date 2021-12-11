@@ -1,5 +1,8 @@
 package grind.welt.impl;
 
+import grind.movables.impl.Apfel;
+import grind.kacheln.impl.Levelausgang;
+import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
@@ -27,8 +30,9 @@ public class DummyLevel implements ILevel {
     @Override
     public List<IMovable> getPositionen() {
         ArrayList<IMovable> positionen = new ArrayList<>();
-        positionen.add(new Gold(600, 600));
-        positionen.add(new Spielfigur(400, 400));
+        positionen.add(new Gold(600, 200));
+        positionen.add(new Spielfigur(600, 400));
+        positionen.add(new Apfel(400,200));
         return positionen;
     }
 

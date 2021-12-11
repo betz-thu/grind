@@ -2,6 +2,7 @@ package grind.core.impl;
 
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
+import grind.movables.impl.Movable;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -104,5 +105,15 @@ public class Spielmodell implements ISpielmodell {
 
     public void setSzeneNr(int szeneNR){
         this.szeneNr = szeneNR;
+    }
+
+    // nicht sicher ob wir das so machen wollen
+
+    public List<ISchatz> getSchaetze() {
+        return schaetze;
+    }
+
+    public List<IMovable> getMovables() {
+        return movables;
     }
 }
