@@ -1,6 +1,7 @@
 package grind.core;
 
 import grind.movables.ISpielfigur;
+import grind.welt.ISzene;
 import processing.core.PApplet;
 
 public interface ISpielmodell {
@@ -16,4 +17,6 @@ public interface ISpielmodell {
     int getSzeneNr();
 
     void setSzeneNr(int szeneNR);
+
+    ISzene getSzene();
 }

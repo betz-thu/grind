@@ -93,6 +93,10 @@ public class Spielmodell implements ISpielmodell {
         return this.figur;
     }
 
+    public ISzene getSzene(){
+        return this.spielwelt.getSzene(getSzeneNr());
+    }
+
     public int getSzeneNr(){
         return this.szeneNr;
     }

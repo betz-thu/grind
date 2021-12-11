@@ -1,6 +1,8 @@
 package grind.core.impl;
 
+import grind.kacheln.impl.Levelausgang;
 import grind.movables.impl.Spielfigur;
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.Spielwelt;
@@ -79,14 +81,16 @@ public class Spielsteuerung extends PApplet {
 
     public boolean ueberpruefeLevelende() {
 
-        if(spielmodell.getFigur().getPosY()>10*39 && spielmodell.getFigur().getPosX()>29*39 && spielmodell.getFigur().getPosY()<11*39){
-            System.out.println("Das Ende des Levels wurde erreicht");
-            levelBeendet = true;
-        }
+        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39) instanceof Levelausgang){
+            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
+            //levelBeendet = true;
+
 //        else if(spielmodell.getInventar().contains("Levelende Bedingung")){
 //            System.out.println("Levelende Bedingung wurde gefunden");
-//            levelBeendet = true;
-//        }
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+            levelBeendet = true;
+        }
         return levelBeendet;
     }
 

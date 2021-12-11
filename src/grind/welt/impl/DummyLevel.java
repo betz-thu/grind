@@ -34,6 +34,11 @@ public class DummyLevel implements ILevel {
     }
 
     @Override
+    public ILevel getLevel() {
+        return this;
+    }
+
+    @Override
     public void zeichne(PApplet app) {
         tileMap.zeichne(app);
     }
