@@ -10,6 +10,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     int gold = 0;
 
+
     public Spielfigur(float posX, float posY) {
         super(posX, posY);
     }
@@ -52,8 +53,5 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void erhoeheGold(int betrag) {
         System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
-
-
-
 
 }

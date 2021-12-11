@@ -1,6 +1,9 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.movables.impl.Movable;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Monster;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -24,8 +27,11 @@ public class Spielmodell implements ISpielmodell {
 
     ISpielfigur figur = new Spielfigur(0, 0);
     List<IMovable> movables = new ArrayList<>();
-    List<IMonster> monster = new ArrayList<>();
+    List<IMonster> monsters = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
+
+
+
 
     public Spielmodell(ISpielwelt spielwelt) {
         this.spielwelt = spielwelt;
@@ -56,6 +62,7 @@ public class Spielmodell implements ISpielmodell {
     private void kopiereMovables() {
         this.movables.clear();
         this.schaetze.clear();
+        this.monsters.clear();
 
         for (IMovable movable : this.level.getPositionen()) {
             if (movable instanceof ISpielfigur) {
@@ -65,7 +72,9 @@ public class Spielmodell implements ISpielmodell {
                 ISchatz schatz = (ISchatz) movable;
                 this.schaetze.add(schatz);
                 this.movables.add(schatz);
-            } else {
+
+            }
+            else {
                 this.movables.add(movable);
             }
         }
@@ -74,6 +83,9 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void bewege() {
         // die Spielfigur bewegt sich nicht von selbst
+        for(IMovable movable: movables){
+            movable.bewege();
+        }
     }
 
     @Override
@@ -87,6 +99,7 @@ public class Spielmodell implements ISpielmodell {
             movable.zeichne(app);
         }
 
+
         this.figur.zeichne(app);
     }
 
@@ -94,4 +107,7 @@ public class Spielmodell implements ISpielmodell {
     public ISpielfigur getFigur() {
         return this.figur;
     }
+
+
+
 }

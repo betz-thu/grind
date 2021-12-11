@@ -9,6 +9,7 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
+
     public Monster(float posX, float posY) {
 
         super(posX, posY);

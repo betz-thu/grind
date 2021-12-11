@@ -1,5 +1,8 @@
 package grind.welt.impl;
 
+import grind.movables.monster.DornPflanze;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Zombie;
 import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.LeereTileMap;
@@ -29,6 +32,11 @@ public class DummyLevel implements ILevel {
         ArrayList<IMovable> positionen = new ArrayList<>();
         positionen.add(new Gold(600, 200));
         positionen.add(new Spielfigur(600, 400));
+        Geist geist = new Geist(60, 200, tileMap);
+        positionen.add(geist);
+
+        positionen.add(new DornPflanze(300, 100, tileMap));
+        positionen.add(new Zombie(800, 500, tileMap));
         return positionen;
     }
 
