@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.kacheln.impl.Baum;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;

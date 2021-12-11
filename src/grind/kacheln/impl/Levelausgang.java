@@ -1,6 +1,7 @@
 package grind.kacheln.impl;
 
 import grind.kacheln.IKachel;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 
@@ -24,5 +25,10 @@ public class Levelausgang implements IKachel {
         app.strokeWeight(2f);
         app.rect(x, y, 39, 39);
         app.popStyle();
+    }
+
+    @Override
+    public void ladeDatei(String dateiname, PApplet app) {
+        //TBD
     }
 }

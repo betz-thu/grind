@@ -6,5 +6,5 @@ public interface IKachel {
     boolean istBetretbar();
     boolean istHindernis();
     void zeichne(PApplet app, int x, int y);
-    //void ladeDatei(String dateiname, PApplet app, int breite, int hoehe);
+    void ladeDatei(String dateiname, PApplet app);
 }

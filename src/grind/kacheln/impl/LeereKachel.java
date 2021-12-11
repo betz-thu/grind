@@ -1,6 +1,7 @@
 package grind.kacheln.impl;
 
 import grind.kacheln.IKachel;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -25,9 +26,10 @@ public class LeereKachel implements IKachel {
         app.rect(x, y, 39, 39);
         app.popStyle();
     }
-//    @Override
-//    public void ladeDatei(String dateiname, PApplet app, int breite, int hoehe) {
-//        img = app.loadImage(dateiname);
-//        img.resize(breite, hoehe);
-//    }
+
+    @Override
+    public void ladeDatei(String dateiname, PApplet app) {
+        this.img = app.loadImage(dateiname);
+        this.img.resize(Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
+    }
 }

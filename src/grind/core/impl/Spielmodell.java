@@ -1,6 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
