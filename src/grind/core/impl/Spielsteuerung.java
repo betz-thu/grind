@@ -1,10 +1,14 @@
 package grind.core.impl;
 
 import grind.movables.ISchatz;
+import grind.movables.impl.Schatz;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Spielsteuerung extends PApplet {
 
@@ -65,12 +69,23 @@ public class Spielsteuerung extends PApplet {
     public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
         int FigurX = this.spielmodell.getFigur().getPosX();
         int FigurY = this.spielmodell.getFigur().getPosY();
+        int i = 0;
+        int toRemove = -1;
         for(ISchatz schatz: this.spielmodell.getSchaetze()){
-           if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
+            if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
                 schatz.beimSammeln(this.spielmodell.getFigur());
+                this.spielmodell.getMovables().remove(schatz);
+                toRemove = i;
                 System.out.println("Eingesammelt!");
-           }
+            }
+            i += 1;
         }
+
+        if(toRemove != -1){
+            this.spielmodell.getSchaetze().remove(toRemove);
+        }
+
+
 
 
 

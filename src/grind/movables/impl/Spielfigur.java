@@ -12,6 +12,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private static final float GESCHWINDIGKEIT = 3f;
 
     int gold = 0;
+    int lebensenergie = 100;
     private List<Gegenstand> inventar;
 
     public Spielfigur(float posX, float posY) {
@@ -28,7 +29,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.strokeWeight(2);
         app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
+        zeichneInventar(app);
 
+    }
+
+    public void zeichneInventar(PApplet app){
         // Zeichne Inventar
         app.pushStyle();
         app.fill(255,255,255);
@@ -39,6 +44,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.fill(204, 102, 0);
         for (int i = 0; i < 5; i++) {
             app.rect(1120-i*30, 750, 30, 30);
+        }
+        for(int j = 0;j<inventar.size(); j++){
+            inventar.get(j).setPosition(1015+j*30, 765);
+            inventar.get(j).zeichne(app);
+
         }
         app.popStyle();
 
@@ -70,7 +80,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void erhoeheGold(int betrag) {
-        System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+        this.gold += betrag;
+        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override

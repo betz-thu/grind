@@ -6,6 +6,7 @@ public class Apfel extends Nahrung{
 
     private int punkte; // Fehlt in Klassendiagramm?
 
+
     public Apfel(int posX, int posY) {
         super(posX, posY);
     }
@@ -21,5 +22,7 @@ public class Apfel extends Nahrung{
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
     }
+
+
 
 }

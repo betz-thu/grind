@@ -19,4 +19,7 @@ public interface ISpielmodell {
 
 
     List<ISchatz> getSchaetze();
+
+    List<IMovable> getMovables();
+
 }

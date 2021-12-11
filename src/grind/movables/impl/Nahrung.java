@@ -12,6 +12,7 @@ public abstract class Nahrung extends Gegenstand{
 
     public void beimAnwenden(ISpielfigur figur){
         // TODO: Leben beim Anwenden erhöhen
+
     }
 
 }
