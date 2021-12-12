@@ -1,6 +1,9 @@
 package grind.core.impl;
 
 import grind.kacheln.impl.Levelausgang;
+import grind.movables.impl.Apfel;
+import grind.movables.impl.Gegenstand;
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.movables.ISchatz;
 import grind.movables.impl.Schatz;
@@ -73,6 +76,7 @@ public class Spielsteuerung extends PApplet {
     private void aktualisiere() {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
+
     }
 
     private void zeichne() {
@@ -91,12 +95,21 @@ public class Spielsteuerung extends PApplet {
             System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
             //levelBeendet = true;
 
-//        else if(spielmodell.getInventar().contains("Levelende Bedingung")){
-//            System.out.println("Levelende Bedingung wurde gefunden");
+
             spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
             levelBeendet = true;
         }
+
+        for (int i=0; i<5;i++){
+            if (spielmodell.getFigur().getInventar().size()>=i+1) {
+                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                    System.out.println("Levelende Bedingung wurde gefunden");
+                    levelBeendet = true;
+                }
+            }
+        }
+
         return levelBeendet;
     }
 
