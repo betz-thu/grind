@@ -38,12 +38,12 @@ public class DummyLevel implements ILevel {
         positionen.add(new Geist(60,200,tileMap));
        positionen.add(new DornPflanze((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y), tileMap));
-//        positionen.add(new Zombie((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X,
-//                (random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y));
+        positionen.add(new Zombie((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
+                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap));
 
 
         positionen.add(new DornPflanze(280, 80, tileMap));
-        positionen.add(new Zombie(800, 500, tileMap));
+//        positionen.add(new Zombie(800, 500, tileMap));
         return positionen;
     }
 
