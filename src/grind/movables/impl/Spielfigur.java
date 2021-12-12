@@ -10,15 +10,19 @@ import processing.core.PImage;
 
 /**
  * @Autor Megatronik
- * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor
- * Methode zeichne: zeichnet nun die Spielfigur als Bild, mit Ausrichtung in Laufrichtung.
+ * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 100;
-    int gold = 25;
+    private int Lebensenergie = 85;
+    int gold = 5;
+    PImage spielfigurOhneWaffe;
 
+    /**
+     * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
+     * @return GESCHWINDIGKEIT
+     */
     public float getGESCHWINDIGKEIT() {
         return GESCHWINDIGKEIT;
     }
@@ -40,7 +44,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     @Override
     public void zeichne(PApplet app) {
-        PImage spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+        zeichneSpielfigur(app);
+        zeichneLebensbalken(app);
+        zeichneKontostand(app);
+    }
+
+    /**
+     * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
+     * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
+     * @param app
+     */
+    private void zeichneSpielfigur(PApplet app) {
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
         app.translate(this.posX, this.posY);
@@ -61,16 +75,35 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
         app.popMatrix();
-        app.fill(0,150,0);
-        app.rect(this.posX-50,this.posY-40,Lebensenergie,10); //für Lebensbalken über Person, ist aber hässlich bei Top-Down
-        app.fill(255,215,0);
-        app.rect(10,10,gold*5,10);
-        app.text(Integer.toString(gold),20+gold*5,20);
     }
 
+    /**
+     * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
+     * @param app Spielsteuerung, als Instanz von PApplet.
+     */
+    private void zeichneKontostand(PApplet app) {
+        app.fill(255,215,0);
+        app.rect(10,5,gold*5,10);
+        app.text(Integer.toString(gold),20+gold*5,15);
+    }
+
+    /**
+     * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
+     * @param app Spielsteuerung, als Instanz von PApplet.
+     */
+    private void zeichneLebensbalken(PApplet app) {
+        app.fill(150);
+        app.rect(10,20,100,10);
+        app.fill(0,150,0);
+        app.rect(10,20,Lebensenergie,10);
+    }
+
+    /**
+     * Methode bewege, setzt neue Koordinaten der Figur.
+     * @param richtung enum für die Richtungsangabe.
+     */
     @Override
     public void bewege(Richtung richtung) {
-
         switch (richtung) {
             case N:
                 this.posY -= GESCHWINDIGKEIT;
@@ -87,22 +120,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
-    /**
-     * Methode isSpielfeldrand: blockiert die Laufbewegung falls man außerhalb des Spielfelds möchte
-     * @param Xpos
-     * @param Ypos
-     * @return
-     */
-    /*
-    public boolean isSpielfeldrand(float Xpos, float Ypos){
-        if (Xpos <=20 || Xpos >= Spielsteuerung.getSpielfeldBreite()-20 ){
-            return false;
-        } else if (Ypos <=20 || Ypos >= Spielsteuerung.getSpielfeldHoehe()-20){
-            return false;
-        } else return true;
-    }
-     */
-
     @Override
     public void bewege() {
         // Spielfigur bewegt sich nicht von selbst
@@ -113,10 +130,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
-
-
-
-
-
-
+    /**
+     * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
+     * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
+     * @param app
+     */
+    public void ladeIMGSpielfigur(PApplet app) {
+        spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
 }

@@ -1,19 +1,17 @@
 package grind.core.impl;
 
-import grind.kacheln.impl.DummyHindernis;
-import grind.movables.impl.Spielfigur;
-import grind.util.Richtung;
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
+import grind.movables.impl.Spielfigur;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
-import grind.kacheln.*;
-import grind.util.Einstellungen;
-
-import java.lang.invoke.SwitchPoint;
 
 /**
  * @Autor Megatronik
- * Methode eingabe ergänzt; ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
+ * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
@@ -21,15 +19,12 @@ public class Spielsteuerung extends PApplet {
     private Spielfigur Spieler;
     private int SpielerGeschwindigkeit;
     private ITileMap tileMap;
-
-    /*
-    boolean bewegungNordErlaubt=true;
-    boolean bewegungOstErlaubt=true;
-    boolean bewegungWestErlaubt=true;
-    boolean bewegungSuedErlaubt=true;
-     */
-
     ISpielmodell spielmodell;
+
+    /**
+     * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
+     * und Tilemap.
+     */
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
         this.spielmodell.betreteSzene(1);
@@ -38,6 +33,9 @@ public class Spielsteuerung extends PApplet {
         this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
+    /**
+     * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
+     */
     @Override
     public void settings() {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
@@ -45,22 +43,30 @@ public class Spielsteuerung extends PApplet {
         size(SpielfeldBreite,SpielfeldHoehe);
     }
 
+    /**
+     * Methode setup, lädt Darstellung der Spielfigur.
+     */
     @Override
     public void setup() {
-
+        Spieler.ladeIMGSpielfigur(this);
 
     }
 
+    /**
+     * Methode draw, zeichnet alle sichtbare Elemente.
+     * (Spielfigur, Lebensenergie, Kontostand, Tilemap)
+     */
     @Override
     public void draw() {
         eingabe();
         aktualisiere();
         zeichne();
-        //isHinderniss();
     }
 
     /**
-     * Methode eingabe: ändert nun zusätzlich die Ausrichtung der Spielfigur passend zur Laufrichtung.
+     * Methode eingabe: richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
+     * Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
+     * damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
      */
     private void eingabe() {
         int x = Spieler.getPosX();
@@ -104,85 +110,38 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * Methode getSpielfeldBreite gibt Spielfeldbreite zurück.
-     * @return Breite des Spielfelds
+     * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return IKachel
      */
-    public static int getSpielfeldBreite() {
-        return SpielfeldBreite;
-    }
-
-    /**
-     * Methode getSpielfeldHoehe gibt Spielfeldhoehe zurück.
-     * @return Hoehe des Spielfelds
-     */
-    public static int getSpielfeldHoehe() {
-        return SpielfeldHoehe;
-    }
-
-
-    /**
-     * Für alle movables modifizieren-> dann könnten monster random laufen
-     * alle movables brauchen eine geschwindigkeit -> schatz hat 0
-     * @return
-     */
-    /*
-    public boolean isHinderniss() {
-        Spielfigur figur = (Spielfigur) spielmodell.getFigur();
-        ITileMap tileMap = (ITileMap) spielmodell.getTileMap();
-        int xKachel = figur.getPosX() / Einstellungen.LAENGE_KACHELN_X;
-        int yKachel = figur.getPosY() / Einstellungen.LAENGE_KACHELN_Y;
-        System.out.println(xKachel+" "+yKachel);
-        IKachel aktuelleKachel = tileMap.getKachel(xKachel, yKachel);
-        figur.getGESCHWINDIGKEIT();
-
-        switch (figur.getAusrichtung()){
-            case N:
-                aktuelleKachel=tileMap.getKachel(xKachel,yKachel-1);
-                if(!aktuelleKachel.istBetretbar()){
-                    bewegungNordErlaubt=false;
-                }
-                break;
-            case O:
-                aktuelleKachel=tileMap.getKachel(xKachel+1,yKachel);
-                if(aktuelleKachel instanceof DummyHindernis)
-                    bewegungOstErlaubt=false;
-                break;
-            case S:
-                aktuelleKachel=tileMap.getKachel(xKachel,yKachel+1);
-                if(aktuelleKachel instanceof DummyHindernis)
-                    bewegungSuedErlaubt=false;
-                break;
-            case W:
-                aktuelleKachel=tileMap.getKachel(xKachel-1,yKachel);
-                if(aktuelleKachel instanceof DummyHindernis)
-                    bewegungWestErlaubt=false;
-                break;
-        }
-
-
-
-        if(aktuelleKachel instanceof DummyHindernis){
-            System.out.println("Hinderniss");
-            return true;
-        }
-        return  false;
-
-    }*/
-
     public IKachel getKachelByCoordinates(int x, int y) {
         x = (int) x/Einstellungen.LAENGE_KACHELN_X;
         y = (int) y/Einstellungen.LAENGE_KACHELN_Y;
         return tileMap.getKachel(x,y);
     }
 
-    public boolean isSpielfeldrand(int Xpos, int Ypos){
-        return Xpos <= 0 || Xpos >= SpielfeldBreite || Ypos <= 0 || Ypos >= SpielfeldHoehe;
+    /**
+     * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
+     * außerhalb des Spielfelds liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return boolean
+     */
+    public boolean isSpielfeldrand(int x, int y){
+        return x <= 0 || x >= SpielfeldBreite || y <= 0 || y >= SpielfeldHoehe;
     }
 
+    /**
+     * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
+     * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return boolean
+     */
     public boolean isErlaubteKoordinate(int x, int y) {
         if(!isSpielfeldrand(x,y)){
             return getKachelByCoordinates(x,y).istBetretbar();
         } else return false;
     }
-
 }
