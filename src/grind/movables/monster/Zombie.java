@@ -110,11 +110,11 @@ public class Zombie extends Monster {
 //            }
         x++;
         if( x > this.getPosX()+19 + 2*Einstellungen.LAENGE_KACHELN_X){
-            this.x = this.getPosX()+19 + 2*Einstellungen.LAENGE_KACHELN_X;
+            x = this.getPosX()+19 + 2*Einstellungen.LAENGE_KACHELN_X;
         }
         x--;
-        if (x >this.getPosX()+19 - 2*Einstellungen.LAENGE_KACHELN_X){
-            x = this.getPosX()+19 - 2*Einstellungen.LAENGE_KACHELN_X;
+        if (x <this.getPosX()+19 + 2*Einstellungen.LAENGE_KACHELN_X){
+            x = this.getPosX()+19 + 2*Einstellungen.LAENGE_KACHELN_X;
         }
 
 

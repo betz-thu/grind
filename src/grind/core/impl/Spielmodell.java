@@ -27,11 +27,7 @@ public class Spielmodell implements ISpielmodell {
 
     ISpielfigur figur = new Spielfigur(0, 0);
     List<IMovable> movables = new ArrayList<>();
-    List<IMonster> monsters = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
-
-
-
 
     public Spielmodell(ISpielwelt spielwelt) {
         this.spielwelt = spielwelt;
@@ -62,7 +58,6 @@ public class Spielmodell implements ISpielmodell {
     private void kopiereMovables() {
         this.movables.clear();
         this.schaetze.clear();
-        this.monsters.clear();
 
         for (IMovable movable : this.level.getPositionen()) {
             if (movable instanceof ISpielfigur) {
@@ -72,9 +67,7 @@ public class Spielmodell implements ISpielmodell {
                 ISchatz schatz = (ISchatz) movable;
                 this.schaetze.add(schatz);
                 this.movables.add(schatz);
-
-            }
-            else {
+            } else {
                 this.movables.add(movable);
             }
         }
@@ -99,7 +92,6 @@ public class Spielmodell implements ISpielmodell {
             movable.zeichne(app);
         }
 
-
         this.figur.zeichne(app);
     }
 
@@ -107,7 +99,4 @@ public class Spielmodell implements ISpielmodell {
     public ISpielfigur getFigur() {
         return this.figur;
     }
-
-
-
 }
