@@ -76,6 +76,7 @@ public class Spielsteuerung extends PApplet {
     private void aktualisiere() {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
+        //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
         if(levelBeendet){
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
