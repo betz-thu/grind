@@ -29,6 +29,7 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+
     }
 
     private void eingabe() {

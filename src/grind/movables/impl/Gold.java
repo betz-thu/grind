@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
 public class Gold extends Waehrung {
@@ -12,6 +13,8 @@ public class Gold extends Waehrung {
     int getWert() {
         return 1;
     }
+
+
 
     @Override
     public void zeichne(PApplet app) {

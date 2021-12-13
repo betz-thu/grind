@@ -23,11 +23,12 @@ public class LeereTileMap extends TileMap {
 
     @Override
     public IKachel getKachel(int x, int y) {
-        if (x == 10 && y < 10) {
+        if ((x == 10 && y < 10) || (y == 20 && x<10)){
             return hindernis;
         } else {
             return leereKachel;
         }
+
     }
 
     @Override

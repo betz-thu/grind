@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.movables.IMovable;
+import grind.movables.ISpielfigur;
 
 public abstract class Movable implements IMovable {
 
@@ -27,4 +28,6 @@ public abstract class Movable implements IMovable {
         this.posX = x;
         this.posY = y;
     }
+
+
 }

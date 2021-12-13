@@ -23,7 +23,7 @@ public class Geist extends Monster{
         app.fill(255,255,255);
 //      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
 
-        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.LAENGE_KACHELN_Y/2);
+        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_GEIST , (float)Einstellungen.GROESSE_GEIST);
     }
     @Override
     public void bewege() {
@@ -55,12 +55,14 @@ public class Geist extends Monster{
 
     @Override
     public void beiKollision(ISpielfigur figur) {
-
+        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_GEIST/2f + 20)){
+            // System.out.println("Kollision mit Geist");
+        }
     }
 
     @Override
     public void vorBetreten(IKachel kachel) {
-        // Ein Geist darf auch durch Wände und in Wänden spawnen
+        // Ein Geist darf auch durch Wände gehen
 
     }
 }

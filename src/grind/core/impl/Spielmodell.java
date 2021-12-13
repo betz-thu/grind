@@ -78,7 +78,11 @@ public class Spielmodell implements ISpielmodell {
         // die Spielfigur bewegt sich nicht von selbst
         for(IMovable movable: movables){
             movable.bewege();
+            if(movable instanceof IMonster){
+                ((IMonster) movable).beiKollision(figur);
+            }
         }
+
     }
 
     @Override

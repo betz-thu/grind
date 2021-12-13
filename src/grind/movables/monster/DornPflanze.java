@@ -8,18 +8,16 @@ import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 
 public class DornPflanze extends Monster {
-    int deltaX;
-    int deltaY;
-    int x = this.getPosX() + Einstellungen.LAENGE_KACHELN_X/2;
-    int y = this.getPosY() + Einstellungen.LAENGE_KACHELN_Y/2;
+    private int posX;
+    private int posY;
+
+
 
     private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
-
         super(posX, posY);
         this.tileMap = tileMap;
-        IKachel kachel = tileMap.getKachel((int) posX, (int) posY);
 
 
     }
@@ -28,8 +26,8 @@ public class DornPflanze extends Monster {
     public void zeichne(PApplet app) {
 
         app.fill(0, 255, 127);
-        app.ellipse(x, y, Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
-        IKachel kachel = tileMap.getKachel(x/Einstellungen.LAENGE_KACHELN_Y, x/Einstellungen.LAENGE_KACHELN_X);
+        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_DORNPFLANZE, Einstellungen.GROESSE_DORNPFLANZE);
+        IKachel kachel = tileMap.getKachel(this.getPosY()/Einstellungen.LAENGE_KACHELN_Y, this.getPosX()/Einstellungen.LAENGE_KACHELN_X);
         vorBetreten(kachel);
 
     }
@@ -42,14 +40,16 @@ public class DornPflanze extends Monster {
 
     @Override
     public void beiKollision(ISpielfigur figur) {
-
+        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_DORNPFLANZE/2f + 20)){
+             // System.out.println("Kollision mit DornPflanze");
+        }
     }
 
     @Override
     public void vorBetreten(IKachel kachel) {
         if (kachel.istHindernis()) {
-            x += Einstellungen.LAENGE_KACHELN_X;
-            y += Einstellungen.LAENGE_KACHELN_Y;
+             posX += Einstellungen.LAENGE_KACHELN_X;
+            posY += Einstellungen.LAENGE_KACHELN_Y;
         }
     }
 }

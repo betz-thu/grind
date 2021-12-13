@@ -1,5 +1,6 @@
 package grind.movables;
 
+import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
 
 public interface IMovable {
@@ -9,4 +10,5 @@ public interface IMovable {
     void setPosition(int x, int y);
     void zeichne(PApplet app);
     void bewege();
+
 }
