@@ -76,6 +76,11 @@ public class Spielsteuerung extends PApplet {
     private void aktualisiere() {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
+        if(levelBeendet){
+            levelBeendet = false;
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+        }
 
     }
 
@@ -96,8 +101,10 @@ public class Spielsteuerung extends PApplet {
             //levelBeendet = true;
 
 
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+//                spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+//                spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
             levelBeendet = true;
         }
 
@@ -106,6 +113,9 @@ public class Spielsteuerung extends PApplet {
                 if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
+
+//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
                 }
             }
         }
