@@ -9,7 +9,7 @@ import processing.core.PApplet;
 public class Zombie extends Monster{
     private int posX;
     private int posY;
-    private int geschwindigkeit = 2;
+    private final static int GESCHWINDIGKEIT = 2;
     private int deltaX;
     private int deltaY;
     ITileMap tileMap;
@@ -22,8 +22,8 @@ public class Zombie extends Monster{
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -geschwindigkeit; // gibt Zombie eine Anfangsrichtung und geschwindigkeit
-        this.deltaY = -geschwindigkeit;
+        this.deltaX = -GESCHWINDIGKEIT; // gibt Zombie eine Anfangsrichtung und geschwindigkeit
+        this.deltaY = -GESCHWINDIGKEIT;
 
     }
 
