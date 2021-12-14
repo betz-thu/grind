@@ -26,7 +26,7 @@ public class Spielsteuerung extends PApplet {
     private static int SpielfeldHoehe;
     private Spielfigur Spieler;
     private int SpielerGeschwindigkeit;
-    private ITileMap tileMap;
+    // private ITileMap tileMap;
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
@@ -42,7 +42,7 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-        this.tileMap = (ITileMap) spielmodell.getTileMap();
+        // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
     /**
@@ -206,7 +206,7 @@ public class Spielsteuerung extends PApplet {
     public IKachel getKachelByCoordinates(int x, int y) {
         int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
         int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
-        return tileMap.getKachel(i,j);
+        return spielmodell.getTileMap().getKachel(i,j);
     }
 
     /**
