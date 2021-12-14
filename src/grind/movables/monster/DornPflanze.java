@@ -41,14 +41,14 @@ public class DornPflanze extends Monster {
     @Override
     public void beiKollision(ISpielfigur figur) {
         if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_DORNPFLANZE/2f + 20)){
-             // System.out.println("Kollision mit DornPflanze");
+            // System.out.println("Kollision mit DornPflanze");
         }
     }
 
     @Override
     public void vorBetreten(IKachel kachel) {
         if (kachel.istHindernis()) {
-             posX += Einstellungen.LAENGE_KACHELN_X;
+            posX += Einstellungen.LAENGE_KACHELN_X;
             posY += Einstellungen.LAENGE_KACHELN_Y;
         }
     }
