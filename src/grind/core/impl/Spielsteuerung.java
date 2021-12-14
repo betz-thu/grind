@@ -1,5 +1,8 @@
 package grind.core.impl;
 
+import grind.kacheln.impl.Levelausgang;
+import grind.movables.ISchatz;
+import grind.movables.impl.Apfel;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -9,6 +12,7 @@ import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 /**
  * @Autor Megatronik
@@ -56,6 +60,7 @@ public class Spielsteuerung extends PApplet {
      */
     @Override
     public void setup() {
+        imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
 
     }

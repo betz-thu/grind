@@ -8,6 +8,9 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Autor Megatronik
  * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
@@ -19,7 +22,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     PImage spielfigurOhneWaffe;
 
-    int gold = 0;
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
     /**
@@ -60,6 +62,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param app
      */
     private void zeichneSpielfigur(PApplet app) {
+        app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
         app.translate(this.posX, this.posY);
@@ -80,16 +83,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
         app.popMatrix();
-        // Zeichne Spielfigur
-        app.pushStyle();
-        app.fill(80);
-        app.color(50, 100, 150);
-        app.strokeWeight(2);
-        app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
         app.popStyle();
-
-        zeichneInventar(app);
-
     }
 
     public void zeichneInventar(PApplet app){
