@@ -1,8 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.movables.impl.Movable;
+import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -16,6 +15,10 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Autor Megatronik
+ * Instanziierung der Spielfigur nun mit Ausrichtung.
+ */
 public class Spielmodell implements ISpielmodell {
 
     int szeneNr = 0;
@@ -24,7 +27,7 @@ public class Spielmodell implements ISpielmodell {
     ILevel level;
     ITileMap tileMap;
 
-    ISpielfigur figur = new Spielfigur(0, 0);
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
@@ -47,6 +50,7 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
+
     }
 
     private void kopiereTilemap() {
@@ -94,6 +98,12 @@ public class Spielmodell implements ISpielmodell {
     public ISpielfigur getFigur() {
         return this.figur;
     }
+
+    public ITileMap getTileMap() {
+        return this.tileMap;
+    }
+
+
 
     public ISzene getSzene(){
         return this.spielwelt.getSzene(getSzeneNr());
