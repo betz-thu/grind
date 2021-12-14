@@ -5,4 +5,5 @@ import processing.core.PApplet;
 public interface ISzene {
 
     void zeichne(PApplet app);
+    ILevel getLevel();
 }
