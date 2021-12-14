@@ -2,6 +2,9 @@ package grind.core.impl;
 
 import grind.core.ISpielmodell;
 import grind.util.Richtung;
+import grind.movables.impl.Movable;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Monster;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -11,6 +14,7 @@ import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
+import grind.movables.monster.IMonster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +54,6 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-
     }
 
     private void kopiereTilemap() {
@@ -78,6 +81,13 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void bewege() {
         // die Spielfigur bewegt sich nicht von selbst
+        for(IMovable movable: movables){
+            movable.bewege();
+            if(movable instanceof IMonster){
+                ((IMonster) movable).beiKollision(figur);
+            }
+        }
+
     }
 
     @Override

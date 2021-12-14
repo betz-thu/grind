@@ -8,6 +8,7 @@ import grind.util.Richtung;
  * Überladener Konstruktor, um Spielfigur und anderer Movables eine Ausrichtung zu geben.
  * getAusrichtung und setAusrichtung, um Ausrichtung zu setzen oder zu übergeben.
  */
+import grind.movables.ISpielfigur;
 
 public abstract class Movable implements IMovable {
 
