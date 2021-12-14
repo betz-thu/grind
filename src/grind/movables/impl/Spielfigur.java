@@ -19,6 +19,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     PImage spielfigurOhneWaffe;
 
+    int gold = 0;
+    int lebensenergie = 100;
+    private List<Gegenstand> inventar;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
@@ -34,7 +37,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung);
-    }
+        inventar = new ArrayList<>();
+}
 
     /**
      * Methode zeichne: zeichnet Bild der Spielfigur, abhängig von Ausrichtung und Position.
@@ -47,6 +51,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneSpielfigur(app);
         zeichneLebensbalken(app);
         zeichneKontostand(app);
+        zeichneInventar(app);
     }
 
     /**
@@ -75,6 +80,38 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
         app.popMatrix();
+        // Zeichne Spielfigur
+        app.pushStyle();
+        app.fill(80);
+        app.color(50, 100, 150);
+        app.strokeWeight(2);
+        app.ellipse(this.getPosX(), this.getPosY(), 40, 40);
+        app.popStyle();
+
+        zeichneInventar(app);
+
+    }
+
+    public void zeichneInventar(PApplet app){
+        // Zeichne Inventar
+        app.pushStyle();
+        app.fill(255,255,255);
+        app.stroke(255,255,255);
+        app.strokeWeight(2f);
+        app.textSize(24);
+        app.text("Inventar", 1120-4*30, 740);
+        app.fill(204, 102, 0);
+        for (int i = 0; i < 5; i++) {
+            app.rect(1120-i*30, 750, 30, 30);
+        }
+        for(int j = 0;j<inventar.size(); j++){
+            if(j<5) {
+                inventar.get(j).setPosition(1015 + j * 30, 765);
+                inventar.get(j).zeichne(app);
+            }
+        }
+        app.popStyle();
+
     }
 
     /**
@@ -120,6 +157,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+
     @Override
     public void bewege() {
         // Spielfigur bewegt sich nicht von selbst
@@ -127,7 +165,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void erhoeheGold(int betrag) {
-        System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+        this.gold += betrag;
+        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+    }
+
+    @Override
+    public List<Gegenstand> getInventar(){
+        return this.inventar;
     }
 
     /**

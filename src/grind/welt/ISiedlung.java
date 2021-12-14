@@ -1,5 +1,5 @@
 package grind.welt;
 
-public interface ISiedlung {
+public interface ISiedlung extends ISzene{
 
 }

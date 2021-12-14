@@ -1,11 +1,6 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.impl.DummyHindernis;
-import grind.kacheln.impl.TileMap;
-import grind.util.Einstellungen;
-import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -24,6 +19,8 @@ import java.util.List;
  * Instanziierung der Spielfigur nun mit Ausrichtung.
  */
 public class Spielmodell implements ISpielmodell {
+
+    int szeneNr = 0;
 
     ISpielwelt spielwelt;
     ILevel level;
@@ -85,8 +82,6 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void zeichne(PApplet app) {
 
-
-
         if (this.level != null) {
             this.level.zeichne(app);
         }
@@ -96,7 +91,6 @@ public class Spielmodell implements ISpielmodell {
         }
 
         this.figur.zeichne(app);
-
     }
 
     @Override
@@ -109,4 +103,26 @@ public class Spielmodell implements ISpielmodell {
     }
 
 
+
+    public ISzene getSzene(){
+        return this.spielwelt.getSzene(getSzeneNr());
+    }
+
+    public int getSzeneNr(){
+        return this.szeneNr;
+    }
+
+    public void setSzeneNr(int szeneNR){
+        this.szeneNr = szeneNR;
+    }
+
+    // nicht sicher ob wir das so machen wollen
+
+    public List<ISchatz> getSchaetze() {
+        return schaetze;
+    }
+
+    public List<IMovable> getMovables() {
+        return movables;
+    }
 }

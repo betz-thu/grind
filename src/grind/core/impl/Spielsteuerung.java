@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -13,6 +14,9 @@ import processing.core.PApplet;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
     private static int SpielfeldHoehe;
@@ -20,6 +24,9 @@ public class Spielsteuerung extends PApplet {
     private int SpielerGeschwindigkeit;
     private ITileMap tileMap;
     ISpielmodell spielmodell;
+    boolean pressed = false;
+    boolean levelBeendet = false;
+
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
@@ -27,7 +34,8 @@ public class Spielsteuerung extends PApplet {
      */
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
-        this.spielmodell.betreteSzene(1);
+        // this.spielmodell.betreteSzene(1);
+        this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         this.tileMap = (ITileMap) spielmodell.getTileMap();
@@ -61,6 +69,8 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+
+        pruefeKollisionen();
     }
 
     /**
@@ -94,10 +104,30 @@ public class Spielsteuerung extends PApplet {
                 }
             }
         }
+
+        //F12 neue Szene
+        if (keyPressed && !pressed){
+            if (keyCode == 123) {
+                pressed = true;
+            }
+        } else if(!keyPressed && pressed){
+            pressed = false;
+            System.out.println("F12");
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+        }
     }
 
     private void aktualisiere() {
         spielmodell.bewege();
+        levelBeendet = ueberpruefeLevelende();
+        //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
+        if(levelBeendet){
+            levelBeendet = false;
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+        }
+
     }
 
     private void zeichne() {
@@ -107,6 +137,59 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+    }
+
+    public boolean ueberpruefeLevelende() {
+        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
+        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
+            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
+            //levelBeendet = true;
+
+
+
+//                spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+//                spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+            levelBeendet = true;
+        }
+
+        for (int i=0; i<5;i++){
+            if (spielmodell.getFigur().getInventar().size()>=i+1) {
+                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                    System.out.println("Levelende Bedingung wurde gefunden");
+                    levelBeendet = true;
+
+//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+                }
+            }
+        }
+
+        return levelBeendet;
+    }
+
+    public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
+        int FigurX = this.spielmodell.getFigur().getPosX();
+        int FigurY = this.spielmodell.getFigur().getPosY();
+        int i = 0;
+        int toRemove = -1;
+        for(ISchatz schatz: this.spielmodell.getSchaetze()){
+            if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
+                schatz.beimSammeln(this.spielmodell.getFigur());
+                this.spielmodell.getMovables().remove(schatz);
+                toRemove = i;
+            }
+            i += 1;
+        }
+
+        if(toRemove != -1){
+            this.spielmodell.getSchaetze().remove(toRemove);
+        }
+
+
+
+
+
     }
 
     /**
