@@ -116,9 +116,9 @@ public class Spielsteuerung extends PApplet {
      * @return IKachel
      */
     public IKachel getKachelByCoordinates(int x, int y) {
-        x = (int) x/Einstellungen.LAENGE_KACHELN_X;
-        y = (int) y/Einstellungen.LAENGE_KACHELN_Y;
-        return tileMap.getKachel(x,y);
+        int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
+        int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        return tileMap.getKachel(i,j);
     }
 
     /**
