@@ -8,16 +8,31 @@ import processing.core.PImage;
 public class Fels implements IKachel {
     PImage img;
     boolean bildGeladen = false;
+
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean istBetretbar() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean istHindernis() {
         return true;
     }
 
+    /**
+     *
+     * @param app
+     * @param x
+     * @param y
+     */
     @Override
     public void zeichne(PApplet app, int x, int y) {
         if (!bildGeladen){
@@ -34,6 +49,11 @@ public class Fels implements IKachel {
 //        app.popStyle();
     }
 
+    /**
+     *
+     * @param dateiname
+     * @param app
+     */
     @Override
     public void ladeDatei(String dateiname, PApplet app) {
         this.img = app.loadImage(dateiname);

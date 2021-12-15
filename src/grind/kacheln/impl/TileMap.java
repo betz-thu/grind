@@ -1,5 +1,6 @@
 package grind.kacheln.impl;
 
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -25,6 +26,9 @@ public class TileMap implements ITileMap {
     int zufall = 0;
     Random rand = new Random();
 
+    /**
+     *
+     */
     public TileMap() {
         this.hoehe = Einstellungen.ANZAHL_KACHELN_Y;
         this.breite = Einstellungen.ANZAHL_KACHELN_X;
@@ -41,10 +45,13 @@ public class TileMap implements ITileMap {
                this.zufall = rand.nextInt(6);
                if (zufall == 0){
                    this.kacheln[i][j] = this.baum;
+                   //this.kacheln[i][j] = this.wiese;
                } else if (zufall == 1){
-                   this.kacheln[i][j] = this.fels;
+//                   this.kacheln[i][j] = this.fels;
+                   this.kacheln[i][j] = this.wiese;
                } else if (zufall == 2){
-                   this.kacheln[i][j] = this.wasser;
+//                   this.kacheln[i][j] = this.wasser;
+                   this.kacheln[i][j] = this.wiese;
                } else if (zufall == 3){
                    this.kacheln[i][j] = this.weg;
                } else if (zufall == 4){
@@ -65,26 +72,48 @@ public class TileMap implements ITileMap {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getHoehe() {
         return hoehe;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getBreite() {
         return breite;
     }
 
+    /**
+     *
+     * @param i
+     * @param j
+     * @return
+     */
     @Override
     public IKachel getKachel(int i, int j) {
         return kacheln[i][j];
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<IKachel> getKachelarten() {
         return this.kachelarten;
     }
 
+    /**
+     *
+     * @param app
+     */
     @Override
     public void zeichne(PApplet app) {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
@@ -97,4 +126,7 @@ public class TileMap implements ITileMap {
             }
         }
     }
+
+
+
 }

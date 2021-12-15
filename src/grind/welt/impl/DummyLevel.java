@@ -18,15 +18,26 @@ public class DummyLevel implements ILevel {
 
     ITileMap tileMap;
 
+    /**
+     *
+     */
     public DummyLevel (){
         this.tileMap = new TileMap();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public ITileMap getTileMap() {
         return this.tileMap;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<IMovable> getPositionen() {
         ArrayList<IMovable> positionen = new ArrayList<>();
@@ -36,11 +47,19 @@ public class DummyLevel implements ILevel {
         return positionen;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public ILevel getLevel() {
         return this;
     }
 
+    /**
+     *
+     * @param app
+     */
     @Override
     public void zeichne(PApplet app) {
         tileMap.zeichne(app);

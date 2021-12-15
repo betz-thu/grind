@@ -99,12 +99,7 @@ public class Spielsteuerung extends PApplet {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
             System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
-            //levelBeendet = true;
 
-
-
-//                spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                spielmodell.betreteSzene(spielmodell.getSzeneNr());
 
             levelBeendet = true;
         }
@@ -115,8 +110,6 @@ public class Spielsteuerung extends PApplet {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
 
-//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
                 }
             }
         }
