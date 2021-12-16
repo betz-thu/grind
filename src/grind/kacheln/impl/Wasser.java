@@ -7,12 +7,18 @@ import processing.core.PConstants;
 import processing.core.PImage;
 
 public class Wasser implements IKachel {
-    PImage img;
-    boolean bildGeladen = false;
+    transient PImage img;
+    transient boolean bildGeladen = false;
+    String kachelTyp = "Wasser";
+
+    public Wasser(){
+        this.img = new PImage();
+        //Bild hier laden eager
+    }
 
     /**
-     *
-     * @return
+     * Gibt einen Boolean zurück ob die Kachel betretbar ist
+     * @return Betretbar Ja/Nein
      */
     @Override
     public boolean istBetretbar() {
@@ -20,8 +26,8 @@ public class Wasser implements IKachel {
     }
 
     /**
-     *
-     * @return
+     * Gibt einen Boolean zurück ob die Kachel ein Hindernis ist
+     * @return Hindernis Ja/Nein
      */
     @Override
     public boolean istHindernis() {
@@ -29,36 +35,33 @@ public class Wasser implements IKachel {
     }
 
     /**
-     *
-     * @param app
-     * @param x
-     * @param y
+     * Lädt die Bilddatei in ein PImage und gibt dieses dann zurück
+     * @param app Das Applet mit welchem das Bild geladen werden soll
+     * @return Das geladene PImage
      */
-    @Override
-    public void zeichne(PApplet app, int x, int y) {
-
-        if (!bildGeladen){
+    private PImage getImage(PApplet app) {
+        if (!bildGeladen){ //Das wäre Lazy
             this.img = app.loadImage("wasser.png");
             img.resize(Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
             bildGeladen = true;
         }
-        app.image(img, x, y);
+        return this.img;
+    }
+
+    /**
+     * Zeichnet die aktuelle Kachel mit dem lazy geladenen Bild
+     * @param app Auf das zu zeichnende Applet
+     * @param x Koordinate auf dem Applet
+     * @param y Koordinate auf dem Applet
+     */
+    @Override
+    public void zeichne(PApplet app, int x, int y) {
+        app.image(getImage(app), x, y);
 //        app.pushStyle();
 //        app.fill(28,134,238);//Hellblau
 //        app.stroke(120);
 //        app.strokeWeight(2f);
 //        app.rect(x, y, 39, 39);
 //        app.popStyle();
-    }
-
-    /**
-     *
-     * @param dateiname
-     * @param app
-     */
-    @Override
-    public void ladeDatei(String dateiname, PApplet app) {
-        this.img = app.loadImage(dateiname);
-        img.resize(Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
     }
 }

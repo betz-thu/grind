@@ -4,6 +4,7 @@ import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
+import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import processing.core.PApplet;
 
@@ -32,4 +33,6 @@ public interface ISpielmodell {
     void setSzeneNr(int szeneNR);
 
     ISzene getSzene();
+
+    ISpielwelt getSpielwelt();
 }

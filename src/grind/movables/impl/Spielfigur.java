@@ -20,7 +20,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
-    PImage spielfigurOhneWaffe;
+    transient PImage spielfigurOhneWaffe;
 
     int lebensenergie = 100;
     private List<Gegenstand> inventar;

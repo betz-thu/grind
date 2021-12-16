@@ -23,8 +23,7 @@ public class TileMap implements ITileMap {
     IKachel holzbrücke;
     IKachel levelausgang;
     List<IKachel> kachelarten = new ArrayList<>();
-    int zufall = 0;
-    Random rand = new Random();
+    transient Random rand = new Random();
 
     /**
      *
@@ -40,29 +39,47 @@ public class TileMap implements ITileMap {
         this.wiese = new Wiese();
         this.holzbrücke = new Holzbrücke();
         this.levelausgang = new Levelausgang();
+        zufaelligeTileMap();
+        erstelleListeKachelarten();
+    }
+
+    /**
+     * Erstellt eine zufällige Tilemap zu Testzwecken
+     */
+    private void zufaelligeTileMap() {
+        int levelausgangI = rand.nextInt(Einstellungen.ANZAHL_KACHELN_Y);
+        int levelausgangJ = rand.nextInt(Einstellungen.ANZAHL_KACHELN_X);
+        int zufall = 0;
+
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
-               this.zufall = rand.nextInt(6);
-               if (zufall == 0){
-                   this.kacheln[i][j] = this.baum;
-                   //this.kacheln[i][j] = this.wiese;
-               } else if (zufall == 1){
+                zufall = rand.nextInt(6);
+                if (zufall == 0){
+                    this.kacheln[i][j] = this.baum;
+                    //this.kacheln[i][j] = this.wiese;
+                } else if (zufall == 1){
 //                   this.kacheln[i][j] = this.fels;
-                   this.kacheln[i][j] = this.wiese;
-               } else if (zufall == 2){
+                    this.kacheln[i][j] = this.wiese;
+                } else if (zufall == 2){
 //                   this.kacheln[i][j] = this.wasser;
-                   this.kacheln[i][j] = this.wiese;
-               } else if (zufall == 3){
-                   this.kacheln[i][j] = this.weg;
-               } else if (zufall == 4){
-                   this.kacheln[i][j] = this.wiese;
-               } else if (zufall == 5){
-                   this.kacheln[i][j] = this.holzbrücke;
-               }
+                    this.kacheln[i][j] = this.wiese;
+                } else if (zufall == 3){
+                    this.kacheln[i][j] = this.weg;
+                } else if (zufall == 4){
+                    this.kacheln[i][j] = this.wiese;
+                } else if (zufall == 5){
+                    this.kacheln[i][j] = this.holzbrücke;
+                }
             }
         }
 
-        this.kacheln[rand.nextInt(Einstellungen.ANZAHL_KACHELN_Y)][rand.nextInt(Einstellungen.ANZAHL_KACHELN_X)] = this.levelausgang; //Vorerst festgelegtes Levelende
+        this.kacheln[levelausgangI][levelausgangJ] = this.levelausgang;
+    }
+
+    /**
+     * Fügt der Liste Kachelarten alle Kachelarten der akutellen Tilemap hinzu.
+     */
+    private void erstelleListeKachelarten() {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                 if(!kachelarten.contains(kacheln[i][j])){
@@ -73,7 +90,7 @@ public class TileMap implements ITileMap {
     }
 
     /**
-     *
+     * Gibt die aktuelle Höhe der Tilemap zurück.
      * @return
      */
     @Override
@@ -82,7 +99,7 @@ public class TileMap implements ITileMap {
     }
 
     /**
-     *
+     * Gibt die aktuelle Breite der Tilemap zurück.
      * @return
      */
     @Override
@@ -91,10 +108,10 @@ public class TileMap implements ITileMap {
     }
 
     /**
-     *
-     * @param i
-     * @param j
-     * @return
+     * Gibt die Kachel mit den Koordinaten i,j zurück.
+     * @param i Array Spalte in y-Richtung
+     * @param j Array Spalte in x-Richtung
+     * @return Die Kachel an Stelle [i][j]
      */
     @Override
     public IKachel getKachel(int i, int j) {
@@ -102,8 +119,8 @@ public class TileMap implements ITileMap {
     }
 
     /**
-     *
-     * @return
+     * Gibt eine Liste aller Kachelarten der aktuellen Tilemap zurück.
+     * @return ArrayList mit Kacheln aus aktueller Tilemap
      */
     @Override
     public List<IKachel> getKachelarten() {
@@ -111,8 +128,9 @@ public class TileMap implements ITileMap {
     }
 
     /**
-     *
-     * @param app
+     * Zeichnet die aktuelle Tilemap auf das Applet.
+     * Zusätzlich wird noch eine Unterebene eingezeichnet um hintergrundfreie Assets benutzen zu können.
+     * @param app PApplet auf welches gezeichnet werden soll
      */
     @Override
     public void zeichne(PApplet app) {

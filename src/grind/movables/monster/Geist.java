@@ -11,7 +11,7 @@ public class Geist extends Monster{
     private int deltaX = geschwindigkeit;
     private int deltaY = geschwindigkeit;
 
-    ITileMap tileMap;
+    transient ITileMap tileMap;
 
 
     public Geist(float posX, float posY,ITileMap tileMap) {

@@ -7,12 +7,12 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Zombie extends Monster{
-    private int posX;
-    private int posY;
+    transient private int posX;
+    transient private int posY;
     private final static int GESCHWINDIGKEIT = 2;
     private int deltaX;
     private int deltaY;
-    ITileMap tileMap;
+    transient ITileMap tileMap;
 
     private boolean hilfsVariable = false;
 

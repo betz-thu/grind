@@ -27,7 +27,7 @@ public class Spielmodell implements ISpielmodell {
 
     int szeneNr = 0;
 
-    ISpielwelt spielwelt;
+    public ISpielwelt spielwelt;
     ILevel level;
     ITileMap tileMap;
 
@@ -135,5 +135,9 @@ public class Spielmodell implements ISpielmodell {
 
     public List<IMovable> getMovables() {
         return movables;
+    }
+
+    public ISpielwelt getSpielwelt(){
+        return this.spielwelt;
     }
 }

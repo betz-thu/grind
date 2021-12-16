@@ -20,9 +20,9 @@ public class DummySpielwelt implements ISpielwelt {
     }
 
     /**
-     *
-     * @param n
-     * @return
+     * Gibt die gewünschte Szene aus der List<ISzene> zurück
+     * @param n Szenennummer in der Szenenliste
+     * @return Szene an Listennummer n
      */
     @Override
     public ISzene getSzene(int n) {

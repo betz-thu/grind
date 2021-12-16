@@ -6,10 +6,8 @@ import grind.movables.impl.Apfel;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
-import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -18,18 +16,18 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
-import java.util.ArrayList;
-import java.util.List;
 
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
     private static int SpielfeldHoehe;
     private Spielfigur Spieler;
     private int SpielerGeschwindigkeit;
+    private String fTaste;
     // private ITileMap tileMap;
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    DateiService dateiService;
 
 
     /**
@@ -42,6 +40,7 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.dateiService = new DateiService();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -76,6 +75,7 @@ public class Spielsteuerung extends PApplet {
         zeichne();
 
         pruefeKollisionen();
+
     }
 
     /**
@@ -110,29 +110,60 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
+        abfrageFTasten();
+    }
+
+    /**
+     * @Autor LuHe20
+     * Cheat für das Überspringen einer Szene mit F12.
+     */
+    private void abfrageFTasten() {
         //F12 neue Szene
         if (keyPressed && !pressed){
             if (keyCode == 123) {
                 pressed = true;
+                fTaste = "F12";
+            } else if(keyCode == 122){
+                pressed = true;
+                fTaste = "F11";
+            } else if(keyCode == 121){
+                pressed = true;
+                fTaste = "F10";
             }
         } else if(!keyPressed && pressed){
+            if(fTaste.equals("F12")){
+                levelBeendet = true;
+            } else if(fTaste.equals("F11")){
+                speichereSpielwelt(this.spielmodell);
+                System.out.println("F11");
+            } else if(fTaste.equals("F10")){
+                levelBeendet = true;
+                this.spielmodell = ladeSpielwelt();
+                System.out.println("F10");
+            }
+
             pressed = false;
-            System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
         }
     }
 
     private void aktualisiere() {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
-        //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
+        starteNeueSzene();
+
+    }
+
+    /**
+     * @Autor LuHe20
+     * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
+     */
+    private void starteNeueSzene() {
         if(levelBeendet){
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
-
     }
 
     private void zeichne() {
@@ -146,12 +177,7 @@ public class Spielsteuerung extends PApplet {
 
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
-        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
-            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
-
-
-            levelBeendet = true;
-        }
+        pruefeLevelausgang();
 
         for (int i=0; i<5;i++){
             if (spielmodell.getFigur().getInventar().size()>=i+1) {
@@ -163,6 +189,23 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
+        return levelBeendet;
+    }
+
+    /**
+     * @Autor LuHe20
+     * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
+     * eine Kachel des Typs: Levelausgang ist.
+     * @return levelBeendet
+     */
+    private boolean pruefeLevelausgang() {
+        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
+        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
+        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
+        if (spielerKachel instanceof Levelausgang){
+//            System.out.println(spielerKachel);
+            levelBeendet = true;
+        }
         return levelBeendet;
     }
 
@@ -224,5 +267,13 @@ public class Spielsteuerung extends PApplet {
         if(!isSpielfeldrand(x,y)){
             return getKachelByCoordinates(x,y).istBetretbar();
         } else return false;
+    }
+
+    private ISpielmodell ladeSpielwelt(){
+        return this.dateiService.ladeSpielmodell("spielwelt.json");
+    }
+
+    private void speichereSpielwelt(ISpielmodell spielmodell){
+        this.dateiService.speicheSpielmodell(spielmodell);
     }
 }

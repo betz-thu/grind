@@ -28,16 +28,14 @@ public class DummyLevel implements ILevel {
 
     ITileMap tileMap;
 
-    /**
-     *
-     */
+
     public DummyLevel (){
         this.tileMap = new TileMap();
     }
 
     /**
-     *
-     * @return
+     * Gibt die Tilemap des aktuellen Levels zurück
+     * @return Tilemap des aktuellen Levels
      */
     @Override
     public ITileMap getTileMap() {
@@ -45,8 +43,8 @@ public class DummyLevel implements ILevel {
     }
 
     /**
-     *
-     * @return
+     * Gibt eine Liste mit den Positionen der Movables zum Szenenstart zurück
+     * @return List<IMovable> Liste mit allen Positionen der Movables
      */
     @Override
     public List<IMovable> getPositionen() {
@@ -74,8 +72,8 @@ public class DummyLevel implements ILevel {
     }
 
     /**
-     *
-     * @return
+     * Gibt das aktuelle Level zurück
+     * @return ILevel
      */
     @Override
     public ILevel getLevel() {
@@ -83,8 +81,8 @@ public class DummyLevel implements ILevel {
     }
 
     /**
-     *
-     * @param app
+     * Zeichnet die aktuelle Tilemap auf dem Applet app
+     * @param app Applet auf dem gezeichnet wird
      */
     @Override
     public void zeichne(PApplet app) {
