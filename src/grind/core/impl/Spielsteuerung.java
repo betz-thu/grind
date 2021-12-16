@@ -188,7 +188,7 @@ public class Spielsteuerung extends PApplet {
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableX = movable.getPosX();
             int MovableY = movable.getPosY();
-            if (FigurX > MovableX - movable.getGroesse() & (FigurX < MovableX + movable.getGroesse()) & (FigurY > MovableY - movable.getGroesse()) & (FigurY < MovableY + movable.getGroesse())) {
+            if (FigurX+(Einstellungen.GROESSE_SPIELFIGUR/2) > MovableX - movable.getGroesse()/2 & (FigurX-(Einstellungen.GROESSE_SPIELFIGUR/2) < MovableX + movable.getGroesse()/2) & (FigurY +(Einstellungen.GROESSE_SPIELFIGUR/2)> MovableY - movable.getGroesse()/2) & (FigurY -(Einstellungen.GROESSE_SPIELFIGUR/2)< MovableY + movable.getGroesse()/2)) {
 
                 if(movable instanceof IMonster) {
                     System.out.println("KOLLISION");

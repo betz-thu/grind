@@ -10,6 +10,7 @@ public class Geist extends Monster{
     private int geschwindigkeit = 5;
     private int deltaX = geschwindigkeit;
     private int deltaY = geschwindigkeit;
+    private final int schaden = 10;
 
 
     ITileMap tileMap;
@@ -17,6 +18,7 @@ public class Geist extends Monster{
 
     public Geist(float posX, float posY,ITileMap tileMap, int groesse) {
         super(posX, posY, groesse);
+        setSchaden(schaden);
     }
 
     @Override
@@ -54,10 +56,6 @@ public class Geist extends Monster{
         this.setPosition(posX, posY);
     }
 
-    @Override
-    public void setSchaden(int schaden) {
-        super.setSchaden(10);
-    }
 
     @Override
     public void beiKollision(ISpielfigur figur) {

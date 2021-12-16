@@ -1,9 +1,11 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
+import grind.movables.IMovable;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -178,6 +180,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
         //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
+    }
+    public void beimSammeln(int betrag){
+        if (this.gold == this.gold + betrag){
+
+        }
     }
 
     @Override

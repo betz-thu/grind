@@ -13,12 +13,14 @@ public class Zombie extends Monster{
     private int deltaX;
     private int deltaY;
     ITileMap tileMap;
+    private final int schaden = 15;
 
     private boolean hilfsVariable = false;
 
 
     public Zombie(float posX, float posY, ITileMap tileMap, int groesse) {
         super(posX, posY, groesse);
+        setSchaden(schaden);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -91,10 +93,6 @@ public class Zombie extends Monster{
         hilfsVariable = false;
     }
 
-    @Override
-    public void setSchaden(int schaden) {
-        super.setSchaden(15);
-    }
 
     @Override
     public void vorBetreten(IKachel kachel) {
