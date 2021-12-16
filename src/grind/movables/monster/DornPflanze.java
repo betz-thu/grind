@@ -12,6 +12,7 @@ public class DornPflanze extends Monster {
     private int posX;
     private int posY;
     private int größe;
+    private int schaden = 5;
 
 
 
@@ -21,6 +22,7 @@ public class DornPflanze extends Monster {
     public DornPflanze(float posX, float posY, ITileMap tileMap, int groesse) {
         super(posX, posY, groesse);
         this.tileMap = tileMap;
+        setSchaden(schaden);
 
 
     }
@@ -46,14 +48,7 @@ public class DornPflanze extends Monster {
         return größe = Einstellungen.GROESSE_DORNPFLANZE;
     }
 
-    @Override
-    public void setSchaden(int schaden) {
-        super.setSchaden(5);
-    }
 
-        @Override
-    public void beiKollision(ISpielfigur figur) {
-        }
 
 
 

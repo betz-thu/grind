@@ -132,19 +132,24 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     private void zeichneLebensbalken(PApplet app) {
         app.fill(150);
-        app.rect(10,20,100,10);
+        app.rect(10,20,lebensenergie,10);
         app.fill(0,150,0);
         app.rect(10,20,Lebensenergie,10);
     }
 
     @Override
     public void erhalteSchaden(int schaden){
-        this.lebensenergie -= schaden;
+        this.Lebensenergie -= schaden;
+
     }
+
+
+
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.
      */
+
     @Override
     public void bewege(Richtung richtung) {
         switch (richtung) {
