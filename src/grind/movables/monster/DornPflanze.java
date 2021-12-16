@@ -11,7 +11,6 @@ import processing.core.PApplet;
 public class DornPflanze extends Monster {
     private int posX;
     private int posY;
-    private int größe;
     private int schaden = 1;
 
 
@@ -43,10 +42,7 @@ public class DornPflanze extends Monster {
 
     }
 
-    @Override
-    public int getGroesse() {
-        return größe = Einstellungen.GROESSE_DORNPFLANZE;
-    }
+
 
 
 

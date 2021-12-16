@@ -13,6 +13,7 @@ public class Zombie extends Monster{
     private int deltaX;
     private int deltaY;
     ITileMap tileMap;
+    private int schaden = 1;
 
     private boolean hilfsVariable = false;
 
@@ -25,15 +26,11 @@ public class Zombie extends Monster{
         this.deltaX = -GESCHWINDIGKEIT; // gibt Zombie eine Anfangsrichtung und geschwindigkeit
         this.deltaY = -GESCHWINDIGKEIT;
 
+        setSchaden(schaden);
+
     }
 
-    @Override
-    public void beiKollision(ISpielfigur figur) {
 
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + 20)){ // 20 = spielerradius
-            // System.out.println("Kollision mit Zombie");
-        }
-    }
 
     @Override
     public void zeichne(PApplet app) {
@@ -91,10 +88,7 @@ public class Zombie extends Monster{
         hilfsVariable = false;
     }
 
-    @Override
-    public void setSchaden(int schaden) {
-        super.setSchaden(15);
-    }
+
 
     @Override
     public void vorBetreten(IKachel kachel) {

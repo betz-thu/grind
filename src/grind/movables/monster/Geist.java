@@ -10,13 +10,16 @@ public class Geist extends Monster{
     private int geschwindigkeit = 5;
     private int deltaX = geschwindigkeit;
     private int deltaY = geschwindigkeit;
+    private int schaden = 5;
 
 
     ITileMap tileMap;
 
 
     public Geist(float posX, float posY,ITileMap tileMap, int groesse) {
+
         super(posX, posY, groesse);
+        setSchaden(schaden);
     }
 
     @Override
@@ -54,17 +57,8 @@ public class Geist extends Monster{
         this.setPosition(posX, posY);
     }
 
-    @Override
-    public void setSchaden(int schaden) {
-        super.setSchaden(10);
-    }
 
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_GEIST/2f + 20)){
-            // System.out.println("Kollision mit Geist");
-        }
-    }
+
 
     @Override
     public void vorBetreten(IKachel kachel) {
