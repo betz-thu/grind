@@ -42,7 +42,7 @@ public class DummyLevel implements ILevel {
         Random random = new Random();
         ArrayList<IMovable> positionen = new ArrayList<>();
         positionen.add(new Gold(600, 200, Einstellungen.GROESSE_GOLD));
-        positionen.add(new Spielfigur(600, 400, Richtung.N, Einstellungen.GROESSE_SPIELFIGUR ));
+
         positionen.add(new Geist(60,200,tileMap, Einstellungen.GROESSE_GEIST));
 
         /*

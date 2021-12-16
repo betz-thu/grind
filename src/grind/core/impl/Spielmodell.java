@@ -143,4 +143,6 @@ public class Spielmodell implements ISpielmodell {
     public List<IMovable> getMovables() {
         return movables;
     }
+
+
 }

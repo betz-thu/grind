@@ -5,6 +5,7 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
 import grind.movables.impl.Movable;
+import grind.movables.monster.IMonster;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -32,7 +33,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
-    boolean Kollision = false;
+
 
 
     /**
@@ -77,7 +78,7 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-        pruefeKollisionen();
+
     }
 
     /**
@@ -126,6 +127,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void aktualisiere() {
+        pruefeKollisionen();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
@@ -134,8 +136,9 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
-        Kollision = pruefeKollisionen();
-        Kollision = false;
+
+
+
 
 
     }
@@ -178,7 +181,7 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 
-    public boolean pruefeKollisionen() {
+    public void pruefeKollisionen() {
         int FigurX = this.spielmodell.getFigur().getPosX();
         int FigurY = this.spielmodell.getFigur().getPosY();
 
@@ -186,9 +189,15 @@ public class Spielsteuerung extends PApplet {
             int MovableX = movable.getPosX();
             int MovableY = movable.getPosY();
             if (FigurX > MovableX - movable.getGroesse() & (FigurX < MovableX + movable.getGroesse()) & (FigurY > MovableY - movable.getGroesse()) & (FigurY < MovableY + movable.getGroesse())) {
-                Kollision = true;
+
+                if(movable instanceof IMonster) {
+                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
+                }
+                if(movable instanceof ISchatz){
+                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                }
             }
-        }return Kollision;
+        }
     }
 
 

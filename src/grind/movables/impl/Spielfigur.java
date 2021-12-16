@@ -20,7 +20,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
-    private int größe;
+
     PImage spielfigurOhneWaffe;
 
 
@@ -60,7 +60,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getGroesse() {
-        return this.größe = Einstellungen.GROESSE_FIGUR;
+        return this.groesse = Einstellungen.GROESSE_FIGUR;
     }
 
     /**
@@ -88,7 +88,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 n = 3;
         }
         app.rotate(PConstants.HALF_PI*n);
-        app.image(spielfigurOhneWaffe, 0, 0, größe, größe);
+        app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
     }
