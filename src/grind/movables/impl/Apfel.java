@@ -7,6 +7,7 @@ public class Apfel extends Nahrung{
 
 
     private int punkte; // Fehlt in Klassendiagramm?
+    private int größe;
 
 
     public Apfel(int posX, int posY, int groesse) {
@@ -25,6 +26,8 @@ public class Apfel extends Nahrung{
         app.popStyle();
     }
 
-
-
+    @Override
+    public int getGroesse() {
+        return this.größe = Einstellungen.GROESSE_APFEL;
+    }
 }

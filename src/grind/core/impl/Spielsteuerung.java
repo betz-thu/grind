@@ -1,8 +1,10 @@
 package grind.core.impl;
 
 import grind.kacheln.impl.Levelausgang;
+import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
+import grind.movables.impl.Movable;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -30,6 +32,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    boolean Kollision = false;
 
 
     /**
@@ -74,7 +77,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-
         pruefeKollisionen();
     }
 
@@ -132,6 +134,9 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
+        Kollision = pruefeKollisionen();
+        Kollision = false;
+
 
     }
 
@@ -173,29 +178,19 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 
-    public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
+    public boolean pruefeKollisionen() {
         int FigurX = this.spielmodell.getFigur().getPosX();
         int FigurY = this.spielmodell.getFigur().getPosY();
-        int i = 0;
-        int toRemove = -1;
-        for(ISchatz schatz: this.spielmodell.getSchaetze()){
-            if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
-                schatz.beimSammeln(this.spielmodell.getFigur());
-                this.spielmodell.getMovables().remove(schatz);
-                toRemove = i;
+
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            int MovableX = movable.getPosX();
+            int MovableY = movable.getPosY();
+            if (FigurX > MovableX - movable.getGroesse() & (FigurX < MovableX + movable.getGroesse()) & (FigurY > MovableY - movable.getGroesse()) & (FigurY < MovableY + movable.getGroesse())) {
+                Kollision = true;
             }
-            i += 1;
-        }
-
-        if(toRemove != -1){
-            this.spielmodell.getSchaetze().remove(toRemove);
-        }
-
-
-
-
-
+        }return Kollision;
     }
+
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.

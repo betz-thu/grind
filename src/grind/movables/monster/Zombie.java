@@ -91,6 +91,11 @@ public class Zombie extends Monster{
     }
 
     @Override
+    public void setSchaden(int schaden) {
+        super.setSchaden(15);
+    }
+
+    @Override
     public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
 

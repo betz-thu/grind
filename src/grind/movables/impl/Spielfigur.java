@@ -20,6 +20,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
+    private int größe;
     PImage spielfigurOhneWaffe;
 
 
@@ -57,6 +58,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneInventar(app);
     }
 
+    @Override
+    public int getGroesse() {
+        return this.größe = Einstellungen.GROESSE_FIGUR;
+    }
+
     /**
      * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
@@ -82,7 +88,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 n = 3;
         }
         app.rotate(PConstants.HALF_PI*n);
-        app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
+        app.image(spielfigurOhneWaffe, 0, 0, größe, größe);
         app.popMatrix();
         app.popStyle();
     }
@@ -119,6 +125,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.text(Integer.toString(gold),20+gold*5,15);
     }
 
+
     /**
      * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
      * @param app Spielsteuerung, als Instanz von PApplet.
@@ -130,6 +137,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.rect(10,20,Lebensenergie,10);
     }
 
+    @Override
+    public void erhalteSchaden(int schaden){
+        this.lebensenergie -= schaden;
+    }
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.
@@ -152,10 +163,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
-    @Override
-    public int getGroesse() {
-        return super.getGroesse();
-    }
 
     @Override
     public void bewege() {

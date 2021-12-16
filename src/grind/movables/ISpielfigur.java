@@ -15,4 +15,5 @@ public interface ISpielfigur extends IMovable {
     int getGroesse();
 
     List<Gegenstand> getInventar();
+    void erhalteSchaden(int schaden);
 }

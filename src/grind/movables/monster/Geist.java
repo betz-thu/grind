@@ -11,6 +11,7 @@ public class Geist extends Monster{
     private int deltaX = geschwindigkeit;
     private int deltaY = geschwindigkeit;
 
+
     ITileMap tileMap;
 
 
@@ -23,7 +24,7 @@ public class Geist extends Monster{
         app.fill(255,255,255);
 //      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
 
-        app.ellipse(this.getPosX(), this.getPosY(),this.getGroesse(), this.getGroesse());
+        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_GEIST , (float)Einstellungen.GROESSE_GEIST);
     }
     @Override
     public void bewege() {
@@ -51,6 +52,11 @@ public class Geist extends Monster{
 
 
         this.setPosition(posX, posY);
+    }
+
+    @Override
+    public void setSchaden(int schaden) {
+        super.setSchaden(10);
     }
 
     @Override

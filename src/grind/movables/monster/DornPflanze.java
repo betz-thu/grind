@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
@@ -10,6 +11,8 @@ import processing.core.PApplet;
 public class DornPflanze extends Monster {
     private int posX;
     private int posY;
+    private int größe;
+
 
 
 
@@ -39,11 +42,20 @@ public class DornPflanze extends Monster {
     }
 
     @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_DORNPFLANZE/2f + 20)){
-            // System.out.println("Kollision mit DornPflanze");
-        }
+    public int getGroesse() {
+        return größe = Einstellungen.GROESSE_DORNPFLANZE;
     }
+
+    @Override
+    public void setSchaden(int schaden) {
+        super.setSchaden(5);
+    }
+
+        @Override
+    public void beiKollision(ISpielfigur figur) {
+        }
+
+
 
     @Override
     public void vorBetreten(IKachel kachel) {

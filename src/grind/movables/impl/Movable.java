@@ -58,6 +58,7 @@ public abstract class Movable implements IMovable {
         this.posY = y;
     }
 
+
     /**
      * Methode getAusrichtung gibt die aktuelle Ausrichtung des Movables zurück.
      * @return Richtung in Form der enum
