@@ -20,5 +20,6 @@ public abstract class Schatz extends Movable implements ISchatz {
     public void bewege() {
         // Schätze bleiben an der Stelle.
     }
+
     public abstract void beimSammeln(ISpielfigur figur); // nicht im Klassendiagramm...
 }
