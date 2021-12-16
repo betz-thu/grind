@@ -22,6 +22,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     PImage spielfigurOhneWaffe;
 
+
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
     /**
@@ -37,8 +38,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
      */
-    public Spielfigur(float posX, float posY, Richtung richtung) {
-        super(posX, posY, richtung);
+    public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
+        super(posX, posY, richtung, groesse);
         inventar = new ArrayList<>();
 }
 
@@ -151,6 +152,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+    @Override
+    public int getGroesse() {
+        return super.getGroesse();
+    }
 
     @Override
     public void bewege() {

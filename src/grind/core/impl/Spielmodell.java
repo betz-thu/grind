@@ -1,6 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.impl.Movable;
 import grind.movables.monster.Geist;
@@ -31,7 +32,7 @@ public class Spielmodell implements ISpielmodell {
     ILevel level;
     ITileMap tileMap;
 
-    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N, Einstellungen.GROESSE_SPIELFIGUR);
     List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 

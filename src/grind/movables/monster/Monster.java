@@ -13,9 +13,9 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
-    public Monster(float posX, float posY) {
+    public Monster(float posX, float posY, int groesse) {
 
-        super(posX, posY);
+        super(posX, posY, groesse);
     }
 
     public int getLebensenergie() {

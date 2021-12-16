@@ -5,8 +5,8 @@ import processing.core.PApplet;
 
 public class Gold extends Waehrung {
 
-    public Gold(int posX, int posY) {
-        super(posX, posY);
+    public Gold(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     @Override

@@ -14,8 +14,8 @@ public class Geist extends Monster{
     ITileMap tileMap;
 
 
-    public Geist(float posX, float posY,ITileMap tileMap) {
-        super(posX, posY);
+    public Geist(float posX, float posY,ITileMap tileMap, int groesse) {
+        super(posX, posY, groesse);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Geist extends Monster{
         app.fill(255,255,255);
 //      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
 
-        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_GEIST , (float)Einstellungen.GROESSE_GEIST);
+        app.ellipse(this.getPosX(), this.getPosY(),this.getGroesse(), this.getGroesse());
     }
     @Override
     public void bewege() {

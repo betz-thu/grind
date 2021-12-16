@@ -7,9 +7,10 @@ public abstract class Schatz extends Movable implements ISchatz {
 
     int posX;
     int posY;
+    int groesse;
 
-    public Schatz(int posX, int posY) {
-        super(posX, posY);
+    public Schatz(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     @Override

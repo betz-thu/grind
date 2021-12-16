@@ -15,8 +15,8 @@ public class DornPflanze extends Monster {
 
     private ITileMap tileMap;
 
-    public DornPflanze(float posX, float posY, ITileMap tileMap) {
-        super(posX, posY);
+    public DornPflanze(float posX, float posY, ITileMap tileMap, int groesse) {
+        super(posX, posY, groesse);
         this.tileMap = tileMap;
 
 
@@ -26,7 +26,7 @@ public class DornPflanze extends Monster {
     public void zeichne(PApplet app) {
 
         app.fill(0, 255, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_DORNPFLANZE, Einstellungen.GROESSE_DORNPFLANZE);
+        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
         IKachel kachel = tileMap.getKachel(this.getPosY()/Einstellungen.LAENGE_KACHELN_Y, this.getPosX()/Einstellungen.LAENGE_KACHELN_X);
         vorBetreten(kachel);
 

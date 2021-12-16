@@ -4,8 +4,8 @@ import grind.movables.ISpielfigur;
 
 public abstract class Waehrung extends Schatz {
 
-    public Waehrung(int posX, int posY) {
-        super(posX, posY);
+    public Waehrung(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     @Override

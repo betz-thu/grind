@@ -12,6 +12,7 @@ public interface IMovable {
 
     int getPosX();
     int getPosY();
+    int getGroesse();
     void setPosition(int x, int y);
     void zeichne(PApplet app);
     void bewege();
