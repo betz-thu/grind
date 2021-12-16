@@ -1,10 +1,10 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.movables.monster.*;
 import grind.util.Richtung;
 import grind.movables.impl.Movable;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Monster;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -14,10 +14,10 @@ import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
-import grind.movables.monster.IMonster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Autor Megatronik
@@ -32,7 +32,7 @@ public class Spielmodell implements ISpielmodell {
     ITileMap tileMap;
 
     ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
-    List<IMovable> movables = new ArrayList<>();
+    List<IMovable> movables = new CopyOnWriteArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
     public Spielmodell(ISpielwelt spielwelt) {
@@ -54,6 +54,9 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
+        //addMonster("",200,50);
+        addMonster("Feuerball",300,300);
+
     }
 
     private void kopiereTilemap() {
@@ -119,6 +122,7 @@ public class Spielmodell implements ISpielmodell {
         return this.spielwelt.getSzene(getSzeneNr());
     }
 
+
     public int getSzeneNr(){
         return this.szeneNr;
     }
@@ -135,5 +139,24 @@ public class Spielmodell implements ISpielmodell {
 
     public List<IMovable> getMovables() {
         return movables;
+    }
+
+    @Override
+    public void addMonster(String type,float posX,float posY) {
+        IMonster monster;
+        if (type.equals("Geist"))
+             monster = new Geist(posX,posY,this.tileMap);
+        else if (type.equals("Zombie")){
+            monster = new Zombie(posX,posY,this.tileMap);
+        } else if (type.equals("Feuerball")) {
+            monster = new Feuerball(posX,posY,1,1,this.tileMap);
+        } else {
+            monster = new DornPflanze(posX,posY,this.tileMap);
+        }
+        monster.setSpielmodell(this);
+        movables.add(monster);
+    }
+    public void removeMovable(Monster movable) {
+        movables.remove(movable);
     }
 }

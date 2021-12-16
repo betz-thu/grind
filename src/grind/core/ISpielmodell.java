@@ -3,7 +3,10 @@ package grind.core;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
+import grind.movables.impl.Movable;
+import grind.movables.monster.IMonster;
 import grind.movables.ISpielfigur;
+import grind.movables.monster.Monster;
 import grind.welt.ISzene;
 import processing.core.PApplet;
 
@@ -32,4 +35,7 @@ public interface ISpielmodell {
     void setSzeneNr(int szeneNR);
 
     ISzene getSzene();
+
+    void addMonster(String type,float posX,float posY);
+    void removeMovable(Monster movable);
 }

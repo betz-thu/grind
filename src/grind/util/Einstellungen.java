@@ -9,4 +9,5 @@ public class Einstellungen {
     public static final int GROESSE_ZOMBIE = 40;
     public static final int GROESSE_GEIST = 20;
     public static final int GROESSE_DORNPFLANZE = 40;
+    public static final int GROESSE_FEUERBALL = 10;
 }
