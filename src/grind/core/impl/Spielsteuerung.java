@@ -183,13 +183,17 @@ public class Spielsteuerung extends PApplet {
     }
 
     public void pruefeKollisionen() {
-        int FigurX = this.spielmodell.getFigur().getPosX();
-        int FigurY = this.spielmodell.getFigur().getPosY();
+        int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
 
         for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableX = movable.getPosX();
-            int MovableY = movable.getPosY();
-            if (FigurX+(Einstellungen.GROESSE_SPIELFIGUR/2) > MovableX - movable.getGroesse()/2 & (FigurX-(Einstellungen.GROESSE_SPIELFIGUR/2) < MovableX + movable.getGroesse()/2) & (FigurY +(Einstellungen.GROESSE_SPIELFIGUR/2)> MovableY - movable.getGroesse()/2) & (FigurY -(Einstellungen.GROESSE_SPIELFIGUR/2)< MovableY + movable.getGroesse()/2)) {
+            int MovableXp = movable.getPosX()+movable.getGroesse()/2;
+            int MovableXn = movable.getPosX()-movable.getGroesse()/2;
+            int MovableYp = movable.getPosY()+movable.getGroesse()/2;
+            int MovableYn = movable.getPosY()-movable.getGroesse()/2;
+            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
 
