@@ -86,25 +86,26 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
+        int Schulterbreite = 15;
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
-                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-20) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+20)){
+                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-Schulterbreite) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+Schulterbreite)){
                     Spieler.bewege(Richtung.W);
                 }
             } else if (key == 'w' || keyCode == UP) {
                 Spieler.setAusrichtung(Richtung.N);
-                if(isErlaubteKoordinate(x-20,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+20,y-SpielerGeschwindigkeit-20)){
+                if(isErlaubteKoordinate(x-Schulterbreite,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+Schulterbreite,y-SpielerGeschwindigkeit-20)){
                     Spieler.bewege(Richtung.N);
                 }
             } else if (key == 's' || keyCode == DOWN) {
                 Spieler.setAusrichtung(Richtung.S);
-                if(isErlaubteKoordinate(x-20,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+20,y+SpielerGeschwindigkeit+20)){
+                if(isErlaubteKoordinate(x-Schulterbreite,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+Schulterbreite,y+SpielerGeschwindigkeit+20)){
                     Spieler.bewege(Richtung.S);
                 }
             } else if (key == 'd' || keyCode == RIGHT) {
                 Spieler.setAusrichtung(Richtung.O);
-                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-20) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+20)){
+                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-Schulterbreite) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+Schulterbreite)){
                     Spieler.bewege(Richtung.O);
                 }
             }
