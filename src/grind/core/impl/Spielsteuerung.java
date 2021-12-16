@@ -196,6 +196,9 @@ public class Spielsteuerung extends PApplet {
                 }
                 if(movable instanceof ISchatz){
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                    spielmodell.removeMovable(movable);
+                    return;
+
                 }
             }
         }

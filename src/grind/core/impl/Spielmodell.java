@@ -41,6 +41,15 @@ public class Spielmodell implements ISpielmodell {
         this.spielwelt = spielwelt;
     }
 
+    public void removeMovable(IMovable movable){
+
+       List<IMovable> positionen = level.getPositionen();
+
+       positionen.remove(movable);
+       movables.remove(movable);
+
+    }
+
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);

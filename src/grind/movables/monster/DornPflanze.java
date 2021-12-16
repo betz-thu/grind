@@ -12,7 +12,7 @@ public class DornPflanze extends Monster {
     private int posX;
     private int posY;
     private int größe;
-    private int schaden = 5;
+    private int schaden = 1;
 
 
 

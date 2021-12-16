@@ -27,7 +27,7 @@ public interface ISpielmodell {
 
     List<IMovable> getMovables();
 
-
+    void removeMovable(IMovable movable);
 
 
     int getSzeneNr();
