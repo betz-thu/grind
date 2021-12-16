@@ -142,10 +142,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhalteSchaden(int schaden){
         this.Lebensenergie -= schaden;
+        gameover();
 
     }
 
 
+    public void gameover(){
+        if (Lebensenergie == 0){
+            System.out.println("Game Over");
+            Lebensenergie = 85;
+        }
+    }
 
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
