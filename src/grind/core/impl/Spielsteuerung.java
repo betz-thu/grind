@@ -5,6 +5,7 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
 import grind.movables.impl.Movable;
+import grind.movables.impl.Nahrung;
 import grind.movables.monster.IMonster;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
@@ -191,14 +192,16 @@ public class Spielsteuerung extends PApplet {
             if (FigurX+(Einstellungen.GROESSE_SPIELFIGUR/2) > MovableX - movable.getGroesse()/2 & (FigurX-(Einstellungen.GROESSE_SPIELFIGUR/2) < MovableX + movable.getGroesse()/2) & (FigurY +(Einstellungen.GROESSE_SPIELFIGUR/2)> MovableY - movable.getGroesse()/2) & (FigurY -(Einstellungen.GROESSE_SPIELFIGUR/2)< MovableY + movable.getGroesse()/2)) {
 
                 if(movable instanceof IMonster) {
-                    System.out.println("KOLLISION");
+
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
                 }
-                if(movable instanceof ISchatz){
-                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
-                    spielmodell.removeMovable(movable);
+                else if(movable instanceof ISchatz){
+                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
+                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
                     return;
-
+                }
+                else if(movable instanceof Nahrung){
+                    // TODO: Nahrung zu Inventar hinzufügen
                 }
             }
         }

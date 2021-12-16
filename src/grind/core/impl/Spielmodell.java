@@ -41,6 +41,11 @@ public class Spielmodell implements ISpielmodell {
         this.spielwelt = spielwelt;
     }
 
+    /**
+     * Löscht Movable aus Liste der Positionen und aus Liste der movables
+     * z. B. Für das Einsammeln eines Schatzes
+     * @param movable
+     */
     public void removeMovable(IMovable movable){
 
        List<IMovable> positionen = level.getPositionen();
