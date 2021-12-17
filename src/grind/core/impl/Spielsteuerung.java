@@ -37,12 +37,10 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
-        // this.spielmodell.betreteSzene(1);
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-        // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
     /**
@@ -74,7 +72,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-
         pruefeKollisionen();
     }
 
@@ -112,6 +109,7 @@ public class Spielsteuerung extends PApplet {
         }
 
         //F12 neue Szene
+        //TODO cheatMethode?
         if (keyPressed && !pressed){
             if (keyCode == 123) {
                 pressed = true;
@@ -145,17 +143,11 @@ public class Spielsteuerung extends PApplet {
         // nur notwendig, falls Maus benötigt wird
     }
 
+    //TODO getkachelByCoordinate... des hier ist ja schlimm
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
             System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
-            //levelBeendet = true;
-
-
-
-//                spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                spielmodell.betreteSzene(spielmodell.getSzeneNr());
-
             levelBeendet = true;
         }
 
@@ -164,9 +156,6 @@ public class Spielsteuerung extends PApplet {
                 if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
-
-//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
                 }
             }
         }
@@ -191,10 +180,6 @@ public class Spielsteuerung extends PApplet {
         if(toRemove != -1){
             this.spielmodell.getSchaetze().remove(toRemove);
         }
-
-
-
-
 
     }
 
