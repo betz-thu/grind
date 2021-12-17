@@ -157,10 +157,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
         // Spielfigur bewegt sich nicht von selbst
     }
 
+    /**
+     * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
+     * @param betrag erhöhung des Goldwerts
+     */
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
-        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override
