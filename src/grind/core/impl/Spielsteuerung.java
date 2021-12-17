@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.impl.Apfel;
 import grind.movables.impl.Gegenstand;
@@ -97,15 +98,13 @@ public class Spielsteuerung extends PApplet {
 
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
-        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
-            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
-            //levelBeendet = true;
-
-
-
-//                spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                spielmodell.betreteSzene(spielmodell.getSzeneNr());
-
+        int posY = spielmodell.getFigur().getPosY();
+        int posX = spielmodell.getFigur().getPosX();
+        int kachelX = posY / Einstellungen.LAENGE_KACHELN_Y;
+        int kachelY = posX / Einstellungen.LAENGE_KACHELN_X;
+        IKachel aktuelleKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(kachelX, kachelY);
+        if (aktuelleKachel instanceof Levelausgang){
+            System.out.println(aktuelleKachel);
             levelBeendet = true;
         }
 
