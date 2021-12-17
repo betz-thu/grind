@@ -22,8 +22,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     PImage spielfigurOhneWaffe;
 
+
+
+
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
+
+    boolean aktiveWaffe = true;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
@@ -85,6 +90,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popMatrix();
         app.popStyle();
     }
+
+
 
     public void zeichneInventar(PApplet app){
         // Zeichne Inventar
@@ -175,5 +182,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
+
+    public void aktiviereWaffe(Waffe waffe){
+        aktiveWaffe =true;
     }
 }
