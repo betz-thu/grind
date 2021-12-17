@@ -28,15 +28,26 @@ public class Spielmodell implements ISpielmodell {
     int szeneNr = 0;
 
     ISpielwelt spielwelt;
+    Spielsteuerung steuerung;
     ILevel level;
     ITileMap tileMap;
-
+    /*
+    Wichtig die Liste movables ist nun eien CopyOnArrayList
+    Grund: diese Listenart ermöglicht es, trotz durchiterieren modifikationen an der Liste vorzunehmen.
+    Dies isrt wichtig wenn movables gelöschet werden müssen
+    ->Feuerball verlässt Spielfeld
+    -> Monster stirbt
+     */
     ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new CopyOnWriteArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
-    public Spielmodell(ISpielwelt spielwelt) {
+
+
+    public Spielmodell(ISpielwelt spielwelt, Spielsteuerung steuerung) {
         this.spielwelt = spielwelt;
+        this.steuerung=steuerung;
+
     }
 
     @Override
@@ -50,12 +61,19 @@ public class Spielmodell implements ISpielmodell {
         }
     }
 
+    /**
+     * TODO eingentlich sollte alles hier sein aber wie ist des dann mit den einzelnen Szenen?
+     * TODO Weil jetz sind die Monster in jeder Szene gleich
+     * Gefühlt definieren wir in x klassen dasselbe und des gilt auch IMMER egal welche szene
+     * dann ändern sich nur die Kacheln
+     * @param level
+     */
     private void betreteLevel(ILevel level) {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-        //addMonster("",200,50);
         addMonster("Feuerball",300,300);
+        addMonster("FeuerMonster",300,300);
 
     }
 
@@ -116,8 +134,6 @@ public class Spielmodell implements ISpielmodell {
         return this.tileMap;
     }
 
-
-
     public ISzene getSzene(){
         return this.spielwelt.getSzene(getSzeneNr());
     }
@@ -141,6 +157,14 @@ public class Spielmodell implements ISpielmodell {
         return movables;
     }
 
+    /**
+     * Die Methode addMonster ermöglicht die Instanziierung aller Monster,
+     * direkt im Spielmodell in der Methode betreteLevel.
+     * Die erzeugten Monster werden der Liste movables zugeordet
+     * @param type  Insatanziierungunsparameter des Monsters : Monstertyp
+     * @param posX  Insatanziierungunsparameter des Monsters : X-Position
+     * @param posY  Insatanziierungunsparameter des Monsters : Y-Position
+     */
     @Override
     public void addMonster(String type,float posX,float posY) {
         IMonster monster;
@@ -150,12 +174,19 @@ public class Spielmodell implements ISpielmodell {
             monster = new Zombie(posX,posY,this.tileMap);
         } else if (type.equals("Feuerball")) {
             monster = new Feuerball(posX,posY,1,1,this.tileMap);
+        } else if (type.equals("FeuerMonster")) {
+            monster = new FeuerMonster(posX,posY,this.tileMap,this.steuerung,Richtung.N);
         } else {
             monster = new DornPflanze(posX,posY,this.tileMap);
         }
         monster.setSpielmodell(this);
         movables.add(monster);
     }
+
+    /**
+     * Die Methode removeMovable löscht die aktuelle Movable Instanz aus der Liste movables
+     * @param movable Liste aller movables im Spiel
+     */
     public void removeMovable(Monster movable) {
         movables.remove(movable);
     }
