@@ -12,7 +12,7 @@ public class Leveleditor extends PApplet {
     ISpielmodell spielmodell;
 
     public Leveleditor(){
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),new Spielsteuerung());
     }
     @Override
     public void settings() {
@@ -31,6 +31,7 @@ public class Leveleditor extends PApplet {
         zeichne();
     }
 
+    //TODO kann man des nicht aus Spielsteuerung hohlen? als override? gerade f12 iwäre auch ne tollle cheatMethode
     private void eingabe() {
 
         if (keyPressed) {
