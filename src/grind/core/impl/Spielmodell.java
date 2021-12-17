@@ -13,6 +13,7 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
+import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import grind.movables.monster.IMonster;
 
@@ -25,11 +26,12 @@ import java.util.List;
  */
 public class Spielmodell implements ISpielmodell {
 
-    int szeneNr = 0;
+    transient int szeneNr = 0;
 
     public ISpielwelt spielwelt;
-    ILevel level;
-    ITileMap tileMap;
+    transient ILevel level;
+    transient ITileMap tileMap;
+    transient DateiService dateiService;
 
     ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new ArrayList<>();
@@ -37,6 +39,7 @@ public class Spielmodell implements ISpielmodell {
 
     public Spielmodell(ISpielwelt spielwelt) {
         this.spielwelt = spielwelt;
+        this.dateiService = new DateiService();
     }
 
     @Override
@@ -139,5 +142,24 @@ public class Spielmodell implements ISpielmodell {
 
     public ISpielwelt getSpielwelt(){
         return this.spielwelt;
+    }
+
+    public void setSpielwelt(ISpielwelt spielwelt){
+        this.spielwelt = spielwelt;
+    }
+
+    /**
+     * Lädt mithilfe des DateiService eine JSON Datei
+     * @return die geladene Spielwelt vom Typ ISpielwelt
+     */
+    public ISpielwelt ladeSpielwelt(){
+        return this.dateiService.ladeSpielmodell("spielwelt.json",this.spielwelt);
+    }
+
+    /**
+     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
+     */
+    public void speichereSpielwelt(){
+        this.dateiService.speicheSpielmodell(this.spielwelt,"spielwelt.json");
     }
 }

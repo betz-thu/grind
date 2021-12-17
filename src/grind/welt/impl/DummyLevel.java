@@ -26,11 +26,13 @@ import java.util.Random;
  */
 public class DummyLevel implements ILevel {
 
-    ITileMap tileMap;
+    private ITileMap tileMap;
+    private List<IMovable> movables = new ArrayList<>();
 
 
     public DummyLevel (){
         this.tileMap = new TileMap();
+        this.movables = getPositionen();
     }
 
     /**

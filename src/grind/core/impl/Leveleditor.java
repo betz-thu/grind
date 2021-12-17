@@ -26,9 +26,9 @@ public class Leveleditor extends PApplet {
         this.dateiService = new DateiService();
     }
 
-    public void speichereWelt(ISpielmodell welt){
-        dateiService.speicheSpielmodell(welt);
-    }
+//    public void speichereWelt(ISpielmodell welt){
+//        dateiService.speicheSpielmodell(welt,"spielmodell.json");
+//    }
 
 
 

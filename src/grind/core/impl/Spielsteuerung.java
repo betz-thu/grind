@@ -8,6 +8,7 @@ import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
+import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -27,7 +28,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
-    DateiService dateiService;
+
 
 
     /**
@@ -40,7 +41,6 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-        this.dateiService = new DateiService();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -134,12 +134,16 @@ public class Spielsteuerung extends PApplet {
             if(fTaste.equals("F12")){
                 levelBeendet = true;
             } else if(fTaste.equals("F11")){
-                speichereSpielwelt(this.spielmodell);
+                this.spielmodell.speichereSpielwelt();
                 System.out.println("F11");
             } else if(fTaste.equals("F10")){
-                levelBeendet = true;
-                this.spielmodell = ladeSpielwelt();
+                ISpielwelt welt = new DummySpielwelt();
+                welt = this.spielmodell.ladeSpielwelt();
+                this.spielmodell.setSpielwelt(welt);
                 System.out.println("F10");
+
+                spielmodell.setSzeneNr(0);
+                spielmodell.betreteSzene(spielmodell.getSzeneNr());
             }
 
             pressed = false;
@@ -269,11 +273,5 @@ public class Spielsteuerung extends PApplet {
         } else return false;
     }
 
-    private ISpielmodell ladeSpielwelt(){
-        return this.dateiService.ladeSpielmodell("spielwelt.json");
-    }
 
-    private void speichereSpielwelt(ISpielmodell spielmodell){
-        this.dateiService.speicheSpielmodell(spielmodell);
-    }
 }

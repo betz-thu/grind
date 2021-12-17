@@ -1,0 +1,5843 @@
+{
+  "szenen": [
+    {
+      "tileMap": {
+        "hoehe": 20,
+        "breite": 30,
+        "kacheln": [
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Levelausgang"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ]
+        ],
+        "baum": {
+          "kachelTyp": "Baum"
+        },
+        "fels": {
+          "kachelTyp": "Fels"
+        },
+        "wasser": {
+          "kachelTyp": "Wasser"
+        },
+        "weg": {
+          "kachelTyp": "Weg"
+        },
+        "wiese": {
+          "kachelTyp": "Wiese"
+        },
+        "holzbrücke": {
+          "kachelTyp": "Holzbrücke"
+        },
+        "levelausgang": {
+          "kachelTyp": "Levelausgang"
+        },
+        "kachelarten": [
+          {
+            "kachelTyp": "Wiese"
+          },
+          {
+            "kachelTyp": "Baum"
+          },
+          {
+            "kachelTyp": "Weg"
+          },
+          {
+            "kachelTyp": "Holzbrücke"
+          },
+          {
+            "kachelTyp": "Levelausgang"
+          }
+        ]
+      },
+      "movables": [
+        {
+          "posX": 600.0,
+          "posY": 200.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        },
+        {
+          "geschwindigkeit": 5,
+          "deltaX": 5,
+          "deltaY": 5,
+          "lebensenergie": 0,
+          "posX": 60.0,
+          "posY": 200.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 200.0,
+          "posY": 50.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 600.0,
+          "posY": 500.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 1120.0,
+          "posY": 200.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 350.0,
+          "posY": 600.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        }
+      ]
+    },
+    {
+      "tileMap": {
+        "hoehe": 20,
+        "breite": 30,
+        "kacheln": [
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Levelausgang"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ]
+        ],
+        "baum": {
+          "kachelTyp": "Baum"
+        },
+        "fels": {
+          "kachelTyp": "Fels"
+        },
+        "wasser": {
+          "kachelTyp": "Wasser"
+        },
+        "weg": {
+          "kachelTyp": "Weg"
+        },
+        "wiese": {
+          "kachelTyp": "Wiese"
+        },
+        "holzbrücke": {
+          "kachelTyp": "Holzbrücke"
+        },
+        "levelausgang": {
+          "kachelTyp": "Levelausgang"
+        },
+        "kachelarten": [
+          {
+            "kachelTyp": "Weg"
+          },
+          {
+            "kachelTyp": "Wiese"
+          },
+          {
+            "kachelTyp": "Baum"
+          },
+          {
+            "kachelTyp": "Holzbrücke"
+          },
+          {
+            "kachelTyp": "Levelausgang"
+          }
+        ]
+      },
+      "movables": [
+        {
+          "posX": 600.0,
+          "posY": 200.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        },
+        {
+          "geschwindigkeit": 5,
+          "deltaX": 5,
+          "deltaY": 5,
+          "lebensenergie": 0,
+          "posX": 60.0,
+          "posY": 200.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 200.0,
+          "posY": 50.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 600.0,
+          "posY": 500.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 40.0,
+          "posY": 120.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 350.0,
+          "posY": 600.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        }
+      ]
+    },
+    {
+      "tileMap": {
+        "hoehe": 20,
+        "breite": 30,
+        "kacheln": [
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Levelausgang"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Baum"
+            }
+          ],
+          [
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Weg"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Baum"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Holzbrücke"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            },
+            {
+              "kachelTyp": "Wiese"
+            }
+          ]
+        ],
+        "baum": {
+          "kachelTyp": "Baum"
+        },
+        "fels": {
+          "kachelTyp": "Fels"
+        },
+        "wasser": {
+          "kachelTyp": "Wasser"
+        },
+        "weg": {
+          "kachelTyp": "Weg"
+        },
+        "wiese": {
+          "kachelTyp": "Wiese"
+        },
+        "holzbrücke": {
+          "kachelTyp": "Holzbrücke"
+        },
+        "levelausgang": {
+          "kachelTyp": "Levelausgang"
+        },
+        "kachelarten": [
+          {
+            "kachelTyp": "Wiese"
+          },
+          {
+            "kachelTyp": "Weg"
+          },
+          {
+            "kachelTyp": "Holzbrücke"
+          },
+          {
+            "kachelTyp": "Baum"
+          },
+          {
+            "kachelTyp": "Levelausgang"
+          }
+        ]
+      },
+      "movables": [
+        {
+          "posX": 600.0,
+          "posY": 200.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        },
+        {
+          "geschwindigkeit": 5,
+          "deltaX": 5,
+          "deltaY": 5,
+          "lebensenergie": 0,
+          "posX": 60.0,
+          "posY": 200.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 200.0,
+          "posY": 50.0
+        },
+        {
+          "lebensenergie": 0,
+          "posX": 600.0,
+          "posY": 500.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 800.0,
+          "posY": 480.0
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "hilfsVariable": false,
+          "lebensenergie": 0,
+          "posX": 350.0,
+          "posY": 600.0
+        },
+        {
+          "GESCHWINDIGKEIT": 3.0,
+          "Lebensenergie": 85,
+          "gold": 5,
+          "lebensenergie": 100,
+          "inventar": [],
+          "posX": 600.0,
+          "posY": 400.0,
+          "ausrichtung": "N"
+        }
+      ]
+    }
+  ],
+  "anzahlSzenen": 3
+}

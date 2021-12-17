@@ -1,5 +1,6 @@
 package grind.core;
 
+import grind.core.impl.Spielmodell;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
@@ -35,4 +36,10 @@ public interface ISpielmodell {
     ISzene getSzene();
 
     ISpielwelt getSpielwelt();
+
+    void setSpielwelt(ISpielwelt spielwelt);
+
+    ISpielwelt ladeSpielwelt();
+
+    void speichereSpielwelt();
 }

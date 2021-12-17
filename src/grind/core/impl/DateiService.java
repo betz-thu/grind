@@ -1,53 +1,79 @@
 package grind.core.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 
-import grind.core.ISpielmodell;
+import grind.kacheln.ITileMap;
+import grind.kacheln.impl.TileMap;
+import grind.welt.ISpielwelt;
+import grind.welt.ISzene;
+import grind.welt.impl.DummyLevel;
+import grind.welt.impl.DummySpielwelt;
 
+import java.io.Reader;
 import java.io.Writer;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DateiService {
     GsonBuilder gsonbuilder;
     Gson gson;
+    String json;
 
 
-
-    public DateiService(){
+    public DateiService() {
         this.gsonbuilder = new GsonBuilder();
-        this.gson = gsonbuilder.create();
 
-//        gsonbuilder.registerTypeAdapter(DummySpielwelt.class, new spielweltAdapter());
-//        gsonbuilder.registerTypeAdapter(DummyLevel.class, new levelAdapter());
-//        gsonbuilder.registerTypeAdapter(Movable.class, new movableAdapter());
-//        gsonbuilder.registerTypeAdapter(Einstellungen.class, new einstellungenAdapter());
-//        gsonbuilder.setPrettyPrinting();
-
+//        gsonbuilder.registerTypeAdapter(Spielmodell.class, new SpielmodellInstanceCreator());
+//        JsonDeserializer<ISpielwelt> deserializer = new JsonDeserializer<ISpielwelt>() {
+//            @Override
+//            public ISpielwelt deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+//                JsonObject jsonObject = json.getAsJsonObject();
+//
+//                List<ISzene> szenen = new ArrayList<>();
+//                ISpielwelt test = new DummySpielwelt();
+//
+//                return test;
+//            }
+//        };
+        gsonbuilder.registerTypeAdapter(ISzene.class, new ISzeneInstanceCreator());
+//        gsonbuilder.registerTypeAdapter(ISpielwelt.class, deserializer);
+        this.gson = gsonbuilder.setPrettyPrinting().create();
     }
 
     /**
-     *
-     * @param dateiname
-     * @return
+     * Lädt eine Spielwelt aus einer JSON Datei und gibt diese zurück
+     * @param dateiname Dateiname mit .json Endung
+     * @return Eine Instanz von ISpielwelt erstellt mit den Parametern der JSON Datei
      */
-    protected ISpielmodell ladeSpielmodell(String dateiname){
-        ISpielmodell spielmodell = gson.fromJson(dateiname, ISpielmodell.class);
-        return spielmodell;
-    }
+    protected ISpielwelt ladeSpielmodell(String dateiname, ISpielwelt spielwelt) {
 
-    /**
-     *
-     * @param spielmodell
-     */
-    protected void speicheSpielmodell(ISpielmodell spielmodell){
-        String jsonString;
-        jsonString = gson.toJson(spielmodell);
-        System.out.println(jsonString);
         try {
-            Writer writer = Files.newBufferedWriter(Paths.get("spielmodell.json"));
-            gson.toJson(spielmodell, writer);
+            Reader reader = Files.newBufferedReader(Paths.get(dateiname));
+
+            spielwelt = gson.fromJson(reader,DummySpielwelt.class);
+            System.out.println(spielwelt);
+            reader.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return spielwelt;
+    }
+
+    /**
+     * Speichert eine Spielwelt vom Typ ISpielwelt in einer JSON Datei ab
+     * @param spielwelt Die zu speichernde Spielwelt
+     * @param dateiname Dateiname der JSON Datei
+     */
+    protected void speicheSpielmodell(ISpielwelt spielwelt, String dateiname) {
+        json = gson.toJson(spielwelt);
+
+        try {
+            Writer writer = Files.newBufferedWriter(Paths.get(dateiname));
+            gson.toJson(spielwelt, writer);
             writer.close();
 
         } catch (Exception ex) {
@@ -55,77 +81,34 @@ public class DateiService {
         }
 
     }
-//
-////    private boolean schreibeInDatei(String string){
-////        boolean writeSuccess = false;
-////        try {
-////            FileWriter Writer = new FileWriter("spielwelt.txt");
-////            Writer.write(string);
-////            Writer.close();
-////            System.out.println("Erfolgreich in Datei geschrieben!");
-////            writeSuccess = true;
-////        } catch (IOException e) {
-////            System.out.println("Schreibfehler");
-////            e.printStackTrace();
-////        }
-////        return writeSuccess;
-////    }
-////
-//    static class spielweltAdapter extends TypeAdapter<DummySpielwelt> {
-//            @Override
-//            public void write(JsonWriter jsonWriter, DummySpielwelt spielwelt) throws IOException {
-//                jsonWriter.beginObject();
-//                jsonWriter.name("spielwelt");
-//                jsonWriter.value(String.valueOf(spielwelt.getSzene(0).getLevel().getTileMap().getKachel(0,0)));
-//                jsonWriter.endObject();
-//            }
-//
-//            @Override
-//            public DummySpielwelt read(JsonReader jsonReader) throws IOException {
-//                return null;
-//            }
-//        }
-//
-//    static class levelAdapter extends TypeAdapter<DummyLevel> {
-//        @Override
-//        public void write(JsonWriter jsonWriter, DummyLevel level) throws IOException {
-//            jsonWriter.beginObject();
-//            jsonWriter.name("spielwelt");
-//            jsonWriter.value();
-//            jsonWriter.endObject();
-//        }
+
+//    private class SpielmodellInstanceCreator implements InstanceCreator<DummySpielwelt> {
 //
 //        @Override
-//        public DummyLevel read(JsonReader jsonReader) throws IOException {
-//            return null;
+//        public DummySpielwelt createInstance(Type type) {
+//            // create new object with our additional property
+//            DummySpielwelt spielwelt = new DummySpielwelt();
+//
+//            // return it to gson for further usage
+//            return spielwelt;
 //        }
 //    }
-//    static class movableAdapter extends TypeAdapter<DummyLevel> {
-//        @Override
-//        public void write(JsonWriter jsonWriter, DummyLevel level) throws IOException {
-//            jsonWriter.beginObject();
-//            jsonWriter.name("spielwelt");
-//            jsonWriter.value(String.valueOf(level.);
-//            jsonWriter.endObject();
-//        }
 //
-//        @Override
-//        public DummyLevel read(JsonReader jsonReader) throws IOException {
-//            return null;
-//        }
-//    }
-//    static class einstellungenAdapter extends TypeAdapter<DummyLevel> {
-//        @Override
-//        public void write(JsonWriter jsonWriter, DummyLevel level) throws IOException {
-//            jsonWriter.beginObject();
-//            jsonWriter.name("spielwelt");
-//            jsonWriter.value(String.valueOf(level.);
-//            jsonWriter.endObject();
-//        }
-//
-//        @Override
-//        public DummyLevel read(JsonReader jsonReader) throws IOException {
-//            return null;
-//        }
-//    }
+
+    /**
+     * Interne Verarbeitung der JSON Datei beim Laden,
+     * da ISzene nicht von GSON implementiert werden kann
+     * Funktioniert aber noch NICHT !
+     */
+    private class ISzeneInstanceCreator implements InstanceCreator<ISzene> {
+
+        @Override
+        public ISzene createInstance(Type type) {
+            // create new object with our additional property
+            ISzene szene = new DummyLevel();
+
+            // return it to gson for further usage
+            return szene;
+        }
     }
+}
