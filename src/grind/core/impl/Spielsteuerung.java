@@ -2,42 +2,74 @@ package grind.core.impl;
 
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
-import grind.movables.impl.Apfel;
-import grind.movables.impl.Gegenstand;
-import grind.movables.impl.Spielfigur;
-import grind.util.Einstellungen;
 import grind.movables.ISchatz;
-import grind.movables.impl.Schatz;
+import grind.movables.impl.Apfel;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
+import grind.movables.impl.Spielfigur;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
+/**
+ * @Autor Megatronik
+ * steuert Spielfigur, zeigt sichtbare Objekte an.
+ */
 import java.util.ArrayList;
 import java.util.List;
 
 public class Spielsteuerung extends PApplet {
-
+    private static int SpielfeldBreite;
+    private static int SpielfeldHoehe;
+    private Spielfigur Spieler;
+    private int SpielerGeschwindigkeit;
+    // private ITileMap tileMap;
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
 
 
+    /**
+     * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
+     * und Tilemap.
+     */
     public Spielsteuerung() {
         this.spielmodell = new Spielmodell(new DummySpielwelt());
+        // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
+        this.Spieler = (Spielfigur) spielmodell.getFigur();
+        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
+    /**
+     * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
+     */
     @Override
     public void settings() {
-        size(1200, 800);
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y*Einstellungen.ANZAHL_KACHELN_Y;
+        size(SpielfeldBreite,SpielfeldHoehe);
     }
 
+    /**
+     * Methode setup, lädt Darstellung der Spielfigur.
+     */
     @Override
     public void setup() {
+        imageMode(PConstants.CORNER);
+        Spieler.ladeIMGSpielfigur(this);
 
     }
 
+    /**
+     * Methode draw, zeichnet alle sichtbare Elemente.
+     * (Spielfigur, Lebensenergie, Kontostand, Tilemap)
+     */
     @Override
     public void draw() {
         eingabe();
@@ -47,17 +79,35 @@ public class Spielsteuerung extends PApplet {
         pruefeKollisionen();
     }
 
+    /**
+     * Methode eingabe: richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
+     * Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
+     * damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
+     */
     private void eingabe() {
-
+        int x = Spieler.getPosX();
+        int y = Spieler.getPosY();
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
-                spielmodell.getFigur().bewege(Richtung.W);
+                Spieler.setAusrichtung(Richtung.W);
+                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-20) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+20)){
+                    Spieler.bewege(Richtung.W);
+                }
             } else if (key == 'w' || keyCode == UP) {
-                spielmodell.getFigur().bewege(Richtung.N);
+                Spieler.setAusrichtung(Richtung.N);
+                if(isErlaubteKoordinate(x-20,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+20,y-SpielerGeschwindigkeit-20)){
+                    Spieler.bewege(Richtung.N);
+                }
             } else if (key == 's' || keyCode == DOWN) {
-                spielmodell.getFigur().bewege(Richtung.S);
+                Spieler.setAusrichtung(Richtung.S);
+                if(isErlaubteKoordinate(x-20,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+20,y+SpielerGeschwindigkeit+20)){
+                    Spieler.bewege(Richtung.S);
+                }
             } else if (key == 'd' || keyCode == RIGHT) {
-                spielmodell.getFigur().bewege(Richtung.O);
+                Spieler.setAusrichtung(Richtung.O);
+                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-20) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+20)){
+                    Spieler.bewege(Richtung.O);
+                }
             }
         }
 
@@ -88,7 +138,6 @@ public class Spielsteuerung extends PApplet {
 
     private void zeichne() {
         spielmodell.zeichne(this);
-
     }
 
     @Override
@@ -147,4 +196,39 @@ public class Spielsteuerung extends PApplet {
 
     }
 
+    /**
+     * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return IKachel
+     */
+    public IKachel getKachelByCoordinates(int x, int y) {
+        int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
+        int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        return spielmodell.getTileMap().getKachel(i,j);
+    }
+
+    /**
+     * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
+     * außerhalb des Spielfelds liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return boolean
+     */
+    public boolean isSpielfeldrand(int x, int y){
+        return x <= 0 || x >= SpielfeldBreite || y <= 0 || y >= SpielfeldHoehe;
+    }
+
+    /**
+     * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
+     * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
+     * @param x X-Koordinate
+     * @param y Y-Koordinate
+     * @return boolean
+     */
+    public boolean isErlaubteKoordinate(int x, int y) {
+        if(!isSpielfeldrand(x,y)){
+            return getKachelByCoordinates(x,y).istBetretbar();
+        } else return false;
+    }
 }
