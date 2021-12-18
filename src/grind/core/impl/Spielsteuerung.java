@@ -3,12 +3,11 @@ package grind.core.impl;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.ISchatz;
-import grind.movables.impl.Apfel;
+import grind.movables.impl.*;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
@@ -33,6 +32,7 @@ public class Spielsteuerung extends PApplet {
     boolean levelBeendet = false;
 
 
+
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
@@ -44,6 +44,8 @@ public class Spielsteuerung extends PApplet {
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
+
+
     }
 
     /**

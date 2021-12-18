@@ -102,6 +102,7 @@ public class Spielmodell implements ISpielmodell {
         }
 
         this.figur.zeichne(app);
+
     }
 
     @Override

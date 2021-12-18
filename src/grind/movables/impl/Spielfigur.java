@@ -22,7 +22,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int Lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
-    Movable testwaffe = new Schwert(30,30,2);
+    Waffe testwaffe = new Schwert(30,30,1);
+
 
 
     int lebensenergie = 100;
@@ -45,6 +46,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung);
         inventar = new ArrayList<>();
+        aktiviereWaffe(testwaffe);
 }
 
     /**
@@ -59,6 +61,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneLebensbalken(app);
         zeichneKontostand(app);
         zeichneInventar(app);
+
 
     }
 
@@ -92,10 +95,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
-        if(app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
-            testwaffe.setPosition(this.getPosX(),this.getPosY());
-            testwaffe.setAusrichtung(this.getAusrichtung());
-            testwaffe.zeichne(app);
+
+        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+
+            aktiveWaffe.setPosition(this.getPosX(),this.getPosY());
+            aktiveWaffe.setAusrichtung(this.getAusrichtung());
+            aktiveWaffe.zeichne(app);
         }
 
 
@@ -195,7 +200,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void aktiviereWaffe(Waffe waffe){
-        getInventar().add(aktiveWaffe);
+        if(aktiveWaffe!=null){
+            getInventar().add(aktiveWaffe);
+        }
         aktiveWaffe = waffe;
     }
 }

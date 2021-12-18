@@ -27,10 +27,10 @@ public class Schwert extends Waffe{
         //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
         PImage schwert = schwertStufe1;
         if (stufe == 1) {
-            schwert = app.loadImage("schwertStufe1.png");
+            schwert = app.loadImage("newSword1.png");
         }
         else if (stufe == 2) {
-            schwert = app.loadImage("schwertStufe2.png");
+            schwert = app.loadImage("newSword2.png");
         }
 
         int n =1;
