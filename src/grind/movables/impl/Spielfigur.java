@@ -22,7 +22,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int Lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
-    Movable testwaffe = new Schwert(30,30);
+    Movable testwaffe = new Schwert(30,30,2);
 
 
 

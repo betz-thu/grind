@@ -9,11 +9,13 @@ import processing.core.PImage;
 
 public class Schwert extends Waffe{
 
-    int stufe = 1;
+    private int stufe;
     PImage schwertStufe1;
+    PImage schwertStufe2;
 
-    public Schwert(int x, int y) {
+    public Schwert(int x, int y, int stufe) {
         super(x, y);
+        this.stufe=stufe;
     }
 
 
@@ -21,8 +23,15 @@ public class Schwert extends Waffe{
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
-        ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
-        //app.translate(this.posX,this.posY);
+
+        //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
+        PImage schwert = schwertStufe1;
+        if (stufe == 1) {
+            schwert = app.loadImage("schwertStufe1.png");
+        }
+        else if (stufe == 2) {
+            schwert = app.loadImage("schwertStufe2.png");
+        }
 
         int n =1;
         int schwertPositionX = 1;
@@ -52,12 +61,18 @@ public class Schwert extends Waffe{
         app.translate(getPosX()+40*schwertPositionX,getPosY()+40*schwertPositionY);
         app.rotate(PConstants.HALF_PI*n);
 
-        app.image(schwertStufe1, 0,0, 40, 40);
+
+
+        ladeBild(schwert, app);
+
         app.popMatrix();
         app.popStyle();
     }
-    public void ladeIMGSchwert(PApplet app) {
-        schwertStufe1 = app.loadImage("schwertStufe1.png");
+
+
+
+    public void ladeBild(PImage schwert, PApplet app){
+        app.image(schwert, 0,0, 40, 40);
     }
     @Override
     public int getSchaden() {
