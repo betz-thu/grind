@@ -153,7 +153,7 @@ public class Spielmodell implements ISpielmodell {
      * @return die geladene Spielwelt vom Typ ISpielwelt
      */
     public ISpielwelt ladeSpielwelt(){
-        return this.dateiService.ladeSpielmodell("spielwelt.json",this.spielwelt);
+        return this.dateiService.ladeSpielmodell("spielwelt.json");
     }
 
     /**

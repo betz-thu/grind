@@ -3,6 +3,7 @@ package grind.core.impl;
 import grind.core.ISpielmodell;
 import grind.movables.impl.Spielfigur;
 import grind.welt.ISpielwelt;
+import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 
 public class Leveleditor extends PApplet {
@@ -24,7 +25,11 @@ public class Leveleditor extends PApplet {
      */
     public Leveleditor() {
         this.dateiService = new DateiService();
+        this.welt = new DummySpielwelt();
+        this.welt = dateiService.ladeSpielmodell("spielwelt.json");
+        System.out.println("Geladen");
     }
+
 
 //    public void speichereWelt(ISpielmodell welt){
 //        dateiService.speicheSpielmodell(welt,"spielmodell.json");

@@ -38,7 +38,8 @@ public class DateiService {
 //                return test;
 //            }
 //        };
-        gsonbuilder.registerTypeAdapter(ISzene.class, new ISzeneInstanceCreator());
+//        gsonbuilder.registerTypeAdapter(ISzene.class, new ISzeneInstanceCreator());
+//        gsonbuilder.registerTypeAdapter(ISpielwelt.class, new ISpielweltInstanceCreator());
 //        gsonbuilder.registerTypeAdapter(ISpielwelt.class, deserializer);
         this.gson = gsonbuilder.setPrettyPrinting().create();
     }
@@ -48,13 +49,15 @@ public class DateiService {
      * @param dateiname Dateiname mit .json Endung
      * @return Eine Instanz von ISpielwelt erstellt mit den Parametern der JSON Datei
      */
-    protected ISpielwelt ladeSpielmodell(String dateiname, ISpielwelt spielwelt) {
+    protected ISpielwelt ladeSpielmodell(String dateiname) {
+        ISpielwelt spielwelt = new DummySpielwelt();
+        ISzene szene = new DummyLevel();
 
         try {
             Reader reader = Files.newBufferedReader(Paths.get(dateiname));
 
-            spielwelt = gson.fromJson(reader,DummySpielwelt.class);
-            System.out.println(spielwelt);
+            szene = gson.fromJson(reader,ISzene.class);
+            System.out.println(szene);
             reader.close();
 
         } catch (Exception ex) {
@@ -104,11 +107,27 @@ public class DateiService {
 
         @Override
         public ISzene createInstance(Type type) {
-            // create new object with our additional property
-            ISzene szene = new DummyLevel();
+           // create new object with our additional property
+           ISzene szene = new DummyLevel();
 
             // return it to gson for further usage
             return szene;
         }
     }
+//    /**
+//     * Interne Verarbeitung der JSON Datei beim Laden,
+//     * da ISpielwelt nicht von GSON implementiert werden kann
+//     * Funktioniert aber noch NICHT !
+//     */
+//    private class ISpielweltInstanceCreator implements InstanceCreator<ISpielwelt> {
+//
+//        @Override
+//        public ISpielwelt createInstance(Type type) {
+//            // create new object with our additional property
+//            DummySpielwelt spielwelt = new DummySpielwelt();
+//
+//            // return it to gson for further usage
+//            return spielwelt;
+//        }
+//    }
 }

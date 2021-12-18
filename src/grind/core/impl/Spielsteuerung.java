@@ -28,6 +28,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    private ISpielwelt spielWelt;
 
 
 
@@ -36,7 +37,8 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+
+        this.spielmodell = new Spielmodell(spielWelt);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
@@ -273,5 +275,7 @@ public class Spielsteuerung extends PApplet {
         } else return false;
     }
 
-
+    private ISpielwelt ladeSpielweltausDatei(String dateiname){
+        return ladeSpielweltausDatei("spielwelt.json");
+    }
 }
