@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
 public class Gold extends Waehrung {
@@ -21,5 +22,4 @@ public class Gold extends Waehrung {
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
     }
-
 }

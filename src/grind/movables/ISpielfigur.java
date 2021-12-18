@@ -1,5 +1,6 @@
 package grind.movables;
 
+import grind.kacheln.IKachel;
 import grind.movables.impl.Gegenstand;
 import grind.util.Richtung;
 import java.util.List;

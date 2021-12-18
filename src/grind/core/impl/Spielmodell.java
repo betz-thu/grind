@@ -1,7 +1,10 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.util.Richtung;
 import grind.movables.impl.Movable;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Monster;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
@@ -11,17 +14,24 @@ import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
+import grind.movables.monster.IMonster;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Autor Megatronik
+ * Instanziierung der Spielfigur nun mit Ausrichtung.
+ */
 public class Spielmodell implements ISpielmodell {
+
+    int szeneNr = 0;
 
     ISpielwelt spielwelt;
     ILevel level;
     ITileMap tileMap;
 
-    ISpielfigur figur = new Spielfigur(0, 0);
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
 
@@ -71,6 +81,13 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void bewege() {
         // die Spielfigur bewegt sich nicht von selbst
+        for(IMovable movable: movables){
+            movable.bewege();
+            if(movable instanceof IMonster){
+                ((IMonster) movable).beiKollision(figur);
+            }
+        }
+
     }
 
     @Override
@@ -90,6 +107,24 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
+    }
+
+    public ITileMap getTileMap() {
+        return this.tileMap;
+    }
+
+
+
+    public ISzene getSzene(){
+        return this.spielwelt.getSzene(getSzeneNr());
+    }
+
+    public int getSzeneNr(){
+        return this.szeneNr;
+    }
+
+    public void setSzeneNr(int szeneNR){
+        this.szeneNr = szeneNR;
     }
 
     // nicht sicher ob wir das so machen wollen
