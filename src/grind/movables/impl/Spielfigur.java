@@ -54,9 +54,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneSpielfigur(app);
         zeichneLebensbalken(app);
         zeichneKontostand(app);
-        //Zeichne kleines Inventar
-        //zeichneInventar(app, 10, 1120, 750,30);
 
+        //Zeichne kleines Inventar
         zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
         zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
 
@@ -96,6 +95,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
+        int zaehler = 0;
         zeichneInventarInhalt(app, groeße, startkoordinateX, startkoordinateY, guiGroeße);
         app.pushStyle();
         app.fill(255,255,255);
@@ -106,14 +106,24 @@ public class Spielfigur extends Movable implements ISpielfigur {
         for (int i = 1; i <= groeße; i++) {
             app.fill(204, 102, 0);
             app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
-            app.fill(200,0,0);
-            app.text(groeße-i,startkoordinateX-i*guiGroeße,startkoordinateY+20);
 
+
+            if(i<=10){
+                app.fill(200,0,0);
+                app.text(zaehler,startkoordinateX-i*guiGroeße,startkoordinateY+20);
+                if(zaehler==0){
+                    zaehler=10;
+                }
+                zaehler--;
+
+            }
             if(i%10==0 && i>0){
                 startkoordinateY-=guiGroeße;
                 startkoordinateX+=guiGroeße*10;
             }
+
         }
+
 
         app.popStyle();
 
