@@ -32,6 +32,8 @@ public class Spielsteuerung extends PApplet {
     boolean levelBeendet = false;
 
 
+
+
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
@@ -86,6 +88,9 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
+
+        char inventarOeffnen = 'e';
+
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
@@ -109,6 +114,16 @@ public class Spielsteuerung extends PApplet {
                 }
             }
         }
+
+        //Inventar öffnen
+        if(keyPressed){
+            if(key==inventarOeffnen && Spieler.getInventarGroeße()==10){
+                Spieler.setInventarGroeße(30);
+            }else{
+                Spieler.setInventarGroeße(10);
+            }
+        }
+
 
         //F12 neue Szene
         if (keyPressed && !pressed){
