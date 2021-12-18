@@ -109,6 +109,7 @@ public class Spielsteuerung extends PApplet {
                     Spieler.bewege(Richtung.O);
                 }
             }
+
         }
 
         //F12 neue Szene

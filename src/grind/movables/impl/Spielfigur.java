@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
+import grind.movables.IMovable;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
@@ -21,6 +22,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int Lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
+    Movable testwaffe = new Schwert(30,30);
 
 
 
@@ -59,6 +61,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneLebensbalken(app);
         zeichneKontostand(app);
         zeichneInventar(app);
+
     }
 
     /**
@@ -89,6 +92,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
         app.popMatrix();
         app.popStyle();
+
+
+        if(aktiveWaffe){
+            testwaffe.setPosition(this.getPosX(),this.getPosY());
+            testwaffe.zeichne(app);
+
+        }
+
+
     }
 
 

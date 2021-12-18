@@ -11,5 +11,7 @@ public abstract class Waffe extends Gegenstand{
     public abstract int getStufe();
     public void beimAnwenden(ISpielfigur figur){
 //        was passiert beim Anwenden?
+            //Position der Waffe ändern
+
     }
 }

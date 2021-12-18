@@ -1,5 +1,7 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
+import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -19,8 +21,9 @@ public class Schwert extends Waffe{
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
-        app.translate(this.posX, this.posY);
-        int n =1;
+        app.translate(this.posX,this.posY);
+        //int n =1;
+        /*
         switch (this.ausrichtung) {
             case N:
                 n = 0;
@@ -34,12 +37,15 @@ public class Schwert extends Waffe{
             case W:
                 n = 3;
         }
-        app.rotate(PConstants.HALF_PI*n);
-        app.image(schwertStufe1, 0, 0, 40, 40);
+
+         */
+        //app.rotate(PConstants.HALF_PI*n);
+        ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
+        app.image(schwertStufe1, getPosX(), getPosY(), 40, 40);
         app.popMatrix();
         app.popStyle();
     }
-    public void ladeIMGSpielfigur(PApplet app) {
+    public void ladeIMGSchwert(PApplet app) {
         schwertStufe1 = app.loadImage("schwertStufe1.png");
     }
     @Override
