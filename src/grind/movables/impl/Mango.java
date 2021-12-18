@@ -16,8 +16,8 @@ public class Mango extends Nahrung{
 
     public void zeichne(PApplet app){
         app.pushStyle();
-        app.stroke(255, 0, 0);
-        app.fill(255, 0, 0);
+        app.stroke(225, 100, 34);
+        app.fill(225, 100, 34);
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
     }
