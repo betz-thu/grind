@@ -3,6 +3,7 @@ package grind.core.impl;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
+import grind.movables.impl.Nahrung;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -26,6 +27,7 @@ public class Spielsteuerung extends PApplet {
     private static int SpielfeldHoehe;
     private Spielfigur Spieler;
     private int SpielerGeschwindigkeit;
+    public int Tastendruck;
     // private ITileMap tileMap;
     ISpielmodell spielmodell;
     boolean pressed = false;
@@ -108,6 +110,47 @@ public class Spielsteuerung extends PApplet {
                     Spieler.bewege(Richtung.O);
                 }
             }
+            else if (key == '1') {
+                Tastendruck = 0;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='2') {
+                Tastendruck = 1;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='3') {
+                Tastendruck = 2;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='4') {
+                Tastendruck = 3;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='5') {
+                Tastendruck = 4;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='6') {
+                Tastendruck = 5;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='7') {
+                Tastendruck = 6;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='8') {
+                Tastendruck = 7;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='9') {
+                Tastendruck = 8;
+                Spieler.benutze(Tastendruck);
+            }
+            else if (key =='0') {
+                Tastendruck = 9;
+                Spieler.benutze(Tastendruck);
+
+            }
         }
 
         //F12 neue Szene
@@ -183,6 +226,7 @@ public class Spielsteuerung extends PApplet {
                 schatz.beimSammeln(this.spielmodell.getFigur());
                 this.spielmodell.getMovables().remove(schatz);
                 toRemove = i;
+
             }
             i += 1;
         }
