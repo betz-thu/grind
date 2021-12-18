@@ -13,4 +13,6 @@ public interface ISpielfigur extends IMovable {
     void setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
     List<Gegenstand> getInventar();
+    void playApfelSound();
+    void playSwallowSound();
 }

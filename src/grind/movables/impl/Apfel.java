@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
 public class Apfel extends Nahrung{
@@ -21,6 +22,12 @@ public class Apfel extends Nahrung{
         app.fill(255, 0, 0);
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
+
+    }
+    @Override
+    public void beimAnwenden(ISpielfigur figur){
+        super.beimAnwenden(figur);
+        figur.playApfelSound();
     }
 
 

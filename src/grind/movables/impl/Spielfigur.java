@@ -5,9 +5,12 @@ import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 /**
  * @Autor Megatronik
@@ -123,11 +126,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             }
 
         }
-
-
         app.popStyle();
-
-
     }
 
     public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
@@ -238,5 +237,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public int getInventarGroeße() {
         return inventarGroeße;
+    }
+
+    public void playApfelSound(){
+        File apfelSound = new File("applebite.wav");
+        Sound(apfelSound);
+    }
+    public void playSwallowSound(){
+        File swallowSound = new File("swallow.wav");
+        Sound(swallowSound);
+    }
+    private void Sound(File Sound){
+        try{
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(Sound));
+            clip.start();
+        } catch (Exception e){
+            System.out.println("Fehler bei der Audiowiedergabe - playApfelSound");
+        }
     }
 }
