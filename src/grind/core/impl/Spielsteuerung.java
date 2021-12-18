@@ -1,13 +1,16 @@
 package grind.core.impl;
 
+import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
@@ -17,6 +20,8 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
+import java.util.ArrayList;
+import java.util.List;
 
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
@@ -37,8 +42,7 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-
-        this.spielmodell = new Spielmodell(spielWelt);
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
@@ -77,7 +81,6 @@ public class Spielsteuerung extends PApplet {
         zeichne();
 
         pruefeKollisionen();
-
     }
 
     /**
@@ -170,6 +173,7 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
+
     }
 
     private void zeichne() {
