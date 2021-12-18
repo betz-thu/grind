@@ -120,6 +120,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+    //Methode zum benutzen oder ausrüsten von Gegenständen
+    public void benutze(int position){
+        if (inventar.size() > position) {
+            if (inventar.get(position) instanceof Nahrung) {
+                inventar.get(position).beimAnwenden(this);
+                inventar.remove(position);
+            }
+        }
+    }
+
     /**
      * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
      * @param app Spielsteuerung, als Instanz von PApplet.
