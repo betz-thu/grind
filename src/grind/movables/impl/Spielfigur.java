@@ -1,7 +1,5 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielsteuerung;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
@@ -18,11 +16,10 @@ import java.util.List;
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
+    private int lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
 
-    int lebensenergie = 100;
     private List<Gegenstand> inventar;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -141,7 +138,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.fill(150);
         app.rect(10,20,100,10);
         app.fill(0,150,0);
-        app.rect(10,20,Lebensenergie,10);
+        app.rect(10,20, lebensenergie,10);
     }
 
     /**
@@ -175,13 +172,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
-        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override
     public List<Gegenstand> getInventar(){
         return this.inventar;
     }
+
+    @Override
+    public int getLebensenergie(){
+        return this.lebensenergie;
+    }
+
+    public void setLebensenergie(int neueLebensenergie){
+        this.lebensenergie = neueLebensenergie;
+    }
+
+
 
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.

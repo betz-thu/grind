@@ -11,7 +11,7 @@ public abstract class Nahrung extends Gegenstand{
     public abstract int getPunkte();
 
     public void beimAnwenden(ISpielfigur figur){
-        // TODO: Leben beim Anwenden erhöhen
+        figur.setLebensenergie((figur.getLebensenergie()+this.getPunkte()));
 
     }
 

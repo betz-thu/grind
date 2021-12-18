@@ -9,6 +9,8 @@ public interface ISpielfigur extends IMovable {
 
     void setPosition(int x, int y);
     void erhoeheGold(int betrag);
+    int getLebensenergie();
+    void setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
     List<Gegenstand> getInventar();
 }
