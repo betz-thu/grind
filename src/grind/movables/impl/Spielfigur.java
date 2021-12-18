@@ -19,6 +19,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
+    private int inventarGroeße;
 
     private List<Gegenstand> inventar;
     /**
@@ -37,6 +38,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung);
         inventar = new ArrayList<>();
+        inventarGroeße=10;
 }
 
     /**
@@ -51,9 +53,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneLebensbalken(app);
         zeichneKontostand(app);
         //Zeichne kleines Inventar
-        zeichneInventar(app, 10, 1120, 750,30);
+        //zeichneInventar(app, 10, 1120, 750,30);
 
-        zeichneInventar(app, 50, 1120, 300, 50);
+        zeichneInventar(app, inventarGroeße, 850, 720, 50);
+
 
 
     }
@@ -96,12 +99,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.stroke(255,255,255);
         app.strokeWeight(2f);
         app.textSize(24);
-        app.text("Inventar", startkoordinateX-4*guiGroeße, startkoordinateY-10);
-        app.fill(204, 102, 0);
+        //app.fill(204, 102, 0);
         for (int i = 1; i <= groeße; i++) {
+            app.fill(204, 102, 0);
             app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
+            app.fill(200,0,0);
+            app.text(groeße-i,startkoordinateX-i*guiGroeße,startkoordinateY+20);
+
             if(i%10==0 && i>0){
-                startkoordinateY+=guiGroeße;
+                startkoordinateY-=guiGroeße;
                 startkoordinateX+=guiGroeße*10;
             }
         }
@@ -207,5 +213,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
+
+    public void setInventarGroeße(int inventarGroeße) {
+        this.inventarGroeße = inventarGroeße;
+    }
+
+    public int getInventarGroeße() {
+        return inventarGroeße;
     }
 }
