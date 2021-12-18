@@ -104,12 +104,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.textSize(24);
         //app.fill(204, 102, 0);
         for (int i = 1; i <= groeße; i++) {
-            app.fill(204, 102, 0);
+            app.fill(211,211,211,200);
             app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
 
 
             if(i<=10){
-                app.fill(200,0,0);
+                app.fill(0,0,0);
                 app.text(zaehler,startkoordinateX-i*guiGroeße,startkoordinateY+20);
                 if(zaehler==0){
                     zaehler=10;
