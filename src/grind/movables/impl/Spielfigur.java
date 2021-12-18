@@ -132,13 +132,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         for(int j = 0;j<inventar.size(); j++){
+            if(j%10==0 && j>0){
+                startkoordinateY-=guiGroeße;
+                startkoordinateX-=guiGroeße*10;
+            }
             if(j<groeße) {
                 inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j*guiGroeße, startkoordinateY+guiGroeße/2);
                 inventar.get(j).zeichne(app);
-            }
-            if(j%10==0 && j>0){
-                startkoordinateY-=guiGroeße;
-                startkoordinateX+=guiGroeße*10;
             }
         }
     }
