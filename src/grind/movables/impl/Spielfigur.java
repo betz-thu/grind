@@ -96,7 +96,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
         int zaehler = 0;
-        zeichneInventarInhalt(app, groeße, startkoordinateX, startkoordinateY, guiGroeße);
+
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);
