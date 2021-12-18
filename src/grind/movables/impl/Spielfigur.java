@@ -96,8 +96,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
         if(aktiveWaffe){
             testwaffe.setPosition(this.getPosX(),this.getPosY());
+            testwaffe.setAusrichtung(this.getAusrichtung());
             testwaffe.zeichne(app);
-
         }
 
 

@@ -21,27 +21,38 @@ public class Schwert extends Waffe{
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
-        app.translate(this.posX,this.posY);
-        //int n =1;
-        /*
+        ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
+        //app.translate(this.posX,this.posY);
+
+        int n =1;
+        int schwertPositionX = 1;
+        int schwertPositionY = 1;
         switch (this.ausrichtung) {
             case N:
-                n = 0;
+                n = 2;
+                schwertPositionX =0;
+                schwertPositionY =-1;
                 break;
             case O:
-                n = 1;
+                n = 3;
+                schwertPositionX =1;
+                schwertPositionY =0;
                 break;
             case S:
-                n = 2;
+                n = 0;
+                schwertPositionX =0;
+                schwertPositionY =1;
                 break;
             case W:
-                n = 3;
+                n = 1;
+                schwertPositionX =-1;
+                schwertPositionY =0;
         }
 
-         */
-        //app.rotate(PConstants.HALF_PI*n);
-        ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
-        app.image(schwertStufe1, getPosX(), getPosY(), 40, 40);
+        app.translate(getPosX()+40*schwertPositionX,getPosY()+40*schwertPositionY);
+        app.rotate(PConstants.HALF_PI*n);
+
+        app.image(schwertStufe1, 0,0, 40, 40);
         app.popMatrix();
         app.popStyle();
     }
