@@ -1,8 +1,7 @@
 package grind.welt.impl;
 
-import grind.movables.impl.Heiltrank;
+import grind.movables.impl.*;
 import grind.util.Richtung;
-import grind.movables.impl.Apfel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
@@ -12,8 +11,6 @@ import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
-import grind.movables.impl.Gold;
-import grind.movables.impl.Spielfigur;
 import grind.welt.ILevel;
 import processing.core.PApplet;
 
@@ -45,6 +42,7 @@ public class DummyLevel implements ILevel {
         positionen.add(new Gold(600, 200));
         positionen.add(new Heiltrank(700,300));
         positionen.add(new Apfel(200,300));
+        positionen.add(new Mango(750,300));
         positionen.add(new Spielfigur(600, 400, Richtung.N ));
         positionen.add(new Geist(60,200,tileMap));
 
