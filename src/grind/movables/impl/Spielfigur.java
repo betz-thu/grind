@@ -25,12 +25,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     Movable testwaffe = new Schwert(30,30,2);
 
 
-
-
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
 
-    boolean aktiveWaffe = true;
+    Waffe aktiveWaffe;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
@@ -94,7 +92,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
-        if(aktiveWaffe){
+        if(app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             testwaffe.setPosition(this.getPosX(),this.getPosY());
             testwaffe.setAusrichtung(this.getAusrichtung());
             testwaffe.zeichne(app);
@@ -197,6 +195,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void aktiviereWaffe(Waffe waffe){
-        aktiveWaffe =true;
+        getInventar().add(aktiveWaffe);
+        aktiveWaffe = waffe;
     }
 }
