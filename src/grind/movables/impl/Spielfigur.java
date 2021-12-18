@@ -20,6 +20,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     PImage spielfigurOhneWaffe;
     private int inventarGroeße;
+    private int guiGroeße;
 
     private List<Gegenstand> inventar;
     /**
@@ -39,6 +40,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         super(posX, posY, richtung);
         inventar = new ArrayList<>();
         inventarGroeße=10;
+        guiGroeße=50;
 }
 
     /**
@@ -55,7 +57,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //Zeichne kleines Inventar
         //zeichneInventar(app, 10, 1120, 750,30);
 
-        zeichneInventar(app, inventarGroeße, 850, 720, 50);
+        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
 
 
 
@@ -93,7 +96,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
-
+        zeichneInventarInhalt(app, groeße, startkoordinateX, startkoordinateY, guiGroeße);
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);
@@ -113,15 +116,19 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
 
         app.popStyle();
-        zeichneInventarInhalt(app, groeße, startkoordinateX, startkoordinateY, guiGroeße);
+
 
     }
 
     public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         for(int j = 0;j<inventar.size(); j++){
             if(j<groeße) {
-                inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j * guiGroeße, startkoordinateY+guiGroeße/2);
+                inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j*guiGroeße, startkoordinateY+guiGroeße/2);
                 inventar.get(j).zeichne(app);
+            }
+            if(j%10==0 && j>0){
+                startkoordinateY-=guiGroeße;
+                startkoordinateX+=guiGroeße*10;
             }
         }
     }
