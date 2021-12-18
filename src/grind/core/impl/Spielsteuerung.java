@@ -173,7 +173,7 @@ public class Spielsteuerung extends PApplet {
             if(key==inventarOeffnen && Spieler.getInventarGroeße()==10){
                 Spieler.setInventarGroeße(30);
                 keyPressed=false;
-            }else{
+            }else if(key==inventarOeffnen && Spieler.getInventarGroeße()==30){
                 Spieler.setInventarGroeße(10);
                 keyPressed=false;
             }
