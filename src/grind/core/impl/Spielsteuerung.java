@@ -118,42 +118,52 @@ public class Spielsteuerung extends PApplet {
             else if (key == '1') {
                 Tastendruck = 0;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='2') {
                 Tastendruck = 1;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='3') {
                 Tastendruck = 2;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='4') {
                 Tastendruck = 3;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='5') {
                 Tastendruck = 4;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='6') {
                 Tastendruck = 5;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='7') {
                 Tastendruck = 6;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='8') {
                 Tastendruck = 7;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='9') {
                 Tastendruck = 8;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
             }
             else if (key =='0') {
                 Tastendruck = 9;
                 Spieler.benutze(Tastendruck);
+                keyPressed = false;
 
             }
         }
