@@ -3,7 +3,7 @@ package grind.movables.impl;
 import processing.core.PApplet;
 
 public class Heiltrank extends Nahrung {
-    private int punkte; // Fehlt in Klassendiagramm?
+    private int punkte = 10; // Fehlt in Klassendiagramm?
 
     public Heiltrank(int posX, int posY) {
         super(posX, posY);

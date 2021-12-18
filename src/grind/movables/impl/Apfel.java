@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public class Apfel extends Nahrung{
 
-    private int punkte; // Fehlt in Klassendiagramm?
+    private int punkte=5; // Fehlt in Klassendiagramm?
 
 
     public Apfel(int posX, int posY) {
