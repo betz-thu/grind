@@ -41,8 +41,8 @@ public class TileMap implements ITileMap {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                this.zufall = rand.nextInt(6);
                if (zufall == 0){
-                   this.kacheln[i][j] = this.baum;
-                   //this.kacheln[i][j] = this.wiese;
+                   //this.kacheln[i][j] = this.baum;
+                   this.kacheln[i][j] = this.wiese;
                } else if (zufall == 1){
 //                   this.kacheln[i][j] = this.fels;
                    this.kacheln[i][j] = this.wiese;
