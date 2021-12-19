@@ -41,6 +41,10 @@ public abstract class Monster extends Movable implements IMonster {
 
     @Override
     public void reduziereLebensenergie(int schaden) {
+        /**
+         * Reduziert die Lebensenergie des Monsters um den übergebenen Schaden und setzt
+         * monsterGestorben auf true, wenn das Monster keine Lebensenergie mehr hat.
+         */
         if (lebensenergie>0){
             lebensenergie-= schaden;
         }

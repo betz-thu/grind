@@ -76,6 +76,9 @@ public class Schwert extends Waffe{
     }
     @Override
     public int getSchaden() {
+        /**
+         * Berechnet den Schaden, welchen ein Schwert anrichtet.
+         */
         int schaden = 10 * this.stufe;
         return schaden;
     }
