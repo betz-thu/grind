@@ -9,6 +9,7 @@ import grind.movables.impl.Apfel;
 import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -131,6 +132,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         pruefeKollisionen();
+        spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
@@ -190,6 +192,7 @@ public class Spielsteuerung extends PApplet {
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
 
+
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX()+movable.getGroesse()/2;
             int MovableXn = movable.getPosX()-movable.getGroesse()/2;
@@ -210,6 +213,12 @@ public class Spielsteuerung extends PApplet {
                 }
                 else if(movable instanceof Nahrung){
                     // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                }
+            }else if ((FigurXp+spielmodell.getFigur().getWaffe().getGroesse() > MovableXn) & (FigurXn+spielmodell.getFigur().getWaffe().getGroesse()< MovableXp) & (FigurYp+spielmodell.getFigur().getWaffe().getGroesse() > MovableYn)  & (FigurYn+spielmodell.getFigur().getWaffe().getGroesse() < MovableYp) & (key==' ')) {
+                if (movable instanceof Monster){
+                    System.out.println(((Monster) movable).getLebensenergie());
+                    ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
                 }
             }
         }

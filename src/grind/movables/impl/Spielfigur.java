@@ -234,6 +234,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public Waffe getWaffe(){
-        return this.aktiveWaffe;
+        return this.testwaffe;
     }
 }

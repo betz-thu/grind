@@ -5,17 +5,17 @@ import grind.movables.monster.Monster;
 
 public abstract class Waffe extends Gegenstand{
 
-    public Waffe(int posX, int posY) {
-        super(posX, posY);
+    public Waffe(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
     public abstract int getSchaden();
     public abstract int getStufe();
-    public void beimAnwenden(ISpielfigur figur){
+    public abstract void beimAnwenden(ISpielfigur figur);
 //        was passiert beim Anwenden?
             //Position der Waffe ändern
 //        if(pruefeKollision){
 //
 //        }
 
-    }
+
 }

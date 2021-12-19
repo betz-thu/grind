@@ -14,7 +14,7 @@ public class Schwert extends Waffe{
     PImage schwertStufe2;
 
     public Schwert(int x, int y, int stufe) {
-        super(x, y);
+        super(x, y, 30);
         this.stufe=stufe;
     }
 
@@ -94,6 +94,10 @@ public class Schwert extends Waffe{
         return 30;
     }
 
+    @Override
+    public void beimAnwenden(ISpielfigur figur) {
+
+    }
 
 
 //    @Override
