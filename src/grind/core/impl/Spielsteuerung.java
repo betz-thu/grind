@@ -181,7 +181,9 @@ public class Spielsteuerung extends PApplet {
 
         return levelBeendet;
     }
-
+/**
+ * Kollisionsabfrage
+ */
     public void pruefeKollisionen() {
         int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);

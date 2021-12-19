@@ -58,6 +58,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneLebensbalken(app);
         zeichneKontostand(app);
         zeichneInventar(app);
+        gameover(app);
     }
 
     @Override
@@ -140,19 +141,26 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     @Override
-    public void erhalteSchaden(int schaden){
+    public void erhalteSchaden(int schaden) {
         this.Lebensenergie -= schaden;
-        gameover();
-
     }
 
-
-    public void gameover(){
-        if (Lebensenergie == 0){
+    /**
+     * GameOver
+     * */
+    public void gameover(PApplet app) {
+        if (Lebensenergie <= 0) {
             System.out.println("Game Over");
-            Lebensenergie = 85;
+            Lebensenergie = 0;
+            app.fill(0,0,0);
+            app.rect (200,120,800,600);
+            app.fill(138,3,3);
+            app.textSize(60);
+            app.text("Game Over",410,350 );
+            app.text("Please Restart",410,450);
         }
     }
+
 
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
@@ -187,11 +195,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
         //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
-    }
-    public void beimSammeln(int betrag){
-        if (this.gold == this.gold + betrag){
-
-        }
     }
 
     @Override

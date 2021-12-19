@@ -2,6 +2,7 @@ package grind.movables.monster;
 
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Movable;
+import processing.core.PApplet;
 
 
 public abstract class Monster extends Movable implements IMonster {
