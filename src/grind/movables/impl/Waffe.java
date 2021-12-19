@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.movables.ISpielfigur;
+import grind.movables.monster.Monster;
 
 public abstract class Waffe extends Gegenstand{
 
@@ -12,6 +13,9 @@ public abstract class Waffe extends Gegenstand{
     public void beimAnwenden(ISpielfigur figur){
 //        was passiert beim Anwenden?
             //Position der Waffe ändern
+//        if(pruefeKollision){
+//
+//        }
 
     }
 }

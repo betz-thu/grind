@@ -76,7 +76,7 @@ public class Schwert extends Waffe{
     }
     @Override
     public int getSchaden() {
-        int schaden = 10 * stufe;
+        int schaden = 10 * this.stufe;
         return schaden;
     }
 
@@ -89,4 +89,15 @@ public class Schwert extends Waffe{
     public void zeichne(PApplet app) {
         zeichneSchwert(app);
     }
+
+    public int getGroesse(){
+        return 30;
+    }
+
+
+
+//    @Override
+//    public boolean kollision(){
+//
+//    }
 }
