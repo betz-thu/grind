@@ -241,13 +241,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public void playApfelSound(){
         File apfelSound = new File("applebite.wav");
-        Sound(apfelSound);
+        setupSound(apfelSound);
     }
     public void playSwallowSound(){
         File swallowSound = new File("swallow.wav");
-        Sound(swallowSound);
+        setupSound(swallowSound);
     }
-    private void Sound(File Sound){
+    public void playBackpackSound(){
+        File backpackSound = new File("backpack.wav");
+        setupSound(backpackSound);
+    }
+    private void setupSound(File Sound){
         try{
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(Sound));
