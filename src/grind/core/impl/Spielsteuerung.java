@@ -181,7 +181,11 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 /**
- * Kollisionsabfrage
+ * Kollisionsabfrage: prüft Kollision von Spieler mit Movable und führt dann dementsprechende Methode aus.
+ * z.B. Wenn Kollision von Spieler mit Monster --> Spieler bekommt schaden
+ *  Wenn Kollision von Spieler mit Gold --> Erhöhe Kontostand und lösche Gold aus Spielwelt
+ *
+ *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
  */
     public void pruefeKollisionen() {
         int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
@@ -199,6 +203,8 @@ public class Spielsteuerung extends PApplet {
                 if(movable instanceof IMonster) {
 
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
+
+                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 }
                 else if(movable instanceof ISchatz){
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
@@ -206,7 +212,7 @@ public class Spielsteuerung extends PApplet {
                     return;
                 }
                 else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen
+                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
                 }
             }
         }
