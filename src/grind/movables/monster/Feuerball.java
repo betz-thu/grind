@@ -80,6 +80,7 @@ public class Feuerball extends Monster{
         if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
             this.getSpielmodell().removeMovable(this);
             System.out.println("Treffer!");
+            figur.erhalteSchaden(this.schaden);
         }
     }
 

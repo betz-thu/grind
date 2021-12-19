@@ -70,6 +70,7 @@ public class FeuerMonster extends Monster{
             System.out.println("Kollision mit FeuerMonster");
             startTime = System.currentTimeMillis();
             hatKollidiert=true;
+            figur.erhalteSchaden(this.schaden);
         }
     }
 
