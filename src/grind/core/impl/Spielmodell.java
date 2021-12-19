@@ -1,28 +1,25 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.movables.monster.*;
-import grind.util.FeuerModus;
-import grind.util.Einstellungen;
-import grind.util.Richtung;
-import grind.movables.impl.Movable;
-import grind.welt.ILevel;
-import grind.welt.ISpielwelt;
-import grind.welt.ISzene;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.FeuerMonster;
+import grind.movables.monster.IMonster;
+import grind.util.FeuerModus;
+import grind.util.Richtung;
+import grind.welt.ILevel;
+import grind.welt.ISpielwelt;
+import grind.welt.ISzene;
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @Autor Megatronik
+ * @author Megatronik
  * Instanziierung der Spielfigur nun mit Ausrichtung.
  */
 public class Spielmodell implements ISpielmodell {
@@ -34,6 +31,7 @@ public class Spielmodell implements ISpielmodell {
     ILevel level;
     ITileMap tileMap;
     /*
+    @MEGAtroniker
     Wichtig die Liste movables ist nun eien CopyOnArrayList
     Grund: diese Listenart ermöglicht es, trotz durchiterieren modifikationen an der Liste vorzunehmen.
     Dies isrt wichtig wenn movables gelöschet werden müssen
@@ -65,26 +63,24 @@ public class Spielmodell implements ISpielmodell {
     }
 
     /**
+     * @MEGAtroniker
      * TODO eingentlich sollte alles hier sein aber wie ist des dann mit den einzelnen Szenen?
      * TODO Weil jetz sind die Monster in jeder Szene gleich
      * TODO neue tilemap aber danach dieselben Movables
      * Gefühlt definieren wir in x klassen dasselbe und des gilt auch IMMER egal welche szene
      * dann ändern sich nur die Kacheln
-     * @param level
+     * @param level aktuelles Level
      */
     private void betreteLevel(ILevel level) {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-
         IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
         addMonster(feuerMonster);
-        //addMonster("Feuerball",300,300);
-        //addMonster("FeuerMonster",300,300);
-
     }
 
     /**
+     * @MEGAtroniker
      * TODO Jede teilmap braucht ne eigene liste sonst gibts überall dieselben movables
      */
     private void kopiereTilemap() {
@@ -95,7 +91,6 @@ public class Spielmodell implements ISpielmodell {
         this.movables.clear();
         this.schaetze.clear();
         this.monster.clear();
-
         for (IMovable movable : this.level.getPositionen()) {
             if (movable instanceof ISpielfigur) {
                 ISpielfigur figur = (ISpielfigur) movable;
@@ -119,43 +114,41 @@ public class Spielmodell implements ISpielmodell {
         // die Spielfigur bewegt sich nicht von selbst
         for(IMovable movable: movables){
             movable.bewege();
-
         }
-
     }
 
     @Override
     public void zeichne(PApplet app) {
-
         if (this.level != null) {
             this.level.zeichne(app);
         }
-
         for (IMovable movable : this.movables) {
             movable.zeichne(app);
         }
-
         this.figur.zeichne(app);
     }
+
 
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
     }
 
+
     public ITileMap getTileMap() {
         return this.tileMap;
     }
-
 
 
     public ISzene getSzene(){
         return this.spielwelt.getSzene(getSzeneNr());
     }
 
+
     public int getSzeneNr(){
         return this.szeneNr;
     }
+
 
     public void setSzeneNr(int szeneNR){
         this.szeneNr = szeneNR;
@@ -172,6 +165,7 @@ public class Spielmodell implements ISpielmodell {
     }
 
     /**
+     * @MEGAtroniker
      * Die Methode addMonster ermöglicht die Instanziierung aller Monster,
      * direkt im Spielmodell in der Methode betreteLevel.
      * Die erzeugten Monster werden der Liste movables zugeordet
@@ -183,26 +177,11 @@ public class Spielmodell implements ISpielmodell {
     }
 
     /**
+     * @MEGAtroniker
      * Die Methode removeMovable löscht die aktuelle Movable Instanz aus der Liste movables
      * @param movable Liste aller movables im Spiel
      */
     public void removeMovable(IMovable movable) {
         movables.remove(movable);
     }
-
-    /**
-     * TODO: überkompliziert, da jedes mal neue Liste erstellt wird. Lösung: originalliste ist nun eine CopyOnWriteList.
-     *
-     * Löscht Movable aus Liste der Positionen und aus Liste der movables
-     * z. B. Für das Einsammeln eines Schatzes
-     * @param movable
-     */
-    /*public void removeMovable(IMovable movable){
-
-       List<IMovable> positionen = level.getPositionen();
-
-       positionen.remove(movable);
-       movables.remove(movable);
-
-    }*/
 }

@@ -10,13 +10,13 @@ import grind.util.FeuerModus;
 import grind.util.Richtung;
 import processing.core.PApplet;
 import java.util.Random;
-import static java.lang.Math.abs;
 
 /**
  * @author MEGAtroniker
  * Die Klasse FeuerMonster definiert ein Monster welches das Monster Feuerball als Geschoss verwendt und
  * in regelmäßigen Abständen in Richtung der Spielfigur schießt. Zusätzlich bewegt es sich dur das Spielfeld.
  * Bein Auftreffen auf ein hinderniss wird die Laufrichtung im Uhrzeigersinn angepasst.
+ * Treffen Spielfigur und Feuermonster aufeinander so erleidet die Spielfugur alle 2 Sekunden Schaden
  */
 public class FeuerMonster extends Monster{
     final int posX;
@@ -34,9 +34,10 @@ public class FeuerMonster extends Monster{
     private boolean hatKollidiert=false;
     private long startTime;
     FeuerModus feuerModus;
-    private int schaden = 20;
+    final int schaden = 20;
 
     /**
+     * @MEGAtroniker
      * Konstruktor enthält nun eine ausrichtung für die implementierung des bewegungsalgorthmus.
      * Aus Spielsteuerung erhält man Methoden zur einfachen Implementierung der Bewege Methode
      * @param posX aktuelle X-Position
@@ -61,6 +62,7 @@ public class FeuerMonster extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
      * @param figur Spielfigur
      */
@@ -75,6 +77,7 @@ public class FeuerMonster extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Die Methode zeiche definiert die Darstellung des Feuremonsters
      * @param app  app zur Darstellung
      */
@@ -85,6 +88,7 @@ public class FeuerMonster extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Die Methode bewege enthält die aktuellen Koordinaten des Feuermonsters.
      * Es bewegt sich solange in die initiale Richtung, bis ein Hinderniss kommt,
      * dann wir die Richtung im Uhrzeigersinn gewechselt.
@@ -130,6 +134,7 @@ public class FeuerMonster extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Methode FeuerModus ermöglicht dem Feuermonster in 3 verschiedenen Modi Feuerbälle zu schießen.
      * Modus wird bei Instanziierung des Feuermonsters
      * durch die Übergabe der feuerRate und des feuerModus im Konstruktor festgelegt.
@@ -142,56 +147,58 @@ public class FeuerMonster extends Monster{
      */
     private void FeuerModus(FeuerModus feuerModus, int feuerRate) {
         if(rand.nextInt(feuerRate)==1 && feuerModus==FeuerModus.RANDOM){
-            schießeFeuerball();
+            shootFeuerball();
         }else if(feuerModus==FeuerModus.SEMIRANDOM){
             if (rand.nextInt(5)==1){
                 schussZaehler+=1;
             }
             if(2*schussZaehler >= feuerRate){
-                schießeFeuerball();
+                shootFeuerball();
                 schussZaehler=0;
             }
         }else if(feuerModus==FeuerModus.KONSTANT) {
             schussZaehler+=1;
             if (schussZaehler >= feuerRate) {
-                schießeFeuerball();
+                shootFeuerball();
                 schussZaehler = 0;
             }
         }
     }
 
     /**
+     * @MEGAtroniker
      * Methode schießeFeuerball ermittelt Abstand zur Figur, generiert Feuerball,
      * der sich in Richtung der Figur bewegt, und fügt diesen dem aktuellen Spielmodell hinzu.
      */
-    public void schießeFeuerball(){
+    public void shootFeuerball(){
         int abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
         int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
-        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.tileMap,this.steuerung);
+        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.steuerung);
         this.spielmodell.addMonster(feuerball);
     }
 
     /**
+     * @MEGAtroniker
      * Methode resetTimer setzt booleand hatKollidiert auf false,
      * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
      * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
      */
     public void resetTimer(){
         long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=+2000){
+        if(endTime-startTime>=2000){
             hatKollidiert=false;
         }
     }
 
     /**
+     * @MEGAtroniker
      * is never used!!!!!!!!!
      * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel
+     * @param kachel nope
      */
     @Override
     public void vorBetreten(IKachel kachel) {
-        if(!kachel.istBetretbar()){
-        }
+
     }
 
 }

@@ -1,18 +1,14 @@
 package grind.core.impl;
 
+import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
-import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
-import grind.movables.monster.IMonster;
-import grind.util.Richtung;
-import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.IMonster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
@@ -20,18 +16,14 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 
 /**
- * @Autor Megatronik
+ * @author Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
     private static int SpielfeldHoehe;
-    private Spielfigur Spieler;
-    private int SpielerGeschwindigkeit;
-    // private ITileMap tileMap;
+    final Spielfigur Spieler;
+    final int SpielerGeschwindigkeit;
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
@@ -46,10 +38,10 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-        // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
     /**
+     * @MEGAtroniker
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
     @Override
@@ -60,6 +52,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
+     * @MEGAtroniker
      * Methode setup, lädt Darstellung der Spielfigur.
      */
     @Override
@@ -70,6 +63,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
+     * @MEGAtroniker
      * Methode draw, zeichnet alle sichtbare Elemente.
      * (Spielfigur, Lebensenergie, Kontostand, Tilemap)
      */
@@ -78,11 +72,11 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-
         pruefeKollisionen();
     }
 
     /**
+     * @MEGAtroniker
      * Methode eingabe: richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
      * Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
      * damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
@@ -115,8 +109,15 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
+        szeneUeberspringen();
+    }
+
+    /**
+     * @MEGAtroniker
+     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+     */
+    private void szeneUeberspringen() {
         //F12 neue Szene
-        //TODO cheatMethode?
         if (keyPressed && !pressed) {
             if (keyCode == 123) {
                 pressed = true;
@@ -148,18 +149,14 @@ public class Spielsteuerung extends PApplet {
         int FigurXn = this.spielmodell.getFigur().getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
         int FigurYp = this.spielmodell.getFigur().getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
         int FigurYn = this.spielmodell.getFigur().getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
             int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
             int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
             int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
             if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
-
                 if (movable instanceof IMonster) {
-
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
                     // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 } else if (movable instanceof ISchatz) {
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
@@ -167,6 +164,7 @@ public class Spielsteuerung extends PApplet {
                     //return;
                 } else if (movable instanceof Nahrung) {
                     // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                    System.out.println("Nahrung augenommen!");
                 }
             }
         }
@@ -195,50 +193,21 @@ public class Spielsteuerung extends PApplet {
                 System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / 39, spielmodell.getFigur().getPosX() / 39));
                 levelBeendet = true;
             }
-
             for (int i = 0; i < 5; i++) {
                 if (spielmodell.getFigur().getInventar().size() >= i + 1) {
                     if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
                         System.out.println("Levelende Bedingung wurde gefunden");
                         levelBeendet = true;
-
-                        //spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-                        //spielmodell.betreteSzene(spielmodell.getSzeneNr());
                     }
                 }
             }
         }
         return levelBeendet;
     }
-/**
- * Kollisionsabfrage: prüft Kollision von Spieler mit Movable und führt dann dementsprechende Methode aus.
- * z.B. Wenn Kollision von Spieler mit Monster --> Spieler bekommt schaden
- *  Wenn Kollision von Spieler mit Gold --> Erhöhe Kontostand und lösche Gold aus Spielwelt
- *
- *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
- */
 
-    /*public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
-        int FigurX = this.spielmodell.getFigur().getPosX();
-        int FigurY = this.spielmodell.getFigur().getPosY();
-        int i = 0;
-        int toRemove = -1;
-        for(ISchatz schatz: this.spielmodell.getSchaetze()){
-            if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
-                schatz.beimSammeln(this.spielmodell.getFigur());
-                this.spielmodell.getMovables().remove(schatz);
-                toRemove = i;
-            }
-            i += 1;
-        }
-
-        if(toRemove != -1){
-            this.spielmodell.getSchaetze().remove(toRemove);
-        }
-
-    }*/
 
     /**
+     * @MEGAtroniker
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
      * @param x X-Koordinate
      * @param y Y-Koordinate
@@ -246,12 +215,13 @@ public class Spielsteuerung extends PApplet {
      */
 
     public IKachel getKachelByCoordinates(int x, int y) {
-        int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
-        int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        int j =  x/Einstellungen.LAENGE_KACHELN_X;
+        int i =  y/Einstellungen.LAENGE_KACHELN_Y;
         return spielmodell.getTileMap().getKachel(i,j);
     }
 
     /**
+     * @MEGAtroniker
      * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
      * außerhalb des Spielfelds liegen.
      * @param x X-Koordinate
@@ -263,6 +233,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
+     * @MEGAtroniker
      * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
      * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
      * @param x X-Koordinate

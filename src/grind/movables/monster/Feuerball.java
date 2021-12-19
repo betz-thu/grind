@@ -2,38 +2,35 @@ package grind.movables.monster;
 
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
-import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
-import grind.movables.impl.Movable;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import static java.lang.Math.*;
-
+/**
+ * @author MEGAtroniker
+ * Die Klasse Feuerbell beschreibt ein Monster welches asl geschoss des Monsters "Feuermonster" verwendet wird.
+ * es entsteht im Feuermonster und wird in richtung der Spielfugur geschossen, trifft es die Spielfigur,
+ * so erleidet diese schaden, der Feuerball wird gelöscht. Trifft der Feuerball die Spielfigur nicht,
+ * so wird diese bei verlassen des Spielfelds gelöscht.
+ */
 public class Feuerball extends Monster{
-    private final int GESCHWINDIGKEIT= 5;
-    private float deltaX;
-    private float deltaY;
+    final int GESCHWINDIGKEIT= 5;
+    final float deltaX;
+    final float deltaY;
     Spielsteuerung steuerung;
-    ITileMap tileMap;
-    private int schaden = 5;
+    final int schaden = 5;
 
 
     /**
      * Konstruktor
      * @param posX aktuelle X-Position des zugehörigen Feuermonsters
      * @param posY aktuelle Y-Position des zugehörigen Feuermonsters
-     * @param deltaX
-     * @param deltaY
-     * @param tileMap
+     * @param deltaX deltaX
+     * @param deltaY deltaY
      */
-    public Feuerball(float posX, float posY, int deltaX, int deltaY, ITileMap tileMap, Spielsteuerung steuerung) {
+    public Feuerball(float posX, float posY, int deltaX, int deltaY, Spielsteuerung steuerung) {
         super(posX, posY,Einstellungen.GROESSE_FEUERBALL);
         float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / GESCHWINDIGKEIT;
         this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
@@ -55,6 +52,7 @@ public class Feuerball extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Die Methode bewege bewegt den Feuerball in richtung des Spielers.
      * Wir dieser getroffen greift die Methode beiKollision
      * Sonst verlässt der Fuerball das Spielfeld und  wird aus der liste der movables gelöscht
@@ -73,6 +71,7 @@ public class Feuerball extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
      * @param figur Spielfigur
      */
@@ -85,9 +84,10 @@ public class Feuerball extends Monster{
     }
 
     /**
+     * @MEGAtroniker
      * Is never used!!!!!!!!!
      * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel
+     * @param kachel nope
      */
     @Override
     public void vorBetreten(IKachel kachel) {

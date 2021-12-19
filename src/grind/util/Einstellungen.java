@@ -1,5 +1,9 @@
 package grind.util;
 
+/**
+ * @MEGAtroniker
+ * Eränzuung für Feuerball,Feuermonster
+ */
 public class Einstellungen {
     public static final int ANZAHL_KACHELN_X = 30;
     public static final int ANZAHL_KACHELN_Y = 20;

@@ -1,20 +1,16 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielsteuerung;
-import grind.movables.IMovable;
+import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.movables.ISpielfigur;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Autor Megatronik
+ * @author MEGAtronik
  * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
  */
 public class Spielfigur extends Movable implements ISpielfigur {
@@ -22,13 +18,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
-
     PImage spielfigurOhneWaffe;
+    int lebensenergie = 100;//Kapselung?
+    final List<Gegenstand> inventar;
 
 
-    int lebensenergie = 100;
-    private List<Gegenstand> inventar;
     /**
+     * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
      */
@@ -37,6 +33,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @MEGAtroniker
      * Konstruktor Spielfigur
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
@@ -47,6 +44,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 }
 
     /**
+     * @MEGAtroniker
      * Methode zeichne: zeichnet Bild der Spielfigur, abhängig von Ausrichtung und Position.
      * Dadurch schaut die Spielfigur immer in Laufrichtung.
      * Bild: "SpielfigurOhneWaffe.jpg"
@@ -67,16 +65,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @MEGAtroniker
      * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
-     * @param app
+     * @param app für die Darstellung
      */
     private void zeichneSpielfigur(PApplet app) {
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
         app.translate(this.posX, this.posY);
-        int n =1;
+        int n = 1;
         switch (this.ausrichtung) {
             case N:
                 n = 0;
@@ -119,6 +118,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @MEGAtroniker
      * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
@@ -130,6 +130,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
     /**
+     * @MEGAtroniker
      * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
@@ -163,6 +164,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
     /**
+     * @MEGAtroniker
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.
      */
@@ -194,6 +196,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
     /**
+     * @MEGAtroniker
      * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
      * @param betrag erhöhung des Goldwerts
      */
@@ -208,9 +211,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @MEGAtroniker
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
      * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
-     * @param app
+     * @param app für die Darstellung
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
