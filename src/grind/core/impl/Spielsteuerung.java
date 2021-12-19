@@ -172,12 +172,12 @@ public class Spielsteuerung extends PApplet {
         if(keyPressed){
             if(key==inventarOeffnen && Spieler.getInventarGroeße()==10){
                 Spieler.setInventarGroeße(30);
-                Spieler.playBackpackSound();
+                Spieler.playBackpackOpenSound();
                 keyPressed=false;
             }else if(key==inventarOeffnen && Spieler.getInventarGroeße()==30){
                 Spieler.setInventarGroeße(10);
                 keyPressed=false;
-                Spieler.playBackpackSound();
+                Spieler.playBackpackCloseSound();
             }
         }
 

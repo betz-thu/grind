@@ -240,15 +240,19 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void playApfelSound(){
-        File apfelSound = new File("applebite.wav");
+        File apfelSound = new File("apple_bite.wav");
         setupSound(apfelSound);
     }
     public void playSwallowSound(){
         File swallowSound = new File("swallow.wav");
         setupSound(swallowSound);
     }
-    public void playBackpackSound(){
+    public void playBackpackOpenSound(){
         File backpackSound = new File("backpack.wav");
+        setupSound(backpackSound);
+    }
+    public void playBackpackCloseSound(){
+        File backpackSound = new File("backpack_reverse.wav");
         setupSound(backpackSound);
     }
     private void setupSound(File Sound){
@@ -257,7 +261,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             clip.open(AudioSystem.getAudioInputStream(Sound));
             clip.start();
         } catch (Exception e){
-            System.out.println("Fehler bei der Audiowiedergabe - playApfelSound");
+            e.printStackTrace();
         }
     }
 }
