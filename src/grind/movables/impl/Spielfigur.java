@@ -157,6 +157,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         // Spielfigur bewegt sich nicht von selbst
     }
 
+
+
     /**
      * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
      * @param betrag erhöhung des Goldwerts

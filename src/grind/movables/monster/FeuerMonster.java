@@ -6,8 +6,11 @@ import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
+import grind.util.FeuerModus;
 import grind.util.Richtung;
 import processing.core.PApplet;
+import java.util.Random;
+import static java.lang.Math.abs;
 
 /**
  * @author MEGAtroniker
@@ -16,14 +19,23 @@ import processing.core.PApplet;
  * Bein Auftreffen auf ein hinderniss wird die Laufrichtung im Uhrzeigersinn angepasst.
  */
 public class FeuerMonster extends Monster{
-    private int posX;
-    private int posY;
-    private final static int GESCHWINDIGKEIT = 2;
-    private int deltaX;
-    private int deltaY;
+    final int posX;
+    final int posY;
+    private final static int GESCHWINDIGKEIT = 0;
+    final int deltaX;
+    final int deltaY;
     ITileMap tileMap;
     Spielsteuerung steuerung;
     Richtung ausrichtung;
+    Feuerball feuerball;
+    private int abstandX;
+    private int abstandY;
+    private int schussZaehler=0;
+    Random rand;
+    final int feuerRate;
+    private boolean hatKollidiert=false;
+    private long startTime;
+    FeuerModus feuerModus;
 
     /**
      * Konstruktor enthält nun eine ausrichtung für die implementierung des bewegungsalgorthmus.
@@ -34,7 +46,7 @@ public class FeuerMonster extends Monster{
      * @param steuerung bewegungs Methoden
      * @param ausrichtung   Laufrichtung
      */
-    public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung) {
+    public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung,int feuerRate,FeuerModus feuerModus) {
         super(posX, posY,ausrichtung);
         this.tileMap = tileMap;
         this.posX = (int)posX;
@@ -43,6 +55,9 @@ public class FeuerMonster extends Monster{
         this.deltaY = -GESCHWINDIGKEIT;
         this.steuerung=steuerung;
         this.ausrichtung=ausrichtung;
+        rand = new Random();
+        this.feuerRate=feuerRate;
+        this.feuerModus=feuerModus;
     }
 
     /**
@@ -52,7 +67,7 @@ public class FeuerMonster extends Monster{
     @Override
     public void beiKollision(ISpielfigur figur) {
         if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERMONSTER/2f + 20)){ // 20 = spielerradius
-            // System.out.println("Kollision mit FeuerMonster");
+            System.out.println("Kollision mit FeuerMonster");
         }
     }
 
@@ -105,7 +120,70 @@ public class FeuerMonster extends Monster{
                     ausrichtung=Richtung.W;
                 }
         }
+        if(KollisionOrAbstand()){
+            System.out.println("Kollision Feuermonster!!!!!!!!!");
+
+        }
+        FeuerModus(this.feuerModus,this.feuerRate);
+
     }
+
+    private void FeuerModus(FeuerModus feuerModus, int feuerRate) {
+        if(rand.nextInt(feuerRate)==1 && feuerModus==FeuerModus.RANDOM){
+            schießeFeuerball();
+        }else if(feuerModus==FeuerModus.SEMIRANDOM){
+            if (rand.nextInt(5)==1){
+                schussZaehler+=1;
+            }
+            if(2*schussZaehler >= feuerRate){
+                schießeFeuerball();
+                schussZaehler=0;
+            }
+        }else if(feuerModus==FeuerModus.KONSTANT) {
+            schussZaehler+=1;
+            if (schussZaehler >= feuerRate) {
+                schießeFeuerball();
+                schussZaehler = 0;
+            }
+        }
+
+
+
+    }
+
+
+    public void schießeFeuerball(){
+        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.tileMap,this.steuerung);
+        this.spielmodell.addMonster(feuerball);
+    }
+
+    /**
+     * überschreibt die aktuellen disistanzen und kann eine Kollision dedektieren
+     * @return kollision
+     */
+    public boolean KollisionOrAbstand(){
+        this.abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
+        this.abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
+        if(hatKollidiert){
+            resetTimer();
+        }
+        if(abs(this.abstandX)<=20&&abs(this.abstandY)<=20&&!hatKollidiert){
+            startTime = System.currentTimeMillis();
+            hatKollidiert=true;
+            return true;
+        }
+        return false;
+    }
+
+    public void resetTimer(){
+        long endTime = System.currentTimeMillis();
+        if(endTime>=startTime+2000){
+            hatKollidiert=false;
+        }
+    }
+
+
+
 
 
 
@@ -119,10 +197,7 @@ public class FeuerMonster extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
-            deltaX = -deltaX;
-            deltaY = -deltaY;
-            posX += deltaX ;
-            posY += deltaY ;
+
 
         }
     }

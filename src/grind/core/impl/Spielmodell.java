@@ -3,6 +3,7 @@ package grind.core.impl;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.movables.monster.*;
+import grind.util.FeuerModus;
 import grind.util.Richtung;
 import grind.movables.impl.Movable;
 import grind.welt.ILevel;
@@ -64,6 +65,7 @@ public class Spielmodell implements ISpielmodell {
     /**
      * TODO eingentlich sollte alles hier sein aber wie ist des dann mit den einzelnen Szenen?
      * TODO Weil jetz sind die Monster in jeder Szene gleich
+     * TODO neue tilemap aber danach dieselben Movables
      * Gefühlt definieren wir in x klassen dasselbe und des gilt auch IMMER egal welche szene
      * dann ändern sich nur die Kacheln
      * @param level
@@ -72,11 +74,17 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-        addMonster("Feuerball",300,300);
-        addMonster("FeuerMonster",300,300);
+
+        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+        addMonster(feuerMonster);
+        //addMonster("Feuerball",300,300);
+        //addMonster("FeuerMonster",300,300);
 
     }
 
+    /**
+     * TODO Jede teilmap braucht ne eigene liste sonst gibts überall dieselben movables
+     */
     private void kopiereTilemap() {
         this.tileMap = this.level.getTileMap();
     }
@@ -161,13 +169,10 @@ public class Spielmodell implements ISpielmodell {
      * Die Methode addMonster ermöglicht die Instanziierung aller Monster,
      * direkt im Spielmodell in der Methode betreteLevel.
      * Die erzeugten Monster werden der Liste movables zugeordet
-     * @param type  Insatanziierungunsparameter des Monsters : Monstertyp
-     * @param posX  Insatanziierungunsparameter des Monsters : X-Position
-     * @param posY  Insatanziierungunsparameter des Monsters : Y-Position
      */
     @Override
-    public void addMonster(String type,float posX,float posY) {
-        IMonster monster;
+    public void addMonster(IMonster monster) {
+        /*
         if (type.equals("Geist"))
              monster = new Geist(posX,posY,this.tileMap);
         else if (type.equals("Zombie")){
@@ -178,7 +183,7 @@ public class Spielmodell implements ISpielmodell {
             monster = new FeuerMonster(posX,posY,this.tileMap,this.steuerung,Richtung.N);
         } else {
             monster = new DornPflanze(posX,posY,this.tileMap);
-        }
+        }*/
         monster.setSpielmodell(this);
         movables.add(monster);
     }

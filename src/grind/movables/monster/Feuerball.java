@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
@@ -16,10 +17,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static java.lang.Math.*;
 
 public class Feuerball extends Monster{
-    private final int geschwindigkeit = 5;
-    private int deltaX;
-    private int deltaY;
-
+    private final int GESCHWINDIGKEIT= 5;
+    private float deltaX;
+    private float deltaY;
+    private boolean hatGetroffen=false;
+    Spielsteuerung steuerung;
     ITileMap tileMap;
 
 
@@ -31,11 +33,12 @@ public class Feuerball extends Monster{
      * @param deltaY
      * @param tileMap
      */
-    public Feuerball(float posX, float posY, int deltaX, int deltaY, ITileMap tileMap) {
+    public Feuerball(float posX, float posY, int deltaX, int deltaY, ITileMap tileMap, Spielsteuerung steuerung) {
         super(posX, posY);
-        int abstand = (int) sqrt(pow(deltaX,2)+pow(deltaY,2));
-        this.deltaX =  geschwindigkeit*deltaX/abstand;
-        this.deltaY = geschwindigkeit*deltaY/abstand;
+        float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / GESCHWINDIGKEIT;
+        this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
+        this.deltaY = deltaY / abstand;
+        this.steuerung=steuerung;
     }
 
     /**
@@ -61,12 +64,17 @@ public class Feuerball extends Monster{
         int posY = this.getPosY();
         posX += deltaX;
         posY += deltaY;
-        if (posX < 0 || posY < 0 || posX > Einstellungen.ANZAHL_KACHELN_X * Einstellungen.LAENGE_KACHELN_X || posY > Einstellungen.ANZAHL_KACHELN_Y * Einstellungen.LAENGE_KACHELN_Y) {
+        if (this.steuerung.isSpielfeldrand(posX,posY)) {
             this.getSpielmodell().removeMovable(this);
 
         } else {
                 this.setPosition(posX, posY);
             }
+        if(isKollision()){
+            System.out.println("Treffer!");
+        }
+
+
     }
 
     /**
@@ -80,6 +88,17 @@ public class Feuerball extends Monster{
     }
 
 
+    /**
+     *  kann eine Kollision dedektieren
+     * @return kollision
+     */
+    public boolean isKollision(){
+        if(abs(this.spielmodell.getFigur().getPosX()-getPosX())<=20&&abs(this.spielmodell.getFigur().getPosY()-getPosY())<=20&&!hatGetroffen){
+            hatGetroffen=true;
+            return true;
+        }
+        return false;
+    }
 
 
 

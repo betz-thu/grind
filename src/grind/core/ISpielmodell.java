@@ -36,6 +36,6 @@ public interface ISpielmodell {
 
     ISzene getSzene();
 
-    void addMonster(String type,float posX,float posY);
+    void addMonster(IMonster monster);
     void removeMovable(Monster movable);
 }

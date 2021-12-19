@@ -30,7 +30,7 @@ public class Zombie extends Monster{
     @Override
     public void beiKollision(ISpielfigur figur) {
         if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_ZOMBIE/2f + 20)){ // 20 = spielerradius
-            // System.out.println("Kollision mit Zombie");
+            //System.out.println("Kollision mit Zombie");
         }
     }
 
