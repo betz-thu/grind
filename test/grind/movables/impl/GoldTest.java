@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,8 +15,8 @@ public class GoldTest {
 
     @Before
     public void setUp() throws Exception {
-        gold = new Gold(100, 200);
-        figur = new Spielfigur(150, 150, Richtung.S);
+        gold = new Gold(100, 200, Einstellungen.GROESSE_GOLD);
+        figur = new Spielfigur(150, 150, Richtung.S, Einstellungen.GROESSE_SPIELFIGUR);
     }
 
     @Test

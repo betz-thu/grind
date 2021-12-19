@@ -27,9 +27,22 @@ import java.util.Random;
 public class DummyLevel implements ILevel {
 
     ITileMap tileMap;
+    ArrayList<IMovable> positionen = new ArrayList<>();
+
 
     public DummyLevel (){
+
         this.tileMap = new TileMap();
+
+        Random random = new Random();
+        positionen.add(new Gold(650, 400, Einstellungen.GROESSE_GOLD));
+        positionen.add(new Geist(60,200,tileMap, Einstellungen.GROESSE_GEIST));
+        positionen.add(new DornPflanze(200, 50, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
+        positionen.add(new DornPflanze(600, 500, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
+        positionen.add(new Zombie((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
+                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap, Einstellungen.GROESSE_ZOMBIE));
+        positionen.add(new Zombie(350, 600, tileMap, Einstellungen.GROESSE_ZOMBIE));
+        positionen.add(new Spielfigur(600, 400,Richtung.N, Einstellungen.GROESSE_SPIELFIGUR));
     }
 
     @Override
@@ -39,26 +52,7 @@ public class DummyLevel implements ILevel {
 
     @Override
     public List<IMovable> getPositionen() {
-        Random random = new Random();
-        ArrayList<IMovable> positionen = new ArrayList<>();
-        positionen.add(new Gold(600, 200));
-        positionen.add(new Spielfigur(600, 400, Richtung.N ));
-        positionen.add(new Geist(60,200,tileMap));
 
-        /*
-       positionen.add(new DornPflanze((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
-               (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y ), tileMap));
-        positionen.add(new DornPflanze((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
-                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y), tileMap));
-*/
-        positionen.add(new DornPflanze(200, 50, tileMap));
-        positionen.add(new DornPflanze(600, 500, tileMap));
-
-        positionen.add(new Zombie((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
-                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap));
-
-        positionen.add(new Zombie(350, 600, tileMap));
-        positionen.add(new Spielfigur(600, 400,Richtung.N));
         return positionen;
     }
 

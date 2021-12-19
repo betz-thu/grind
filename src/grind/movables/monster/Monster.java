@@ -13,6 +13,7 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
+    public Monster(float posX, float posY, int groesse) {
 
     public Monster(float posX, float posY) {
 
@@ -23,13 +24,15 @@ public abstract class Monster extends Movable implements IMonster {
         return lebensenergie;
     }
 
-//    @Override
-//    public void beiKollision(ISpielfigur figur) {
-//        if (prüfeKollision){
-//            reduziereLebensenergie();
-//        }
-//    }
+    @Override
+    public void beiKollision(ISpielfigur figur) {
 
+        figur.erhalteSchaden(this.schaden);
+
+    }
+
+    public void setSchaden(int schaden) {
+        this.schaden = schaden;
     public void reduziereLebensenergie(int reduziereUm) {
 
         if (lebensenergie - reduziereUm <= 0) {

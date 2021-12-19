@@ -1,6 +1,7 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.impl.Movable;
 import grind.movables.monster.Geist;
@@ -31,12 +32,27 @@ public class Spielmodell implements ISpielmodell {
     ILevel level;
     ITileMap tileMap;
 
-    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N, Einstellungen.GROESSE_SPIELFIGUR);
     List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
+    List<IMonster> monster = new ArrayList<>();
 
     public Spielmodell(ISpielwelt spielwelt) {
         this.spielwelt = spielwelt;
+    }
+
+    /**
+     * Löscht Movable aus Liste der Positionen und aus Liste der movables
+     * z. B. Für das Einsammeln eines Schatzes
+     * @param movable
+     */
+    public void removeMovable(IMovable movable){
+
+       List<IMovable> positionen = level.getPositionen();
+
+       positionen.remove(movable);
+       movables.remove(movable);
+
     }
 
     @Override
@@ -63,6 +79,7 @@ public class Spielmodell implements ISpielmodell {
     private void kopiereMovables() {
         this.movables.clear();
         this.schaetze.clear();
+        this.monster.clear();
 
         for (IMovable movable : this.level.getPositionen()) {
             if (movable instanceof ISpielfigur) {
@@ -72,6 +89,10 @@ public class Spielmodell implements ISpielmodell {
                 ISchatz schatz = (ISchatz) movable;
                 this.schaetze.add(schatz);
                 this.movables.add(schatz);
+            } else if (movable instanceof IMonster){
+                IMonster monster = (IMonster) movable;
+                this.monster.add(monster);
+                this.movables.add(monster);
             } else {
                 this.movables.add(movable);
             }
@@ -83,9 +104,7 @@ public class Spielmodell implements ISpielmodell {
         // die Spielfigur bewegt sich nicht von selbst
         for(IMovable movable: movables){
             movable.bewege();
-            if(movable instanceof IMonster){
-                ((IMonster) movable).beiKollision(figur);
-            }
+
         }
 
     }
@@ -137,4 +156,6 @@ public class Spielmodell implements ISpielmodell {
     public List<IMovable> getMovables() {
         return movables;
     }
+
+
 }
