@@ -18,7 +18,11 @@ public class Leveleditor extends PApplet {
     DateiService dateiService;
     ISpielwelt welt;
 
+    ISpielmodell spielmodell;
 
+
+    public Leveleditor(){
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.

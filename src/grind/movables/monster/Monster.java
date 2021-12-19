@@ -1,21 +1,17 @@
 package grind.movables.monster;
 
-import grind.kacheln.IKachel;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Movable;
-import grind.util.Einstellungen;
 import processing.core.PApplet;
+
 
 public abstract class Monster extends Movable implements IMonster {
     private int lebensenergie;
+    private int schaden;
 
+    public Monster(float posX, float posY, int groesse) {
 
-
-
-
-    public Monster(float posX, float posY) {
-
-        super(posX, posY);
+        super(posX, posY, groesse);
     }
 
     public int getLebensenergie() {
@@ -25,6 +21,12 @@ public abstract class Monster extends Movable implements IMonster {
     @Override
     public void beiKollision(ISpielfigur figur) {
 
+        figur.erhalteSchaden(this.schaden);
+
+    }
+
+    public void setSchaden(int schaden) {
+        this.schaden = schaden;
     }
 }
 

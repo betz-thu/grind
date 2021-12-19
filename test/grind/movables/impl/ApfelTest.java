@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,9 +16,9 @@ public class ApfelTest {
 
     @Before
     public void setUp() throws Exception {
-        apfel = new Apfel(100, 100);
-        apfel2 = new Apfel(100, 120);
-        figur = new Spielfigur(200, 200, Richtung.S);
+        apfel = new Apfel(100, 100, Einstellungen.GROESSE_APFEL);
+        apfel2 = new Apfel(100, 120, Einstellungen.GROESSE_APFEL);
+        figur = new Spielfigur(200, 200, Richtung.S, Einstellungen.GROESSE_SPIELFIGUR);
     }
 
     @Test

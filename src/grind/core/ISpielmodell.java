@@ -5,6 +5,7 @@ import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
+import grind.movables.monster.IMonster;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import processing.core.PApplet;
@@ -27,6 +28,8 @@ public interface ISpielmodell {
     List<ISchatz> getSchaetze();
 
     List<IMovable> getMovables();
+
+    void removeMovable(IMovable movable);
 
 
     int getSzeneNr();
