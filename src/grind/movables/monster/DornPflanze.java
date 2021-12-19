@@ -18,8 +18,8 @@ public class DornPflanze extends Monster {
 
     private ITileMap tileMap;
 
-    public DornPflanze(float posX, float posY, ITileMap tileMap, int groesse) {
-        super(posX, posY, groesse);
+    public DornPflanze(float posX, float posY, ITileMap tileMap) {
+        super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
         this.tileMap = tileMap;
         setSchaden(schaden);
 

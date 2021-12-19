@@ -53,20 +53,6 @@ public class Spielmodell implements ISpielmodell {
 
     }
 
-    /**
-     * Löscht Movable aus Liste der Positionen und aus Liste der movables
-     * z. B. Für das Einsammeln eines Schatzes
-     * @param movable
-     */
-    public void removeMovable(IMovable movable){
-
-       List<IMovable> positionen = level.getPositionen();
-
-       positionen.remove(movable);
-       movables.remove(movable);
-
-    }
-
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);
@@ -192,18 +178,6 @@ public class Spielmodell implements ISpielmodell {
      */
     @Override
     public void addMonster(IMonster monster) {
-        /*
-        if (type.equals("Geist"))
-             monster = new Geist(posX,posY,this.tileMap);
-        else if (type.equals("Zombie")){
-            monster = new Zombie(posX,posY,this.tileMap);
-        } else if (type.equals("Feuerball")) {
-            monster = new Feuerball(posX,posY,1,1,this.tileMap);
-        } else if (type.equals("FeuerMonster")) {
-            monster = new FeuerMonster(posX,posY,this.tileMap,this.steuerung,Richtung.N);
-        } else {
-            monster = new DornPflanze(posX,posY,this.tileMap);
-        }*/
         monster.setSpielmodell(this);
         movables.add(monster);
     }
@@ -212,7 +186,23 @@ public class Spielmodell implements ISpielmodell {
      * Die Methode removeMovable löscht die aktuelle Movable Instanz aus der Liste movables
      * @param movable Liste aller movables im Spiel
      */
-    public void removeMovable(Monster movable) {
+    public void removeMovable(IMovable movable) {
         movables.remove(movable);
     }
+
+    /**
+     * TODO: überkompliziert, da jedes mal neue Liste erstellt wird. Lösung: originalliste ist nun eine CopyOnWriteList.
+     *
+     * Löscht Movable aus Liste der Positionen und aus Liste der movables
+     * z. B. Für das Einsammeln eines Schatzes
+     * @param movable
+     */
+    /*public void removeMovable(IMovable movable){
+
+       List<IMovable> positionen = level.getPositionen();
+
+       positionen.remove(movable);
+       movables.remove(movable);
+
+    }*/
 }

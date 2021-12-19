@@ -21,21 +21,20 @@ import static java.lang.Math.abs;
 public class FeuerMonster extends Monster{
     final int posX;
     final int posY;
-    private final static int GESCHWINDIGKEIT = 0;
+    private final static int GESCHWINDIGKEIT = 2;
     final int deltaX;
     final int deltaY;
     ITileMap tileMap;
     Spielsteuerung steuerung;
     Richtung ausrichtung;
     Feuerball feuerball;
-    private int abstandX;
-    private int abstandY;
     private int schussZaehler=0;
     Random rand;
     final int feuerRate;
     private boolean hatKollidiert=false;
     private long startTime;
     FeuerModus feuerModus;
+    private int schaden = 20;
 
     /**
      * Konstruktor enthält nun eine ausrichtung für die implementierung des bewegungsalgorthmus.
@@ -47,7 +46,7 @@ public class FeuerMonster extends Monster{
      * @param ausrichtung   Laufrichtung
      */
     public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung,int feuerRate,FeuerModus feuerModus) {
-        super(posX, posY,ausrichtung);
+        super(posX, posY,ausrichtung,Einstellungen.GROESSE_FEUERMONSTER);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -58,6 +57,7 @@ public class FeuerMonster extends Monster{
         rand = new Random();
         this.feuerRate=feuerRate;
         this.feuerModus=feuerModus;
+        setSchaden(schaden);
     }
 
     /**
@@ -66,8 +66,10 @@ public class FeuerMonster extends Monster{
      */
     @Override
     public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERMONSTER/2f + 20)){ // 20 = spielerradius
+        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
             System.out.println("Kollision mit FeuerMonster");
+            startTime = System.currentTimeMillis();
+            hatKollidiert=true;
         }
     }
 
@@ -78,7 +80,7 @@ public class FeuerMonster extends Monster{
     @Override
     public void zeichne(PApplet app) {
         app.fill(255,100,0);
-        app.ellipse(this.getPosX(), this.getPosY(),(float) Einstellungen.GROESSE_FEUERMONSTER , (float)Einstellungen.GROESSE_FEUERMONSTER);
+        app.ellipse(this.getPosX(), this.getPosY(),(float) this.getGroesse(), (float) this.getGroesse());
     }
 
     /**
@@ -120,14 +122,23 @@ public class FeuerMonster extends Monster{
                     ausrichtung=Richtung.W;
                 }
         }
-        if(KollisionOrAbstand()){
-            System.out.println("Kollision Feuermonster!!!!!!!!!");
-
-        }
         FeuerModus(this.feuerModus,this.feuerRate);
-
+        if(hatKollidiert){
+            resetTimer();
+        }
     }
 
+    /**
+     * Methode FeuerModus ermöglicht dem Feuermonster in 3 verschiedenen Modi Feuerbälle zu schießen.
+     * Modus wird bei Instanziierung des Feuermonsters
+     * durch die Übergabe der feuerRate und des feuerModus im Konstruktor festgelegt.
+     *
+     * 1. Random: Monster schießt in rein zufälligen Abständen.
+     * 2. Semirandom: Die Abstände der Schüsse sind statistisch gleichmäßiger, aber nicht komplett einheitlich.
+     * 3. Konstant: Feuerbälle werden in äquidistanten Zeitabstanden abgefeuert.
+     * @param feuerModus s.o.
+     * @param feuerRate Integer zum Einstellen der Zeitabstände
+     */
     private void FeuerModus(FeuerModus feuerModus, int feuerRate) {
         if(rand.nextInt(feuerRate)==1 && feuerModus==FeuerModus.RANDOM){
             schießeFeuerball();
@@ -146,59 +157,39 @@ public class FeuerMonster extends Monster{
                 schussZaehler = 0;
             }
         }
-
-
-
     }
 
-
+    /**
+     * Methode schießeFeuerball ermittelt Abstand zur Figur, generiert Feuerball,
+     * der sich in Richtung der Figur bewegt, und fügt diesen dem aktuellen Spielmodell hinzu.
+     */
     public void schießeFeuerball(){
+        int abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
+        int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
         feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.tileMap,this.steuerung);
         this.spielmodell.addMonster(feuerball);
     }
 
     /**
-     * überschreibt die aktuellen disistanzen und kann eine Kollision dedektieren
-     * @return kollision
+     * Methode resetTimer setzt booleand hatKollidiert auf false,
+     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
+     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
      */
-    public boolean KollisionOrAbstand(){
-        this.abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
-        this.abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
-        if(hatKollidiert){
-            resetTimer();
-        }
-        if(abs(this.abstandX)<=20&&abs(this.abstandY)<=20&&!hatKollidiert){
-            startTime = System.currentTimeMillis();
-            hatKollidiert=true;
-            return true;
-        }
-        return false;
-    }
-
     public void resetTimer(){
         long endTime = System.currentTimeMillis();
-        if(endTime>=startTime+2000){
+        if(endTime-startTime>=+2000){
             hatKollidiert=false;
         }
     }
 
-
-
-
-
-
-
-
     /**
-     * In nerer useed!!!!!!!!!
+     * is never used!!!!!!!!!
      * ersetzt durch assoziation zu Spielsteuerung!!!!
      * @param kachel
      */
     @Override
     public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
-
-
         }
     }
 

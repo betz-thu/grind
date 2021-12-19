@@ -18,8 +18,8 @@ public class Zombie extends Monster{
     private boolean hilfsVariable = false;
 
 
-    public Zombie(float posX, float posY, ITileMap tileMap, int groesse) {
-        super(posX, posY, groesse);
+    public Zombie(float posX, float posY, ITileMap tileMap) {
+        super(posX, posY, Einstellungen.GROESSE_ZOMBIE);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -96,7 +96,6 @@ public class Zombie extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
-
 
             deltaX = -deltaX;
             deltaY = -deltaY;

@@ -41,8 +41,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
      */
-    public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
-        super(posX, posY, richtung, groesse);
+    public Spielfigur(float posX, float posY, Richtung richtung) {
+        super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
 }
 
@@ -63,7 +63,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getGroesse() {
-        return this.groesse = Einstellungen.GROESSE_FIGUR;
+        return this.groesse = Einstellungen.GROESSE_SPIELFIGUR;
     }
 
     /**

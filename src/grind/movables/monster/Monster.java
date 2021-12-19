@@ -9,6 +9,7 @@ import processing.core.PApplet;
 public abstract class Monster extends Movable implements IMonster {
     private int lebensenergie;
     ISpielmodell spielmodell;
+    private int schaden;
 
 
     /**
@@ -16,9 +17,6 @@ public abstract class Monster extends Movable implements IMonster {
      * @param posX
      * @param posY
      */
-    public Monster(float posX, float posY) {
-        super(posX, posY);
-    private int schaden;
 
     public Monster(float posX, float posY, int groesse) {
 
@@ -31,8 +29,8 @@ public abstract class Monster extends Movable implements IMonster {
      * @param posY
      * @param ausrichtung
      */
-    public Monster(float posX, float posY, Richtung ausrichtung) {
-        super(posX,posY,ausrichtung);
+    public Monster(float posX, float posY, Richtung ausrichtung,int groesse) {
+        super(posX,posY,ausrichtung,groesse);
     }
 
     @Override

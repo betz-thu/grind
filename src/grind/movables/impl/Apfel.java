@@ -10,8 +10,8 @@ public class Apfel extends Nahrung{
     private int größe;
 
 
-    public Apfel(int posX, int posY, int groesse) {
-        super(posX, posY, groesse);
+    public Apfel(int posX, int posY) {
+        super(posX, posY, Einstellungen.GROESSE_APFEL);
     }
 
     public int getPunkte(){

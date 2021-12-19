@@ -16,9 +16,9 @@ public class Geist extends Monster{
     ITileMap tileMap;
 
 
-    public Geist(float posX, float posY,ITileMap tileMap, int groesse) {
+    public Geist(float posX, float posY,ITileMap tileMap) {
 
-        super(posX, posY, groesse);
+        super(posX, posY, Einstellungen.GROESSE_GEIST);
         setSchaden(schaden);
     }
 

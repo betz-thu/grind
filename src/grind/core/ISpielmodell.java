@@ -16,29 +16,19 @@ import java.util.List;
 public interface ISpielmodell {
 
     void betreteSzene(int n);
-
     void bewege();
-
     void zeichne(PApplet app);
 
     ISpielfigur getFigur();
-
     ITileMap getTileMap();
-
-
     List<ISchatz> getSchaetze();
-
     List<IMovable> getMovables();
 
-    void removeMovable(IMovable movable);
-
-
     int getSzeneNr();
-
     void setSzeneNr(int szeneNR);
 
     ISzene getSzene();
 
     void addMonster(IMonster monster);
-    void removeMovable(Monster movable);
+    void removeMovable(IMovable movable);
 }

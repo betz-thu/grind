@@ -42,7 +42,7 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
+        this.spielmodell = new Spielmodell(new DummySpielwelt(), this);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
@@ -54,9 +54,9 @@ public class Spielsteuerung extends PApplet {
      */
     @Override
     public void settings() {
-        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
-        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y*Einstellungen.ANZAHL_KACHELN_Y;
-        size(SpielfeldBreite,SpielfeldHoehe);
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
+        size(SpielfeldBreite, SpielfeldHoehe);
     }
 
     /**
@@ -94,22 +94,22 @@ public class Spielsteuerung extends PApplet {
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
-                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-Schulterbreite) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+Schulterbreite)){
+                if (isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y - Schulterbreite) && isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.W);
                 }
             } else if (key == 'w' || keyCode == UP) {
                 Spieler.setAusrichtung(Richtung.N);
-                if(isErlaubteKoordinate(x-Schulterbreite,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+Schulterbreite,y-SpielerGeschwindigkeit-20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y - SpielerGeschwindigkeit - 20) && isErlaubteKoordinate(x + Schulterbreite, y - SpielerGeschwindigkeit - 20)) {
                     Spieler.bewege(Richtung.N);
                 }
             } else if (key == 's' || keyCode == DOWN) {
                 Spieler.setAusrichtung(Richtung.S);
-                if(isErlaubteKoordinate(x-Schulterbreite,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+Schulterbreite,y+SpielerGeschwindigkeit+20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y + SpielerGeschwindigkeit + 20) && isErlaubteKoordinate(x + Schulterbreite, y + SpielerGeschwindigkeit + 20)) {
                     Spieler.bewege(Richtung.S);
                 }
             } else if (key == 'd' || keyCode == RIGHT) {
                 Spieler.setAusrichtung(Richtung.O);
-                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-Schulterbreite) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+Schulterbreite)){
+                if (isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y - Schulterbreite) && isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.O);
                 }
             }
@@ -117,29 +117,59 @@ public class Spielsteuerung extends PApplet {
 
         //F12 neue Szene
         //TODO cheatMethode?
-        if (keyPressed && !pressed){
+        if (keyPressed && !pressed) {
             if (keyCode == 123) {
                 pressed = true;
             }
-        } else if(!keyPressed && pressed){
+        } else if (!keyPressed && pressed) {
             pressed = false;
             System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
+
 
     private void aktualisiere() {
         pruefeKollisionen();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
-        if(levelBeendet){
+        if (levelBeendet) {
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
 
+    }
+
+    public void pruefeKollisionen() {
+        int FigurXp = this.spielmodell.getFigur().getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurXn = this.spielmodell.getFigur().getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurYp = this.spielmodell.getFigur().getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurYn = this.spielmodell.getFigur().getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
+            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
+            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
+            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
+
+                if (movable instanceof IMonster) {
+
+                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
+
+                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
+                } else if (movable instanceof ISchatz) {
+                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
+                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
+                    //return;
+                } else if (movable instanceof Nahrung) {
+                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                }
+            }
+        }
     }
 
     private void zeichne() {
@@ -159,25 +189,25 @@ public class Spielsteuerung extends PApplet {
         int kachelX = posY / Einstellungen.LAENGE_KACHELN_Y;
         int kachelY = posX / Einstellungen.LAENGE_KACHELN_X;
         IKachel aktuelleKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(kachelX, kachelY);
-        if (aktuelleKachel instanceof Levelausgang){
+        if (aktuelleKachel instanceof Levelausgang) {
             System.out.println(aktuelleKachel);
-        if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y,spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang){
-            System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY()/39,spielmodell.getFigur().getPosX()/39));
-            levelBeendet = true;
-        }
+            if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / Einstellungen.LAENGE_KACHELN_Y, spielmodell.getFigur().getPosX() / Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang) {
+                System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / 39, spielmodell.getFigur().getPosX() / 39));
+                levelBeendet = true;
+            }
 
-        for (int i=0; i<5;i++){
-            if (spielmodell.getFigur().getInventar().size()>=i+1) {
-                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
-                    System.out.println("Levelende Bedingung wurde gefunden");
-                    levelBeendet = true;
+            for (int i = 0; i < 5; i++) {
+                if (spielmodell.getFigur().getInventar().size() >= i + 1) {
+                    if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                        System.out.println("Levelende Bedingung wurde gefunden");
+                        levelBeendet = true;
 
-//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+                        //spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+                        //spielmodell.betreteSzene(spielmodell.getSzeneNr());
+                    }
                 }
             }
         }
-
         return levelBeendet;
     }
 /**
@@ -187,37 +217,8 @@ public class Spielsteuerung extends PApplet {
  *
  *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
  */
-    public void pruefeKollisionen() {
-        int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
 
-        for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableXp = movable.getPosX()+movable.getGroesse()/2;
-            int MovableXn = movable.getPosX()-movable.getGroesse()/2;
-            int MovableYp = movable.getPosY()+movable.getGroesse()/2;
-            int MovableYn = movable.getPosY()-movable.getGroesse()/2;
-            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
-
-                if(movable instanceof IMonster) {
-
-                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
-                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
-                }
-                else if(movable instanceof ISchatz){
-                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
-                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
-                    return;
-                }
-                else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
-                }
-            }
-        }
-
-    public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
+    /*public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
         int FigurX = this.spielmodell.getFigur().getPosX();
         int FigurY = this.spielmodell.getFigur().getPosY();
         int i = 0;
@@ -235,7 +236,7 @@ public class Spielsteuerung extends PApplet {
             this.spielmodell.getSchaetze().remove(toRemove);
         }
 
-    }
+    }*/
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
@@ -243,6 +244,7 @@ public class Spielsteuerung extends PApplet {
      * @param y Y-Koordinate
      * @return IKachel
      */
+
     public IKachel getKachelByCoordinates(int x, int y) {
         int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
         int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
