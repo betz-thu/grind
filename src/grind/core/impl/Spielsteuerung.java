@@ -171,6 +171,8 @@ public class Spielsteuerung extends PApplet {
                 if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
+                    spielmodell.getFigur().getInventar().remove(i);
+                    break;
 
 //                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
 //                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
