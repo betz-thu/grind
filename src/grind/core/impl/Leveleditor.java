@@ -25,7 +25,6 @@ public class Leveleditor extends PApplet {
      */
     public Leveleditor() {
         this.dateiService = new DateiService();
-        this.welt = new DummySpielwelt();
         this.welt = dateiService.ladeSpielmodell("spielwelt.json");
         System.out.println("Geladen");
     }
