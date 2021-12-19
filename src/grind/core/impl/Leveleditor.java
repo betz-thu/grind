@@ -11,6 +11,7 @@ public class Leveleditor extends PApplet {
 
     ISpielmodell spielmodell;
 
+
     public Leveleditor(){
         this.spielmodell = new Spielmodell(new DummySpielwelt(),new Spielsteuerung());
     }
