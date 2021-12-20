@@ -34,7 +34,8 @@ public class FeuerballTest {
         int posXdavor = ball.getPosX();
         int posYdavor = ball.getPosY();
         ball.bewege();
-        assertEquals((int) (posXdavor+ball.deltaX), (int) ball.getPosX());
+        assertEquals((int) (posXdavor+ball.deltaX), ball.getPosX());
+        assertEquals((int) (posYdavor+ball.deltaY), ball.getPosY());
     }
 
     @Test

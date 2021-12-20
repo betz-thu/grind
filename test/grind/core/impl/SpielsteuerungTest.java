@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.util.Einstellungen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,17 +11,18 @@ public class SpielsteuerungTest {
 
     @Before
     public void setUp() throws Exception {
-    }
-
-    @Test
-    public void settings() {
         try {
             spielsteuerung.settings();
         } catch (Exception e) {
             System.out.println("fehlermeldung size");
         }
-        assertEquals(1200,spielsteuerung.getSpielfeldBreite());
-        assertEquals(600,spielsteuerung.getSpielfeldHoehe());
+    }
+
+    @Test
+    public void settings() {
+        System.out.println("X:Y  "+Einstellungen.ANZAHL_KACHELN_X*Einstellungen.LAENGE_KACHELN_X+":"+Einstellungen.ANZAHL_KACHELN_Y*Einstellungen.LAENGE_KACHELN_Y);
+        assertEquals(Einstellungen.ANZAHL_KACHELN_X*Einstellungen.LAENGE_KACHELN_X,spielsteuerung.getSpielfeldBreite());
+        assertEquals(Einstellungen.ANZAHL_KACHELN_Y*Einstellungen.LAENGE_KACHELN_Y,spielsteuerung.getSpielfeldHoehe());
     }
 
     @Test
@@ -49,10 +51,10 @@ public class SpielsteuerungTest {
 
     @Test
     public void isSpielfeldrand() {
-        assertTrue(spielsteuerung.isSpielfeldrand(100,100));
-        assertFalse(spielsteuerung.isSpielfeldrand(100,2000));
-        assertFalse(spielsteuerung.isSpielfeldrand(2000,100));
-        assertFalse(spielsteuerung.isSpielfeldrand(2000,2000));
+        assertFalse(spielsteuerung.isSpielfeldrand(100,100));
+        assertTrue(spielsteuerung.isSpielfeldrand(100,2000));
+        assertTrue(spielsteuerung.isSpielfeldrand(2000,100));
+        assertTrue(spielsteuerung.isSpielfeldrand(2000,2000));
     }
 
     @Test
