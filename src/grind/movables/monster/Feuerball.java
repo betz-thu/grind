@@ -17,8 +17,8 @@ import static java.lang.Math.sqrt;
  */
 public class Feuerball extends Monster{
     final int GESCHWINDIGKEIT= 5;
-    final float deltaX;
-    final float deltaY;
+    float deltaX;
+    float deltaY;
     Spielsteuerung steuerung;
     final int schaden = 5;
 

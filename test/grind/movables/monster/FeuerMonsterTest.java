@@ -73,40 +73,18 @@ public class FeuerMonsterTest {
 
         System.out.println("Monsterpos: "+tFeuerMonster.getPosX()+"  "+ tFeuerMonster.getPosY());
 
+        try {
+            steuerung.settings();
+        } catch (Exception e) {
+            System.out.println("fehlermeldung size");
+        }
         System.out.println("Spielfeldrand: "+steuerung.isSpielfeldrand(50,50));
+        System.out.println("SpielfeldBreite: "+steuerung.getSpielfeldBreite());
+        //System.out.println("Spielmodell: "+steuerung.getSpielmodell().getMovables().toString());
 
         System.out.println("impl. if von is erlaubte koor: "+steuerung.getKachelByCoordinates(tFeuerMonster.getPosX(),tFeuerMonster.getPosY()-10).istBetretbar());
 
         System.out.println("eigentliche Methode: " +steuerung.isErlaubteKoordinate(tFeuerMonster.getPosX(), tFeuerMonster.getPosY()-10));
-
-    /*
-        for(int i=0; i<1200;i+=40){
-            for (int j=0; j<800;i+=40){
-                System.out.println(steuerung.getKachelByCoordinates(i,j).istBetretbar());
-            }
-
-
-/*
-        /*
-        do{
-
-            if(steuerung.isErlaubteKoordinate(tFeuerMonster.getPosX(), tFeuerMonster.getPosY()+40)){
-                wegBlockiert=false;
-            }
-            wegBlockiert=true;
-        }
-        while (!wegBlockiert);
-        {
-            tFeuerMonster.setPosition(tFeuerMonster.getPosX()+i, tFeuerMonster.posY );
-            if(steuerung.isErlaubteKoordinate(tFeuerMonster.getPosX(), tFeuerMonster.getPosY()+40)){
-                wegBlockiert=false;
-            }
-            wegBlockiert=true;
-            i+=i;
-        }
-        assertTrue(steuerung.isErlaubteKoordinate(tFeuerMonster.getPosX(), tFeuerMonster.getPosY()+10));
-        tFeuerMonster.bewege();
-        System.out.println(tFeuerMonster.getPosX()+""+ tFeuerMonster.getPosY());*/
     }
 
     @Test

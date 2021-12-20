@@ -20,14 +20,38 @@ import processing.core.PConstants;
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
 public class Spielsteuerung extends PApplet {
-    private static int SpielfeldBreite;
-    private static int SpielfeldHoehe;
+    private int SpielfeldBreite;
+    private int SpielfeldHoehe;
     final Spielfigur Spieler;
     final int SpielerGeschwindigkeit;
+
+    public ISpielmodell getSpielmodell() {
+        return spielmodell;
+    }
+
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
+
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
 
+    public int getSpielfeldBreite() {
+        return SpielfeldBreite;
+    }
+
+    public void setSpielfeldBreite(int spielfeldBreite) {
+        SpielfeldBreite = spielfeldBreite;
+    }
+
+    public int getSpielfeldHoehe() {
+        return SpielfeldHoehe;
+    }
+
+    public void setSpielfeldHoehe(int spielfeldHoehe) {
+        SpielfeldHoehe = spielfeldHoehe;
+    }
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
