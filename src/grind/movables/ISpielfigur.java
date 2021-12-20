@@ -12,7 +12,12 @@ public interface ISpielfigur extends IMovable {
     int getLebensenergie();
     void setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
+
+    @Override
+    int getGroesse();
+
     List<Gegenstand> getInventar();
+    void erhalteSchaden(int schaden);
     void playApfelSound();
     void playSwallowSound();
 }

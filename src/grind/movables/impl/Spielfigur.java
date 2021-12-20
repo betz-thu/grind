@@ -1,7 +1,12 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
+import grind.movables.IMovable;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import grind.util.Richtung;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -20,12 +25,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
-    int lebensenergie = 100;
     int gold = 5;
     PImage spielfigurOhneWaffe;
     private int inventarGroeße;
     private int guiGroeße;
 
+    int lebensenergie = 100;
     private List<Gegenstand> inventar;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -40,8 +45,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
      */
-    public Spielfigur(float posX, float posY, Richtung richtung) {
-        super(posX, posY, richtung);
+    public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
+        super(posX, posY, richtung, groesse);
         inventar = new ArrayList<>();
         inventarGroeße=10;
         guiGroeße=50;
@@ -65,6 +70,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
+        zeichneInventar(app);
+        gameover(app);
+    }
+
+    @Override
+    public int getGroesse() {
+        return this.groesse = Einstellungen.GROESSE_FIGUR;
     }
 
     /**
@@ -92,7 +104,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 n = 3;
         }
         app.rotate(PConstants.HALF_PI*n);
-        app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
+        app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
     }
@@ -169,10 +181,32 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     private void zeichneLebensbalken(PApplet app) {
         app.fill(150);
-        app.rect(10,20,100,10);
+        app.rect(10,20,lebensenergie,10);
         app.fill(0,150,0);
         app.rect(10,20, Lebensenergie,10);
     }
+
+    @Override
+    public void erhalteSchaden(int schaden) {
+        this.Lebensenergie -= schaden;
+    }
+
+    /**
+     * GameOver
+     * */
+    public void gameover(PApplet app) {
+        if (Lebensenergie <= 0) {
+            System.out.println("Game Over");
+            Lebensenergie = 0;
+            app.fill(0,0,0);
+            app.rect (200,120,800,600);
+            app.fill(138,3,3);
+            app.textSize(60);
+            app.text("Game Over",410,350 );
+            app.text("Please Restart",410,450);
+        }
+    }
+
 
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.

@@ -14,11 +14,13 @@ public abstract class Movable implements IMovable {
 
     float posX;
     float posY;
+    int groesse;
     Richtung ausrichtung;
 
-    public Movable(float posX, float posY) {
+    public Movable(float posX, float posY, int groesse) {
         this.posX = posX;
         this.posY = posY;
+        this.groesse = groesse;
     }
 
     /**
@@ -28,10 +30,11 @@ public abstract class Movable implements IMovable {
      * @param posY gibt Y-Position des Movables an.
      * @param ausrichtung gibt Ausrichtung des Movables mithilfe der enmus an.
      */
-    public Movable(float posX, float posY, Richtung ausrichtung) {
+    public Movable(float posX, float posY, Richtung ausrichtung, int groesse) {
         this.ausrichtung = ausrichtung;
         this.posX = posX;
         this.posY = posY;
+        this.groesse = groesse;
     }
 
     @Override
@@ -45,10 +48,16 @@ public abstract class Movable implements IMovable {
     }
 
     @Override
+    public int getGroesse() {
+        return groesse;
+    }
+
+    @Override
     public void setPosition(int x, int y) {
         this.posX = x;
         this.posY = y;
     }
+
 
     /**
      * Methode getAusrichtung gibt die aktuelle Ausrichtung des Movables zurück.

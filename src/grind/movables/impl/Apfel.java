@@ -6,10 +6,11 @@ import processing.core.PApplet;
 public class Apfel extends Nahrung{
 
     private int punkte=5; // Fehlt in Klassendiagramm?
+    private int größe;
 
 
-    public Apfel(int posX, int posY) {
-        super(posX, posY);
+    public Apfel(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     public int getPunkte(){
@@ -20,7 +21,7 @@ public class Apfel extends Nahrung{
         app.pushStyle();
         app.stroke(255, 0, 0);
         app.fill(255, 0, 0);
-        app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
+        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_APFEL, Einstellungen.GROESSE_APFEL);
         app.popStyle();
 
     }
@@ -30,6 +31,8 @@ public class Apfel extends Nahrung{
         figur.playApfelSound();
     }
 
-
-
+    @Override
+    public int getGroesse() {
+        return this.größe = Einstellungen.GROESSE_APFEL;
+    }
 }

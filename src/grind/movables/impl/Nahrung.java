@@ -4,8 +4,8 @@ import grind.movables.ISpielfigur;
 
 public abstract class Nahrung extends Gegenstand{
 
-    public Nahrung(int posX, int posY) {
-        super(posX, posY);
+    public Nahrung(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     public abstract int getPunkte();

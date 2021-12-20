@@ -1,14 +1,11 @@
 package grind.core.impl;
 
+import grind.core.ISpielmodell;
+import grind.movables.IMovable;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
-import grind.movables.impl.Nahrung;
-import grind.util.Richtung;
-import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
@@ -20,8 +17,6 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
-import java.util.ArrayList;
-import java.util.List;
 
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
@@ -33,8 +28,6 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
-
-
 
 
     /**
@@ -80,7 +73,6 @@ public class Spielsteuerung extends PApplet {
         aktualisiere();
         zeichne();
 
-        pruefeKollisionen();
     }
 
     /**
@@ -197,6 +189,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void aktualisiere() {
+        pruefeKollisionen();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
@@ -243,30 +236,42 @@ public class Spielsteuerung extends PApplet {
 
         return levelBeendet;
     }
+/**
+ * Kollisionsabfrage: prüft Kollision von Spieler mit Movable und führt dann dementsprechende Methode aus.
+ * z.B. Wenn Kollision von Spieler mit Monster --> Spieler bekommt schaden
+ *  Wenn Kollision von Spieler mit Gold --> Erhöhe Kontostand und lösche Gold aus Spielwelt
+ *
+ *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
+ */
+    public void pruefeKollisionen() {
+        int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
 
-    public void pruefeKollisionen(){ // als extra Methode oder zu aktualisiere() dazu?
-        int FigurX = this.spielmodell.getFigur().getPosX();
-        int FigurY = this.spielmodell.getFigur().getPosY();
-        int i = 0;
-        int toRemove = -1;
-        for(ISchatz schatz: this.spielmodell.getSchaetze()){
-            if(((FigurX > schatz.getPosX()-30) & (FigurX<schatz.getPosX()+30)) & ((FigurY > schatz.getPosY()-30)) & (FigurY<schatz.getPosY()+30)) {
-                schatz.beimSammeln(this.spielmodell.getFigur());
-                this.spielmodell.getMovables().remove(schatz);
-                toRemove = i;
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            int MovableXp = movable.getPosX()+movable.getGroesse()/2;
+            int MovableXn = movable.getPosX()-movable.getGroesse()/2;
+            int MovableYp = movable.getPosY()+movable.getGroesse()/2;
+            int MovableYn = movable.getPosY()-movable.getGroesse()/2;
+            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
+                if(movable instanceof IMonster) {
+
+                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
+
+                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
+                }
+                else if(movable instanceof ISchatz){
+                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
+                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
+                    return;
+                }
+                else if(movable instanceof Nahrung){
+                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                }
             }
-            i += 1;
         }
-
-        if(toRemove != -1){
-            this.spielmodell.getSchaetze().remove(toRemove);
-        }
-
-
-
-
-
     }
 
     /**
