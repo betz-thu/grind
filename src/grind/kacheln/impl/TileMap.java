@@ -1,9 +1,8 @@
 package grind.kacheln.impl;
 
-import grind.movables.impl.Spielfigur;
-import grind.util.Einstellungen;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -41,8 +40,8 @@ public class TileMap implements ITileMap {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                this.zufall = rand.nextInt(6);
                if (zufall == 0){
-                   //this.kacheln[i][j] = this.baum;
-                   this.kacheln[i][j] = this.wiese;
+                   this.kacheln[i][j] = this.baum;
+                   //this.kacheln[i][j] = this.wiese;
                } else if (zufall == 1){
 //                   this.kacheln[i][j] = this.fels;
                    this.kacheln[i][j] = this.wiese;

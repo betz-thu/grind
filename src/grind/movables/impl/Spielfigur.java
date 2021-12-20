@@ -1,16 +1,16 @@
 package grind.movables.impl;
 
-import grind.util.Richtung;
 import grind.movables.ISpielfigur;
+import grind.util.Richtung;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Autor Megatronik
@@ -19,7 +19,8 @@ import java.io.File;
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int lebensenergie = 85;
+    private int Lebensenergie = 85;
+    int lebensenergie = 100;
     int gold = 5;
     PImage spielfigurOhneWaffe;
     private int inventarGroeße;
@@ -170,7 +171,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.fill(150);
         app.rect(10,20,100,10);
         app.fill(0,150,0);
-        app.rect(10,20, lebensenergie,10);
+        app.rect(10,20, Lebensenergie,10);
     }
 
     /**
@@ -213,11 +214,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getLebensenergie(){
-        return this.lebensenergie;
+        return this.Lebensenergie;
     }
 
     public void setLebensenergie(int neueLebensenergie){
-        this.lebensenergie = neueLebensenergie;
+        this.Lebensenergie = neueLebensenergie;
     }
 
 
