@@ -51,6 +51,22 @@ public class Spielmodell implements ISpielmodell {
 
     }
 
+    public void entferneToteMonster(){
+    /*
+        for (int i=0; i<monster.size();i++){
+            if (monster.get(i).getLebensenergie()<=0){
+                System.out.println(monster.size());
+                System.out.println(monster.get(i));
+                IMonster geloeschtesMonster = monster.remove(i);
+                System.out.println(geloeschtesMonster);
+                System.out.println(monster.size());
+                break;
+            }
+        }
+    */
+
+    }
+
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);
@@ -126,6 +142,7 @@ public class Spielmodell implements ISpielmodell {
             movable.zeichne(app);
         }
         this.figur.zeichne(app);
+
     }
 
 

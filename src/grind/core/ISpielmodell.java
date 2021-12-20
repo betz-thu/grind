@@ -31,4 +31,6 @@ public interface ISpielmodell {
 
     void addMonster(IMonster monster);
     void removeMovable(IMovable movable);
+
+    void entferneToteMonster();
 }

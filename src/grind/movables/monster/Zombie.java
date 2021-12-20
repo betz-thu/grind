@@ -39,8 +39,10 @@ public class Zombie extends Monster{
 
     @Override
     public void zeichne(PApplet app) {
-        app.fill(0,127,127);
-        app.ellipse(this.getPosX(), this.getPosY(),this.getGroesse() , this.getGroesse());
+        if (!this.monsterGestorben) {
+            app.fill(0, 127, 127);
+            app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+        }
     }
 
     @Override

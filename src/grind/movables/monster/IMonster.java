@@ -12,4 +12,5 @@ public interface IMonster extends IMovable {
     void vorBetreten(IKachel kachel);
     ISpielmodell getSpielmodell();
     void setSpielmodell(ISpielmodell spielmodell);
+    void reduziereLebensenergie(int schaden);
 }

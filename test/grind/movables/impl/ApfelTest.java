@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class ApfelTest {
 
     private Spielfigur figur;
@@ -23,9 +21,9 @@ public class ApfelTest {
 
     @Test
     public void beimAnwenden() {
-        figur.lebensenergie = 50;
+        figur.setLebensenergie(50);
         apfel.beimAnwenden(figur);
-        Assert.assertEquals(60, figur.lebensenergie);
+        Assert.assertEquals(55, figur.getLebensenergie());
     }
 
     @Test

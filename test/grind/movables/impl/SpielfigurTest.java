@@ -1,57 +1,36 @@
 package grind.movables.impl;
 
-import org.junit.Before;
-import org.junit.Test;
+import grind.util.Richtung;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+class SpielfigurTest {
+    private Schwert schwert1;
+    private Schwert schwert2;
+    private Spielfigur figur;
 
-public class SpielfigurTest {
-
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() {
+        schwert1 = new Schwert(100, 100, 1);
+        schwert2 = new Schwert(200, 200, 2);
+        figur = new Spielfigur((float)100, (float)100, Richtung.S,50);
     }
 
     @Test
-    public void getGESCHWINDIGKEIT() {
+    void aktiviereWaffe() {
+        figur.aktiviereWaffe(schwert2);
+        figur.aktiviereWaffe(schwert1);
+        boolean waffeImInventar = false;
+        for (int i=0; i<figur.getInventar().size(); i++){
+            if (figur.getInventar().get(i) instanceof Waffe){
+                waffeImInventar = true;
+            }
+        }
+        Assert.assertTrue(waffeImInventar);
+        Assert.assertTrue(figur.getInventar().contains(schwert2));
+//        Assert.assertEquals(figur.getWaffe(), schwert1);
     }
 
-    @Test
-    public void zeichne() {
-    }
 
-    @Test
-    public void getGroesse() {
-    }
-
-    @Test
-    public void zeichneInventar() {
-    }
-
-    @Test
-    public void erhalteSchaden() {
-    }
-
-    @Test
-    public void gameover() {
-    }
-
-    @Test
-    public void bewege() {
-    }
-
-    @Test
-    public void testBewege() {
-    }
-
-    @Test
-    public void erhoeheGold() {
-    }
-
-    @Test
-    public void getInventar() {
-    }
-
-    @Test
-    public void ladeIMGSpielfigur() {
-    }
 }

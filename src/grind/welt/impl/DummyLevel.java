@@ -1,18 +1,17 @@
 package grind.welt.impl;
 
-import grind.util.Richtung;
-import grind.movables.impl.Apfel;
-import grind.kacheln.impl.Levelausgang;
-import grind.movables.monster.DornPflanze;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Zombie;
-import grind.util.Einstellungen;
-import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
 import grind.movables.impl.Gold;
+import grind.movables.impl.Heiltrank;
+import grind.movables.impl.Mango;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.DornPflanze;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.welt.ILevel;
 import processing.core.PApplet;
 
@@ -31,6 +30,7 @@ public class DummyLevel implements ILevel {
 
 
     public DummyLevel (){
+
         this.tileMap = new TileMap();
 
         Random random = new Random();
@@ -38,6 +38,8 @@ public class DummyLevel implements ILevel {
         positionen.add(new Geist(60,200,tileMap));
         positionen.add(new DornPflanze(200, 50, tileMap));
         positionen.add(new DornPflanze(600, 500, tileMap));
+        positionen.add(new Heiltrank(700, 400, tileMap));
+        positionen.add(new Mango(750, 400, tileMap));
         float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
         float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
         positionen.add(new Zombie(ZombiePosX,ZombiPosY,tileMap));
@@ -50,13 +52,9 @@ public class DummyLevel implements ILevel {
         return this.tileMap;
     }
 
-    /**
-     * TODO jo tobi es ist auch mies cringe dass wir 2 listen für eine map haben
-     * @return
-     */
     @Override
     public List<IMovable> getPositionen() {
-        Random random = new Random();
+        /*Random random = new Random();
         ArrayList<IMovable> positionen = new ArrayList<>();
         positionen.add(new Gold(600, 200));
         positionen.add(new Spielfigur(600, 400, Richtung.N ));
@@ -66,7 +64,7 @@ public class DummyLevel implements ILevel {
         positionen.add(new Zombie((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
                 (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap));
         positionen.add(new Zombie(350, 600, tileMap));
-        //positionen.add(new Spielfigur(600, 400,Richtung.N));
+        //positionen.add(new Spielfigur(600, 400,Richtung.N));*/
         return positionen;
     }
 

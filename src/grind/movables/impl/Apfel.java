@@ -1,12 +1,12 @@
 package grind.movables.impl;
 
+import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Apfel extends Nahrung{
 
-
-    private int punkte; // Fehlt in Klassendiagramm?
+    private int punkte=5; // Fehlt in Klassendiagramm?
     private int größe;
 
 
@@ -24,6 +24,12 @@ public class Apfel extends Nahrung{
         app.fill(255, 0, 0);
         app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_APFEL, Einstellungen.GROESSE_APFEL);
         app.popStyle();
+
+    }
+    @Override
+    public void beimAnwenden(ISpielfigur figur){
+        super.beimAnwenden(figur);
+        figur.playApfelSound();
     }
 
     @Override
