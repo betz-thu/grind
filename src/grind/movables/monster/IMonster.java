@@ -9,4 +9,5 @@ public interface IMonster extends IMovable {
     int getLebensenergie();
     void beiKollision(ISpielfigur figur);
     void vorBetreten(IKachel kachel);
+    void reduziereLebensenergie(int schaden);
 }

@@ -76,4 +76,5 @@ public abstract class Movable implements IMovable {
     public void setAusrichtung(Richtung ausrichtung) {
         this.ausrichtung = ausrichtung;
     }
+
 }

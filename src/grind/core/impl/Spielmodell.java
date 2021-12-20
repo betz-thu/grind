@@ -46,12 +46,32 @@ public class Spielmodell implements ISpielmodell {
      * z. B. Für das Einsammeln eines Schatzes
      * @param movable
      */
+    @Override
     public void removeMovable(IMovable movable){
 
+        if(level == null){
+            return;
+        }
        List<IMovable> positionen = level.getPositionen();
 
        positionen.remove(movable);
        movables.remove(movable);
+
+    }
+
+    public void entferneToteMonster(){
+    /*
+        for (int i=0; i<monster.size();i++){
+            if (monster.get(i).getLebensenergie()<=0){
+                System.out.println(monster.size());
+                System.out.println(monster.get(i));
+                IMonster geloeschtesMonster = monster.remove(i);
+                System.out.println(geloeschtesMonster);
+                System.out.println(monster.size());
+                break;
+            }
+        }
+    */
 
     }
 
@@ -121,6 +141,7 @@ public class Spielmodell implements ISpielmodell {
         }
 
         this.figur.zeichne(app);
+
     }
 
     @Override
