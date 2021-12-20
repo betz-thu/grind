@@ -32,6 +32,27 @@ public class FeuerMonster extends Monster{
     Random rand;
     final int feuerRate;
     private boolean hatKollidiert=false;
+
+    /**
+     * @MEGAtroniker
+     * Setter setHastKollidiert für testing und kapselung
+     * @param hatKollidiert
+     */
+    public void setHatKollidiert(boolean hatKollidiert) {
+        this.hatKollidiert = hatKollidiert;
+    }
+
+
+
+    /**
+     * @MEGAtroniker
+     * Getter, notwendig für die tests und kapselung
+     * @return
+     */
+    public boolean isHatKollidiert() {
+        return hatKollidiert;
+    }
+
     private long startTime;
     FeuerModus feuerModus;
     final int schaden = 20;
@@ -71,7 +92,8 @@ public class FeuerMonster extends Monster{
         if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
             System.out.println("Kollision mit FeuerMonster");
             startTime = System.currentTimeMillis();
-            hatKollidiert=true;
+            //hatKollidiert=true;
+            setHatKollidiert(true);
             figur.erhalteSchaden(this.schaden);
         }
     }
