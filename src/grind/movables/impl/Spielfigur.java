@@ -1,15 +1,16 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielsteuerung;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 /**
  * @Autor Megatronik
@@ -18,11 +19,12 @@ import java.util.List;
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
+    private int lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
+    private int inventarGroeße;
+    private int guiGroeße;
 
-    int lebensenergie = 100;
     private List<Gegenstand> inventar;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -40,6 +42,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung);
         inventar = new ArrayList<>();
+        inventarGroeße=10;
+        guiGroeße=50;
 }
 
     /**
@@ -53,10 +57,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneSpielfigur(app);
         zeichneLebensbalken(app);
         zeichneKontostand(app);
-        //Zeichne kleines Inventar
-        zeichneInventar(app, 10, 1120, 750,30);
 
-        zeichneInventar(app, 50, 1120, 300, 50);
+        //Zeichne kleines Inventar
+        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
+
 
 
     }
@@ -93,32 +98,56 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
+        int zaehler = 0;
 
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);
         app.strokeWeight(2f);
         app.textSize(24);
-        app.text("Inventar", startkoordinateX-4*guiGroeße, startkoordinateY-10);
-        app.fill(204, 102, 0);
+        //app.fill(204, 102, 0);
         for (int i = 1; i <= groeße; i++) {
+            app.fill(211,211,211,200);
             app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
+
+
+            if(i<=10){
+                app.fill(0,0,0);
+                app.text(zaehler,startkoordinateX-i*guiGroeße,startkoordinateY+20);
+                if(zaehler==0){
+                    zaehler=10;
+                }
+                zaehler--;
+
+            }
             if(i%10==0 && i>0){
-                startkoordinateY+=guiGroeße;
+                startkoordinateY-=guiGroeße;
                 startkoordinateX+=guiGroeße*10;
             }
+
         }
-
         app.popStyle();
-        zeichneInventarInhalt(app, groeße, startkoordinateX, startkoordinateY, guiGroeße);
-
     }
 
     public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         for(int j = 0;j<inventar.size(); j++){
+            if(j%10==0 && j>0){
+                startkoordinateY-=guiGroeße;
+                startkoordinateX-=guiGroeße*10;
+            }
             if(j<groeße) {
-                inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j * guiGroeße, startkoordinateY+guiGroeße/2);
+                inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j*guiGroeße, startkoordinateY+guiGroeße/2);
                 inventar.get(j).zeichne(app);
+            }
+        }
+    }
+
+    //Methode zum benutzen oder ausrüsten von Gegenständen
+    public void benutze(int position){
+        if (inventar.size() > position) {
+            if (inventar.get(position) instanceof Nahrung) {
+                inventar.get(position).beimAnwenden(this);
+                inventar.remove(position);
             }
         }
     }
@@ -141,7 +170,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.fill(150);
         app.rect(10,20,100,10);
         app.fill(0,150,0);
-        app.rect(10,20,Lebensenergie,10);
+        app.rect(10,20, lebensenergie,10);
     }
 
     /**
@@ -175,13 +204,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
-        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override
     public List<Gegenstand> getInventar(){
         return this.inventar;
     }
+
+    @Override
+    public int getLebensenergie(){
+        return this.lebensenergie;
+    }
+
+    public void setLebensenergie(int neueLebensenergie){
+        this.lebensenergie = neueLebensenergie;
+    }
+
+
 
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
@@ -190,5 +229,39 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
+
+    public void setInventarGroeße(int inventarGroeße) {
+        this.inventarGroeße = inventarGroeße;
+    }
+
+    public int getInventarGroeße() {
+        return inventarGroeße;
+    }
+
+    public void playApfelSound(){
+        File apfelSound = new File("apple_bite.wav");
+        setupSound(apfelSound);
+    }
+    public void playSwallowSound(){
+        File swallowSound = new File("swallow.wav");
+        setupSound(swallowSound);
+    }
+    public void playBackpackOpenSound(){
+        File backpackSound = new File("backpack.wav");
+        setupSound(backpackSound);
+    }
+    public void playBackpackCloseSound(){
+        File backpackSound = new File("backpack_reverse.wav");
+        setupSound(backpackSound);
+    }
+    private void setupSound(File Sound){
+        try{
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(Sound));
+            clip.start();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -3,12 +3,11 @@ package grind.movables.impl;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 
-public class Apfel extends Nahrung{
+public class Mango extends Nahrung{
+    private int punkte=10; // Fehlt in Klassendiagramm?
 
-    private int punkte=5; // Fehlt in Klassendiagramm?
 
-
-    public Apfel(int posX, int posY) {
+    public Mango(int posX, int posY) {
         super(posX, posY);
     }
 
@@ -18,18 +17,14 @@ public class Apfel extends Nahrung{
 
     public void zeichne(PApplet app){
         app.pushStyle();
-        app.stroke(255, 0, 0);
-        app.fill(255, 0, 0);
+        app.stroke(225, 100, 34);
+        app.fill(225, 100, 34);
         app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
         app.popStyle();
-
     }
     @Override
     public void beimAnwenden(ISpielfigur figur){
         super.beimAnwenden(figur);
         figur.playApfelSound();
     }
-
-
-
 }
