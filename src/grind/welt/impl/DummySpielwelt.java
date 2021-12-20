@@ -32,14 +32,5 @@ public class DummySpielwelt implements ISpielwelt {
             throw new UnsupportedOperationException("Keine weiteren Szenen mehr implementiert!");
         }
         return szenen.get(n);
-//        ISzene szene = null;
-//        if (n == 1){
-//            szene = new LevelZwei();
-//        } else if (n == 2) {
-//            szene =  new LevelZwei();
-//        } else {
-//            throw new UnsupportedOperationException("Für diese Szene ist nichts erstellt worden!");
-//        }
-//        return szene;
     }
 }

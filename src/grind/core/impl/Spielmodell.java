@@ -1,25 +1,23 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.util.Einstellungen;
-import grind.util.Richtung;
-import grind.movables.impl.Movable;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Monster;
-import grind.welt.ILevel;
-import grind.welt.ISpielwelt;
-import grind.welt.ISzene;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.FeuerMonster;
+import grind.movables.monster.IMonster;
+import grind.util.FeuerModus;
+import grind.util.Richtung;
+import grind.welt.ILevel;
+import grind.welt.ISpielwelt;
+import grind.welt.ISzene;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
-import grind.movables.monster.IMonster;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Autor Megatronik
@@ -27,20 +25,31 @@ import java.util.List;
  */
 public class Spielmodell implements ISpielmodell {
 
-    transient int szeneNr = 0;
+    int szeneNr = 0;
 
-    public ISpielwelt spielwelt;
-    transient ILevel level;
-    transient ITileMap tileMap;
+    ISpielwelt spielwelt;
+    Spielsteuerung steuerung;
+    ILevel level;
+    ITileMap tileMap;
+    /*
+    @MEGAtroniker
+    Wichtig die Liste movables ist nun eien CopyOnArrayList
+    Grund: diese Listenart ermöglicht es, trotz durchiterieren modifikationen an der Liste vorzunehmen.
+    Dies isrt wichtig wenn movables gelöschet werden müssen
+    ->Feuerball verlässt Spielfeld
+    -> Monster stirbt
+     */
+    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
+    List<IMovable> movables = new CopyOnWriteArrayList<>();
     transient DateiService dateiService;
-
-    ISpielfigur figur = new Spielfigur(0, 0, Richtung.N, Einstellungen.GROESSE_SPIELFIGUR);
-    List<IMovable> movables = new ArrayList<>();
     List<ISchatz> schaetze = new ArrayList<>();
     List<IMonster> monster = new ArrayList<>();
 
-    public Spielmodell(ISpielwelt spielwelt) {
+
+
+    public Spielmodell(ISpielwelt spielwelt, Spielsteuerung steuerung) {
         this.spielwelt = spielwelt;
+        this.steuerung=steuerung;
         this.dateiService = new DateiService();
     }
 
@@ -49,12 +58,32 @@ public class Spielmodell implements ISpielmodell {
      * z. B. Für das Einsammeln eines Schatzes
      * @param movable
      */
+    /*@Override
     public void removeMovable(IMovable movable){
 
+        if(level == null){
+            return;
+        }
        List<IMovable> positionen = level.getPositionen();
 
        positionen.remove(movable);
        movables.remove(movable);
+
+    }*/
+
+    public void entferneToteMonster(){
+    /*
+        for (int i=0; i<monster.size();i++){
+            if (monster.get(i).getLebensenergie()<=0){
+                System.out.println(monster.size());
+                System.out.println(monster.get(i));
+                IMonster geloeschtesMonster = monster.remove(i);
+                System.out.println(geloeschtesMonster);
+                System.out.println(monster.size());
+                break;
+            }
+        }
+    */
 
     }
 
@@ -73,6 +102,8 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
+        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+        addMonster(feuerMonster);
     }
 
     private void kopiereTilemap() {
@@ -124,6 +155,7 @@ public class Spielmodell implements ISpielmodell {
         }
 
         this.figur.zeichne(app);
+
     }
 
     @Override
@@ -159,6 +191,17 @@ public class Spielmodell implements ISpielmodell {
         return movables;
     }
 
+    /**
+     * @MEGAtroniker
+     * Die Methode addMonster ermöglicht die Instanziierung aller Monster,
+     * direkt im Spielmodell in der Methode betreteLevel.
+     * Die erzeugten Monster werden der Liste movables zugeordet
+     */
+    @Override
+    public void addMonster(IMonster monster) {
+        monster.setSpielmodell(this);
+        movables.add(monster);
+    }
     public ISpielwelt getSpielwelt(){
         return this.spielwelt;
     }
@@ -167,6 +210,17 @@ public class Spielmodell implements ISpielmodell {
         this.spielwelt = spielwelt;
     }
 
+    /**
+     * @MEGAtroniker
+     * Die Methode removeMovable löscht die aktuelle Movable Instanz aus der Liste movables
+     * @param movable Liste aller movables im Spiel
+     */
+    public void removeMovable(IMovable movable) {
+        try {
+            movables.remove(movable);
+        } catch (Exception e) {}
+
+    }
     /**
      * Lädt mithilfe des DateiService eine JSON Datei
      * @return die geladene Spielwelt vom Typ ISpielwelt

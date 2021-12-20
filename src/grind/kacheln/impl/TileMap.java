@@ -1,9 +1,8 @@
 package grind.kacheln.impl;
 
-import grind.movables.impl.Spielfigur;
-import grind.util.Einstellungen;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 import java.util.ArrayList;

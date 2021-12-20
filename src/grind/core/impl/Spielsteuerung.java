@@ -1,13 +1,17 @@
 package grind.core.impl;
 
+import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
+import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
 import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
+import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -24,16 +28,22 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public class Spielsteuerung extends PApplet {
-    private static int SpielfeldBreite;
-    private static int SpielfeldHoehe;
-    private Spielfigur Spieler;
-    private int SpielerGeschwindigkeit;
+    private int SpielfeldBreite;
+    private int SpielfeldHoehe;
+    final Spielfigur Spieler;
+    final int SpielerGeschwindigkeit;
+    int Tastendruck;
     private String fTaste;
-    // private ITileMap tileMap;
+
+    public ISpielmodell getSpielmodell() {
+        return spielmodell;
+    }
+
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
+
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
@@ -45,7 +55,7 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
@@ -53,14 +63,22 @@ public class Spielsteuerung extends PApplet {
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
+    public int getSpielfeldBreite() {
+        return SpielfeldBreite;
+    }
+
+    public int getSpielfeldHoehe() {
+        return SpielfeldHoehe;
+    }
+
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
     @Override
     public void settings() {
-        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
-        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y*Einstellungen.ANZAHL_KACHELN_Y;
-        size(SpielfeldBreite,SpielfeldHoehe);
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
+        size(SpielfeldBreite, SpielfeldHoehe);
     }
 
     /**
@@ -82,7 +100,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-
     }
 
     /**
@@ -93,30 +110,90 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
+        int Schulterbreite = 15;
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
-                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-20) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+20)){
+                if (isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y - Schulterbreite) && isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.W);
                 }
             } else if (key == 'w' || keyCode == UP) {
                 Spieler.setAusrichtung(Richtung.N);
-                if(isErlaubteKoordinate(x-20,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+20,y-SpielerGeschwindigkeit-20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y - SpielerGeschwindigkeit - 20) && isErlaubteKoordinate(x + Schulterbreite, y - SpielerGeschwindigkeit - 20)) {
                     Spieler.bewege(Richtung.N);
                 }
             } else if (key == 's' || keyCode == DOWN) {
                 Spieler.setAusrichtung(Richtung.S);
-                if(isErlaubteKoordinate(x-20,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+20,y+SpielerGeschwindigkeit+20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y + SpielerGeschwindigkeit + 20) && isErlaubteKoordinate(x + Schulterbreite, y + SpielerGeschwindigkeit + 20)) {
                     Spieler.bewege(Richtung.S);
                 }
             } else if (key == 'd' || keyCode == RIGHT) {
                 Spieler.setAusrichtung(Richtung.O);
-                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-20) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+20)){
+                if (isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y - Schulterbreite) && isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.O);
                 }
             }
+            else if (key == '1') {
+                Tastendruck = 0;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='2') {
+                Tastendruck = 1;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='3') {
+                Tastendruck = 2;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='4') {
+                Tastendruck = 3;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='5') {
+                Tastendruck = 4;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='6') {
+                Tastendruck = 5;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='7') {
+                Tastendruck = 6;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='8') {
+                Tastendruck = 7;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='9') {
+                Tastendruck = 8;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='0') {
+                Tastendruck = 9;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+
+            }
         }
 
+        szeneUeberspringen();
+    }
+
+    /**
+     * @MEGAtroniker
+     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+     */
+    private void szeneUeberspringen() {
         abfrageFTasten();
     }
 
@@ -128,7 +205,7 @@ public class Spielsteuerung extends PApplet {
      */
     private void abfrageFTasten() {
         //F12 neue Szene
-        if (keyPressed && !pressed){
+        if (keyPressed && !pressed) {
             if (keyCode == 123) {
                 pressed = true;
                 fTaste = "F12";
@@ -172,6 +249,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         pruefeKollisionen();
+        spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
@@ -213,9 +291,6 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
-        return levelBeendet;
-    }
-
     /**
      * @Autor LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
@@ -233,17 +308,23 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 /**
- * Kollisionsabfrage: prüft Kollision von Spieler mit Movable und führt dann dementsprechende Methode aus.
- * z.B. Wenn Kollision von Spieler mit Monster --> Spieler bekommt schaden
- *  Wenn Kollision von Spieler mit Gold --> Erhöhe Kontostand und lösche Gold aus Spielwelt
- *
- *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
+ * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
+ * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
  */
     public void pruefeKollisionen() {
         int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+
+
+
 
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX()+movable.getGroesse()/2;
@@ -255,8 +336,6 @@ public class Spielsteuerung extends PApplet {
                 if(movable instanceof IMonster) {
 
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
-                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 }
                 else if(movable instanceof ISchatz){
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
@@ -264,8 +343,9 @@ public class Spielsteuerung extends PApplet {
                     return;
                 }
                 else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                    // TODO: Nahrung zu Inventar hinzufügen
                 }
+
             }
         }
     }
@@ -278,8 +358,8 @@ public class Spielsteuerung extends PApplet {
      * @return IKachel
      */
     public IKachel getKachelByCoordinates(int x, int y) {
-        int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
-        int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        int j =  x/Einstellungen.LAENGE_KACHELN_X;
+        int i =  y/Einstellungen.LAENGE_KACHELN_Y;
         return spielmodell.getTileMap().getKachel(i,j);
     }
 

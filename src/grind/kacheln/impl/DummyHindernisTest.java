@@ -4,25 +4,25 @@ import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LevelausgangTest {
+import static org.junit.Assert.*;
+
+public class DummyHindernisTest {
 
     private Spielfigur figur;
 
     @Test
     public void istBetretbar() {
         this.figur = figur;
-        Assert.assertTrue(String.valueOf(figur),true);
+        Assert.assertFalse(String.valueOf(figur),false);
     }
 
     @Test
     public void istHindernis() {
         this.figur = figur;
-        Assert.assertFalse(String.valueOf(figur), false);
+        Assert.assertTrue(String.valueOf(figur),true);
     }
+
     @Test
-    public void ladeDatei(){
+    public void ladeDatei() {
     }
-
 }
-
-

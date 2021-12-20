@@ -15,8 +15,8 @@ public class GoldTest {
 
     @Before
     public void setUp() throws Exception {
-        gold = new Gold(100, 200, Einstellungen.GROESSE_GOLD);
-        figur = new Spielfigur(150, 150, Richtung.S, Einstellungen.GROESSE_SPIELFIGUR);
+        gold = new Gold(100, 200);
+        figur = new Spielfigur(150, 150, Richtung.S);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
@@ -18,8 +19,8 @@ public class Zombie extends Monster{
     private boolean hilfsVariable = false;
 
 
-    public Zombie(float posX, float posY, ITileMap tileMap, int groesse) {
-        super(posX, posY, groesse);
+    public Zombie(float posX, float posY, ITileMap tileMap) {
+        super(posX, posY, Einstellungen.GROESSE_ZOMBIE);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -30,12 +31,17 @@ public class Zombie extends Monster{
 
     }
 
-
+    @Override
+    public void beiKollision(ISpielfigur figur) {
+        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_ZOMBIE/2f + 20)){ // 20 = spielerradius
+            //System.out.println("Kollision mit Zombie");
+        }
+    }
 
     @Override
     public void zeichne(PApplet app) {
-        app.fill(0,127,127);
-        app.ellipse(this.getPosX(), this.getPosY(),this.getGroesse() , this.getGroesse());
+        app.fill(0, 127, 127);
+        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
     }
 
     @Override
@@ -88,12 +94,9 @@ public class Zombie extends Monster{
         hilfsVariable = false;
     }
 
-
-
     @Override
     public void vorBetreten(IKachel kachel) {
         if(!kachel.istBetretbar()){
-
 
             deltaX = -deltaX;
             deltaY = -deltaY;
@@ -105,6 +108,16 @@ public class Zombie extends Monster{
             hilfsVariable = true; // Eine Kachel wurde getroffen und Richtung umgekehrt.
 
         }
+    }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
     }
 
 }
