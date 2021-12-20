@@ -10,6 +10,9 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +27,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
 
     PImage spielfigurOhneWaffe;
+    Waffe testwaffe = new Schwert(30,30,1);
 
+
+
+    private int inventarGroeße;
+    private int guiGroeße;
 
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
+
+    Waffe aktiveWaffe;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
@@ -44,6 +54,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
         super(posX, posY, richtung, groesse);
         inventar = new ArrayList<>();
+        aktiviereWaffe(testwaffe);
+        inventarGroeße=10;
+        guiGroeße=50;
 }
 
     /**
@@ -57,7 +70,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneSpielfigur(app);
         zeichneLebensbalken(app);
         zeichneKontostand(app);
-        zeichneInventar(app);
+
+        //Zeichne kleines Inventar
+        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
+
+
         gameover(app);
     }
 
@@ -77,45 +95,101 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.pushMatrix();
         app.translate(this.posX, this.posY);
         int n =1;
+        int schwertPositionX = 1;
+        int schwertPositionY = 1;
         switch (this.ausrichtung) {
             case N:
                 n = 0;
+                schwertPositionX =0;
+                schwertPositionY =-1;
                 break;
             case O:
                 n = 1;
+                schwertPositionX =1;
+                schwertPositionY =0;
                 break;
             case S:
                 n = 2;
+                schwertPositionX =0;
+                schwertPositionY =1;
                 break;
             case W:
                 n = 3;
+                schwertPositionX =-1;
+                schwertPositionY =0;
         }
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
+
+
+
+        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+
+            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
+            aktiveWaffe.setAusrichtung(this.getAusrichtung());
+            aktiveWaffe.zeichne(app);
+        }
+
+
+
     }
 
-    public void zeichneInventar(PApplet app){
+    public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
+        int zaehler = 0;
+
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);
         app.strokeWeight(2f);
         app.textSize(24);
-        app.text("Inventar", 1120-4*30, 740);
-        app.fill(204, 102, 0);
-        for (int i = 0; i < 5; i++) {
-            app.rect(1120-i*30, 750, 30, 30);
+        //app.fill(204, 102, 0);
+        for (int i = 1; i <= groeße; i++) {
+            app.fill(211,211,211,200);
+            app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
+
+
+            if(i<=10){
+                app.fill(0,0,0);
+                app.text(zaehler,startkoordinateX-i*guiGroeße,startkoordinateY+20);
+                if(zaehler==0){
+                    zaehler=10;
+                }
+                zaehler--;
+
+            }
+            if(i%10==0 && i>0){
+                startkoordinateY-=guiGroeße;
+                startkoordinateX+=guiGroeße*10;
+            }
+
         }
-        for(int j = 0;j<inventar.size(); j++){
-            if(j<5) {
-                inventar.get(j).setPosition(1015 + j * 30, 765);
+        app.popStyle();
+    }
+
+    public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
+        for (int j = 0; j < inventar.size(); j++) {
+            if (j % 10 == 0 && j > 0) {
+                startkoordinateY -= guiGroeße;
+                startkoordinateX -= guiGroeße * 10;
+            }
+            if (j < groeße) {
+                inventar.get(j).setPosition(startkoordinateX - 7 * guiGroeße / 2 + j * guiGroeße, startkoordinateY + guiGroeße / 2);
                 inventar.get(j).zeichne(app);
             }
         }
-        app.popStyle();
-
+//        app.popStyle();
+    }
+    //Methode zum benutzen oder ausrüsten von Gegenständen
+    public void benutze(int position){
+        if (inventar.size() > position) {
+            if (inventar.get(position) instanceof Nahrung) {
+                inventar.get(position).beimAnwenden(this);
+                inventar.remove(position);
+            }
+        }
     }
 
     /**
@@ -202,6 +276,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return this.inventar;
     }
 
+    @Override
+    public int getLebensenergie(){
+        return this.Lebensenergie;
+    }
+
+    public void setLebensenergie(int neueLebensenergie){
+        this.Lebensenergie = neueLebensenergie;
+    }
+
+
+
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
      * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
@@ -209,5 +294,50 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
+
+    public void aktiviereWaffe(Waffe waffe){
+        if(aktiveWaffe!=null){
+            getInventar().add(aktiveWaffe);
+        }
+        aktiveWaffe = waffe;
+    }
+
+    public Waffe getWaffe(){
+        return this.testwaffe;
+    }
+
+    public void setInventarGroeße(int inventarGroeße) {
+        this.inventarGroeße = inventarGroeße;
+    }
+
+    public int getInventarGroeße() {
+        return inventarGroeße;
+    }
+
+    public void playApfelSound(){
+        File apfelSound = new File("apple_bite.wav");
+        setupSound(apfelSound);
+    }
+    public void playSwallowSound(){
+        File swallowSound = new File("swallow.wav");
+        setupSound(swallowSound);
+    }
+    public void playBackpackOpenSound(){
+        File backpackSound = new File("backpack.wav");
+        setupSound(backpackSound);
+    }
+    public void playBackpackCloseSound(){
+        File backpackSound = new File("backpack_reverse.wav");
+        setupSound(backpackSound);
+    }
+    private void setupSound(File Sound){
+        try{
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(Sound));
+            clip.start();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

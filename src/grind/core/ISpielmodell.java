@@ -35,4 +35,6 @@ public interface ISpielmodell {
     void setSzeneNr(int szeneNR);
 
     ISzene getSzene();
+
+    void entferneToteMonster();
 }
