@@ -1,8 +1,11 @@
 package grind.movables.impl;
 
-import grind.movables.ISpielfigur;
+import grind.core.impl.Spielsteuerung;
+import grind.movables.IMovable;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.movables.ISpielfigur;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -22,12 +25,19 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private final float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
+
     PImage spielfigurOhneWaffe;
+    Waffe testwaffe = new Schwert(30,30,1);
+
+
+
     private int inventarGroeße;
     private int guiGroeße;
 
     int lebensenergie = 100;
     private List<Gegenstand> inventar;
+
+    Waffe aktiveWaffe;
     /**
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
@@ -44,6 +54,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
         super(posX, posY, richtung, groesse);
         inventar = new ArrayList<>();
+        aktiviereWaffe(testwaffe);
         inventarGroeße=10;
         guiGroeße=50;
 }
@@ -84,23 +95,45 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.pushMatrix();
         app.translate(this.posX, this.posY);
         int n =1;
+        int schwertPositionX = 1;
+        int schwertPositionY = 1;
         switch (this.ausrichtung) {
             case N:
                 n = 0;
+                schwertPositionX =0;
+                schwertPositionY =-1;
                 break;
             case O:
                 n = 1;
+                schwertPositionX =1;
+                schwertPositionY =0;
                 break;
             case S:
                 n = 2;
+                schwertPositionX =0;
+                schwertPositionY =1;
                 break;
             case W:
                 n = 3;
+                schwertPositionX =-1;
+                schwertPositionY =0;
         }
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
+
+
+
+        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+
+            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
+            aktiveWaffe.setAusrichtung(this.getAusrichtung());
+            aktiveWaffe.zeichne(app);
+        }
+
+
+
     }
 
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
@@ -136,19 +169,19 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
     }
 
-    public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
-        for(int j = 0;j<inventar.size(); j++){
-            if(j%10==0 && j>0){
-                startkoordinateY-=guiGroeße;
-                startkoordinateX-=guiGroeße*10;
+    public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
+        for (int j = 0; j < inventar.size(); j++) {
+            if (j % 10 == 0 && j > 0) {
+                startkoordinateY -= guiGroeße;
+                startkoordinateX -= guiGroeße * 10;
             }
-            if(j<groeße) {
-                inventar.get(j).setPosition(startkoordinateX-7*guiGroeße/2+ j*guiGroeße, startkoordinateY+guiGroeße/2);
+            if (j < groeße) {
+                inventar.get(j).setPosition(startkoordinateX - 7 * guiGroeße / 2 + j * guiGroeße, startkoordinateY + guiGroeße / 2);
                 inventar.get(j).zeichne(app);
             }
         }
+//        app.popStyle();
     }
-
     //Methode zum benutzen oder ausrüsten von Gegenständen
     public void benutze(int position){
         if (inventar.size() > position) {
@@ -169,6 +202,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.text(Integer.toString(gold),20+gold*5,15);
     }
 
+
     /**
      * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
      * @param app Spielsteuerung, als Instanz von PApplet.
@@ -177,7 +211,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.fill(150);
         app.rect(10,20,lebensenergie,10);
         app.fill(0,150,0);
-        app.rect(10,20, Lebensenergie,10);
+        app.rect(10,20,Lebensenergie,10);
     }
 
     @Override
@@ -206,6 +240,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.
      */
+
     @Override
     public void bewege(Richtung richtung) {
         switch (richtung) {
@@ -233,6 +268,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
+        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override
@@ -258,6 +294,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
+    }
+
+    public void aktiviereWaffe(Waffe waffe){
+        if(aktiveWaffe!=null){
+            getInventar().add(aktiveWaffe);
+        }
+        aktiveWaffe = waffe;
+    }
+
+    public Waffe getWaffe(){
+        return this.testwaffe;
     }
 
     public void setInventarGroeße(int inventarGroeße) {

@@ -5,10 +5,18 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
+import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
+import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.Monster;
+import grind.util.Richtung;
+import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
@@ -19,6 +27,8 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
+import java.util.ArrayList;
+import java.util.List;
 
 public class Spielsteuerung extends PApplet {
     private static int SpielfeldBreite;
@@ -30,6 +40,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+
 
 
     /**
@@ -75,6 +86,7 @@ public class Spielsteuerung extends PApplet {
         aktualisiere();
         zeichne();
 
+        pruefeKollisionen();
     }
 
     /**
@@ -190,6 +202,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         pruefeKollisionen();
+        spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
@@ -198,6 +211,10 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
+
+
+
+
 
     }
 
@@ -248,6 +265,15 @@ public class Spielsteuerung extends PApplet {
         int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+
+
+
 
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX()+movable.getGroesse()/2;
@@ -271,8 +297,16 @@ public class Spielsteuerung extends PApplet {
                     // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
                 }
             }
+            else if((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key==' ')){
+                if (movable instanceof Monster){
+                    System.out.println(((Monster) movable).getLebensenergie());
+                    ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
+                }
+            }
         }
     }
+
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
