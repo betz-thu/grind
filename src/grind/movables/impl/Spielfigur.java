@@ -1,11 +1,8 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielsteuerung;
-import grind.movables.IMovable;
+import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.movables.ISpielfigur;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -17,28 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Autor Megatronik
+ * @author MEGAtronik
  * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
     int gold = 5;
-
     PImage spielfigurOhneWaffe;
     Waffe testwaffe = new Schwert(30,30,1);
 
+    int lebensenergie = 100;//Kapselung?
+    final List<Gegenstand> inventar;
 
 
     private int inventarGroeße;
     private int guiGroeße;
 
-    int lebensenergie = 100;
-    private List<Gegenstand> inventar;
-
     Waffe aktiveWaffe;
     /**
+     * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
      */
@@ -51,8 +46,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
      */
-    public Spielfigur(float posX, float posY, Richtung richtung, int groesse) {
-        super(posX, posY, richtung, groesse);
+    public Spielfigur(float posX, float posY, Richtung richtung) {
+        super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
         aktiviereWaffe(testwaffe);
         inventarGroeße=10;
@@ -81,7 +76,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getGroesse() {
-        return this.groesse = Einstellungen.GROESSE_FIGUR;
+        return this.groesse = Einstellungen.GROESSE_SPIELFIGUR;
     }
 
     /**
@@ -94,7 +89,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
         app.translate(this.posX, this.posY);
-        int n =1;
+        int n = 1;
         int schwertPositionX = 1;
         int schwertPositionY = 1;
         switch (this.ausrichtung) {
@@ -209,23 +204,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     private void zeichneLebensbalken(PApplet app) {
         app.fill(150);
-        app.rect(10,20,lebensenergie,10);
+        app.rect(10,20,100,10);
         app.fill(0,150,0);
-        app.rect(10,20,Lebensenergie,10);
+        app.rect(10,20,lebensenergie,10);
     }
 
     @Override
     public void erhalteSchaden(int schaden) {
-        this.Lebensenergie -= schaden;
+        this.lebensenergie -= schaden;
     }
 
     /**
      * GameOver
      * */
     public void gameover(PApplet app) {
-        if (Lebensenergie <= 0) {
+        if (lebensenergie <= 0) {
             System.out.println("Game Over");
-            Lebensenergie = 0;
+            lebensenergie = 0;
             app.fill(0,0,0);
             app.rect (200,120,800,600);
             app.fill(138,3,3);
@@ -265,6 +260,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
         // Spielfigur bewegt sich nicht von selbst
     }
 
+
+
+    /**
+     * @MEGAtroniker
+     * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
+     * @param betrag erhöhung des Goldwerts
+     */
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
@@ -278,11 +280,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getLebensenergie(){
-        return this.Lebensenergie;
+        return this.lebensenergie;
     }
 
     public void setLebensenergie(int neueLebensenergie){
-        this.Lebensenergie = neueLebensenergie;
+        this.lebensenergie = neueLebensenergie;
     }
 
 

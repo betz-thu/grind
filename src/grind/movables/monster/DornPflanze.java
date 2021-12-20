@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -18,8 +19,8 @@ public class DornPflanze extends Monster {
 
     private ITileMap tileMap;
 
-    public DornPflanze(float posX, float posY, ITileMap tileMap, int groesse) {
-        super(posX, posY, groesse);
+    public DornPflanze(float posX, float posY, ITileMap tileMap) {
+        super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
         this.tileMap = tileMap;
         setSchaden(schaden);
 
@@ -28,13 +29,10 @@ public class DornPflanze extends Monster {
 
     @Override
     public void zeichne(PApplet app) {
-        if (!this.monsterGestorben) {
-            app.fill(0, 255, 127);
-            app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-            IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
-            vorBetreten(kachel);
-        }
-
+        app.fill(0, 255, 127);
+        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+        IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
+        vorBetreten(kachel);
     }
 
     @Override
@@ -55,6 +53,16 @@ public class DornPflanze extends Monster {
             posX += Einstellungen.LAENGE_KACHELN_X;
             posY += Einstellungen.LAENGE_KACHELN_Y;
         }
+    }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
     }
 }
 

@@ -8,8 +8,8 @@ public class Mango extends Nahrung{
     private int punkte=10; // Fehlt in Klassendiagramm?
 
 
-    public Mango(int posX, int posY, int groesse) {
-        super(posX, posY, groesse);
+    public Mango(int posX, int posY) {
+        super(posX, posY, Einstellungen.GROESSE_MANGO);
     }
 
     public int getPunkte(){

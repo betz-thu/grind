@@ -14,7 +14,7 @@ class SpielfigurTest {
     void setUp() {
         schwert1 = new Schwert(100, 100, 1);
         schwert2 = new Schwert(200, 200, 2);
-        figur = new Spielfigur((float)100, (float)100, Richtung.S,50);
+        figur = new Spielfigur((float)100, (float)100, Richtung.S);
     }
 
     @Test
