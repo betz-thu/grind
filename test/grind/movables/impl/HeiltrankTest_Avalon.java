@@ -6,29 +6,26 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ApfelTest {
-
+public class HeiltrankTest_Avalon {
     private Spielfigur figur;
-    private Apfel apfel;
-    private Apfel apfel2;
+    private Heiltrank heiltrank;
 
     @Before
     public void setUp() throws Exception {
-        apfel = new Apfel(100, 100, Einstellungen.GROESSE_APFEL);
-        apfel2 = new Apfel(100, 120, Einstellungen.GROESSE_APFEL);
+        heiltrank = new Heiltrank(100, 100, Einstellungen.GROESSE_HEILTRANK);
         figur = new Spielfigur(200, 200, Richtung.S, Einstellungen.GROESSE_SPIELFIGUR);
     }
-
     @Test
     public void beimAnwenden() {
         figur.setLebensenergie(50);
-        apfel.beimAnwenden(figur);
-        Assert.assertEquals(55, figur.getLebensenergie());
+        heiltrank.beimAnwenden(figur);
+        Assert.assertEquals(70, figur.getLebensenergie());
+        Assert.assertFalse(figur.getInventar().contains(heiltrank));
     }
 
     @Test
     public void beimSammeln() {
-        apfel.beimSammeln(figur);
-        Assert.assertTrue(figur.getInventar().contains(apfel));
+        heiltrank.beimSammeln(figur);
+        Assert.assertTrue(figur.getInventar().contains(heiltrank));
     }
 }

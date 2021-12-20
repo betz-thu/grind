@@ -24,10 +24,12 @@ public class Geist extends Monster{
 
     @Override
     public void zeichne(PApplet app) {
-        app.fill(255,255,255);
+        if(!this.monsterGestorben) {
+            app.fill(255, 255, 255);
 //      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
 
-        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_GEIST , (float)Einstellungen.GROESSE_GEIST);
+            app.ellipse(this.getPosX(), this.getPosY(), (float) Einstellungen.GROESSE_GEIST, (float) Einstellungen.GROESSE_GEIST);
+        }
     }
     @Override
     public void bewege() {
