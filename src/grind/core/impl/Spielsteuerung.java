@@ -196,7 +196,7 @@ public class Spielsteuerung extends PApplet {
         int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
         int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
         int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
-        System.out.println("X: "+(WaffeXp-20)+", Y: "+(WaffeYn+20));
+
 
 
 

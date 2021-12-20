@@ -13,8 +13,8 @@ public class Schwert extends Waffe{
     private int stufe;
     PImage schwertStufe1;
     PImage schwertStufe2;
-    int schwertX;
-    int schwertY;
+
+
 
     public Schwert(int x, int y, int stufe) {
         super(x, y, 40);
@@ -37,25 +37,19 @@ public class Schwert extends Waffe{
         }
 
         int n =1;
-
         switch (this.ausrichtung) {
             case N:
                 n = 2;
-
                 break;
             case O:
                 n = 3;
-
                 break;
             case S:
                 n = 0;
-
                 break;
             case W:
                 n = 1;
-
         }
-
 
         app.translate(this.getPosX(),this.getPosY());
         app.rotate(PConstants.HALF_PI*n);
@@ -78,7 +72,7 @@ public class Schwert extends Waffe{
         /**
          * Berechnet den Schaden, welchen ein Schwert anrichtet.
          */
-        int schaden = 100* this.stufe;
+        int schaden = 10* this.stufe;
         return schaden;
     }
 
