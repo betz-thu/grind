@@ -239,14 +239,13 @@ public class Spielsteuerung extends PApplet {
             levelBeendet = true;
         }
 
-        for (int i=0; i<5;i++){
+        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
             if (spielmodell.getFigur().getInventar().size()>=i+1) {
-                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
-
-//                    spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+                    spielmodell.getFigur().getInventar().remove(i);
+                    break;
                 }
             }
         }
