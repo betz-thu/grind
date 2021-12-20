@@ -1,19 +1,27 @@
 package grind.kacheln.impl;
 
+import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
+import org.junit.Test;
 
-class LevelausgangTest {
+public class LevelausgangTest {
 
-    @org.junit.jupiter.api.Test
+    private Spielfigur figur;
+
+    @Test
     public void istBetretbar() {
-        Assert.assertTrue(true);
+        this.figur = figur;
+        Assert.assertTrue(String.valueOf(figur),true);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void istHindernis() {
-        Assert.assertTrue(false);
+        this.figur = figur;
+        Assert.assertFalse(String.valueOf(figur), false);
+    }
+    @Test
+    public void ladeDatei(){
+
     }
 
-
-    }
 }
