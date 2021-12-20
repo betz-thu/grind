@@ -1,5 +1,6 @@
 package grind.core.impl;
 
+import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
@@ -8,6 +9,7 @@ import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
 import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
+import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
 import grind.util.Richtung;
@@ -33,10 +35,12 @@ public class Spielsteuerung extends PApplet {
     private static int SpielfeldHoehe;
     private Spielfigur Spieler;
     private int SpielerGeschwindigkeit;
+    public int Tastendruck;
     // private ITileMap tileMap;
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+
 
 
     /**
@@ -93,6 +97,7 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
+
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
@@ -115,7 +120,72 @@ public class Spielsteuerung extends PApplet {
                     Spieler.bewege(Richtung.O);
                 }
             }
+            else if (key == '1') {
+                Tastendruck = 0;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='2') {
+                Tastendruck = 1;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='3') {
+                Tastendruck = 2;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='4') {
+                Tastendruck = 3;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='5') {
+                Tastendruck = 4;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='6') {
+                Tastendruck = 5;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='7') {
+                Tastendruck = 6;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='8') {
+                Tastendruck = 7;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='9') {
+                Tastendruck = 8;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+            }
+            else if (key =='0') {
+                Tastendruck = 9;
+                Spieler.benutze(Tastendruck);
+                keyPressed = false;
+
+            }
         }
+
+        //Inventar öffnen
+        if(keyPressed){
+            if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==10){
+                Spieler.setInventarGroeße(30);
+                Spieler.playBackpackOpenSound();
+                keyPressed=false;
+            }else if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==30){
+                Spieler.setInventarGroeße(10);
+                keyPressed=false;
+                Spieler.playBackpackCloseSound();
+            }
+        }
+
 
         //F12 neue Szene
         if (keyPressed && !pressed){
@@ -141,6 +211,10 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
+
+
+
+
 
     }
 
@@ -206,13 +280,11 @@ public class Spielsteuerung extends PApplet {
             int MovableXn = movable.getPosX()-movable.getGroesse()/2;
             int MovableYp = movable.getPosY()+movable.getGroesse()/2;
             int MovableYn = movable.getPosY()-movable.getGroesse()/2;
-            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
+            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
 
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
-
 
                     // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 }
@@ -224,7 +296,6 @@ public class Spielsteuerung extends PApplet {
                 else if(movable instanceof Nahrung){
                     // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
                 }
-
             }
             else if((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key==' ')){
                 if (movable instanceof Monster){
@@ -235,6 +306,7 @@ public class Spielsteuerung extends PApplet {
             }
         }
     }
+
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
