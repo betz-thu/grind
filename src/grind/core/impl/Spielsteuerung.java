@@ -27,16 +27,21 @@ import processing.core.PConstants;
  * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public class Spielsteuerung extends PApplet {
-    private static int SpielfeldBreite;
-    private static int SpielfeldHoehe;
-    private Spielfigur Spieler;
-    private int SpielerGeschwindigkeit;
-    public int Tastendruck;
-    // private ITileMap tileMap;
+    private int SpielfeldBreite;
+    private int SpielfeldHoehe;
+    final Spielfigur Spieler;
+    final int SpielerGeschwindigkeit;
+    int Tastendruck;
+
+    public ISpielmodell getSpielmodell() {
+        return spielmodell;
+    }
+
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
+
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
@@ -48,7 +53,7 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
@@ -56,14 +61,22 @@ public class Spielsteuerung extends PApplet {
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
+    public int getSpielfeldBreite() {
+        return SpielfeldBreite;
+    }
+
+    public int getSpielfeldHoehe() {
+        return SpielfeldHoehe;
+    }
+
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
     @Override
     public void settings() {
-        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X*Einstellungen.ANZAHL_KACHELN_X;
-        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y*Einstellungen.ANZAHL_KACHELN_Y;
-        size(SpielfeldBreite,SpielfeldHoehe);
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
+        size(SpielfeldBreite, SpielfeldHoehe);
     }
 
     /**
@@ -85,8 +98,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-
-
     }
 
     /**
@@ -97,26 +108,26 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
-
+        int Schulterbreite = 15;
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
-                if(isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y-20) && isErlaubteKoordinate(x-SpielerGeschwindigkeit-20,y+20)){
+                if (isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y - Schulterbreite) && isErlaubteKoordinate(x - SpielerGeschwindigkeit - 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.W);
                 }
             } else if (key == 'w' || keyCode == UP) {
                 Spieler.setAusrichtung(Richtung.N);
-                if(isErlaubteKoordinate(x-20,y-SpielerGeschwindigkeit-20) && isErlaubteKoordinate(x+20,y-SpielerGeschwindigkeit-20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y - SpielerGeschwindigkeit - 20) && isErlaubteKoordinate(x + Schulterbreite, y - SpielerGeschwindigkeit - 20)) {
                     Spieler.bewege(Richtung.N);
                 }
             } else if (key == 's' || keyCode == DOWN) {
                 Spieler.setAusrichtung(Richtung.S);
-                if(isErlaubteKoordinate(x-20,y+SpielerGeschwindigkeit+20) && isErlaubteKoordinate(x+20,y+SpielerGeschwindigkeit+20)){
+                if (isErlaubteKoordinate(x - Schulterbreite, y + SpielerGeschwindigkeit + 20) && isErlaubteKoordinate(x + Schulterbreite, y + SpielerGeschwindigkeit + 20)) {
                     Spieler.bewege(Richtung.S);
                 }
             } else if (key == 'd' || keyCode == RIGHT) {
                 Spieler.setAusrichtung(Richtung.O);
-                if(isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y-20) && isErlaubteKoordinate(x+SpielerGeschwindigkeit+20,y+20)){
+                if (isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y - Schulterbreite) && isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.O);
                 }
             }
@@ -173,29 +184,23 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
-        //Inventar öffnen
-        if(keyPressed){
-            if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==10){
-                Spieler.setInventarGroeße(30);
-                Spieler.playBackpackOpenSound();
-                keyPressed=false;
-            }else if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==30){
-                Spieler.setInventarGroeße(10);
-                keyPressed=false;
-                Spieler.playBackpackCloseSound();
-            }
-        }
+        szeneUeberspringen();
+    }
 
-
+    /**
+     * @MEGAtroniker
+     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+     */
+    private void szeneUeberspringen() {
         //F12 neue Szene
-        if (keyPressed && !pressed){
+        if (keyPressed && !pressed) {
             if (keyCode == 123) {
                 pressed = true;
             }
-        } else if(!keyPressed && pressed){
+        } else if (!keyPressed && pressed) {
             pressed = false;
             System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
+            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
@@ -206,16 +211,11 @@ public class Spielsteuerung extends PApplet {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
-        if(levelBeendet){
+        if (levelBeendet) {
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
-
-
-
-
-
     }
 
     private void zeichne() {
@@ -234,18 +234,18 @@ public class Spielsteuerung extends PApplet {
         int kachelX = posY / Einstellungen.LAENGE_KACHELN_Y;
         int kachelY = posX / Einstellungen.LAENGE_KACHELN_X;
         IKachel aktuelleKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(kachelX, kachelY);
-        if (aktuelleKachel instanceof Levelausgang){
+        if (aktuelleKachel instanceof Levelausgang) {
             System.out.println(aktuelleKachel);
-            levelBeendet = true;
-        }
-
-        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
-            if (spielmodell.getFigur().getInventar().size()>=i+1) {
-                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
-                    System.out.println("Levelende Bedingung wurde gefunden");
-                    levelBeendet = true;
-                    spielmodell.getFigur().getInventar().remove(i);
-                    break;
+            if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / Einstellungen.LAENGE_KACHELN_Y, spielmodell.getFigur().getPosX() / Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang) {
+                System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / 39, spielmodell.getFigur().getPosX() / 39));
+                levelBeendet = true;
+            }
+            for (int i = 0; i < 5; i++) {
+                if (spielmodell.getFigur().getInventar().size() >= i + 1) {
+                    if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                        System.out.println("Levelende Bedingung wurde gefunden");
+                        levelBeendet = true;
+                    }
                 }
             }
         }
@@ -303,8 +303,8 @@ public class Spielsteuerung extends PApplet {
      * @return IKachel
      */
     public IKachel getKachelByCoordinates(int x, int y) {
-        int j = (int) x/Einstellungen.LAENGE_KACHELN_X;
-        int i = (int) y/Einstellungen.LAENGE_KACHELN_Y;
+        int j =  x/Einstellungen.LAENGE_KACHELN_X;
+        int i =  y/Einstellungen.LAENGE_KACHELN_Y;
         return spielmodell.getTileMap().getKachel(i,j);
     }
 

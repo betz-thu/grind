@@ -19,12 +19,11 @@ class MonsterTest {
 
     @BeforeEach
     void setUp() {
-        monster = new Geist((float)100, (float)100, tileMap,20);
-        spielfigur = new Spielfigur(200,300, Richtung.N, Einstellungen.GROESSE_SPIELFIGUR);
+        monster = new Geist((float)100, (float)100, tileMap);
+        spielfigur = new Spielfigur(200,300, Richtung.N);
         monster.setSchaden(schaden);
         spielfigur.setLebensenergie(90);
     }
-
 
     @Test
     void reduziereLebensenergie() {
