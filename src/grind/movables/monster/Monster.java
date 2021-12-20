@@ -71,5 +71,7 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
+
+
 }
 

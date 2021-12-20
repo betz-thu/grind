@@ -7,6 +7,7 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
+import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
@@ -16,7 +17,6 @@ import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
-import grind.movables.monster.IMonster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
@@ -24,7 +24,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 
 /**
- * @author Megatronik
+ * @Autor Megatronik
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
 public class Spielsteuerung extends PApplet {
@@ -46,28 +46,15 @@ public class Spielsteuerung extends PApplet {
     boolean pressed = false;
     boolean levelBeendet = false;
 
-    public int getSpielfeldBreite() {
-        return SpielfeldBreite;
-    }
 
-    public void setSpielfeldBreite(int spielfeldBreite) {
-        SpielfeldBreite = spielfeldBreite;
-    }
-
-    public int getSpielfeldHoehe() {
-        return SpielfeldHoehe;
-    }
-
-    public void setSpielfeldHoehe(int spielfeldHoehe) {
-        SpielfeldHoehe = spielfeldHoehe;
-    }
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt(), this);
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
@@ -103,7 +90,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-        pruefeKollisionen();
     }
 
     /**
@@ -213,6 +199,7 @@ public class Spielsteuerung extends PApplet {
 
     private void aktualisiere() {
         pruefeKollisionen();
+        spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
@@ -222,8 +209,6 @@ public class Spielsteuerung extends PApplet {
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
-
-
 
     private void zeichne() {
         spielmodell.zeichne(this);
@@ -260,17 +245,23 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 /**
- * Kollisionsabfrage: prüft Kollision von Spieler mit Movable und führt dann dementsprechende Methode aus.
- * z.B. Wenn Kollision von Spieler mit Monster --> Spieler bekommt schaden
- *  Wenn Kollision von Spieler mit Gold --> Erhöhe Kontostand und lösche Gold aus Spielwelt
- *
- *  wird in aktualisiere aufgerufen, um dauerhaft nach Kollisionen zu prüfen
+ * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
+ * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
  */
     public void pruefeKollisionen() {
         int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+
+
+
 
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX()+movable.getGroesse()/2;
@@ -282,8 +273,6 @@ public class Spielsteuerung extends PApplet {
                 if(movable instanceof IMonster) {
 
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
-                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 }
                 else if(movable instanceof ISchatz){
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
@@ -291,11 +280,13 @@ public class Spielsteuerung extends PApplet {
                     return;
                 }
                 else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
+                    // TODO: Nahrung zu Inventar hinzufügen
                 }
+
             }
         }
     }
+
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.

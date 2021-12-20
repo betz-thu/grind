@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @author Megatronik
+ * @Autor Megatronik
  * Instanziierung der Spielfigur nun mit Ausrichtung.
  */
 public class Spielmodell implements ISpielmodell {
@@ -48,6 +48,23 @@ public class Spielmodell implements ISpielmodell {
     public Spielmodell(ISpielwelt spielwelt, Spielsteuerung steuerung) {
         this.spielwelt = spielwelt;
         this.steuerung=steuerung;
+    }
+
+    /**
+     * Löscht Movable aus Liste der Positionen und aus Liste der movables
+     * z. B. Für das Einsammeln eines Schatzes
+     * @param movable
+     */
+    @Override
+    public void removeMovable(IMovable movable){
+
+        if(level == null){
+            return;
+        }
+       List<IMovable> positionen = level.getPositionen();
+
+       positionen.remove(movable);
+       movables.remove(movable);
 
     }
 
@@ -78,15 +95,6 @@ public class Spielmodell implements ISpielmodell {
         }
     }
 
-    /**
-     * @MEGAtroniker
-     * TODO eingentlich sollte alles hier sein aber wie ist des dann mit den einzelnen Szenen?
-     * TODO Weil jetz sind die Monster in jeder Szene gleich
-     * TODO neue tilemap aber danach dieselben Movables
-     * Gefühlt definieren wir in x klassen dasselbe und des gilt auch IMMER egal welche szene
-     * dann ändern sich nur die Kacheln
-     * @param level aktuelles Level
-     */
     private void betreteLevel(ILevel level) {
         this.level = level;
         kopiereTilemap();
@@ -95,10 +103,6 @@ public class Spielmodell implements ISpielmodell {
         addMonster(feuerMonster);
     }
 
-    /**
-     * @MEGAtroniker
-     * TODO Jede teilmap braucht ne eigene liste sonst gibts überall dieselben movables
-     */
     private void kopiereTilemap() {
         this.tileMap = this.level.getTileMap();
     }
@@ -107,6 +111,7 @@ public class Spielmodell implements ISpielmodell {
         this.movables.clear();
         this.schaetze.clear();
         this.monster.clear();
+
         for (IMovable movable : this.level.getPositionen()) {
             if (movable instanceof ISpielfigur) {
                 ISpielfigur figur = (ISpielfigur) movable;
@@ -130,42 +135,44 @@ public class Spielmodell implements ISpielmodell {
         // die Spielfigur bewegt sich nicht von selbst
         for(IMovable movable: movables){
             movable.bewege();
+
         }
+
     }
 
     @Override
     public void zeichne(PApplet app) {
+
         if (this.level != null) {
             this.level.zeichne(app);
         }
+
         for (IMovable movable : this.movables) {
             movable.zeichne(app);
         }
+
         this.figur.zeichne(app);
 
     }
-
 
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
     }
 
-
     public ITileMap getTileMap() {
         return this.tileMap;
     }
+
 
 
     public ISzene getSzene(){
         return this.spielwelt.getSzene(getSzeneNr());
     }
 
-
     public int getSzeneNr(){
         return this.szeneNr;
     }
-
 
     public void setSzeneNr(int szeneNR){
         this.szeneNr = szeneNR;
