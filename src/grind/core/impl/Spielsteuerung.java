@@ -253,7 +253,8 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
 /**
- * Kollisionsabfrage
+ * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
+ * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
  */
     public void pruefeKollisionen() {
         int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
