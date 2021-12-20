@@ -86,7 +86,7 @@ public class Spielsteuerung extends PApplet {
         aktualisiere();
         zeichne();
 
-        pruefeKollisionen();
+
     }
 
     /**

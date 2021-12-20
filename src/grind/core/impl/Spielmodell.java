@@ -46,8 +46,12 @@ public class Spielmodell implements ISpielmodell {
      * z. B. Für das Einsammeln eines Schatzes
      * @param movable
      */
+    @Override
     public void removeMovable(IMovable movable){
 
+        if(level == null){
+            return;
+        }
        List<IMovable> positionen = level.getPositionen();
 
        positionen.remove(movable);
