@@ -37,7 +37,6 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
-    private ISpielwelt spielWelt;
 
 
 
@@ -124,6 +123,8 @@ public class Spielsteuerung extends PApplet {
     /**
      * @Autor LuHe20
      * Cheat für das Überspringen einer Szene mit F12.
+     * Speichern der Spielwelt mit F11
+     * Laden der Spielwelt mit F10
      */
     private void abfrageFTasten() {
         //F12 neue Szene
@@ -139,25 +140,33 @@ public class Spielsteuerung extends PApplet {
                 fTaste = "F10";
             }
         } else if(!keyPressed && pressed){
-            if(fTaste.equals("F12")){
-                levelBeendet = true;
-            } else if(fTaste.equals("F11")){
-                this.spielmodell.speichereSpielwelt();
-                System.out.println("F11");
-            } else if(fTaste.equals("F10")){
-                ISpielwelt welt = new DummySpielwelt();
-                welt = this.spielmodell.ladeSpielwelt();
-                this.spielmodell.setSpielwelt(welt);
-                System.out.println("F10");
+            switch (fTaste) {
+                case "F12":
 
-                spielmodell.setSzeneNr(0);
-                spielmodell.betreteSzene(spielmodell.getSzeneNr());
+                    levelBeendet = true;
+
+                    break;
+                case "F11":
+
+                    this.spielmodell.speichereSpielwelt();
+
+                    System.out.println("F11");
+
+                    break;
+                case "F10":
+
+                    ISpielwelt welt;
+                    welt = this.spielmodell.ladeSpielwelt();
+                    this.spielmodell.setSpielwelt(welt);
+                    spielmodell.setSzeneNr(0);
+                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+                    System.out.println("F10");
+
+                    break;
             }
 
             pressed = false;
-            System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
 
@@ -179,11 +188,6 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
-
-
-
-
-
     }
 
     private void zeichne() {
@@ -301,9 +305,5 @@ public class Spielsteuerung extends PApplet {
         if(!isSpielfeldrand(x,y)){
             return getKachelByCoordinates(x,y).istBetretbar();
         } else return false;
-    }
-
-    private ISpielwelt ladeSpielweltausDatei(String dateiname){
-        return ladeSpielweltausDatei("spielwelt.json");
     }
 }

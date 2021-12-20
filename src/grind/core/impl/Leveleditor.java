@@ -20,14 +20,13 @@ public class Leveleditor extends PApplet {
 
     ISpielmodell spielmodell;
 
-
-    public Leveleditor(){
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
-    public Leveleditor() {
+    public Leveleditor(){
+        this.spielmodell = new Spielmodell(new DummySpielwelt());
+
         this.dateiService = new DateiService();
         this.welt = dateiService.ladeSpielmodell("spielwelt.json");
         System.out.println("Geladen");

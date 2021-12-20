@@ -9,7 +9,6 @@ import processing.core.PImage;
 public class Weg implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Weg";
 
     public Weg(){
         this.img = new PImage();

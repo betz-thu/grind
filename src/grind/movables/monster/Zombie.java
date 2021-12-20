@@ -10,9 +10,9 @@ public class Zombie extends Monster{
     transient private int posX;
     transient private int posY;
     private final static int GESCHWINDIGKEIT = 2;
-    private int deltaX;
-    private int deltaY;
-    private int schaden = 1;
+    transient private int deltaX;
+    transient private int deltaY;
+    transient private int schaden = 1;
     transient ITileMap tileMap;
 
     private boolean hilfsVariable = false;

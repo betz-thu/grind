@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
-    int gold = 5;
+    transient private final float GESCHWINDIGKEIT = 3f;
+    transient private int Lebensenergie = 85;
+    transient int gold = 5;
     transient PImage spielfigurOhneWaffe;
 
 

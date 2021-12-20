@@ -8,9 +8,9 @@ import grind.util.Einstellungen;
 
 public class Geist extends Monster{
     private int geschwindigkeit = 5;
-    private int deltaX = geschwindigkeit;
-    private int deltaY = geschwindigkeit;
-    private int schaden = 5;
+    transient private int deltaX = geschwindigkeit;
+    transient private int deltaY = geschwindigkeit;
+    transient private int schaden = 5;
 
 
     transient ITileMap tileMap;

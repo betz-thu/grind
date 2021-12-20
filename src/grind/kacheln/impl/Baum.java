@@ -9,7 +9,7 @@ public class Baum implements IKachel {
 
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Baum";
+
 
 
     public Baum(){

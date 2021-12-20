@@ -1,5 +1,6 @@
 package grind.welt.impl;
 
+import grind.movables.impl.Movable;
 import grind.util.Richtung;
 import grind.movables.impl.Apfel;
 import grind.kacheln.impl.Levelausgang;
@@ -32,10 +33,9 @@ public class DummyLevel implements ILevel {
 
     public DummyLevel (){
         this.tileMap = new TileMap();
-        this.movables = getPositionen();
 
         Random random = new Random();
-        positionen.add(new Gold(650, 400, Einstellungen.GROESSE_GOLD));
+        positionen.add(new Gold(800, 400, Einstellungen.GROESSE_GOLD));
         positionen.add(new Geist(60,200,tileMap, Einstellungen.GROESSE_GEIST));
         positionen.add(new DornPflanze(200, 50, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
         positionen.add(new DornPflanze(600, 500, tileMap, Einstellungen.GROESSE_DORNPFLANZE));

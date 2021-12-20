@@ -8,7 +8,6 @@ import processing.core.PImage;
 public class Fels implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Fels";
 
     public Fels(){
         this.img = new PImage();

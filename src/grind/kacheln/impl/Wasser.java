@@ -9,7 +9,6 @@ import processing.core.PImage;
 public class Wasser implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Wasser";
 
     public Wasser(){
         this.img = new PImage();

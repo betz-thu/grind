@@ -10,7 +10,6 @@ import processing.core.PImage;
 public class Levelausgang implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Levelausgang";
 
     public Levelausgang(){
         this.img = new PImage();

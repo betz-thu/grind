@@ -8,7 +8,6 @@ import processing.core.PImage;
 public class Wiese implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Wiese";
 
     public Wiese(){
         this.img = new PImage();

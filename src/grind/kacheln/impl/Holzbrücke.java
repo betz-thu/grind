@@ -8,7 +8,6 @@ import processing.core.PImage;
 public class Holzbrücke implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
-    String kachelTyp = "Holzbrücke";
 
     public Holzbrücke(){
         this.img = new PImage();

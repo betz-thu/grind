@@ -15,13 +15,13 @@ public class TileMap implements ITileMap {
     int hoehe;
     int breite;
     IKachel[][] kacheln;
-    IKachel baum;
-    IKachel fels;
-    IKachel wasser;
-    IKachel weg;
-    IKachel wiese;
-    IKachel holzbrücke;
-    IKachel levelausgang;
+    transient IKachel baum;
+    transient IKachel fels;
+    transient IKachel wasser;
+    transient IKachel weg;
+    transient IKachel wiese;
+    transient IKachel holzbrücke;
+    transient IKachel levelausgang;
     List<IKachel> kachelarten = new ArrayList<>();
     transient Random rand = new Random();
 
@@ -39,7 +39,7 @@ public class TileMap implements ITileMap {
         this.wiese = new Wiese();
         this.holzbrücke = new Holzbrücke();
         this.levelausgang = new Levelausgang();
-        //zufaelligeTileMap();
+        zufaelligeTileMap();
         erstelleListeKachelarten();
     }
 
@@ -91,7 +91,7 @@ public class TileMap implements ITileMap {
 
     /**
      * Gibt die aktuelle Höhe der Tilemap zurück.
-     * @return
+     * @return hoehe der Tilemap in Feldern
      */
     @Override
     public int getHoehe() {
@@ -100,7 +100,7 @@ public class TileMap implements ITileMap {
 
     /**
      * Gibt die aktuelle Breite der Tilemap zurück.
-     * @return
+     * @return breite der Tilemap in Feldern
      */
     @Override
     public int getBreite() {
