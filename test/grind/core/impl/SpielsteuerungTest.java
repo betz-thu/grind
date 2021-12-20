@@ -1,41 +1,49 @@
 package grind.core.impl;
 
-import grind.util.Einstellungen;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class SpielsteuerungTest {
-    Spielsteuerung spielsteuerung;
+public class SpielsteuerungTest {
 
-    @BeforeEach
-    void setUp() {
-        spielsteuerung= new Spielsteuerung();
+    @Before
+    public void setUp() throws Exception {
     }
 
     @Test
-    void settings() {
+    public void settings() {
     }
 
     @Test
-    void setup() {
+    public void setup() {
     }
 
     @Test
-    void draw() {
-    }
-
-
-    @Test
-    void getKachelByCoordinates() {
+    public void draw() {
     }
 
     @Test
-    void isSpielfeldrand() {
+    public void pruefeKollisionen() {
     }
 
     @Test
-    void isErlaubteKoordinate() {
+    public void mousePressed() {
+    }
+
+    @Test
+    public void ueberpruefeLevelende() {
+    }
+
+    @Test
+    public void getKachelByCoordinates() {
+    }
+
+    @Test
+    public void isSpielfeldrand() {
+    }
+
+    @Test
+    public void isErlaubteKoordinate() {
     }
 }
