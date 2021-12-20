@@ -21,7 +21,6 @@ public class LevelausgangTest {
     }
     @Test
     public void ladeDatei(){
-
     }
 
 }
