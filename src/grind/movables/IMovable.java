@@ -1,5 +1,6 @@
 package grind.movables;
 
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
@@ -12,10 +13,13 @@ public interface IMovable {
 
     int getPosX();
     int getPosY();
+    int getGroesse();
     void setPosition(int x, int y);
     void zeichne(PApplet app);
     void bewege();
     Richtung getAusrichtung();
 
+
     void setAusrichtung(Richtung richtung);
 }
+
