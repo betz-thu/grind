@@ -55,7 +55,7 @@ public class Spielmodell implements ISpielmodell {
      * z. B. Für das Einsammeln eines Schatzes
      * @param movable
      */
-    @Override
+    /*@Override
     public void removeMovable(IMovable movable){
 
         if(level == null){
@@ -66,7 +66,7 @@ public class Spielmodell implements ISpielmodell {
        positionen.remove(movable);
        movables.remove(movable);
 
-    }
+    }*/
 
     public void entferneToteMonster(){
     /*
@@ -206,6 +206,9 @@ public class Spielmodell implements ISpielmodell {
      * @param movable Liste aller movables im Spiel
      */
     public void removeMovable(IMovable movable) {
-        movables.remove(movable);
+        try {
+            movables.remove(movable);
+        } catch (Exception e) {}
+
     }
 }

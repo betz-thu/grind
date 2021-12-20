@@ -53,12 +53,20 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
+    }
+
+    public int getSpielfeldBreite() {
+        return SpielfeldBreite;
+    }
+
+    public int getSpielfeldHoehe() {
+        return SpielfeldHoehe;
     }
 
     /**
