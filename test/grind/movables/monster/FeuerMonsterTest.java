@@ -59,7 +59,7 @@ public class FeuerMonsterTest {
 
     @Test
     public void bewege() {
-        System.out.println(tileMap.getBreite()+" " + tileMap.getHoehe());
+        System.out.println("Kacheln: "+tileMap.getBreite()+" " + tileMap.getHoehe());
 
 
 
