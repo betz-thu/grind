@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.movables.ISpielfigur;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Apfel extends Nahrung{

@@ -1,12 +1,14 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.movables.IMovable;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
+import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.impl.Apfel;
+import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.IMonster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.impl.DummySpielwelt;
@@ -83,8 +85,6 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
-
-        char inventarOeffnen = 'e';
 
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
@@ -163,11 +163,11 @@ public class Spielsteuerung extends PApplet {
 
         //Inventar öffnen
         if(keyPressed){
-            if(key==inventarOeffnen && Spieler.getInventarGroeße()==10){
+            if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==10){
                 Spieler.setInventarGroeße(30);
                 Spieler.playBackpackOpenSound();
                 keyPressed=false;
-            }else if(key==inventarOeffnen && Spieler.getInventarGroeße()==30){
+            }else if(key==Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße()==30){
                 Spieler.setInventarGroeße(10);
                 keyPressed=false;
                 Spieler.playBackpackCloseSound();

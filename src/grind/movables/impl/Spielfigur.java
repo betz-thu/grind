@@ -1,12 +1,8 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielsteuerung;
-import grind.movables.IMovable;
+import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.movables.ISpielfigur;
-import grind.util.Richtung;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -69,8 +65,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
 
 
-
-        zeichneInventar(app);
         gameover(app);
     }
 

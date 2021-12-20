@@ -1,18 +1,17 @@
 package grind.welt.impl;
 
-import grind.movables.impl.*;
-import grind.util.Richtung;
-import grind.kacheln.impl.Levelausgang;
-import grind.movables.monster.DornPflanze;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Zombie;
-import grind.util.Einstellungen;
-import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
 import grind.movables.impl.Gold;
+import grind.movables.impl.Heiltrank;
+import grind.movables.impl.Mango;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.DornPflanze;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
 import grind.welt.ILevel;
 import processing.core.PApplet;
 
@@ -36,6 +35,8 @@ public class DummyLevel implements ILevel {
 
         Random random = new Random();
         positionen.add(new Gold(650, 400, Einstellungen.GROESSE_GOLD));
+        positionen.add(new Heiltrank(700, 400, Einstellungen.GROESSE_HEILTRANK));
+        positionen.add(new Mango(750, 400, Einstellungen.GROESSE_MANGO));
         positionen.add(new Geist(60,200,tileMap, Einstellungen.GROESSE_GEIST));
         positionen.add(new DornPflanze(200, 50, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
         positionen.add(new DornPflanze(600, 500, tileMap, Einstellungen.GROESSE_DORNPFLANZE));

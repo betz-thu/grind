@@ -1,13 +1,15 @@
 package grind.movables.impl;
 
 import grind.movables.ISpielfigur;
+import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Heiltrank extends Nahrung {
     private int punkte = 20;
 
-    public Heiltrank(int posX, int posY) {
-        super(posX, posY);
+
+    public Heiltrank(int posX, int posY, int groesse) {
+        super(posX, posY, groesse);
     }
 
     public int getPunkte() {
@@ -18,7 +20,7 @@ public class Heiltrank extends Nahrung {
         app.pushStyle();
         app.stroke(104,34,139);
         app.fill(104,34,139);
-        app.ellipse(this.getPosX(), this.getPosY(), 20, 20);
+        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_HEILTRANK, Einstellungen.GROESSE_HEILTRANK);
         app.popStyle();
     }
     @Override
