@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
+import grind.kacheln.impl.TileMap;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -12,9 +13,11 @@ public class Schwert extends Waffe{
     private int stufe;
     PImage schwertStufe1;
     PImage schwertStufe2;
+    int schwertX;
+    int schwertY;
 
     public Schwert(int x, int y, int stufe) {
-        super(x, y, 30);
+        super(x, y, 40);
         this.stufe=stufe;
     }
 
@@ -34,31 +37,27 @@ public class Schwert extends Waffe{
         }
 
         int n =1;
-        int schwertPositionX = 1;
-        int schwertPositionY = 1;
+
         switch (this.ausrichtung) {
             case N:
                 n = 2;
-                schwertPositionX =0;
-                schwertPositionY =-1;
+
                 break;
             case O:
                 n = 3;
-                schwertPositionX =1;
-                schwertPositionY =0;
+
                 break;
             case S:
                 n = 0;
-                schwertPositionX =0;
-                schwertPositionY =1;
+
                 break;
             case W:
                 n = 1;
-                schwertPositionX =-1;
-                schwertPositionY =0;
+
         }
 
-        app.translate(getPosX()+40*schwertPositionX,getPosY()+40*schwertPositionY);
+
+        app.translate(this.getPosX(),this.getPosY());
         app.rotate(PConstants.HALF_PI*n);
 
 
@@ -79,7 +78,7 @@ public class Schwert extends Waffe{
         /**
          * Berechnet den Schaden, welchen ein Schwert anrichtet.
          */
-        int schaden = 10 * this.stufe;
+        int schaden = 100* this.stufe;
         return schaden;
     }
 
@@ -93,14 +92,16 @@ public class Schwert extends Waffe{
         zeichneSchwert(app);
     }
 
+
     public int getGroesse(){
-        return 30;
+        return 40;
     }
 
     @Override
     public void beimAnwenden(ISpielfigur figur) {
 
     }
+
 
 
 //    @Override

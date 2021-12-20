@@ -30,9 +30,9 @@ public abstract class Monster extends Movable implements IMonster {
 
     @Override
     public void beiKollision(ISpielfigur figur) {
-
-        figur.erhalteSchaden(this.schaden);
-
+        if(!monsterGestorben) {
+            figur.erhalteSchaden(this.schaden);
+        }
     }
 
     public void setSchaden(int schaden) {

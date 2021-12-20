@@ -191,6 +191,14 @@ public class Spielsteuerung extends PApplet {
         int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
+        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+
+        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        System.out.println("X: "+(WaffeXp-20)+", Y: "+(WaffeYn+20));
+
+
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
@@ -198,11 +206,13 @@ public class Spielsteuerung extends PApplet {
             int MovableXn = movable.getPosX()-movable.getGroesse()/2;
             int MovableYp = movable.getPosY()+movable.getGroesse()/2;
             int MovableYn = movable.getPosY()-movable.getGroesse()/2;
-            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
+            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
 
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
+
+
 
                     // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
                 }
@@ -214,7 +224,9 @@ public class Spielsteuerung extends PApplet {
                 else if(movable instanceof Nahrung){
                     // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
                 }
-            }else if ((FigurXp+spielmodell.getFigur().getWaffe().getGroesse() > MovableXn) & (FigurXn+spielmodell.getFigur().getWaffe().getGroesse()< MovableXp) & (FigurYp+spielmodell.getFigur().getWaffe().getGroesse() > MovableYn)  & (FigurYn+spielmodell.getFigur().getWaffe().getGroesse() < MovableYp) & (key==' ')) {
+
+            }
+            else if((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key==' ')){
                 if (movable instanceof Monster){
                     System.out.println(((Monster) movable).getLebensenergie());
                     ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());

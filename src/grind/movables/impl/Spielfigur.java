@@ -83,18 +83,28 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.pushMatrix();
         app.translate(this.posX, this.posY);
         int n =1;
+        int schwertPositionX = 1;
+        int schwertPositionY = 1;
         switch (this.ausrichtung) {
             case N:
                 n = 0;
+                schwertPositionX =0;
+                schwertPositionY =-1;
                 break;
             case O:
                 n = 1;
+                schwertPositionX =1;
+                schwertPositionY =0;
                 break;
             case S:
                 n = 2;
+                schwertPositionX =0;
+                schwertPositionY =1;
                 break;
             case W:
                 n = 3;
+                schwertPositionX =-1;
+                schwertPositionY =0;
         }
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, 40, 40);
@@ -105,10 +115,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
         if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
 
-            aktiveWaffe.setPosition(this.getPosX(),this.getPosY());
+            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
             aktiveWaffe.setAusrichtung(this.getAusrichtung());
             aktiveWaffe.zeichne(app);
         }
+
 
 
     }

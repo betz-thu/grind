@@ -56,6 +56,7 @@ public class Spielmodell implements ISpielmodell {
     }
 
     public void entferneToteMonster(){
+    /*
         for (int i=0; i<monster.size();i++){
             if (monster.get(i).getLebensenergie()<=0){
                 System.out.println(monster.size());
@@ -66,6 +67,8 @@ public class Spielmodell implements ISpielmodell {
                 break;
             }
         }
+    */
+
     }
 
     @Override
