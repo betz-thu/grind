@@ -8,8 +8,8 @@ public class Heiltrank extends Nahrung {
     private int punkte = 20;
 
 
-    public Heiltrank(int posX, int posY, int groesse) {
-        super(posX, posY, groesse);
+    public Heiltrank(int posX, int posY) {
+        super(posX, posY, Einstellungen.GROESSE_HEILTRANK);
     }
 
     public int getPunkte() {

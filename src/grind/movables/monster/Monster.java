@@ -67,7 +67,7 @@ public abstract class Monster extends Movable implements IMonster {
             lebensenergie-= schaden;
         }
         if (lebensenergie<=0){
-            monsterGestorben = true;
+            this.getSpielmodell().removeMovable(this);
         }
     }
 

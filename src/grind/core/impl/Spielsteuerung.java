@@ -32,6 +32,7 @@ public class Spielsteuerung extends PApplet {
     private int SpielfeldHoehe;
     final Spielfigur Spieler;
     final int SpielerGeschwindigkeit;
+    int Tastendruck;
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -220,34 +221,9 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
-
-
-
-    public void pruefeKollisionen() {
-        int FigurXp = this.spielmodell.getFigur().getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurXn = this.spielmodell.getFigur().getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurYp = this.spielmodell.getFigur().getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurYn = this.spielmodell.getFigur().getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
-            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
-            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
-            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
-            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
-                if (movable instanceof IMonster) {
-                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
-                    // TODO: prüfe ob Monster ein Feuerball ist. Wenn ja, bekommt es Schaden und wird dann aus Spielwelt gelöscht --> spielmodell.removeMovable(movable)
-                } else if (movable instanceof ISchatz) {
-                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
-                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
-                    //return;
-                } else if (movable instanceof Nahrung) {
-                    // TODO: Nahrung zu Inventar hinzufügen und aus Spielwelt löschen --> spielmodell.removeMovable(movable)
-                    System.out.println("Nahrung augenommen!");
-                }
-            }
-        }
     }
+
+
 
     private void zeichne() {
         spielmodell.zeichne(this);
@@ -320,7 +296,6 @@ public class Spielsteuerung extends PApplet {
             }
         }
     }
-
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.

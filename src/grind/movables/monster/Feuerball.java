@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.movables.ISpielfigur;
@@ -92,5 +93,15 @@ public class Feuerball extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
 
+    }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
     }
 }

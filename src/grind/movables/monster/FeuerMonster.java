@@ -1,6 +1,7 @@
 
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -221,6 +222,15 @@ public class FeuerMonster extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
 
+    }
+
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
     }
 
 }

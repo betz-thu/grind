@@ -13,7 +13,7 @@ class MonsterTest {
 
     @BeforeEach
     void setUp() {
-        monster = new Geist((float)100, (float)100, tileMap,20);
+        monster = new Geist((float)100, (float)100, tileMap);
     }
 
     @Test

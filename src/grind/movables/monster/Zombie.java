@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
@@ -39,10 +40,8 @@ public class Zombie extends Monster{
 
     @Override
     public void zeichne(PApplet app) {
-        if (!this.monsterGestorben) {
-            app.fill(0, 127, 127);
-            app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-        }
+        app.fill(0, 127, 127);
+        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
     }
 
     @Override
@@ -109,6 +108,16 @@ public class Zombie extends Monster{
             hilfsVariable = true; // Eine Kachel wurde getroffen und Richtung umgekehrt.
 
         }
+    }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
     }
 
 }

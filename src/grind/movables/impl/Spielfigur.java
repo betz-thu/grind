@@ -20,7 +20,6 @@ import java.util.List;
 public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
     int gold = 5;
     PImage spielfigurOhneWaffe;
     Waffe testwaffe = new Schwert(30,30,1);
@@ -31,9 +30,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private int inventarGroeße;
     private int guiGroeße;
-
-    int lebensenergie = 100;
-    private List<Gegenstand> inventar;
 
     Waffe aktiveWaffe;
     /**
@@ -208,23 +204,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
      */
     private void zeichneLebensbalken(PApplet app) {
         app.fill(150);
-        app.rect(10,20,lebensenergie,10);
+        app.rect(10,20,100,10);
         app.fill(0,150,0);
-        app.rect(10,20,Lebensenergie,10);
+        app.rect(10,20,lebensenergie,10);
     }
 
     @Override
     public void erhalteSchaden(int schaden) {
-        this.Lebensenergie -= schaden;
+        this.lebensenergie -= schaden;
     }
 
     /**
      * GameOver
      * */
     public void gameover(PApplet app) {
-        if (Lebensenergie <= 0) {
+        if (lebensenergie <= 0) {
             System.out.println("Game Over");
-            Lebensenergie = 0;
+            lebensenergie = 0;
             app.fill(0,0,0);
             app.rect (200,120,800,600);
             app.fill(138,3,3);
@@ -284,11 +280,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public int getLebensenergie(){
-        return this.Lebensenergie;
+        return this.lebensenergie;
     }
 
     public void setLebensenergie(int neueLebensenergie){
-        this.Lebensenergie = neueLebensenergie;
+        this.lebensenergie = neueLebensenergie;
     }
 
 

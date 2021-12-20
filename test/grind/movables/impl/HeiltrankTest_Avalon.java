@@ -12,8 +12,8 @@ public class HeiltrankTest_Avalon {
 
     @Before
     public void setUp() throws Exception {
-        heiltrank = new Heiltrank(100, 100, Einstellungen.GROESSE_HEILTRANK);
-        figur = new Spielfigur(200, 200, Richtung.S, Einstellungen.GROESSE_SPIELFIGUR);
+        heiltrank = new Heiltrank(100, 100);
+        figur = new Spielfigur(200, 200, Richtung.S);
     }
     @Test
     public void beimAnwenden() {
