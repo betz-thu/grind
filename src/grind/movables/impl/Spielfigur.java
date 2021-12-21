@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
+
     private final float GESCHWINDIGKEIT = 3f;
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
@@ -31,7 +32,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int inventarGroeße;
     private int guiGroeße;
 
-    Waffe aktiveWaffe;
+    Waffe aktiveWaffe = testwaffe;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -41,6 +42,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return GESCHWINDIGKEIT;
     }
 
+
+
+
     /**
      * Konstruktor Spielfigur
      * @param posX gibt X-Position der Spielfigur an.
@@ -49,7 +53,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-        aktiviereWaffe(testwaffe);
+
         inventarGroeße=10;
         guiGroeße=50;
 }
@@ -110,8 +114,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 break;
             case W:
                 n = 3;
-                schwertPositionX =-1;
-                schwertPositionY =0;
+               schwertPositionX =-1;
+               schwertPositionY =0;
         }
         app.rotate(PConstants.HALF_PI*n);
         app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
@@ -119,17 +123,18 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
-
-        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
-
-            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
+        if(app.key==' ') {
+            aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
             aktiveWaffe.setAusrichtung(this.getAusrichtung());
-            aktiveWaffe.zeichne(app);
+        }
         }
 
 
 
-    }
+
+
+
+
 
     public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
@@ -183,6 +188,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
             if (inventar.get(position) instanceof Nahrung) {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
+            }
+            else if(inventar.get(position) instanceof Waffe){
+                Waffe waffe =  (Waffe) inventar.get(position);
+                this.setAktiveWaffe(waffe);
+                inventar.remove(position);
+                //inventar.get(position).beimAnwenden(this);
+                //Waffe nicht entfernen, soll im Inventar verbleiben
             }
         }
     }
@@ -238,21 +250,32 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void bewege(Richtung richtung) {
+
         switch (richtung) {
             case N:
                 this.posY -= GESCHWINDIGKEIT;
+
                 break;
             case O:
                 this.posX += GESCHWINDIGKEIT;
+
                 break;
             case S:
                 this.posY += GESCHWINDIGKEIT;
+
                 break;
             case W:
                 this.posX -= GESCHWINDIGKEIT;
+
                 break;
         }
+
+
+
+
+
     }
+
 
 
     @Override
@@ -287,6 +310,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         this.lebensenergie = neueLebensenergie;
     }
 
+    public void setAktiveWaffe(Waffe waffe){
+        this.aktiveWaffe=waffe;
+    }
+
 
 
     /**
@@ -298,15 +325,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
     }
 
-    public void aktiviereWaffe(Waffe waffe){
-        if(aktiveWaffe!=null){
-            getInventar().add(aktiveWaffe);
-        }
-        aktiveWaffe = waffe;
-    }
+
 
     public Waffe getWaffe(){
-        return this.testwaffe;
+        return aktiveWaffe;
     }
 
     public void setInventarGroeße(int inventarGroeße) {

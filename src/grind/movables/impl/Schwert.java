@@ -35,7 +35,7 @@ public class Schwert extends Waffe{
         else if (stufe == 2) {
             schwert = app.loadImage("newSword2.png");
         }
-
+        /*
         int n =1;
         switch (this.ausrichtung) {
             case N:
@@ -50,9 +50,10 @@ public class Schwert extends Waffe{
             case W:
                 n = 1;
         }
-
+        */
         app.translate(this.getPosX(),this.getPosY());
-        app.rotate(PConstants.HALF_PI*n);
+
+        //app.rotate(PConstants.HALF_PI*n);
 
 
 
@@ -93,12 +94,12 @@ public class Schwert extends Waffe{
 
     @Override
     public void beimAnwenden(ISpielfigur figur) {
-
+        super.beimAnwenden(figur);
     }
 
 
 
-//    @Override
+    //    @Override
 //    public boolean kollision(){
 //
 //    }
