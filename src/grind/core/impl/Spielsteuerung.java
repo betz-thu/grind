@@ -198,7 +198,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * @Autor LuHe20
+     * @author LuHe20
      * Cheat für das Überspringen einer Szene mit F12.
      * Speichern der Spielwelt mit F11
      * Laden der Spielwelt mit F10
@@ -257,7 +257,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * @Autor LuHe20
+     * @author LuHe20
      * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
      */
     private void starteNeueSzene() {
@@ -292,7 +292,7 @@ public class Spielsteuerung extends PApplet {
         return levelBeendet;
     }
     /**
-     * @Autor LuHe20
+     * @author LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
      * eine Kachel des Typs: Levelausgang ist.
      * @return levelBeendet
