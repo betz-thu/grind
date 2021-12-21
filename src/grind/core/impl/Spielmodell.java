@@ -125,6 +125,7 @@ public class Spielmodell implements ISpielmodell {
                 this.movables.add(schatz);
             } else if (movable instanceof IMonster){
                 IMonster monster = (IMonster) movable;
+                monster.setSpielmodell(this);
                 this.monster.add(monster);
                 this.movables.add(monster);
             } else {
@@ -202,6 +203,7 @@ public class Spielmodell implements ISpielmodell {
         monster.setSpielmodell(this);
         movables.add(monster);
     }
+
     public ISpielwelt getSpielwelt(){
         return this.spielwelt;
     }

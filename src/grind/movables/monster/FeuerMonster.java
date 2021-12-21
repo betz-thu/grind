@@ -224,13 +224,5 @@ public class FeuerMonster extends Monster{
 
     }
 
-    public ISpielmodell getSpielmodell() {
-        return this.spielmodell;
-    }
-
-    @Override
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
-    }
 
 }
