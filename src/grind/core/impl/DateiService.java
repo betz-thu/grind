@@ -45,7 +45,11 @@ public class DateiService {
     public DateiService() {
         this.gsonbuilder = new GsonBuilder();
         this.gsonbuilder.setLenient();
-
+/**
+ * Custom Serializer für die Serialisierung von einem IMovable.
+ * Vorgehen:
+ * 1. Standartmäßige Serialisierung von IMovable mit GSON
+ */
         JsonSerializer<IMovable> iMovableJsonSerializer = new JsonSerializer<IMovable>() {
             @Override
             public JsonElement serialize(IMovable iMovable, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -56,7 +60,9 @@ public class DateiService {
                 return jsonElement;
             }
         };
-
+/**
+ *
+ */
         JsonDeserializer<IMovable> iMovableJsonDeserializer = new JsonDeserializer<IMovable>() {
             @Override
             public IMovable deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -130,7 +136,9 @@ public class DateiService {
                 return iMovable;
             }
         };
-
+/**
+ *
+ */
         JsonSerializer<ISzene> iSzeneJsonSerializer = new JsonSerializer<ISzene>() {
             @Override
             public JsonElement serialize(ISzene iSzene, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -142,7 +150,9 @@ public class DateiService {
                 return jsonElement;
             }
         };
-
+/**
+ *
+ */
         JsonDeserializer<ISzene> iSzeneJsonDeserializer = new JsonDeserializer<ISzene>() {
             @Override
             public ISzene deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -168,7 +178,9 @@ public class DateiService {
             return iSzene;
             }
         };
-
+/**
+ *
+ */
         JsonSerializer<ITileMap> iTileMapJsonSerializer = new JsonSerializer<ITileMap>() {
             @Override
             public JsonElement serialize(ITileMap iTileMap, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -180,7 +192,9 @@ public class DateiService {
                 return jsonElement;
             }
         };
-
+/**
+ *
+ */
         JsonDeserializer<ITileMap> iTileMapJsonDeserializer = new JsonDeserializer<ITileMap>() {
             @Override
             public ITileMap deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -206,7 +220,9 @@ public class DateiService {
                 return iTileMap;
             }
         };
-
+/**
+ *
+ */
         JsonSerializer<IKachel> iKachelJsonSerializer = new JsonSerializer<IKachel>() {
             @Override
             public JsonElement serialize(IKachel iKachel, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -216,7 +232,9 @@ public class DateiService {
                 return jsonObject;
             }
         };
-
+/**
+ *
+ */
         JsonDeserializer<IKachel> iKachelJsonDeserializer = new JsonDeserializer<IKachel>() {
             @Override
             public IKachel deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -256,7 +274,9 @@ public class DateiService {
                 return iKachel;
             }
         };
-
+/**
+ *
+ */
         gsonbuilder.registerTypeAdapter(IMovable.class, iMovableJsonSerializer);
         gsonbuilder.registerTypeAdapter(IMovable.class, iMovableJsonDeserializer);
 

@@ -71,6 +71,9 @@ public class Spielmodell implements ISpielmodell {
 
     }*/
 
+    /**
+     *
+     */
     public void entferneToteMonster(){
     /*
         for (int i=0; i<monster.size();i++){
@@ -87,6 +90,10 @@ public class Spielmodell implements ISpielmodell {
 
     }
 
+    /**
+     * Lädt die neue Szene und wählt, aus ob es sich um ein Level oder eine Siedlung handelt
+     * @param n die gewünschte Szenennummer
+     */
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);
@@ -98,6 +105,10 @@ public class Spielmodell implements ISpielmodell {
         }
     }
 
+    /**
+     * Lädt die Objekte im gewünschten Level in das Level von Spielmodell
+     * @param level Das zu ladende Level
+     */
     private void betreteLevel(ILevel level) {
         this.level = level;
         kopiereTilemap();
@@ -106,10 +117,16 @@ public class Spielmodell implements ISpielmodell {
         addMonster(feuerMonster);
     }
 
+    /**
+     * Kopiert die Tilemap vom aktuellen Level in die Tilemap von Spielmodell
+     */
     private void kopiereTilemap() {
         this.tileMap = this.level.getTileMap();
     }
 
+    /**
+     * Fügt die Movalbes in die entsprechende Liste in Spielmodell hinzu
+     */
     private void kopiereMovables() {
         this.movables.clear();
         this.schaetze.clear();
@@ -134,6 +151,9 @@ public class Spielmodell implements ISpielmodell {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void bewege() {
         // die Spielfigur bewegt sich nicht von selbst
@@ -144,6 +164,10 @@ public class Spielmodell implements ISpielmodell {
 
     }
 
+    /**
+     * Zeichnet das Level, Spielfigur und Movables
+     * @param app Das Applet auf das gezeichnet wird
+     */
     @Override
     public void zeichne(PApplet app) {
 
@@ -159,35 +183,62 @@ public class Spielmodell implements ISpielmodell {
 
     }
 
+    /**
+     * Gibt die aktuelle Figur von Spielmodell zurück
+     * @return die aktuelle Figur
+     */
     @Override
     public ISpielfigur getFigur() {
         return this.figur;
     }
 
+    /**
+     * Gibt die aktuelle Tilemap zurück
+     * @return die aktuelle Tilemap
+     */
     public ITileMap getTileMap() {
         return this.tileMap;
     }
 
 
-
+    /**
+     * Gibt die aktuelle Szene zurück
+     * @return die aktuelle Szene
+     */
     public ISzene getSzene(){
         return this.spielwelt.getSzene(getSzeneNr());
     }
 
+    /**
+     * Gibt die aktuelle Szenennummer zurück
+     * @return
+     */
     public int getSzeneNr(){
         return this.szeneNr;
     }
 
+    /**
+     * Setzt die Szenennummer auf eine gewünschte Nummer
+     * @param szeneNR die gewünschte Szenennummer
+     */
     public void setSzeneNr(int szeneNR){
         this.szeneNr = szeneNR;
     }
 
     // nicht sicher ob wir das so machen wollen
 
+    /**
+     *
+     * @return
+     */
     public List<ISchatz> getSchaetze() {
         return schaetze;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<IMovable> getMovables() {
         return movables;
     }

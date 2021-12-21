@@ -12,7 +12,7 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public abstract class Monster extends Movable implements IMonster {
-    ISpielmodell spielmodell;
+    transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
 
