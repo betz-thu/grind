@@ -10,7 +10,7 @@ import processing.core.PApplet;
 public class Zombie extends Monster{
     transient private int posX;
     transient private int posY;
-    private final static int GESCHWINDIGKEIT = 2;
+    transient private final static int GESCHWINDIGKEIT = 2;
     transient private int deltaX;
     transient private int deltaY;
     transient private int schaden = 1;

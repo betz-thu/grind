@@ -25,10 +25,10 @@ public class FeuerMonster extends Monster{
     private final static int GESCHWINDIGKEIT = 2;
     final int deltaX;
     final int deltaY;
-    ITileMap tileMap;
+    transient ITileMap tileMap;
     transient Spielsteuerung steuerung;
-    Richtung ausrichtung;
-    Feuerball feuerball;
+    transient Richtung ausrichtung;
+    transient Feuerball feuerball;
     private int schussZaehler=0;
     transient Random rand;
     final int feuerRate;
