@@ -1,6 +1,5 @@
 package grind.movables.monster;
 
-import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;

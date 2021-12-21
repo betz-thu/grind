@@ -3,6 +3,7 @@ package grind.movables.impl;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    private final float GESCHWINDIGKEIT = 3f;
+    float GESCHWINDIGKEIT = 3f;
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
@@ -219,18 +220,32 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * */
     public void gameover(PApplet app) {
         if (lebensenergie <= 0) {
-            System.out.println("Game Over");
-            lebensenergie = 0;
-            app.fill(0,0,0);
-            app.rect (200,120,800,600);
-            app.fill(138,3,3);
-            app.textSize(60);
-            app.text("Game Over",410,350 );
-            app.text("Please Restart",410,450);
+                System.out.println("Game Over");
+                lebensenergie = 0;
+                app.fill(0,0,0);
+                app.rect (200,120,800,600);
+                app.fill(138,3,3);
+                app.textSize(60);
+                app.text("Game Over",410,350 );
+                app.text("Please Restart",410,450);
+
+                if (app.keyPressed){
+                    if (app.key == 'R' || app.key == 'r'){
+                        restart();
+                    }
+                }
+                    if (app.key =='Q' || app.key =='q'){
+                        System.exit(0);
+                }
+            }
         }
+
+
+    public void restart(){
+        System.out.println("restart");
+
+
     }
-
-
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.

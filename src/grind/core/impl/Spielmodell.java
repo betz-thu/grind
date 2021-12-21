@@ -13,7 +13,6 @@ import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
-import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;

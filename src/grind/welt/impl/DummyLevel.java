@@ -1,9 +1,6 @@
 package grind.welt.impl;
 
-import grind.movables.impl.Movable;
 import grind.util.Richtung;
-import grind.movables.impl.Apfel;
-import grind.kacheln.impl.Levelausgang;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
@@ -16,14 +13,7 @@ import grind.movables.impl.Gold;
 import grind.movables.impl.Heiltrank;
 import grind.movables.impl.Mango;
 import grind.movables.impl.Spielfigur;
-import grind.movables.monster.DornPflanze;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Zombie;
-import grind.util.Einstellungen;
-import grind.util.Richtung;
-import grind.welt.ILevel;
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

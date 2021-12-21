@@ -5,7 +5,6 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
-import grind.movables.impl.Apfel;
 import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;

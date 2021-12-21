@@ -1,6 +1,5 @@
 package grind.movables;
 
-import grind.kacheln.IKachel;
 import grind.movables.impl.Gegenstand;
 import grind.movables.impl.Waffe;
 import grind.util.Richtung;
