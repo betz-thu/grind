@@ -37,7 +37,7 @@ public class Fels implements IKachel {
      * @param app Das Applet mit welchem das Bild geladen werden soll
      * @return Das geladene PImage
      */
-    private PImage getImage(PApplet app) {
+    PImage getImage(PApplet app) {
         if (!bildGeladen){ //Das wäre Lazy
             this.img = app.loadImage("fels.png");
             img.resize(Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);

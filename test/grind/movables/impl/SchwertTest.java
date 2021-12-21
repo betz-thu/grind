@@ -1,13 +1,11 @@
 package grind.movables.impl;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
 
 class SchwertTest {
 
-    @BeforeEach
+    @Before
     void setUp() {
     }
 
