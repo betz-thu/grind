@@ -3,15 +3,15 @@ package grind.core.impl;
 import grind.util.Einstellungen;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 class SpielsteuerungTestTeamMEGAtroniker {
     Spielsteuerung spielsteuerung = new Spielsteuerung();
 
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
         try {
             spielsteuerung.settings();

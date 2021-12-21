@@ -14,12 +14,9 @@ import grind.util.Richtung;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.internal.builders.JUnit4Builder;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import processing.core.PApplet;
 import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author MEGAtroniker
  * als wir diese geöffnet haben, gab es die folgende Fehlermeldung:

@@ -2,15 +2,15 @@ package grind.movables.impl;
 
 import grind.util.Richtung;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 class SpielfigurTest {
     private Schwert schwert1;
     private Schwert schwert2;
     private Spielfigur figur;
 
-    @BeforeEach
+    @Before
     void setUp() {
         schwert1 = new Schwert(100, 100, 1);
         schwert2 = new Schwert(200, 200, 2);

@@ -10,8 +10,6 @@ public class Baum implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
 
-
-
     public Baum(){
         this.img = new PImage();
         //Bild hier laden eager

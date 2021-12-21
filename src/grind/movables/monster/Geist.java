@@ -67,13 +67,4 @@ public class Geist extends Monster{
 
     }
 
-    @Override
-    public ISpielmodell getSpielmodell() {
-        return this.spielmodell;
-    }
-
-    @Override
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
-    }
 }

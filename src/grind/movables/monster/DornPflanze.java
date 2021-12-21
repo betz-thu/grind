@@ -10,21 +10,14 @@ import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 
 public class DornPflanze extends Monster {
-    transient private int posX;
-    transient private int posY;
+
     transient private int schaden = 1;
-
-
-
-
     transient private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
         super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
         this.tileMap = tileMap;
         setSchaden(schaden);
-
-
     }
 
     @Override
@@ -42,27 +35,13 @@ public class DornPflanze extends Monster {
     }
 
 
-
-
-
-
-
     @Override
     public void vorBetreten(IKachel kachel) {
         if (kachel.istHindernis()) {
-            posX += Einstellungen.LAENGE_KACHELN_X;
-            posY += Einstellungen.LAENGE_KACHELN_Y;
+            int posX = this.getPosX() + Einstellungen.LAENGE_KACHELN_X;
+            int posY = this.getPosY() + Einstellungen.LAENGE_KACHELN_Y;
+            this.setPosition(posX, posY);
         }
-    }
-
-    @Override
-    public ISpielmodell getSpielmodell() {
-        return this.spielmodell;
-    }
-
-    @Override
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
     }
 }
 

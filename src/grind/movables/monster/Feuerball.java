@@ -95,13 +95,4 @@ public class Feuerball extends Monster{
 
     }
 
-    @Override
-    public ISpielmodell getSpielmodell() {
-        return spielmodell;
-    }
-
-    @Override
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
-    }
 }

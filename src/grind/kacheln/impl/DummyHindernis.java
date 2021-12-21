@@ -6,7 +6,6 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class DummyHindernis implements IKachel {
-    transient PImage img;
 
     /**
      * Gibt einen Boolean zurück ob die Kachel betretbar ist

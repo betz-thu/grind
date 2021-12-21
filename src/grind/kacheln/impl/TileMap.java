@@ -21,6 +21,7 @@ public class TileMap implements ITileMap {
     transient IKachel wiese;
     transient IKachel holzbrücke;
     transient IKachel levelausgang;
+    transient IKachel dummyHindernis;
     List<IKachel> kachelarten = new ArrayList<>();
     transient Random rand = new Random();
 
@@ -37,6 +38,7 @@ public class TileMap implements ITileMap {
         this.weg = new Weg();
         this.wiese = new Wiese();
         this.holzbrücke = new Holzbrücke();
+        this.dummyHindernis = new DummyHindernis();
         this.levelausgang = new Levelausgang();
         zufaelligeTileMap();
         erstelleListeKachelarten();
@@ -53,20 +55,20 @@ public class TileMap implements ITileMap {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
                 zufall = rand.nextInt(6);
-                if (zufall == 0){
+                if (zufall == 0) {
                     //this.kacheln[i][j] = this.baum;
                     this.kacheln[i][j] = this.wiese;
-                } else if (zufall == 1){
+                } else if (zufall == 1) {
 //                   this.kacheln[i][j] = this.fels;
                     this.kacheln[i][j] = this.wiese;
-                } else if (zufall == 2){
+                } else if (zufall == 2) {
 //                   this.kacheln[i][j] = this.wasser;
                     this.kacheln[i][j] = this.wiese;
-                } else if (zufall == 3){
+                } else if (zufall == 3) {
                     this.kacheln[i][j] = this.weg;
-                } else if (zufall == 4){
+                } else if (zufall == 4) {
                     this.kacheln[i][j] = this.wiese;
-                } else if (zufall == 5){
+                } else if (zufall == 5) {
                     this.kacheln[i][j] = this.holzbrücke;
                 }
             }
@@ -81,7 +83,7 @@ public class TileMap implements ITileMap {
     private void erstelleListeKachelarten() {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
-                if(!kachelarten.contains(kacheln[i][j])){
+                if (!kachelarten.contains(kacheln[i][j])) {
                     kachelarten.add(kacheln[i][j]);
                 }
             }
@@ -90,6 +92,7 @@ public class TileMap implements ITileMap {
 
     /**
      * Gibt die aktuelle Höhe der Tilemap zurück.
+     *
      * @return hoehe der Tilemap in Feldern
      */
     @Override
@@ -99,6 +102,7 @@ public class TileMap implements ITileMap {
 
     /**
      * Gibt die aktuelle Breite der Tilemap zurück.
+     *
      * @return breite der Tilemap in Feldern
      */
     @Override
@@ -108,17 +112,22 @@ public class TileMap implements ITileMap {
 
     /**
      * Gibt die Kachel mit den Koordinaten i,j zurück.
+     *
      * @param i Array Spalte in y-Richtung
      * @param j Array Spalte in x-Richtung
      * @return Die Kachel an Stelle [i][j]
      */
     @Override
     public IKachel getKachel(int i, int j) {
-        return kacheln[i][j];
+        if (i >= 0 && j >= 0 && i < kacheln.length && j < kacheln[i].length) {
+            return kacheln[i][j];
+        }
+        return this.dummyHindernis;
     }
 
     /**
      * Gibt eine Liste aller Kachelarten der aktuellen Tilemap zurück.
+     *
      * @return ArrayList mit Kacheln aus aktueller Tilemap
      */
     @Override
@@ -129,6 +138,7 @@ public class TileMap implements ITileMap {
     /**
      * Zeichnet die aktuelle Tilemap auf das Applet.
      * Zusätzlich wird noch eine Unterebene eingezeichnet um hintergrundfreie Assets benutzen zu können.
+     *
      * @param app PApplet auf welches gezeichnet werden soll
      */
     @Override
@@ -138,12 +148,11 @@ public class TileMap implements ITileMap {
                 int y = i * Einstellungen.LAENGE_KACHELN_Y;
                 int x = j * Einstellungen.LAENGE_KACHELN_X;
 
-                this.wiese.zeichne(app,x,y); // untere ebene einzeichnen
+                this.wiese.zeichne(app, x, y); // untere ebene einzeichnen
                 this.getKachel(i, j).zeichne(app, x, y);
             }
         }
     }
-
 
 
 }

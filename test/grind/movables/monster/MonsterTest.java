@@ -1,41 +1,39 @@
 package grind.movables.monster;
 
 import grind.kacheln.impl.TileMap;
-import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class MonsterTest {
+    public static final int SCHADEN = 12;
+    public static final int LEBENSENERGIE = 90;
 
-class MonsterTest {
     private Monster monster;
     private TileMap tileMap;
     private Spielfigur spielfigur;
-    int schaden = 10;
 
-    @BeforeEach
-    void setUp() {
-        monster = new Geist((float)100, (float)100, tileMap);
+    @Before
+    public void setUp() {
+        monster = new Geist(100, 100, tileMap);
         spielfigur = new Spielfigur(200,300, Richtung.N);
-        monster.setSchaden(schaden);
-        spielfigur.setLebensenergie(90);
+        monster.setSchaden(SCHADEN);
+        spielfigur.setLebensenergie(LEBENSENERGIE);
     }
 
     @Test
-    void reduziereLebensenergie() {
+    public void reduziereLebensenergie() {
         int anfangswert = monster.getLebensenergie();
-        monster.reduziereLebensenergie(10);
-        Assert.assertEquals(anfangswert-10, monster.getLebensenergie());
+        monster.reduziereLebensenergie(SCHADEN);
+        Assert.assertEquals(anfangswert-SCHADEN, monster.getLebensenergie());
     }
 
     @Test
-    void beiKollision() {
+    public void beiKollision() {
         int spielfigurLebenVorher = spielfigur.getLebensenergie();
         monster.beiKollision(spielfigur);
-        Assert.assertEquals(spielfigurLebenVorher-schaden,  spielfigur.getLebensenergie());
+        Assert.assertEquals(spielfigurLebenVorher-SCHADEN,  spielfigur.getLebensenergie());
     }
 }

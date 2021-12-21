@@ -71,7 +71,15 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
 
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
 
 }
 

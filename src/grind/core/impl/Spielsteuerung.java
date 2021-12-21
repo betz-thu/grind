@@ -5,18 +5,12 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
-import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
-import grind.movables.impl.Movable;
+import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
-import grind.util.Richtung;
-import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ISpielwelt;
@@ -184,6 +178,18 @@ public class Spielsteuerung extends PApplet {
                 keyPressed = false;
 
             }
+            //Inventar öffnen
+            if(keyPressed) {
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
+                    Spieler.setInventarGroeße(30);
+                    Spieler.playBackpackOpenSound();
+                    keyPressed = false;
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
+                    Spieler.setInventarGroeße(10);
+                    keyPressed = false;
+                    Spieler.playBackpackCloseSound();
+                }
+            }
         }
 
         szeneUeberspringen();
@@ -281,11 +287,13 @@ public class Spielsteuerung extends PApplet {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         pruefeLevelausgang();
 
-        for (int i = 0; i < 5; i++) {
-            if (spielmodell.getFigur().getInventar().size() >= i + 1) {
-                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
+            if (spielmodell.getFigur().getInventar().size()>=i+1) {
+                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
+                    spielmodell.getFigur().getInventar().remove(i);
+                    break;
                 }
             }
         }
@@ -346,6 +354,13 @@ public class Spielsteuerung extends PApplet {
                     // TODO: Nahrung zu Inventar hinzufügen
                 }
 
+            }
+            else if((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key==' ')){
+                if (movable instanceof Monster){
+                    System.out.println(((Monster) movable).getLebensenergie());
+                    ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
+                }
             }
         }
     }
