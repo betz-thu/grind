@@ -25,7 +25,7 @@ public class Leveleditor extends PApplet {
      * und Tilemap.
      */
     public Leveleditor(){
-        this.spielmodell = new Spielmodell(new DummySpielwelt());
+        this.spielmodell = new Spielmodell(new DummySpielwelt(),new Spielsteuerung());
 
         this.dateiService = new DateiService();
         this.welt = dateiService.ladeSpielmodell("spielwelt.json");

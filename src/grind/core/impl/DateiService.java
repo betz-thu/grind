@@ -7,9 +7,7 @@ import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.*;
 import grind.movables.IMovable;
-import grind.movables.impl.Apfel;
-import grind.movables.impl.Gold;
-import grind.movables.impl.Spielfigur;
+import grind.movables.impl.*;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
@@ -103,23 +101,28 @@ public class DateiService {
                 switch (klassenname) {
 
                     case "class grind.movables.impl.Apfel":
-                        iMovable = new Apfel(posX, posY, Einstellungen.GROESSE_APFEL);
+                        iMovable = new Apfel(posX, posY);
                         break;
                     case "class grind.movables.impl.Gold":
-                        iMovable = new Gold(posX, posY, Einstellungen.GROESSE_GOLD);
+                        iMovable = new Gold(posX, posY);
                         break;
                     case "class grind.movables.impl.Spielfigur":
-                        iMovable = new Spielfigur(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
+                        iMovable = new Spielfigur(posX, posY, richtung);
                         break;
                     case "class grind.movables.monster.DornPflanze":
-                        iMovable = new DornPflanze(posX, posY, tilemap, Einstellungen.GROESSE_DORNPFLANZE);
+                        iMovable = new DornPflanze(posX, posY, tilemap);
                         break;
                     case "class grind.movables.monster.Geist":
-                        iMovable = new Geist(posX, posY, tilemap, Einstellungen.GROESSE_GEIST);
+                        iMovable = new Geist(posX, posY, tilemap);
                         break;
                     case "class grind.movables.monster.Zombie":
-                        iMovable = new Zombie(posX, posY, tilemap, Einstellungen.GROESSE_ZOMBIE);
+                        iMovable = new Zombie(posX, posY, tilemap);
                         break;
+                    case "class grind.movables.impl.Heiltrank":
+                        iMovable = new Heiltrank(posX, posY);
+                        break;
+                    case "class grind.movables.impl.Mango":
+                        iMovable = new Mango(posX, posY);
                     default:
                         break;
                 }

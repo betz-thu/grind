@@ -281,16 +281,16 @@ public class Spielsteuerung extends PApplet {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         pruefeLevelausgang();
 
-        for (int i=0; i<5;i++){
-            if (spielmodell.getFigur().getInventar().size()>=i+1) {
+        for (int i = 0; i < 5; i++) {
+            if (spielmodell.getFigur().getInventar().size() >= i + 1) {
                 if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
-
                 }
             }
         }
-
+        return levelBeendet;
+    }
     /**
      * @Autor LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
