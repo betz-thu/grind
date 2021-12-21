@@ -3,12 +3,17 @@ package grind.kacheln.impl;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Test;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
 public class BaumTest {
 
     private Spielfigur figur;
+    private PImage img;
+    private PApplet app;
+    private String dateiname;
 
     @Test
     public void istBetretbar() {
@@ -24,5 +29,7 @@ public class BaumTest {
 
     @Test
     public void ladeDatei() {
+        this.img = app.loadImage(dateiname);
+        Assert.assertEquals(img,dateiname);
     }
 }

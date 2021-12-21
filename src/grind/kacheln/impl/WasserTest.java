@@ -4,16 +4,17 @@ import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
 public class WasserTest {
 
     private Spielfigur figur;
-
-    @Before
-    public void setUp() throws Exception {
-    }
+    private PImage img;
+    private PApplet app;
+    private String dateiname;
 
     @Test
     public void istBetretbar() {
@@ -29,5 +30,7 @@ public class WasserTest {
 
     @Test
     public void ladeDatei() {
+        this.img = app.loadImage(dateiname);
+        Assert.assertEquals(img,dateiname);
     }
 }
