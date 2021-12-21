@@ -50,7 +50,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-        aktiviereWaffe(testwaffe);
+        setAktiveWaffe(testwaffe);
         inventarGroeße=10;
         guiGroeße=50;
 }
@@ -125,7 +125,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         aktiveWaffe.setAusrichtung(this.getAusrichtung());
 
 
-        }
 
 
 
@@ -320,10 +319,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
     }
 
-    public void aktiviereWaffe(Waffe waffe){
-        if(aktiveWaffe!=null){
-            getInventar().add(aktiveWaffe);
-        }
+    public void setAktiveWaffe(Waffe waffe){
+
         aktiveWaffe = waffe;
     }
 
