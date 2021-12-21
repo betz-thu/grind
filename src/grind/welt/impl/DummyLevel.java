@@ -1,6 +1,8 @@
 package grind.welt.impl;
 
+import grind.movables.impl.*;
 import grind.util.Richtung;
+
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
@@ -13,6 +15,7 @@ import grind.movables.impl.Gold;
 import grind.movables.impl.Heiltrank;
 import grind.movables.impl.Mango;
 import grind.movables.impl.Spielfigur;
+
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,8 @@ public class DummyLevel implements ILevel {
         positionen.add(new Zombie(ZombiePosX,ZombiPosY,tileMap));
         positionen.add(new Zombie(350, 600, tileMap));
         positionen.add(new Spielfigur(600, 400,Richtung.N));
+        positionen.add(new Schwert(650,450,1));
+
     }
 
     /**

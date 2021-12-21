@@ -31,8 +31,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private int inventarGroeße;
     private int guiGroeße;
-
-    Waffe aktiveWaffe;
+    public boolean waffeAusgestattet=false;
+    Waffe aktiveWaffe = testwaffe;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -121,11 +121,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
-        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+        aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
+        aktiveWaffe.setAusrichtung(this.getAusrichtung());
 
-            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
-            aktiveWaffe.setAusrichtung(this.getAusrichtung());
-            aktiveWaffe.zeichne(app);
+
         }
 
 
@@ -184,6 +183,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
             if (inventar.get(position) instanceof Nahrung) {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
+            }
+            else if(inventar.get(position) instanceof Waffe){
+                Waffe waffe =  (Waffe) inventar.get(position);
+                this.setAktiveWaffe(waffe);
+                inventar.remove(position);
+                waffeAusgestattet=true;
+                //inventar.get(position).beimAnwenden(this);
+                //Waffe nicht entfernen, soll im Inventar verbleiben?
             }
         }
     }

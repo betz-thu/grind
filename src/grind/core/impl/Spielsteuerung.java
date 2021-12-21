@@ -8,6 +8,7 @@ import grind.movables.ISchatz;
 import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
+import grind.movables.impl.*;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
 import grind.util.Einstellungen;
@@ -345,8 +346,15 @@ public class Spielsteuerung extends PApplet {
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
                 }
                 else if(movable instanceof ISchatz){
-                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
-                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
+                    if (!(movable instanceof Waffe)) {
+                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
+                    }
+                    if(!(movable instanceof Waffe)){
+                        spielmodell.removeMovable(movable);
+                    } // löscht Schatz aus Level
+                    if((movable instanceof Waffe) & !(Spieler.waffeAusgestattet)) {
+                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                    }
                     return;
                 }
                 else if(movable instanceof Nahrung){
