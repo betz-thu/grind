@@ -46,7 +46,9 @@ public class DateiService {
         this.gsonbuilder = new GsonBuilder();
         this.gsonbuilder.setLenient();
 /**
- *
+ * Custom Serializer für die Serialisierung von einem IMovable.
+ * Vorgehen:
+ * 1. Standartmäßige Serialisierung von IMovable mit GSON
  */
         JsonSerializer<IMovable> iMovableJsonSerializer = new JsonSerializer<IMovable>() {
             @Override
