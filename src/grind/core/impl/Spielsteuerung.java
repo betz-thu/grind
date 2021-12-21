@@ -19,6 +19,7 @@ import grind.kacheln.ITileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -33,6 +34,7 @@ public class Spielsteuerung extends PApplet {
     final Spielfigur Spieler;
     final int SpielerGeschwindigkeit;
     int Tastendruck;
+    private String fTaste;
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -192,16 +194,56 @@ public class Spielsteuerung extends PApplet {
      * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
      */
     private void szeneUeberspringen() {
+        abfrageFTasten();
+    }
+
+    /**
+     * @Autor LuHe20
+     * Cheat für das Überspringen einer Szene mit F12.
+     * Speichern der Spielwelt mit F11
+     * Laden der Spielwelt mit F10
+     */
+    private void abfrageFTasten() {
         //F12 neue Szene
         if (keyPressed && !pressed) {
             if (keyCode == 123) {
                 pressed = true;
+                fTaste = "F12";
+            } else if(keyCode == 122){
+                pressed = true;
+                fTaste = "F11";
+            } else if(keyCode == 121){
+                pressed = true;
+                fTaste = "F10";
             }
-        } else if (!keyPressed && pressed) {
+        } else if(!keyPressed && pressed){
+            switch (fTaste) {
+                case "F12":
+
+                    levelBeendet = true;
+
+                    break;
+                case "F11":
+
+                    this.spielmodell.speichereSpielwelt();
+
+                    System.out.println("F11");
+
+                    break;
+                case "F10":
+
+                    ISpielwelt welt;
+                    welt = this.spielmodell.ladeSpielwelt();
+                    this.spielmodell.setSpielwelt(welt);
+                    spielmodell.setSzeneNr(0);
+                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+                    System.out.println("F10");
+
+                    break;
+            }
+
             pressed = false;
-            System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
         }
     }
 
@@ -210,8 +252,16 @@ public class Spielsteuerung extends PApplet {
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
-        //Nachdem das Levelende erfolgreich beendet wurde, wird in die nächste Szene gesprungen
-        if (levelBeendet) {
+        starteNeueSzene();
+
+    }
+
+    /**
+     * @Autor LuHe20
+     * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
+     */
+    private void starteNeueSzene() {
+        if(levelBeendet){
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
@@ -229,27 +279,32 @@ public class Spielsteuerung extends PApplet {
 
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
-        int posY = spielmodell.getFigur().getPosY();
-        int posX = spielmodell.getFigur().getPosX();
-        int kachelX = posY / Einstellungen.LAENGE_KACHELN_Y;
-        int kachelY = posX / Einstellungen.LAENGE_KACHELN_X;
-        IKachel aktuelleKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(kachelX, kachelY);
-        if (aktuelleKachel instanceof Levelausgang) {
-            System.out.println(aktuelleKachel);
-            if (spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / Einstellungen.LAENGE_KACHELN_Y, spielmodell.getFigur().getPosX() / Einstellungen.LAENGE_KACHELN_X) instanceof Levelausgang) {
-                System.out.println(spielmodell.getSzene().getLevel().getTileMap().getKachel(spielmodell.getFigur().getPosY() / 39, spielmodell.getFigur().getPosX() / 39));
-                levelBeendet = true;
-            }
-            for (int i = 0; i < 5; i++) {
-                if (spielmodell.getFigur().getInventar().size() >= i + 1) {
-                    if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
-                        System.out.println("Levelende Bedingung wurde gefunden");
-                        levelBeendet = true;
-                    }
+        pruefeLevelausgang();
+
+        for (int i = 0; i < 5; i++) {
+            if (spielmodell.getFigur().getInventar().size() >= i + 1) {
+                if (spielmodell.getFigur().getInventar().get(i) instanceof Apfel) {
+                    System.out.println("Levelende Bedingung wurde gefunden");
+                    levelBeendet = true;
                 }
             }
         }
-
+        return levelBeendet;
+    }
+    /**
+     * @Autor LuHe20
+     * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
+     * eine Kachel des Typs: Levelausgang ist.
+     * @return levelBeendet
+     */
+    private boolean pruefeLevelausgang() {
+        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
+        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
+        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
+        if (spielerKachel instanceof Levelausgang){
+//            System.out.println(spielerKachel);
+            levelBeendet = true;
+        }
         return levelBeendet;
     }
 /**

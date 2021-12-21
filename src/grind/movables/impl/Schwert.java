@@ -10,9 +10,9 @@ import processing.core.PImage;
 
 public class Schwert extends Waffe{
 
-    private int stufe;
-    PImage schwertStufe1;
-    PImage schwertStufe2;
+    transient private int stufe;
+    transient PImage schwertStufe1;
+    transient PImage schwertStufe2;
 
 
 

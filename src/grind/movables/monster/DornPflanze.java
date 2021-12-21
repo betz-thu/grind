@@ -10,14 +10,14 @@ import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 
 public class DornPflanze extends Monster {
-    private int posX;
-    private int posY;
-    private int schaden = 1;
+    transient private int posX;
+    transient private int posY;
+    transient private int schaden = 1;
 
 
 
 
-    private ITileMap tileMap;
+    transient private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
         super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);

@@ -1,5 +1,14 @@
 package grind.welt.impl;
 
+import grind.movables.impl.Movable;
+import grind.util.Richtung;
+import grind.movables.impl.Apfel;
+import grind.kacheln.impl.Levelausgang;
+import grind.movables.monster.DornPflanze;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
+import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
@@ -47,11 +56,19 @@ public class DummyLevel implements ILevel {
         positionen.add(new Spielfigur(600, 400,Richtung.N));
     }
 
+    /**
+     * Gibt die Tilemap des aktuellen Levels zurück
+     * @return Tilemap des aktuellen Levels
+     */
     @Override
     public ITileMap getTileMap() {
         return this.tileMap;
     }
 
+    /**
+     * Gibt eine Liste mit den Positionen der Movables zum Szenenstart zurück
+     * @return List<IMovable> Liste mit allen Positionen der Movables
+     */
     @Override
     public List<IMovable> getPositionen() {
         /*Random random = new Random();
@@ -68,11 +85,19 @@ public class DummyLevel implements ILevel {
         return positionen;
     }
 
+    /**
+     * Gibt das aktuelle Level zurück
+     * @return ILevel
+     */
     @Override
     public ILevel getLevel() {
         return this;
     }
 
+    /**
+     * Zeichnet die aktuelle Tilemap auf dem Applet app
+     * @param app Applet auf dem gezeichnet wird
+     */
     @Override
     public void zeichne(PApplet app) {
         tileMap.zeichne(app);

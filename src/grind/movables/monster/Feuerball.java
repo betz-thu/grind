@@ -20,7 +20,7 @@ public class Feuerball extends Monster{
     final int GESCHWINDIGKEIT= 5;
     float deltaX;
     float deltaY;
-    Spielsteuerung steuerung;
+    transient Spielsteuerung steuerung;
     final int schaden = 5;
 
 

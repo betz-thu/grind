@@ -13,6 +13,7 @@ import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
+import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class Spielmodell implements ISpielmodell {
      */
     ISpielfigur figur = new Spielfigur(0, 0, Richtung.N);
     List<IMovable> movables = new CopyOnWriteArrayList<>();
+    transient DateiService dateiService;
     List<ISchatz> schaetze = new ArrayList<>();
     List<IMonster> monster = new ArrayList<>();
 
@@ -48,6 +50,7 @@ public class Spielmodell implements ISpielmodell {
     public Spielmodell(ISpielwelt spielwelt, Spielsteuerung steuerung) {
         this.spielwelt = spielwelt;
         this.steuerung=steuerung;
+        this.dateiService = new DateiService();
     }
 
     /**
@@ -199,6 +202,13 @@ public class Spielmodell implements ISpielmodell {
         monster.setSpielmodell(this);
         movables.add(monster);
     }
+    public ISpielwelt getSpielwelt(){
+        return this.spielwelt;
+    }
+
+    public void setSpielwelt(ISpielwelt spielwelt){
+        this.spielwelt = spielwelt;
+    }
 
     /**
      * @MEGAtroniker
@@ -210,5 +220,19 @@ public class Spielmodell implements ISpielmodell {
             movables.remove(movable);
         } catch (Exception e) {}
 
+    }
+    /**
+     * Lädt mithilfe des DateiService eine JSON Datei
+     * @return die geladene Spielwelt vom Typ ISpielwelt
+     */
+    public ISpielwelt ladeSpielwelt(){
+        return this.dateiService.ladeSpielmodell("spielwelt.json");
+    }
+
+    /**
+     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
+     */
+    public void speichereSpielwelt(){
+        this.dateiService.speicheSpielmodell(this.spielwelt,"spielwelt.json");
     }
 }

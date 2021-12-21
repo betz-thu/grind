@@ -1,77 +1,42 @@
 package grind.core.impl;
 
 import grind.core.ISpielmodell;
-import grind.util.Richtung;
+import grind.movables.impl.Spielfigur;
+import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 
 public class Leveleditor extends PApplet {
+    private static int SpielfeldBreite;
+    private static int SpielfeldHoehe;
+    private Spielfigur Spieler;
+    private int SpielerGeschwindigkeit;
+    // private ITileMap tileMap;
 
     boolean pressed = false;
+    boolean levelBeendet = false;
+    DateiService dateiService;
+    ISpielwelt welt;
 
     ISpielmodell spielmodell;
 
-
+    /**
+     * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
+     * und Tilemap.
+     */
     public Leveleditor(){
         this.spielmodell = new Spielmodell(new DummySpielwelt(),new Spielsteuerung());
-    }
-    @Override
-    public void settings() {
-        size(1200, 800);
-    }
 
-    @Override
-    public void setup() {
-
+        this.dateiService = new DateiService();
+        this.welt = dateiService.ladeSpielmodell("spielwelt.json");
+        System.out.println("Geladen");
     }
 
-    @Override
-    public void draw() {
-        eingabe();
-        aktualisiere();
-        zeichne();
-    }
 
-    //TODO kann man des nicht aus Spielsteuerung hohlen? als override? gerade f12 iwäre auch ne tollle cheatMethode
-    private void eingabe() {
+//    public void speichereWelt(ISpielmodell welt){
+//        dateiService.speicheSpielmodell(welt,"spielmodell.json");
+//    }
 
-        if (keyPressed) {
-            if (key == 'a' || keyCode == LEFT) {
-                spielmodell.getFigur().bewege(Richtung.W);
-            } else if (key == 'w' || keyCode == UP) {
-                spielmodell.getFigur().bewege(Richtung.N);
-            } else if (key == 's' || keyCode == DOWN) {
-                spielmodell.getFigur().bewege(Richtung.S);
-            } else if (key == 'd' || keyCode == RIGHT) {
-                spielmodell.getFigur().bewege(Richtung.O);
-            }
-        }
 
-        //F12 neue Szene
-        if (keyPressed && !pressed){
-            if (keyCode == 123) {
-                pressed = true;
-            }
-        } else if(!keyPressed && pressed){
-            pressed = false;
-            System.out.println("F12");
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr()+1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
-        }
-    }
-
-    private void aktualisiere() {
-        spielmodell.bewege();
-
-    }
-
-    private void zeichne() {
-        spielmodell.zeichne(this);
-    }
-
-    @Override
-    public void mousePressed() {
-        // nur notwendig, falls Maus benötigt wird
-    }
 
 }

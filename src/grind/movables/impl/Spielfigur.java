@@ -21,7 +21,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private final float GESCHWINDIGKEIT = 3f;
     int gold = 5;
-    PImage spielfigurOhneWaffe;
+    transient PImage spielfigurOhneWaffe;
     Waffe testwaffe = new Schwert(30,30,1);
 
     int lebensenergie = 100;//Kapselung?
