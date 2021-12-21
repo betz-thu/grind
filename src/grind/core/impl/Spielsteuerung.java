@@ -5,18 +5,10 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
-import grind.movables.impl.*;
 import grind.movables.impl.Apfel;
-import grind.movables.impl.Movable;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
-import grind.movables.monster.Monster;
-import grind.util.Richtung;
-import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ISpielwelt;
@@ -183,6 +175,18 @@ public class Spielsteuerung extends PApplet {
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
 
+            }
+            //Inventar öffnen
+            if(keyPressed) {
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
+                    Spieler.setInventarGroeße(30);
+                    Spieler.playBackpackOpenSound();
+                    keyPressed = false;
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
+                    Spieler.setInventarGroeße(10);
+                    keyPressed = false;
+                    Spieler.playBackpackCloseSound();
+                }
             }
         }
 
