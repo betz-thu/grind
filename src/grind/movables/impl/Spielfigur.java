@@ -31,7 +31,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private int inventarGroeße;
     private int guiGroeße;
-
+    public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
     /**
      * @MEGAtroniker
@@ -194,8 +194,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 Waffe waffe =  (Waffe) inventar.get(position);
                 this.setAktiveWaffe(waffe);
                 inventar.remove(position);
+                waffeAusgestattet=true;
                 //inventar.get(position).beimAnwenden(this);
-                //Waffe nicht entfernen, soll im Inventar verbleiben
+                //Waffe nicht entfernen, soll im Inventar verbleiben?
             }
         }
     }

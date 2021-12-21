@@ -322,15 +322,9 @@ public class Spielsteuerung extends PApplet {
         int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
         int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
         int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
-
-
-
         int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
         int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
         int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
-
-
-
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
@@ -345,9 +339,17 @@ public class Spielsteuerung extends PApplet {
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
                 }
                 else if(movable instanceof ISchatz){
-                    ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
-                    if(!(movable instanceof Waffe)){spielmodell.removeMovable(movable);} // löscht Schatz aus Level
+                    if (!(movable instanceof Waffe)) {
+                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
+                    }
+                    if(!(movable instanceof Waffe)){
+                        spielmodell.removeMovable(movable);
+                    } // löscht Schatz aus Level
+                    if((movable instanceof Waffe) & !(Spieler.waffeAusgestattet)) {
+                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                    }
                     return;
+
                 }
                 else if(movable instanceof Nahrung){
                     // TODO: Nahrung zu Inventar hinzufügen
