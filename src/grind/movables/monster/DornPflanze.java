@@ -18,8 +18,6 @@ public class DornPflanze extends Monster {
         super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
         this.tileMap = tileMap;
         setSchaden(schaden);
-
-
     }
 
     @Override
