@@ -123,10 +123,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
-        if(app.key==' ') {
-            aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
-            aktiveWaffe.setAusrichtung(this.getAusrichtung());
-        }
+
+        aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
+        aktiveWaffe.setAusrichtung(this.getAusrichtung());
+
+
         }
 
 

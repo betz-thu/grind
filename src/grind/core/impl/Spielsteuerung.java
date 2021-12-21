@@ -5,10 +5,7 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
-import grind.movables.impl.Apfel;
-import grind.movables.impl.Levelende;
-import grind.movables.impl.Nahrung;
-import grind.movables.impl.Spielfigur;
+import grind.movables.impl.*;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
 import grind.util.Einstellungen;
@@ -349,7 +346,7 @@ public class Spielsteuerung extends PApplet {
                 }
                 else if(movable instanceof ISchatz){
                     ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // Erhöht Gold
-                    spielmodell.removeMovable(movable); // löscht Schatz aus Level
+                    if(!(movable instanceof Waffe)){spielmodell.removeMovable(movable);} // löscht Schatz aus Level
                     return;
                 }
                 else if(movable instanceof Nahrung){
