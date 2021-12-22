@@ -412,6 +412,10 @@ public class Spielsteuerung extends PApplet {
         } else return false;
     }
 
+    /**
+     * @Autor MurderDeathKill
+     * Anzeige von Titel und Level im Window-Titel
+     */
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
