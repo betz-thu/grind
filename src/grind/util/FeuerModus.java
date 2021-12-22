@@ -9,5 +9,4 @@ public enum FeuerModus {
     SEMIRANDOM,         //zufälliger aber etwas vorhersehbarer Schussabstand
     KONSTANT            //vorhersehbarer Schussabstand
 
-
 }

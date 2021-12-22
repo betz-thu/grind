@@ -8,6 +8,7 @@ import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.FeuerMonster;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.LabyrinthTestMonster;
 import grind.util.FeuerModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
@@ -52,7 +53,7 @@ public class Spielmodell implements ISpielmodell {
         this.dateiService = new DateiService();
     }
 
-    /**
+   /* /**
      * Löscht Movable aus Liste der Positionen und aus Liste der movables
      * z. B. Für das Einsammeln eines Schatzes
      * @param movable
@@ -114,6 +115,7 @@ public class Spielmodell implements ISpielmodell {
         kopiereMovables();
         IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
         addMonster(feuerMonster);
+        addMonster(new LabyrinthTestMonster(200,200,tileMap,steuerung,Richtung.W,100,FeuerModus.KONSTANT));
     }
 
     /**

@@ -1,6 +1,7 @@
 package grind.welt.impl;
 
 import grind.movables.impl.*;
+import grind.movables.monster.LabyrinthTestMonster;
 import grind.util.Richtung;
 
 import grind.movables.monster.DornPflanze;
