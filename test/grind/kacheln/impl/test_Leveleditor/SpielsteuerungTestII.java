@@ -1,5 +1,6 @@
-package grind.core.impl;
+package grind.kacheln.impl.test_Leveleditor;
 
+import grind.core.impl.Spielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.impl.Spielfigur;
