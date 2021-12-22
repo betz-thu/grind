@@ -20,4 +20,5 @@ public class Einstellungen {
     public static final int GROESSE_MANGO = Einstellungen.LAENGE_KACHELN_X/2;
     public static final int GROESSE_FEUERBALL = Einstellungen.LAENGE_KACHELN_X/4;
     public static final int GROESSE_FEUERMONSTER = Einstellungen.LAENGE_KACHELN_X/2;
+    public static final String TITLE = "The Grind";
 }

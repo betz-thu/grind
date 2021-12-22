@@ -65,6 +65,7 @@ public class Spielsteuerung extends PApplet {
         return SpielfeldHoehe;
     }
 
+
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
@@ -82,7 +83,7 @@ public class Spielsteuerung extends PApplet {
     public void setup() {
         imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
-
+        frame.setTitle(Einstellungen.TITLE);
     }
 
     /**
