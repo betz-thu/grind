@@ -85,7 +85,7 @@ public class Spielsteuerung extends PApplet {
     public void setup() {
         imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
-        AnzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
 
     /**
@@ -273,7 +273,7 @@ public class Spielsteuerung extends PApplet {
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
-            AnzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
+            anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
         }
     }
 
@@ -412,7 +412,7 @@ public class Spielsteuerung extends PApplet {
         } else return false;
     }
 
-    public void AnzeigeTitelLevel(int LevelNr){
+    public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 }
