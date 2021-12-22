@@ -48,7 +48,9 @@ public class DummyLevel implements ILevel {
         positionen.add(new Zombie(350, 600, tileMap));
         positionen.add(new Spielfigur(600, 400,Richtung.N));
         positionen.add(new Schwert(650,450,1));
-
+        positionen.add(new SmaragdSchluessel(700, 500));
+        positionen.add(new SaphirSchluessel(700, 550));
+        positionen.add(new RubinSchluessel(700, 600));
     }
 
     /**
