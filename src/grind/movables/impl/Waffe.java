@@ -10,9 +10,14 @@ public abstract class Waffe extends Gegenstand{
     }
     public abstract int getSchaden();
     public abstract int getStufe();
-    public abstract void beimAnwenden(ISpielfigur figur);
-//        was passiert beim Anwenden?
-            //Position der Waffe ändern
+    public void beimAnwenden(ISpielfigur figur){
+
+
+        //        was passiert beim Anwenden?
+        //Position der Waffe ändern
+    }
+
+
 //        if(pruefeKollision){
 //
 //        }

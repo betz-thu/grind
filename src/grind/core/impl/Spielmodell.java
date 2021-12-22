@@ -13,7 +13,6 @@ import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
-import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +85,8 @@ public class Spielmodell implements ISpielmodell {
                 break;
             }
         }
-    */
 
+    */
     }
 
     /**
@@ -136,6 +135,7 @@ public class Spielmodell implements ISpielmodell {
             if (movable instanceof ISpielfigur) {
                 ISpielfigur figur = (ISpielfigur) movable;
                 this.figur.setPosition(figur.getPosX(), figur.getPosY());
+            // Gegenstände: Apfel, Schwert...
             } else if (movable instanceof ISchatz) {
                 ISchatz schatz = (ISchatz) movable;
                 this.schaetze.add(schatz);

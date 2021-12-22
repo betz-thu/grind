@@ -19,8 +19,8 @@ class SpielfigurTest {
 
     @Test
     void aktiviereWaffe() {
-        figur.aktiviereWaffe(schwert2);
-        figur.aktiviereWaffe(schwert1);
+        figur.setAktiveWaffe(schwert2);
+        figur.setAktiveWaffe(schwert1);
         boolean waffeImInventar = false;
         for (int i=0; i<figur.getInventar().size(); i++){
             if (figur.getInventar().get(i) instanceof Waffe){
