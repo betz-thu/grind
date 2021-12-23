@@ -12,7 +12,5 @@ public abstract class Nahrung extends Gegenstand{
 
     public void beimAnwenden(ISpielfigur figur){
         figur.setLebensenergie((figur.getLebensenergie()+this.getPunkte()));
-
     }
-
 }

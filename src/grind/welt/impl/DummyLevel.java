@@ -30,6 +30,17 @@ public class DummyLevel implements ILevel {
     ITileMap tileMap;
     ArrayList<IMovable> positionen = new ArrayList<>();
 
+    public enum Progress {
+        GETRARNT,
+        SICHTBAR,
+        AKTIV
+    }
+
+    Progress progress = Progress.GETRARNT;
+
+    public Progress getProgress() {
+        return progress;
+    }
 
     public DummyLevel (){
 

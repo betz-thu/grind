@@ -14,6 +14,7 @@ import grind.movables.monster.Monster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ISpielwelt;
+import grind.welt.impl.DummyLevel;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -29,6 +30,8 @@ public class Spielsteuerung extends PApplet {
     final int SpielerGeschwindigkeit;
     int Tastendruck;
     private String fTaste;
+    private int levelTimeOffset;
+    private int letzteZeitanzeige;
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -75,7 +78,6 @@ public class Spielsteuerung extends PApplet {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         size(SpielfeldBreite, SpielfeldHoehe);
-
     }
 
     /**
@@ -274,11 +276,20 @@ public class Spielsteuerung extends PApplet {
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
             anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
+            levelTimeOffset = millis();
+
+            //println(" Zeit im Level: " + (/1000.0);
         }
     }
 
     private void zeichne() {
         spielmodell.zeichne(this);
+        anzeigeZeit(millis() - levelTimeOffset);
+    }
+
+    private void anzeigeZeit(int mSek){
+        fill(55,55,155);
+        text(String.format("%.2f [sec]",mSek/1000.0), SpielfeldBreite-60,15);
     }
 
     @Override
@@ -314,6 +325,11 @@ public class Spielsteuerung extends PApplet {
         IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
         if (spielerKachel instanceof Levelausgang){
 //            System.out.println(spielerKachel);
+            if (spielmodell.getSzene() instanceof DummyLevel){
+                DummyLevel dl = (DummyLevel) spielmodell.getSzene();
+                if (dl.getProgress() == DummyLevel.Progress.AKTIV)
+                    levelBeendet = true;
+            }
             levelBeendet = true;
         }
         return levelBeendet;
@@ -369,7 +385,6 @@ public class Spielsteuerung extends PApplet {
                 if (movable instanceof Monster){
                     System.out.println(((Monster) movable).getLebensenergie());
                     ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
-
                 }
             }
         }
