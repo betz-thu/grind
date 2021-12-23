@@ -24,6 +24,17 @@ import processing.core.PConstants;
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
 public class Spielsteuerung extends PApplet {
+
+    public enum LevelProgress {
+        GETRARNT,
+        SICHTBAR,
+        AKTIV
+    }
+
+
+    LevelProgress levelprogress = LevelProgress.GETRARNT;
+
+
     private int SpielfeldBreite;
     private int SpielfeldHoehe;
     final Spielfigur Spieler;
@@ -31,7 +42,6 @@ public class Spielsteuerung extends PApplet {
     int Tastendruck;
     private String fTaste;
     private int levelTimeOffset;
-    private int letzteZeitanzeige;
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -262,8 +272,22 @@ public class Spielsteuerung extends PApplet {
         pruefeKollisionen();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
+        pruefeLevelzeit();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
+    }
+
+    private void pruefeLevelzeit(){
+        if (levelprogress == LevelProgress.GETRARNT &&  (millis() - levelTimeOffset) > 5000) {
+            levelprogress = LevelProgress.SICHTBAR;
+            Levelausgang la = spielmodell.getTileMap().getLevelausgang();  // Levelende-Kachel
+            la.setLevelprogress(levelprogress);
+        }
+        else if (levelprogress == LevelProgress.SICHTBAR &&  (millis() - levelTimeOffset) > 15000) {
+            levelprogress = LevelProgress.AKTIV;
+            Levelausgang la = spielmodell.getTileMap().getLevelausgang();  // Levelende-Kachel
+            la.setLevelprogress(levelprogress);
+        }
     }
 
     /**
@@ -277,19 +301,14 @@ public class Spielsteuerung extends PApplet {
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
             anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
             levelTimeOffset = millis();
-
-            //println(" Zeit im Level: " + (/1000.0);
+            levelprogress=LevelProgress.GETRARNT;
+            spielmodell.getTileMap().getLevelausgang().setLevelprogress(levelprogress);
         }
     }
 
     private void zeichne() {
         spielmodell.zeichne(this);
         anzeigeZeit(millis() - levelTimeOffset);
-    }
-
-    private void anzeigeZeit(int mSek){
-        fill(55,55,155);
-        text(String.format("%.2f [sec]",mSek/1000.0), SpielfeldBreite-60,15);
     }
 
     @Override
@@ -320,16 +339,13 @@ public class Spielsteuerung extends PApplet {
      * @return levelBeendet
      */
     private boolean pruefeLevelausgang() {
+
+        if (levelprogress != LevelProgress.AKTIV)
+            return false;
         int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
         int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
         IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
         if (spielerKachel instanceof Levelausgang){
-//            System.out.println(spielerKachel);
-            if (spielmodell.getSzene() instanceof DummyLevel){
-                DummyLevel dl = (DummyLevel) spielmodell.getSzene();
-                if (dl.getProgress() == DummyLevel.Progress.AKTIV)
-                    levelBeendet = true;
-            }
             levelBeendet = true;
         }
         return levelBeendet;
@@ -434,5 +450,14 @@ public class Spielsteuerung extends PApplet {
      */
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
+    }
+    /**
+     * @Autor MurderDeathKill
+     * Anzeige der Levelzeit rechts/oben im Spielfenster
+     * @param mSek Levelzeit in ms
+     */
+    private void anzeigeZeit(int mSek){
+        fill(30,30,180);  // Blau
+        text(String.format("%.2f [sec]",mSek/1000.0), SpielfeldBreite-60,15);
     }
 }

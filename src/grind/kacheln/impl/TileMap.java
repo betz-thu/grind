@@ -25,6 +25,10 @@ public class TileMap implements ITileMap {
     List<IKachel> kachelarten = new ArrayList<>();
     transient Random rand = new Random();
 
+    public Levelausgang getLevelausgang() {
+        return (Levelausgang) levelausgang;
+    }
+
     /**
      *
      */

@@ -1,7 +1,9 @@
 package grind.kacheln.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.util.Einstellungen;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -10,9 +12,15 @@ import processing.core.PImage;
 public class Levelausgang implements IKachel {
     transient PImage img;
     transient boolean bildGeladen = false;
+    Spielsteuerung.LevelProgress levelprogress;
+
+    public void setLevelprogress(Spielsteuerung.LevelProgress levelprogress) {
+        this.levelprogress = levelprogress;
+    }
 
     public Levelausgang(){
         this.img = new PImage();
+        levelprogress = Spielsteuerung.LevelProgress.GETRARNT;
         //Bild hier laden eager
     }
     /**
@@ -55,11 +63,24 @@ public class Levelausgang implements IKachel {
      */
     @Override
     public void zeichne(PApplet app, int x, int y) {
-        app.pushStyle();
-        app.fill(0,0,0);
-        app.stroke(120);
-        app.strokeWeight(2f);
-        app.rect(x, y, 39, 39);
-        app.popStyle();
+        if (levelprogress == Spielsteuerung.LevelProgress.GETRARNT){
+            app.image(getImage(app), x, y);
+        }
+        else if (levelprogress == Spielsteuerung.LevelProgress.SICHTBAR){
+            app.pushStyle();
+            app.fill(100,100,100);
+            app.stroke(120);
+            app.strokeWeight(2f);
+            app.rect(x, y, 39, 39);
+            app.popStyle();
+        }
+        else {
+            app.pushStyle();
+            app.fill(0, 0, 0);
+            app.stroke(120);
+            app.strokeWeight(2f);
+            app.rect(x, y, 39, 39);
+            app.popStyle();
+        }
     }
 }
