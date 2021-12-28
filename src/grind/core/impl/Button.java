@@ -3,7 +3,7 @@ package grind.core.impl;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
-class Button extends PApplet {
+public class Button extends PApplet {
 
     private int typ;
     private final static int breite = Einstellungen.LAENGE_KACHELN_X * 3;
