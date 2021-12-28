@@ -215,6 +215,8 @@ public class Leveleditor extends PApplet {
     private void zeichne() {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap(this);
+        zeichneAssetMenu(this, this.menuArrayKacheln);
+
 //        zeichneMovableMenu(this, this.menuArrayMovables);
 
 
@@ -300,6 +302,19 @@ public class Leveleditor extends PApplet {
         frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
     }
 
+    private void zeichneAssetMenu(PApplet app, IKachel[][] menuArray){
+        int mapAussenX = SpielfeldBreite;
+        int mapAussenY = 0;
+        for (int i = 0; i < menuArray.length; i++){
+            menuArray[i][0].zeichne(app, mapAussenX,mapAussenY);
+            mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
+
+            if (mapAussenY >= SpielfeldHoehe){
+                mapAussenY = 0;
+                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
+            }
+        }
+    }
 
 
     private void zeichneTileMap(PApplet app){
