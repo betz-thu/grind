@@ -35,7 +35,7 @@ public class Leveleditor extends PApplet {
     private ISpielmodell spielmodell;
     private TileMap tileMap;
     private IKachel[][] menuArrayKacheln;
-
+    private IKachel aktuelleKachel;
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
@@ -50,7 +50,7 @@ public class Leveleditor extends PApplet {
         this.dateiService = new DateiService();
 //        this.Spieler = (Spielfigur) spielmodell.getFigur();
 //        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-
+        this.aktuelleKachel = null;
 
 
 
@@ -216,16 +216,29 @@ public class Leveleditor extends PApplet {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap(this);
         zeichneAssetMenu(this, this.menuArrayKacheln);
-
 //        zeichneMovableMenu(this, this.menuArrayMovables);
-
+        zeichneMausKachel(this, aktuelleKachel, mouseX, mouseY);
 
 
     }
 
     @Override
     public void mousePressed() {
+        int mausXmenu = (mouseX - SpielfeldBreite) / Einstellungen.LAENGE_KACHELN_X;
+        int mausYmenu = mouseY / Einstellungen.LAENGE_KACHELN_Y;
+        int mausXkachel = mouseX / Einstellungen.LAENGE_KACHELN_X;
+        int mausYkachel = mouseY / Einstellungen.LAENGE_KACHELN_Y;
 
+        if (mouseButton == LEFT) {
+            if (mouseX > SpielfeldBreite && mouseX <= SpielfeldBreite + menuBreite * Einstellungen.LAENGE_KACHELN_X) {
+                if (mouseY < menuHoehe * Einstellungen.LAENGE_KACHELN_Y) {
+                    aktuelleKachel = getMenukachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
+                }
+            }
+
+        } else if (mouseButton == RIGHT){
+            aktuelleKachel = null;
+        }
     }
 
     public boolean ueberpruefeLevelende() {
@@ -316,6 +329,20 @@ public class Leveleditor extends PApplet {
         }
     }
 
+    private IKachel getMenukachel (int mausY, int mausX, IKachel[][] iKachel){
+
+        return iKachel[mausY][mausX];
+    }
+
+    private void zeichneMausKachel(PApplet app, IKachel aktuelleKachel, int mausX, int mausY){
+        if (aktuelleKachel != null) {
+            pushStyle();
+            app.rectMode(PConstants.CENTER);
+            app.imageMode(PConstants.CENTER);
+            aktuelleKachel.zeichne(app, mausX, mausY);
+            popStyle();
+        }
+    }
 
     private void zeichneTileMap(PApplet app){
         tileMap.zeichne(app);
