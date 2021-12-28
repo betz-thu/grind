@@ -235,7 +235,9 @@ public class Leveleditor extends PApplet {
                     aktuelleKachel = getMenukachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
                 }
             }
-
+            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null)) {
+                tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
+            }
         } else if (mouseButton == RIGHT){
             aktuelleKachel = null;
         }
