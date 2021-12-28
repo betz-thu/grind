@@ -24,6 +24,12 @@ public class Leveleditor extends PApplet {
 
     private int menuBreite = 1;
     private int menuHoehe = 8;
+    private int breiteExit;
+    private int breiteSpeichern;
+    private int breiteLaden;
+    private int breiteLeeren;
+    private int breiteLevel;
+    private int breiteSiedlung;
     // private ITileMap tileMap;
 
     private int Tastendruck;
@@ -36,6 +42,12 @@ public class Leveleditor extends PApplet {
     private TileMap tileMap;
     private IKachel[][] menuArrayKacheln;
     private IKachel aktuelleKachel;
+    private Button exitButton;
+    private Button speichernButton;
+    private Button ladeButton;
+    private Button leerenButton;
+    private Button levelButton;
+    private Button siedlungButton;
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
@@ -51,7 +63,19 @@ public class Leveleditor extends PApplet {
 //        this.Spieler = (Spielfigur) spielmodell.getFigur();
 //        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         this.aktuelleKachel = null;
+        this.exitButton = new Button(0);
+        this.speichernButton = new Button(1);
+        this.ladeButton = new Button(2);
+        this.leerenButton = new Button(3);
+        this.levelButton = new Button(4);
+        this.siedlungButton = new Button(5);
 
+        this.breiteExit = exitButton.getBreite();
+        this.breiteSpeichern = exitButton.getBreite() + speichernButton.getBreite();
+        this.breiteLaden = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite();
+        this.breiteLeeren = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite();
+        this.breiteLevel = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite() + levelButton.getBreite();
+        this.breiteSiedlung = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite() + levelButton.getBreite() + siedlungButton.getBreite();
 
 
         //Befüllen des Menuarrays mit den Kachelarten
@@ -218,7 +242,7 @@ public class Leveleditor extends PApplet {
         zeichneAssetMenu(this, this.menuArrayKacheln);
 //        zeichneMovableMenu(this, this.menuArrayMovables);
         zeichneMausKachel(this, aktuelleKachel, mouseX, mouseY);
-
+        zeichneButtons(this);
 
     }
 
@@ -350,9 +374,15 @@ public class Leveleditor extends PApplet {
         tileMap.zeichne(app);
     }
 
+    private void zeichneButtons(PApplet app){
 
-
-
+        exitButton.zeichne(app,0, SpielfeldHoehe);
+        speichernButton.zeichne(app, breiteExit, SpielfeldHoehe);
+        ladeButton.zeichne(app, breiteSpeichern, SpielfeldHoehe);
+        leerenButton.zeichne(app, breiteLaden, SpielfeldHoehe);
+        levelButton.zeichne(app, breiteLeeren, SpielfeldHoehe);
+        siedlungButton.zeichne(app, breiteLevel, SpielfeldHoehe);
+    }
 
     public void speichereSpielwelt(){
         //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
