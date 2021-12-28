@@ -183,17 +183,23 @@ public class Spielsteuerung extends PApplet {
             }
             //Inventar öffnen
             if(keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
-                    Spieler.setInventarGroeße(30);
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                    Spieler.setInventarGuiGroeße(30);
                     Spieler.playBackpackOpenSound();
                     keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
-                    Spieler.setInventarGroeße(10);
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                    Spieler.setInventarGuiGroeße(10);
                     keyPressed = false;
                     Spieler.playBackpackCloseSound();
                 }
+
             }
+
+
+
         }
+
+
 
         szeneUeberspringen();
     }
@@ -284,6 +290,9 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+        //Items mit klick verwenden
+        Spieler.klickItems(mouseX, mouseY);
+
     }
 
     public boolean ueberpruefeLevelende() {

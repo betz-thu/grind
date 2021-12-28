@@ -3,7 +3,6 @@ package grind.movables.impl;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -29,7 +28,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     final List<Gegenstand> inventar;
 
 
-    private int inventarGroeße;
+    private int inventarGuiGroeße;
     private int guiGroeße;
     public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
@@ -51,7 +50,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
         setAktiveWaffe(testwaffe);
-        inventarGroeße=10;
+        inventarGuiGroeße =10;
         guiGroeße=50;
 }
 
@@ -68,8 +67,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneKontostand(app);
 
         //Zeichne kleines Inventar
-        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
+        zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
 
 
         gameover(app);
@@ -328,12 +327,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return this.testwaffe;
     }
 
-    public void setInventarGroeße(int inventarGroeße) {
-        this.inventarGroeße = inventarGroeße;
+    public void setInventarGuiGroeße(int inventarGuiGroeße) {
+        this.inventarGuiGroeße = inventarGuiGroeße;
     }
 
-    public int getInventarGroeße() {
-        return inventarGroeße;
+    public int getInventarGuiGroeße() {
+        return inventarGuiGroeße;
     }
 
     public void playApfelSound(){
@@ -359,6 +358,20 @@ public class Spielfigur extends Movable implements ISpielfigur {
             clip.start();
         } catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void klickItems(int x, int y){
+        boolean xBereich;
+        boolean yBereich;
+        for(int i=0; i<inventar.size(); i++){
+            xBereich = (x<=inventar.get(i).getPosX()+guiGroeße/2 && x>inventar.get(i).getPosX()-guiGroeße/2);
+            yBereich = (y<=inventar.get(i).getPosY()+guiGroeße/2 && y>inventar.get(i).getPosY()-guiGroeße/2);
+            if(xBereich && yBereich){
+                System.out.println("clicked");
+                benutze(i);
+                return;
+            }
         }
     }
 }
