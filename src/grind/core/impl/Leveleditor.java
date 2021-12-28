@@ -34,12 +34,15 @@ public class Leveleditor extends PApplet {
     private ISpielwelt spielwelt;
     private ISpielmodell spielmodell;
     private TileMap tileMap;
+    private IKachel[][] menuArrayKacheln;
+
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
     public Leveleditor(){
+        this.menuArrayKacheln = new IKachel[menuHoehe][menuBreite];
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         //this.spielsteuerung = new Spielsteuerung();
@@ -47,6 +50,20 @@ public class Leveleditor extends PApplet {
         this.dateiService = new DateiService();
 //        this.Spieler = (Spielfigur) spielmodell.getFigur();
 //        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+
+
+
+
+        //Befüllen des Menuarrays mit den Kachelarten
+        this.menuArrayKacheln[0][0] = new Baum();
+        this.menuArrayKacheln[1][0] = new DummyHindernis();
+        this.menuArrayKacheln[2][0] = new Fels();
+        this.menuArrayKacheln[3][0] = new Holzbrücke();
+        this.menuArrayKacheln[4][0] = new Levelausgang();
+        this.menuArrayKacheln[5][0] = new Wasser();
+        this.menuArrayKacheln[6][0] = new Weg();
+        this.menuArrayKacheln[7][0] = new Wiese();
+
 
 
 
@@ -176,6 +193,8 @@ public class Leveleditor extends PApplet {
     }
 
     private void aktualisiere() {
+        spielmodell.entferneToteMonster();
+        spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
     }
@@ -239,7 +258,6 @@ public class Leveleditor extends PApplet {
         }
         return levelBeendet;
     }
-
 
 
     /**
