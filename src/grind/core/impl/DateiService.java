@@ -11,7 +11,6 @@ import grind.movables.impl.*;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -129,6 +128,10 @@ public class DateiService {
                         break;
                     case "class grind.movables.impl.Mango":
                         iMovable = new Mango(posX, posY);
+                        break;
+                    case "class grind.movables.impl.Schwert":
+                        iMovable = new Schwert(posX, posY, 1);
+                        break;
                     default:
                         break;
                 }
@@ -297,7 +300,7 @@ public class DateiService {
      * @param dateiname Dateiname mit .json Endung
      * @return Eine Instanz von ISpielwelt erstellt mit den Parametern der JSON Datei
      */
-    protected ISpielwelt ladeSpielmodell(String dateiname) {
+    protected ISpielwelt ladeSpielwelt(String dateiname) {
         DummySpielwelt spielwelt = new DummySpielwelt();
 
         try {
@@ -318,7 +321,7 @@ public class DateiService {
      * @param spielwelt Die zu speichernde Spielwelt
      * @param dateiname Dateiname der JSON Datei
      */
-    protected void speicheSpielmodell(ISpielwelt spielwelt, String dateiname) {
+    protected void speichereSpielwelt(ISpielwelt spielwelt, String dateiname) {
         json = gson.toJson(spielwelt);
 
 

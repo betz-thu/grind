@@ -38,7 +38,7 @@ public class LeereKachel implements IKachel {
         app.fill(25);
         app.stroke(255);
         app.strokeWeight(2f);
-        app.rect(x, y, 39, 39);
+        app.rect(x, y, Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
         app.popStyle();
     }
 }

@@ -29,6 +29,7 @@ public class Spielsteuerung extends PApplet {
     final int SpielerGeschwindigkeit;
     int Tastendruck;
     private String fTaste;
+    private DateiService dateiService;
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -49,7 +50,8 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
+        this.dateiService = new DateiService();
+        this.spielmodell = new Spielmodell(ladeSpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
 
@@ -86,6 +88,7 @@ public class Spielsteuerung extends PApplet {
         imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+
     }
 
     /**
@@ -233,21 +236,18 @@ public class Spielsteuerung extends PApplet {
 
                     break;
                 case "F11":
-
-                    this.spielmodell.speichereSpielwelt();
-
-                    System.out.println("F11");
+                    System.out.println("F11 nicht belegt");
 
                     break;
                 case "F10":
 
                     ISpielwelt welt;
-                    welt = this.spielmodell.ladeSpielwelt();
+                    welt = ladeSpielwelt();
                     this.spielmodell.setSpielwelt(welt);
                     spielmodell.setSzeneNr(0);
                     spielmodell.betreteSzene(spielmodell.getSzeneNr());
 
-                    System.out.println("F10");
+                    System.out.println("F10 - welt geladen");
 
                     break;
             }
@@ -415,4 +415,19 @@ public class Spielsteuerung extends PApplet {
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
+
+    /**
+     * Lädt mithilfe des DateiService eine JSON Datei
+     * @return die geladene Spielwelt vom Typ ISpielwelt
+     */
+    public ISpielwelt ladeSpielwelt(){
+        return dateiService.ladeSpielwelt("spielwelt.json");
+    }
+
+//    /**
+//     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
+//     */
+//    public void speichereSpielwelt(){
+//        this.dateiService.speichereSpielwelt(this.spielwelt,"spielwelt.json");
+//    }
 }
