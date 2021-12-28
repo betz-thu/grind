@@ -30,6 +30,7 @@ public class Leveleditor extends PApplet {
     private int breiteLeeren;
     private int breiteLevel;
     private int breiteSiedlung;
+    private int levelCount = 0;
     // private ITileMap tileMap;
 
     private int Tastendruck;
@@ -262,6 +263,9 @@ public class Leveleditor extends PApplet {
             if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null)) {
                 tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
             }
+
+            buttonAction(mouseY, mouseX);
+
         } else if (mouseButton == RIGHT){
             aktuelleKachel = null;
         }
@@ -372,6 +376,41 @@ public class Leveleditor extends PApplet {
 
     private void zeichneTileMap(PApplet app){
         tileMap.zeichne(app);
+    }
+
+    private void buttonAction(int y, int x){
+        if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
+            if (x < breiteExit){
+                exit();
+            } else if (x > breiteExit && x < breiteSpeichern){
+                System.out.println("speichern");
+                ILevel level = new DummyLevel();
+                level.setTilemap(tileMap);
+                spielwelt.addSzene(level);
+                tileMap = new TileMap();
+                dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+            } else if (x > breiteSpeichern && x < breiteLaden){
+                System.out.println("laden");
+                spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
+                tileMap = (TileMap) spielwelt.getSzene(0).getLevel().getTileMap();
+                levelCount = 0;
+            } else if (x > breiteLaden && x < breiteLeeren){
+                System.out.println("leeren");
+                //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
+                tileMap = new TileMap();
+                //Anstatt alle Felder mit Wiese zu nullen wie unten
+                //leereTilemap();
+            } else if (x > breiteLeeren && x < breiteLevel){
+                System.out.println("level");
+                ILevel level = new DummyLevel();
+                level.setTilemap(tileMap);
+                spielwelt.addSzene(level);
+                tileMap = new TileMap();
+                levelCount++;
+            } else if (x > breiteLevel && x < breiteSiedlung){
+                System.out.println("siedlung");
+            }
+        }
     }
 
     private void zeichneButtons(PApplet app){
