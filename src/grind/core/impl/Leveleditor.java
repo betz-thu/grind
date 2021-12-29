@@ -220,7 +220,7 @@ public class Leveleditor extends PApplet {
     private void aktualisiere() {
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
-        levelBeendet = ueberpruefeLevelende();
+        //levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
     }
 
@@ -244,7 +244,7 @@ public class Leveleditor extends PApplet {
 //        zeichneMovableMenu(this, this.menuArrayMovables);
         zeichneMausKachel(this, aktuelleKachel, mouseX, mouseY);
         zeichneButtons(this);
-
+        zeichneCounts(this);
     }
 
     @Override
@@ -271,75 +271,38 @@ public class Leveleditor extends PApplet {
         }
     }
 
-    public boolean ueberpruefeLevelende() {
-        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
-        pruefeLevelausgang();
-
-        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
-            if (spielmodell.getFigur().getInventar().size()>=i+1) {
-                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
-                    System.out.println("Levelende Bedingung wurde gefunden");
-                    levelBeendet = true;
-                    spielmodell.getFigur().getInventar().remove(i);
-                    break;
-                }
-            }
-        }
-        return levelBeendet;
-    }
-    /**
-     * @author LuHe20
-     * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
-     * eine Kachel des Typs: Levelausgang ist.
-     * @return levelBeendet
-     */
-    private boolean pruefeLevelausgang() {
-        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
-        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
-        if (spielerKachel instanceof Levelausgang){
-//            System.out.println(spielerKachel);
-            levelBeendet = true;
-        }
-        return levelBeendet;
-    }
-
-
-    /**
-     * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
-     * @param x X-Koordinate
-     * @param y Y-Koordinate
-     * @return IKachel
-     */
-    public IKachel getKachelByCoordinates(int x, int y) {
-        int j =  x/Einstellungen.LAENGE_KACHELN_X;
-        int i =  y/Einstellungen.LAENGE_KACHELN_Y;
-        return spielmodell.getTileMap().getKachel(i,j);
-    }
-
-    /**
-     * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
-     * außerhalb des Spielfelds liegen.
-     * @param x X-Koordinate
-     * @param y Y-Koordinate
-     * @return boolean
-     */
-    public boolean isSpielfeldrand(int x, int y){
-        return x <= 0 || x >= SpielfeldBreite || y <= 0 || y >= SpielfeldHoehe;
-    }
-
-    /**
-     * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
-     * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
-     * @param x X-Koordinate
-     * @param y Y-Koordinate
-     * @return boolean
-     */
-    public boolean isErlaubteKoordinate(int x, int y) {
-        if(!isSpielfeldrand(x,y)){
-            return getKachelByCoordinates(x,y).istBetretbar();
-        } else return false;
-    }
+//    public boolean ueberpruefeLevelende() {
+//        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
+//        pruefeLevelausgang();
+//
+//        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
+//            if (spielmodell.getFigur().getInventar().size()>=i+1) {
+//                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
+//                    System.out.println("Levelende Bedingung wurde gefunden");
+//                    levelBeendet = true;
+//                    spielmodell.getFigur().getInventar().remove(i);
+//                    break;
+//                }
+//            }
+//        }
+//        return levelBeendet;
+//    }
+//    /**
+//     * @author LuHe20
+//     * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
+//     * eine Kachel des Typs: Levelausgang ist.
+//     * @return levelBeendet
+//     */
+//    private boolean pruefeLevelausgang() {
+//        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
+//        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
+//        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
+//        if (spielerKachel instanceof Levelausgang){
+////            System.out.println(spielerKachel);
+//            levelBeendet = true;
+//        }
+//        return levelBeendet;
+//    }
 
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
@@ -378,11 +341,20 @@ public class Leveleditor extends PApplet {
         tileMap.zeichne(app);
     }
 
+    private void zeichneCounts(PApplet app) {
+        app.pushStyle();
+        app.textSize(12);
+        app.fill(0, 0, 0);
+        app.text("Level: " + levelCount, 20, 25);
+        app.popStyle();
+    }
+
     private void buttonAction(int y, int x){
         if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
             if (x < breiteExit){
                 exit();
             } else if (x > breiteExit && x < breiteSpeichern){
+                levelCount = 0;
                 System.out.println("speichern");
                 ILevel level = new DummyLevel();
                 level.setTilemap(tileMap);
