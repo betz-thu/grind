@@ -54,7 +54,7 @@ public class TileMap implements ITileMap {
 
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
-                zufall = rand.nextInt(6);
+                zufall = rand.nextInt(1);
                 if (zufall == 0) {
                     //this.kacheln[i][j] = this.baum;
                     this.kacheln[i][j] = this.wiese;
@@ -74,7 +74,7 @@ public class TileMap implements ITileMap {
             }
         }
 
-        this.kacheln[levelausgangI][levelausgangJ] = this.levelausgang;
+        //this.kacheln[levelausgangI][levelausgangJ] = this.levelausgang;
     }
 
     /**
@@ -133,6 +133,11 @@ public class TileMap implements ITileMap {
     @Override
     public List<IKachel> getKachelarten() {
         return this.kachelarten;
+    }
+
+    @Override
+    public void setKachel(IKachel kachel, int i, int j){
+        kacheln[i][j] = kachel;
     }
 
     /**

@@ -89,6 +89,11 @@ public class DummyLevel implements ILevel {
         return this;
     }
 
+    @Override
+    public void setTilemap(ITileMap tileMap) {
+        this.tileMap = tileMap;
+    }
+
     /**
      * Zeichnet die aktuelle Tilemap auf dem Applet app
      * @param app Applet auf dem gezeichnet wird
