@@ -15,7 +15,7 @@ public class DummySpielwelt implements ISpielwelt {
      *
      */
     public DummySpielwelt(){
-//        this.szenen.add(0,new DummyLevel());
+       this.szenen.add(0,new DummyLevel());
 //        this.szenen.add(1,new DummyLevel());
 //        this.szenen.add(2,new DummyLevel());
         this.anzahlSzenen = szenen.size();
@@ -38,5 +38,10 @@ public class DummySpielwelt implements ISpielwelt {
     public void addSzene(ISzene szene){
         szenen.add(szene);
         anzahlSzenen = szenen.size();
+    }
+
+    @Override
+    public int getSzenenanzahl() {
+        return szenen.size();
     }
 }

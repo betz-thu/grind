@@ -270,6 +270,12 @@ public class DateiService {
                     case "class grind.kacheln.impl.Levelausgang":
                         iKachel = new Levelausgang();
                         break;
+                    case "class grind.kacheln.impl.DummyHindernis":
+                        iKachel = new DummyHindernis();
+                        break;
+                    case "class grind.kacheln.impl.LeereKachel":
+                        iKachel = new LeereKachel();
+                        break;
                     default:
                         break;
                 }

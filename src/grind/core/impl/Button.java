@@ -57,6 +57,18 @@ public class Button extends PApplet {
                 app.fill(0, 0, 0);
                 app.text("Neue Siedlung", x0 + 3, y0 +25*textverhaeltnis);
                 break;
+            case 6:
+                app.fill(100, 100, 100);
+                app.rect(x0, y0, breite,hoehe);
+                app.fill(0, 0, 0);
+                app.text("<", x0 + 40, y0 +25*textverhaeltnis);
+                break;
+            case 7:
+                app.fill(100, 100, 100);
+                app.rect(x0, y0, breite,hoehe);
+                app.fill(0, 0, 0);
+                app.text(">", x0 + 40, y0 +25*textverhaeltnis);
+                break;
             default:
                 System.out.println("Falscher Buttontyp!");
                 break;
