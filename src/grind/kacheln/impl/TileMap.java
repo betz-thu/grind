@@ -75,6 +75,12 @@ public class TileMap implements ITileMap {
         }
 
         this.kacheln[levelausgangI][levelausgangJ] = this.levelausgang;
+        if (levelausgangI>0) {
+            this.kacheln[levelausgangI-1][levelausgangJ] = new SmaragdTor();
+        }
+        if (levelausgangJ>0) {
+            this.kacheln[levelausgangI][levelausgangJ-1] = new SaphirTor();
+        }
     }
 
     /**

@@ -11,12 +11,21 @@ import processing.core.PImage;
 public abstract class Schlüssel extends Gegenstand implements ISchluessel {
 
     public static int GROESSE = (int) (Einstellungen.LAENGE_KACHELN_X * 0.8);
+    PImage image = null;
 
     public Schlüssel(int posX, int posY) {
         super(posX, posY, GROESSE);
     }
 
-    abstract PImage getImage(PApplet app);
+    public abstract Farbe getFarbe();
+    abstract String getFileName();
+
+    PImage getImage(PApplet app) {
+        if (image == null) {
+            image = app.loadImage(getFileName());
+        }
+        return image;
+    }
 
     @Override
     public void zeichne(PApplet app) {

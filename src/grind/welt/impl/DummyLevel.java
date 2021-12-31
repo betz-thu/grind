@@ -35,6 +35,7 @@ public class DummyLevel implements ILevel {
 
         this.tileMap = new TileMap();
 
+
         Random random = new Random();
         positionen.add(new Gold(650, 400));
         positionen.add(new Geist(60,200,tileMap));
@@ -51,6 +52,8 @@ public class DummyLevel implements ILevel {
         positionen.add(new SmaragdSchluessel(700, 500));
         positionen.add(new SaphirSchluessel(700, 550));
         positionen.add(new RubinSchluessel(700, 600));
+
+
     }
 
     /**

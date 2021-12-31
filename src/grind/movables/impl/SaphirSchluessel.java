@@ -18,10 +18,7 @@ public class SaphirSchluessel extends Schlüssel {
     }
 
     @Override
-    PImage getImage(PApplet app) {
-        if (image == null) {
-            image = app.loadImage("key_sapphire.png");
-        }
-        return image;
+    String getFileName() {
+        return "key_sapphire.png";
     }
 }

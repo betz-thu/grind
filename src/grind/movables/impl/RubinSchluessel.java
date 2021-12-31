@@ -18,10 +18,7 @@ public class RubinSchluessel extends Schlüssel {
     }
 
     @Override
-    PImage getImage(PApplet app) {
-        if (image == null) {
-            image = app.loadImage("key_ruby.png");
-        }
-        return image;
+    String getFileName() {
+        return "key_ruby.png";
     }
 }

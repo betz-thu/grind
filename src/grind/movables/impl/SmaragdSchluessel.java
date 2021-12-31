@@ -13,15 +13,12 @@ public class SmaragdSchluessel extends Schlüssel {
     }
 
     @Override
-    public Farbe getFarbe() {
-        return Farbe.RUBIN;
+    String getFileName() {
+        return "key_emerald.png";
     }
 
     @Override
-    PImage getImage(PApplet app) {
-        if (image == null) {
-            image = app.loadImage("key_emerald.png");
-        }
-        return image;
+    public Farbe getFarbe() {
+        return Farbe.RUBIN;
     }
 }
