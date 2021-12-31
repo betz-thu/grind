@@ -52,6 +52,7 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
+
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
@@ -65,6 +66,7 @@ public class Spielsteuerung extends PApplet {
         return SpielfeldHoehe;
     }
 
+
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
@@ -73,6 +75,7 @@ public class Spielsteuerung extends PApplet {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         size(SpielfeldBreite, SpielfeldHoehe);
+
     }
 
     /**
@@ -82,7 +85,7 @@ public class Spielsteuerung extends PApplet {
     public void setup() {
         imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
-
+        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
 
     /**
@@ -259,7 +262,6 @@ public class Spielsteuerung extends PApplet {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
-
     }
 
     /**
@@ -271,6 +273,7 @@ public class Spielsteuerung extends PApplet {
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
+            anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
         }
     }
 
@@ -407,5 +410,9 @@ public class Spielsteuerung extends PApplet {
         if(!isSpielfeldrand(x,y)){
             return getKachelByCoordinates(x,y).istBetretbar();
         } else return false;
+    }
+
+    public void anzeigeTitelLevel(int LevelNr){
+        frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 }

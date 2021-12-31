@@ -1,5 +1,6 @@
-package grind.kacheln.impl;
+package grind.kacheln.impl.test_Leveleditor;
 
+import grind.kacheln.impl.Fels;
 import org.junit.Before;
 import org.junit.Test;
 
