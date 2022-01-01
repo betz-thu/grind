@@ -818,7 +818,7 @@
               "classname": "class grind.kacheln.impl.Baum"
             },
             {
-              "classname": "class grind.kacheln.impl.Weg"
+              "classname": "class grind.kacheln.impl.RubinTor"
             },
             {
               "classname": "class grind.kacheln.impl.Weg"
@@ -1941,6 +1941,11 @@
           "posY": 450.0,
           "groesse": 40,
           "classname": "class grind.movables.impl.Schwert"
+        },
+        {
+          "posX": 300.0,
+          "posY": 660.0,
+          "classname": "class grind.movables.impl.RubinSchluessel"
         }
       ],
       "classname": "class grind.welt.impl.DummyLevel"

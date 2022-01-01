@@ -12,13 +12,10 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public abstract class Monster extends Movable implements IMonster {
+
     transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
-
-
-
-
 
     /**
      * Konstruktor 1
@@ -48,9 +45,7 @@ public abstract class Monster extends Movable implements IMonster {
 
     @Override
     public void beiKollision(ISpielfigur figur) {
-
         figur.erhalteSchaden(this.schaden);
-
     }
 
     public void setSchaden(int schaden) {

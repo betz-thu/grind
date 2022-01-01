@@ -7,8 +7,8 @@ import processing.core.PImage;
 
 public abstract class Tor implements IKachel {
 
-    static transient PImage imgGeschlossen = null;
-    static transient PImage imgOffen = null;
+    transient PImage imgGeschlossen = null;
+    transient PImage imgOffen = null;
     boolean offen = false;
 
     public Tor(){
