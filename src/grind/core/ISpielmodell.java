@@ -40,7 +40,4 @@ public interface ISpielmodell {
 
     void setSpielwelt(ISpielwelt spielwelt);
 
-    ISpielwelt ladeSpielwelt();
-
-    void speichereSpielwelt();
 }

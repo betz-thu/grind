@@ -15,9 +15,9 @@ public class DummySpielwelt implements ISpielwelt {
      *
      */
     public DummySpielwelt(){
-        this.szenen.add(0,new DummyLevel());
-        this.szenen.add(1,new DummyLevel());
-        this.szenen.add(2,new DummyLevel());
+//        this.szenen.add(0,new DummyLevel());
+//        this.szenen.add(1,new DummyLevel());
+//        this.szenen.add(2,new DummyLevel());
         this.anzahlSzenen = szenen.size();
     }
 
@@ -32,5 +32,11 @@ public class DummySpielwelt implements ISpielwelt {
             throw new UnsupportedOperationException("Keine weiteren Szenen mehr implementiert!");
         }
         return szenen.get(n);
+    }
+
+    @Override
+    public void addSzene(ISzene szene){
+        szenen.add(szene);
+        anzahlSzenen = szenen.size();
     }
 }

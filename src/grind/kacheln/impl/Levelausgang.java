@@ -59,7 +59,7 @@ public class Levelausgang implements IKachel {
         app.fill(0,0,0);
         app.stroke(120);
         app.strokeWeight(2f);
-        app.rect(x, y, 39, 39);
+        app.rect(x, y, Einstellungen.LAENGE_KACHELN_X, Einstellungen.LAENGE_KACHELN_Y);
         app.popStyle();
     }
 }
