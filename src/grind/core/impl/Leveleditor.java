@@ -17,6 +17,7 @@ import grind.welt.impl.DummyLevel;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 
 
 public class Leveleditor extends PApplet {
@@ -36,6 +37,9 @@ public class Leveleditor extends PApplet {
     private int breiteZurueck;
     private int levelCount = 1;
     private int levelNr = 1;
+    private int speicherHinweisLevel;
+    private boolean speicherHinweis = true;
+
     // private ITileMap tileMap;
 
     private int Tastendruck;
@@ -58,6 +62,8 @@ public class Leveleditor extends PApplet {
     private Button siedlungButton;
     private Button bildVor;
     private Button bildZurueck;
+    private PImage spielfigurBild;
+
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
@@ -85,6 +91,7 @@ public class Leveleditor extends PApplet {
         this.siedlungButton = new Button(5);
         this.bildZurueck = new Button(6);
         this.bildVor = new Button(7);
+        this.spielfigurBild = new PImage();
 
         this.breiteExit = exitButton.getBreite();
 
@@ -142,7 +149,7 @@ public class Leveleditor extends PApplet {
         this.menuArrayKacheln[7][0] = new Wiese();
 
         //Befüllen des Menuarrays mit den Movables
-        this.menuArrayMovables[0][0] = new Schwert(0,0,1);
+        this.menuArrayMovables[0][0] = new Spielfigur(0,0, Richtung.N);
         this.menuArrayMovables[1][0] = new Schwert(0,0,1);
         this.menuArrayMovables[2][0] = new Mango(0,0);
         this.menuArrayMovables[3][0] = new Levelende(0,0,40);
@@ -207,6 +214,7 @@ public class Leveleditor extends PApplet {
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
+        spielfigurBild = loadImage("SpielfigurOhneWaffe.jpg");
 //        Spieler.ladeIMGSpielfigur(this);
 //        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
@@ -223,63 +231,63 @@ public class Leveleditor extends PApplet {
         zeichne();
     }
 
-    /**
-     * @MEGAtroniker
-     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
-     */
-    private void szeneUeberspringen() {
-        abfrageFTasten();
-    }
-
-    /**
-     * @author LuHe20
-     * Cheat für das Überspringen einer Szene mit F12.
-     * Speichern der Spielwelt mit F11
-     * Laden der Spielwelt mit F10
-     */
-    private void abfrageFTasten() {
-        //F12 neue Szene
-        if (keyPressed && !pressed) {
-            if (keyCode == 123) {
-                pressed = true;
-                fTaste = "F12";
-            } else if(keyCode == 122){
-                pressed = true;
-                fTaste = "F11";
-            } else if(keyCode == 121){
-                pressed = true;
-                fTaste = "F10";
-            }
-        } else if(!keyPressed && pressed){
-            switch (fTaste) {
-                case "F12":
-
-                    levelBeendet = true;
-
-                    break;
-                case "F11":
-
-                    speichereSpielwelt();
-
-                    System.out.println("F11");
-
-                    break;
-                case "F10":
-
-                    ISpielwelt welt;
-                    welt = ladeSpielwelt();
-                    this.spielmodell.setSpielwelt(welt);
-                    spielmodell.setSzeneNr(0);
-                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
-
-                    System.out.println("F10");
-
-                    break;
-            }
-
-            pressed = false;
-        }
-    }
+//    /**
+//     * @MEGAtroniker
+//     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+//     */
+//    private void szeneUeberspringen() {
+//        abfrageFTasten();
+//    }
+//
+//    /**
+//     * @author LuHe20
+//     * Cheat für das Überspringen einer Szene mit F12.
+//     * Speichern der Spielwelt mit F11
+//     * Laden der Spielwelt mit F10
+//     */
+//    private void abfrageFTasten() {
+//        //F12 neue Szene
+//        if (keyPressed && !pressed) {
+//            if (keyCode == 123) {
+//                pressed = true;
+//                fTaste = "F12";
+//            } else if(keyCode == 122){
+//                pressed = true;
+//                fTaste = "F11";
+//            } else if(keyCode == 121){
+//                pressed = true;
+//                fTaste = "F10";
+//            }
+//        } else if(!keyPressed && pressed){
+//            switch (fTaste) {
+//                case "F12":
+//
+//                    levelBeendet = true;
+//
+//                    break;
+//                case "F11":
+//
+//                    speichereSpielwelt();
+//
+//                    System.out.println("F11");
+//
+//                    break;
+//                case "F10":
+//
+//                    ISpielwelt welt;
+//                    welt = ladeSpielwelt();
+//                    this.spielmodell.setSpielwelt(welt);
+//                    spielmodell.setSzeneNr(0);
+//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+//
+//                    System.out.println("F10");
+//
+//                    break;
+//            }
+//
+//            pressed = false;
+//        }
+//    }
 
     private void aktualisiere() {
         spielmodell.entferneToteMonster();
