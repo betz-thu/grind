@@ -319,6 +319,7 @@ public class Leveleditor extends PApplet {
         zeichneMausMovable(this,aktuellesMovable,mouseX,mouseY);
         zeichneButtons(this);
         zeichneCounts(this);
+        zeichneFehler(this);
     }
 
     @Override
@@ -345,7 +346,7 @@ public class Leveleditor extends PApplet {
                     tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
                 } else if (aktuellesMovable != null){
                     aktuellesMovable.setPosition(mouseX,mouseY);
-                    spielwelt.getSzene(levelNr-1).getLevel().addPosition(aktuellesMovable);
+                    addMovablezuLevel(aktuellesMovable);
                 }
             }
             buttonAction(mouseY, mouseX);
@@ -389,6 +390,38 @@ public class Leveleditor extends PApplet {
 //        return levelBeendet;
 //    }
 
+    private void addMovablezuLevel(IMovable movable){
+        Movable tempMovable = null;
+        int posX = movable.getPosX();
+        int posY = movable.getPosY();
+        Richtung richtung = movable.getAusrichtung();
+        if (movable instanceof Spielfigur){
+            tempMovable = new Spielfigur(posX, posY, richtung);
+        } else if (movable instanceof Apfel){
+            tempMovable = new Apfel(posX, posY);
+        } else if (movable instanceof Gold){
+            tempMovable = new Gold(posX, posY);
+        } else if (movable instanceof Heiltrank){
+            tempMovable = new Heiltrank(posX, posY);
+        } else if (movable instanceof Levelende){
+            tempMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+        } else if (movable instanceof Mango){
+            tempMovable = new Mango(posX, posY);
+        } else if (movable instanceof Schwert){
+            tempMovable = new Schwert(posX, posY, 1);
+        } else if (movable instanceof DornPflanze){
+            tempMovable = new DornPflanze(posX, posY, this.tileMap);
+        } else if (movable instanceof FeuerMonster){
+            tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,1,FeuerModus.RANDOM);
+            //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
+        } else if (movable instanceof Geist){
+            tempMovable = new Geist(posX, posY, this.tileMap);
+        } else if (movable instanceof Zombie){
+            tempMovable = new Zombie(posX, posY, this.tileMap);
+        }
+        this.spielwelt.getSzene(this.levelNr-1).getLevel().addPosition(tempMovable);
+    }
+
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
     }
@@ -416,7 +449,11 @@ public class Leveleditor extends PApplet {
         app.rectMode(CORNER);
         for (int i = 0; i < menuArray.length; i++){
             menuArray[i][0].setPosition(mapAussenX,mapAussenY);
-            menuArray[i][0].zeichne(app);
+            if(menuArray[i][0] instanceof Spielfigur){
+                app.image(spielfigurBild, mapAussenX, mapAussenY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                menuArray[i][0].zeichne(app);
+            }
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
             if (mapAussenY >= SpielfeldHoehe){
@@ -453,7 +490,12 @@ public class Leveleditor extends PApplet {
             app.rectMode(CENTER);
             app.imageMode(CENTER);
             aktuellesMovable.setPosition(mausX,mausY);
-            aktuellesMovable.zeichne(app);
+
+            if(aktuellesMovable instanceof Spielfigur){
+                app.image(spielfigurBild, mausX, mausY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                aktuellesMovable.zeichne(app);
+            }
             popStyle();
         }
     }
@@ -465,8 +507,15 @@ public class Leveleditor extends PApplet {
 
     private void zeichneMovables(PApplet app){
         int anzahlPos = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().size();
+        IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
-            spielwelt.getSzene(levelNr-1).getLevel().getPositionen().get(i).zeichne(app);
+            movable = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().get(i);
+
+            if(movable instanceof Spielfigur){
+                app.image(spielfigurBild, movable.getPosX(), movable.getPosY(), Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                movable.zeichne(app);
+            }
         }
 
     }
@@ -480,16 +529,39 @@ public class Leveleditor extends PApplet {
         app.popStyle();
     }
 
+    private void zeichneFehler(PApplet app){
+        app.pushStyle();
+        app.textSize(16);
+        app.fill(200, 20, 0);
+        if (speicherHinweis && (speicherHinweisLevel != 0)) {
+            app.text("Kein Levelende/-ausgang in Level: " + speicherHinweisLevel, 130, 25);
+        }
+        app.popStyle();
+    }
+
     private void buttonAction(int y, int x){
         if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
             if (x < breiteExit){
                 System.exit(0);
             } else if (x > breiteExit && x < breiteSpeichern){
-                levelCount = 1;
-                System.out.println("speichern");
                 spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
-                tileMap = new TileMap();
-                dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+                for (int i = 0; i < spielwelt.getSzenenanzahl(); i++){
+                    speicherHinweis = true;
+                    speicherHinweisLevel = i + 1;
+                    for (int j = 0; j < spielwelt.getSzene(i).getLevel().getTileMap().getKachelarten().size(); j++){
+                        if (tileMap.getKachelarten().get(j) instanceof Levelausgang || tileMap.getKachelarten().get(j) instanceof Levelende){
+                            speicherHinweis = false;
+                            speicherHinweisLevel = 0;
+                        }
+                    }
+                }
+                if (!speicherHinweis){
+                    levelCount = 1;
+                    System.out.println("speichern");
+                    tileMap = new TileMap();
+                    dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+                    spielwelt.removeSzenen();
+                }
             } else if (x > breiteSpeichern && x < breiteLaden){
                 System.out.println("laden");
                 levelNr = 1;
@@ -500,6 +572,7 @@ public class Leveleditor extends PApplet {
                 System.out.println("leeren");
                 //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
                 tileMap = new TileMap();
+                spielwelt.getSzene(levelNr-1).getLevel().getPositionen().clear();
                 //Anstatt alle Felder mit Wiese zu nullen wie unten
                 //leereTilemap();
             } else if (x > breiteLeeren && x < breiteLevel){
@@ -509,6 +582,7 @@ public class Leveleditor extends PApplet {
                 spielwelt.addSzene(level);
                 tileMap = new TileMap();
                 levelCount++;
+                levelNr++;
             } else if (x > breiteLevel && x < breiteSiedlung){
                 System.out.println("siedlung");
             } else if (x > breiteSiedlung && x < breiteZurueck){
@@ -539,19 +613,19 @@ public class Leveleditor extends PApplet {
         bildVor.zeichne(app, breiteZurueck, SpielfeldHoehe);
     }
 
-    public void speichereSpielwelt(){
-        //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
-
-        dateiService.speichereSpielwelt(spielwelt, "spielwelt.json");
-    }
-
-    /**
-     * Lädt mithilfe des DateiService eine JSON Datei
-     * @return die geladene Spielwelt vom Typ ISpielwelt
-     */
-    public ISpielwelt ladeSpielwelt(){
-        return dateiService.ladeSpielwelt("spielwelt.json");
-    }
+//    public void speichereSpielwelt(){
+//        //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
+//
+//        dateiService.speichereSpielwelt(spielwelt, "spielwelt.json");
+//    }
+//
+//    /**
+//     * Lädt mithilfe des DateiService eine JSON Datei
+//     * @return die geladene Spielwelt vom Typ ISpielwelt
+//     */
+//    public ISpielwelt ladeSpielwelt(){
+//        return dateiService.ladeSpielwelt("spielwelt.json");
+//    }
 
 //    /**
 //     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
