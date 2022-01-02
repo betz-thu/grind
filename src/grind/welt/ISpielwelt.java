@@ -4,4 +4,5 @@ public interface ISpielwelt {
     ISzene getSzene(int n);
     void addSzene(ISzene szene);
     int getSzenenanzahl();
+    void removeSzenen();
 }

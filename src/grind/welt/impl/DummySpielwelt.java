@@ -44,4 +44,10 @@ public class DummySpielwelt implements ISpielwelt {
     public int getSzenenanzahl() {
         return szenen.size();
     }
+
+    @Override
+    public void removeSzenen() {
+        this.szenen.clear();
+        this.szenen.add(0, new DummyLevel());
+    }
 }

@@ -96,7 +96,7 @@ public class DummyLevel implements ILevel {
 
     @Override
     public void addPosition(IMovable movable) {
-        positionen.add(movable);
+        this.positionen.add(movable);
     }
 
     /**
@@ -105,7 +105,7 @@ public class DummyLevel implements ILevel {
      */
     @Override
     public void zeichne(PApplet app) {
-        tileMap.zeichne(app);
+        this.tileMap.zeichne(app);
     }
 
 }
