@@ -33,21 +33,21 @@ public class DummyLevel implements ILevel {
 
     public DummyLevel (){
 
-        this.tileMap = new TileMap();
-
-        Random random = new Random();
-        positionen.add(new Gold(650, 400));
-        positionen.add(new Geist(60,200,tileMap));
-        positionen.add(new DornPflanze(200, 50, tileMap));
-        positionen.add(new DornPflanze(600, 500, tileMap));
-        positionen.add(new Heiltrank(700, 400));
-        positionen.add(new Mango(750, 400));
-        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
-        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
-        positionen.add(new Zombie(ZombiePosX,ZombiPosY,tileMap));
-        positionen.add(new Zombie(350, 600, tileMap));
-        positionen.add(new Spielfigur(600, 400,Richtung.N));
-        positionen.add(new Schwert(650,450,1));
+//        this.tileMap = new TileMap();
+//
+//        Random random = new Random();
+//        positionen.add(new Gold(650, 400));
+//        positionen.add(new Geist(60,200,tileMap));
+//        positionen.add(new DornPflanze(200, 50, tileMap));
+//        positionen.add(new DornPflanze(600, 500, tileMap));
+//        positionen.add(new Heiltrank(700, 400));
+//        positionen.add(new Mango(750, 400));
+//        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
+//        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
+//        positionen.add(new Zombie(ZombiePosX,ZombiPosY,tileMap));
+//        positionen.add(new Zombie(350, 600, tileMap));
+//        positionen.add(new Spielfigur(600, 400,Richtung.N));
+//        positionen.add(new Schwert(650,450,1));
 
     }
 
@@ -94,13 +94,18 @@ public class DummyLevel implements ILevel {
         this.tileMap = tileMap;
     }
 
+    @Override
+    public void addPosition(IMovable movable) {
+        this.positionen.add(movable);
+    }
+
     /**
      * Zeichnet die aktuelle Tilemap auf dem Applet app
      * @param app Applet auf dem gezeichnet wird
      */
     @Override
     public void zeichne(PApplet app) {
-        tileMap.zeichne(app);
+        this.tileMap.zeichne(app);
     }
 
 }

@@ -132,6 +132,7 @@ public class TileMap implements ITileMap {
      */
     @Override
     public List<IKachel> getKachelarten() {
+        erstelleListeKachelarten();
         return this.kachelarten;
     }
 
