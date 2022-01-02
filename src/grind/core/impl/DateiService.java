@@ -31,11 +31,14 @@ public class DateiService {
     private String json;
 
 
+
     private ISpielwelt spielwelt;
     private ISzene szene;
     private ILevel level;
     private ITileMap tilemap;
     private IKachel kachel;
+
+
 
 
     public DateiService() {
@@ -175,8 +178,7 @@ public class DateiService {
 
                     case "class grind.welt.impl.DummyLevel":
                         iSzene = jsonDeserializationContext.deserialize(jsonElement,
-                                new TypeToken<DummyLevel>() {
-                                }.getType());
+                                new TypeToken<DummyLevel>(){}.getType());
                         break;
 //                    case "class grind.welt.impl.DummySiedlung":
 //                        iSzene = new DummySiedlung();
@@ -185,7 +187,7 @@ public class DateiService {
                         break;
                 }
 
-                return iSzene;
+            return iSzene;
             }
         };
 /**
@@ -218,8 +220,7 @@ public class DateiService {
 
                     case "class grind.kacheln.impl.TileMap":
                         iTileMap = jsonDeserializationContext.deserialize(jsonElement,
-                                new TypeToken<TileMap>() {
-                                }.getType());
+                                new TypeToken<TileMap>(){}.getType());
                         break;
 //                    case "class grind.welt.impl.DummySiedlung":
 //                        iSzene = new DummySiedlung();
@@ -287,6 +288,12 @@ public class DateiService {
                     case "class grind.kacheln.impl.SmaragdTor":
                         iKachel = new SmaragdTor();
                         break;
+                    case "class grind.kacheln.impl.DummyHindernis":
+                        iKachel = new DummyHindernis();
+                        break;
+                    case "class grind.kacheln.impl.LeereKachel":
+                        iKachel = new LeereKachel();
+                        break;
                     default:
                         break;
                 }
@@ -314,7 +321,6 @@ public class DateiService {
 
     /**
      * Lädt eine Spielwelt aus einer JSON Datei und gibt diese zurück
-     *
      * @param dateiname Dateiname mit .json Endung
      * @return Eine Instanz von ISpielwelt erstellt mit den Parametern der JSON Datei
      */
@@ -324,7 +330,7 @@ public class DateiService {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(dateiname));
 
-            spielwelt = gson.fromJson(reader, DummySpielwelt.class);
+                spielwelt = gson.fromJson(reader, DummySpielwelt.class);
 
             reader.close();
 
@@ -336,7 +342,6 @@ public class DateiService {
 
     /**
      * Speichert eine Spielwelt vom Typ ISpielwelt in einer JSON Datei ab
-     *
      * @param spielwelt Die zu speichernde Spielwelt
      * @param dateiname Dateiname der JSON Datei
      */

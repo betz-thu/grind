@@ -9,6 +9,7 @@ import grind.movables.ISchatz;
 import grind.movables.impl.*;
 import grind.movables.monster.*;
 import grind.util.Einstellungen;
+import grind.util.FeuerModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -16,11 +17,13 @@ import grind.welt.impl.DummyLevel;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 
 
 public class Leveleditor extends PApplet {
     private static int SpielfeldBreite;
     private static int SpielfeldHoehe;
+    private final Spielsteuerung spielsteuerung;
 
     private int menuBreite = 1;
     private int menuHoehe = 8;
@@ -30,7 +33,13 @@ public class Leveleditor extends PApplet {
     private int breiteLeeren;
     private int breiteLevel;
     private int breiteSiedlung;
-    private int levelCount = 0;
+    private int breiteVor;
+    private int breiteZurueck;
+    private int levelCount = 1;
+    private int levelNr = 1;
+    private int speicherHinweisLevel;
+    private boolean speicherHinweis = true;
+
     // private ITileMap tileMap;
 
     private int Tastendruck;
@@ -42,41 +51,91 @@ public class Leveleditor extends PApplet {
     private ISpielmodell spielmodell;
     private TileMap tileMap;
     private IKachel[][] menuArrayKacheln;
+    private IMovable[][] menuArrayMovables;
     private IKachel aktuelleKachel;
+    private IMovable aktuellesMovable;
     private Button exitButton;
     private Button speichernButton;
     private Button ladeButton;
     private Button leerenButton;
     private Button levelButton;
     private Button siedlungButton;
+    private Button bildVor;
+    private Button bildZurueck;
+    private PImage spielfigurBild;
+
 
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
     public Leveleditor(){
+        Einstellungen.LAENGE_KACHELN_Y = 30;
+        Einstellungen.LAENGE_KACHELN_X = 30;
         this.menuArrayKacheln = new IKachel[menuHoehe][menuBreite];
+        this.menuArrayMovables = new IMovable[11][1];
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
-        //this.spielsteuerung = new Spielsteuerung();
+        this.spielsteuerung = new Spielsteuerung();
         //this.spielmodell = new Spielmodell(this.spielwelt,this.spielsteuerung);
         this.dateiService = new DateiService();
 //        this.Spieler = (Spielfigur) spielmodell.getFigur();
 //        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         this.aktuelleKachel = null;
+        this.aktuellesMovable = null;
         this.exitButton = new Button(0);
         this.speichernButton = new Button(1);
         this.ladeButton = new Button(2);
         this.leerenButton = new Button(3);
         this.levelButton = new Button(4);
         this.siedlungButton = new Button(5);
+        this.bildZurueck = new Button(6);
+        this.bildVor = new Button(7);
+        this.spielfigurBild = new PImage();
 
         this.breiteExit = exitButton.getBreite();
-        this.breiteSpeichern = exitButton.getBreite() + speichernButton.getBreite();
-        this.breiteLaden = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite();
-        this.breiteLeeren = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite();
-        this.breiteLevel = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite() + levelButton.getBreite();
-        this.breiteSiedlung = exitButton.getBreite() + speichernButton.getBreite() + ladeButton.getBreite() + leerenButton.getBreite() + levelButton.getBreite() + siedlungButton.getBreite();
+
+        this.breiteSpeichern = exitButton.getBreite()
+                + speichernButton.getBreite();
+
+        this.breiteLaden = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite();
+
+        this.breiteLeeren = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite();
+
+        this.breiteLevel = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite();
+
+        this.breiteSiedlung = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite();
+
+        this.breiteZurueck = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite();
+
+        this.breiteVor = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite()
+                + bildVor.getBreite();
 
 
         //Befüllen des Menuarrays mit den Kachelarten
@@ -89,6 +148,18 @@ public class Leveleditor extends PApplet {
         this.menuArrayKacheln[6][0] = new Weg();
         this.menuArrayKacheln[7][0] = new Wiese();
 
+        //Befüllen des Menuarrays mit den Movables
+        this.menuArrayMovables[0][0] = new Spielfigur(0,0, Richtung.N);
+        this.menuArrayMovables[1][0] = new Schwert(0,0,1);
+        this.menuArrayMovables[2][0] = new Mango(0,0);
+        this.menuArrayMovables[3][0] = new Levelende(0,0,40);
+        this.menuArrayMovables[4][0] = new Heiltrank(0,0);
+        this.menuArrayMovables[5][0] = new Gold(0,0);
+        this.menuArrayMovables[6][0] = new Apfel(0,0);
+        this.menuArrayMovables[7][0] = new DornPflanze(0,0,this.tileMap);
+        this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
+        this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
+        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap);
 
 
 
@@ -143,6 +214,7 @@ public class Leveleditor extends PApplet {
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
+        spielfigurBild = loadImage("SpielfigurOhneWaffe.jpg");
 //        Spieler.ladeIMGSpielfigur(this);
 //        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
@@ -159,63 +231,63 @@ public class Leveleditor extends PApplet {
         zeichne();
     }
 
-    /**
-     * @MEGAtroniker
-     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
-     */
-    private void szeneUeberspringen() {
-        abfrageFTasten();
-    }
-
-    /**
-     * @author LuHe20
-     * Cheat für das Überspringen einer Szene mit F12.
-     * Speichern der Spielwelt mit F11
-     * Laden der Spielwelt mit F10
-     */
-    private void abfrageFTasten() {
-        //F12 neue Szene
-        if (keyPressed && !pressed) {
-            if (keyCode == 123) {
-                pressed = true;
-                fTaste = "F12";
-            } else if(keyCode == 122){
-                pressed = true;
-                fTaste = "F11";
-            } else if(keyCode == 121){
-                pressed = true;
-                fTaste = "F10";
-            }
-        } else if(!keyPressed && pressed){
-            switch (fTaste) {
-                case "F12":
-
-                    levelBeendet = true;
-
-                    break;
-                case "F11":
-
-                    speichereSpielwelt();
-
-                    System.out.println("F11");
-
-                    break;
-                case "F10":
-
-                    ISpielwelt welt;
-                    welt = ladeSpielwelt();
-                    this.spielmodell.setSpielwelt(welt);
-                    spielmodell.setSzeneNr(0);
-                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
-
-                    System.out.println("F10");
-
-                    break;
-            }
-
-            pressed = false;
-        }
-    }
+//    /**
+//     * @MEGAtroniker
+//     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+//     */
+//    private void szeneUeberspringen() {
+//        abfrageFTasten();
+//    }
+//
+//    /**
+//     * @author LuHe20
+//     * Cheat für das Überspringen einer Szene mit F12.
+//     * Speichern der Spielwelt mit F11
+//     * Laden der Spielwelt mit F10
+//     */
+//    private void abfrageFTasten() {
+//        //F12 neue Szene
+//        if (keyPressed && !pressed) {
+//            if (keyCode == 123) {
+//                pressed = true;
+//                fTaste = "F12";
+//            } else if(keyCode == 122){
+//                pressed = true;
+//                fTaste = "F11";
+//            } else if(keyCode == 121){
+//                pressed = true;
+//                fTaste = "F10";
+//            }
+//        } else if(!keyPressed && pressed){
+//            switch (fTaste) {
+//                case "F12":
+//
+//                    levelBeendet = true;
+//
+//                    break;
+//                case "F11":
+//
+//                    speichereSpielwelt();
+//
+//                    System.out.println("F11");
+//
+//                    break;
+//                case "F10":
+//
+//                    ISpielwelt welt;
+//                    welt = ladeSpielwelt();
+//                    this.spielmodell.setSpielwelt(welt);
+//                    spielmodell.setSzeneNr(0);
+//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
+//
+//                    System.out.println("F10");
+//
+//                    break;
+//            }
+//
+//            pressed = false;
+//        }
+//    }
 
     private void aktualisiere() {
         spielmodell.entferneToteMonster();
@@ -240,11 +312,14 @@ public class Leveleditor extends PApplet {
     private void zeichne() {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap(this);
+        zeichneMovables(this);
         zeichneAssetMenu(this, this.menuArrayKacheln);
-//        zeichneMovableMenu(this, this.menuArrayMovables);
+        zeichneMovableMenu(this, this.menuArrayMovables);
         zeichneMausKachel(this, aktuelleKachel, mouseX, mouseY);
+        zeichneMausMovable(this,aktuellesMovable,mouseX,mouseY);
         zeichneButtons(this);
         zeichneCounts(this);
+        zeichneFehler(this);
     }
 
     @Override
@@ -257,17 +332,28 @@ public class Leveleditor extends PApplet {
         if (mouseButton == LEFT) {
             if (mouseX > SpielfeldBreite && mouseX <= SpielfeldBreite + menuBreite * Einstellungen.LAENGE_KACHELN_X) {
                 if (mouseY < menuHoehe * Einstellungen.LAENGE_KACHELN_Y) {
-                    aktuelleKachel = getMenukachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
+                    aktuellesMovable = null;
+                    aktuelleKachel = getMenukacheliKachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
+                }
+            } else if (mouseX > SpielfeldBreite + menuBreite && mouseX <= SpielfeldBreite + (2 * menuBreite) * Einstellungen.LAENGE_KACHELN_X){
+                if (mouseY < 11 * Einstellungen.LAENGE_KACHELN_Y){
+                    aktuelleKachel = null;
+                    aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
             }
-            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null)) {
-                tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
+            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null || aktuellesMovable != null)) {
+                if (aktuelleKachel != null){
+                    tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
+                } else if (aktuellesMovable != null){
+                    aktuellesMovable.setPosition(mouseX,mouseY);
+                    addMovablezuLevel(aktuellesMovable);
+                }
             }
-
             buttonAction(mouseY, mouseX);
 
         } else if (mouseButton == RIGHT){
             aktuelleKachel = null;
+            aktuellesMovable = null;
         }
     }
 
@@ -304,6 +390,38 @@ public class Leveleditor extends PApplet {
 //        return levelBeendet;
 //    }
 
+    private void addMovablezuLevel(IMovable movable){
+        Movable tempMovable = null;
+        int posX = movable.getPosX();
+        int posY = movable.getPosY();
+        Richtung richtung = movable.getAusrichtung();
+        if (movable instanceof Spielfigur){
+            tempMovable = new Spielfigur(posX, posY, richtung);
+        } else if (movable instanceof Apfel){
+            tempMovable = new Apfel(posX, posY);
+        } else if (movable instanceof Gold){
+            tempMovable = new Gold(posX, posY);
+        } else if (movable instanceof Heiltrank){
+            tempMovable = new Heiltrank(posX, posY);
+        } else if (movable instanceof Levelende){
+            tempMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+        } else if (movable instanceof Mango){
+            tempMovable = new Mango(posX, posY);
+        } else if (movable instanceof Schwert){
+            tempMovable = new Schwert(posX, posY, 1);
+        } else if (movable instanceof DornPflanze){
+            tempMovable = new DornPflanze(posX, posY, this.tileMap);
+        } else if (movable instanceof FeuerMonster){
+            tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,1,FeuerModus.RANDOM);
+            //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
+        } else if (movable instanceof Geist){
+            tempMovable = new Geist(posX, posY, this.tileMap);
+        } else if (movable instanceof Zombie){
+            tempMovable = new Zombie(posX, posY, this.tileMap);
+        }
+        this.spielwelt.getSzene(this.levelNr-1).getLevel().addPosition(tempMovable);
+    }
+
     public void anzeigeTitelLevel(int LevelNr){
         frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
     }
@@ -322,9 +440,38 @@ public class Leveleditor extends PApplet {
         }
     }
 
-    private IKachel getMenukachel (int mausY, int mausX, IKachel[][] iKachel){
+    private void zeichneMovableMenu(PApplet app, IMovable[][] menuArray){
+        int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X;
+        int mapAussenY = 0;
+        app.pushStyle();
+        app.imageMode(CORNER);
+        app.ellipseMode(CORNER);
+        app.rectMode(CORNER);
+        for (int i = 0; i < menuArray.length; i++){
+            menuArray[i][0].setPosition(mapAussenX,mapAussenY);
+            if(menuArray[i][0] instanceof Spielfigur){
+                app.image(spielfigurBild, mapAussenX, mapAussenY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                menuArray[i][0].zeichne(app);
+            }
+            mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
+
+            if (mapAussenY >= SpielfeldHoehe){
+                mapAussenY = 0;
+                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
+            }
+        }
+        app.popStyle();
+    }
+
+    private IKachel getMenukacheliKachel(int mausY, int mausX, IKachel[][] iKachel){
 
         return iKachel[mausY][mausX];
+    }
+
+    private IMovable getMenukacheliMovable (int mausY, int mausX, IMovable[][] iMovable){
+
+        return iMovable[mausY][mausX];
     }
 
     private void zeichneMausKachel(PApplet app, IKachel aktuelleKachel, int mausX, int mausY){
@@ -337,39 +484,95 @@ public class Leveleditor extends PApplet {
         }
     }
 
+    private void zeichneMausMovable(PApplet app, IMovable aktuellesMovable, int mausX, int mausY){
+        if (aktuellesMovable != null) {
+            pushStyle();
+            app.rectMode(CENTER);
+            app.imageMode(CENTER);
+            aktuellesMovable.setPosition(mausX,mausY);
+
+            if(aktuellesMovable instanceof Spielfigur){
+                app.image(spielfigurBild, mausX, mausY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                aktuellesMovable.zeichne(app);
+            }
+            popStyle();
+        }
+    }
+
+
     private void zeichneTileMap(PApplet app){
         tileMap.zeichne(app);
+    }
+
+    private void zeichneMovables(PApplet app){
+        int anzahlPos = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().size();
+        IMovable movable;
+        for (int i = 0; i < anzahlPos; i++){
+            movable = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().get(i);
+
+            if(movable instanceof Spielfigur){
+                app.image(spielfigurBild, movable.getPosX(), movable.getPosY(), Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+            } else {
+                movable.zeichne(app);
+            }
+        }
+
     }
 
     private void zeichneCounts(PApplet app) {
         app.pushStyle();
         app.textSize(12);
         app.fill(0, 0, 0);
-        app.text("Level: " + levelCount, 20, 25);
+        app.text("Levelanzahl: " + levelCount, 20, 25);
+        app.text("LevelNr: " + levelNr, 20, 40);
+        app.popStyle();
+    }
+
+    private void zeichneFehler(PApplet app){
+        app.pushStyle();
+        app.textSize(16);
+        app.fill(200, 20, 0);
+        if (speicherHinweis && (speicherHinweisLevel != 0)) {
+            app.text("Kein Levelende/-ausgang in Level: " + speicherHinweisLevel, 130, 25);
+        }
         app.popStyle();
     }
 
     private void buttonAction(int y, int x){
         if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
             if (x < breiteExit){
-                exit();
+                System.exit(0);
             } else if (x > breiteExit && x < breiteSpeichern){
-                levelCount = 0;
-                System.out.println("speichern");
-                ILevel level = new DummyLevel();
-                level.setTilemap(tileMap);
-                spielwelt.addSzene(level);
-                tileMap = new TileMap();
-                dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+                spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
+                for (int i = 0; i < spielwelt.getSzenenanzahl(); i++){
+                    speicherHinweis = true;
+                    speicherHinweisLevel = i + 1;
+                    for (int j = 0; j < spielwelt.getSzene(i).getLevel().getTileMap().getKachelarten().size(); j++){
+                        if (tileMap.getKachelarten().get(j) instanceof Levelausgang || tileMap.getKachelarten().get(j) instanceof Levelende){
+                            speicherHinweis = false;
+                            speicherHinweisLevel = 0;
+                        }
+                    }
+                }
+                if (!speicherHinweis){
+                    levelCount = 1;
+                    System.out.println("speichern");
+                    tileMap = new TileMap();
+                    dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+                    spielwelt.removeSzenen();
+                }
             } else if (x > breiteSpeichern && x < breiteLaden){
                 System.out.println("laden");
+                levelNr = 1;
                 spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
-                tileMap = (TileMap) spielwelt.getSzene(0).getLevel().getTileMap();
-                levelCount = 0;
+                tileMap = (TileMap) spielwelt.getSzene(levelNr - 1).getLevel().getTileMap();
+                levelCount = spielwelt.getSzenenanzahl();
             } else if (x > breiteLaden && x < breiteLeeren){
                 System.out.println("leeren");
                 //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
                 tileMap = new TileMap();
+                spielwelt.getSzene(levelNr-1).getLevel().getPositionen().clear();
                 //Anstatt alle Felder mit Wiese zu nullen wie unten
                 //leereTilemap();
             } else if (x > breiteLeeren && x < breiteLevel){
@@ -379,8 +582,21 @@ public class Leveleditor extends PApplet {
                 spielwelt.addSzene(level);
                 tileMap = new TileMap();
                 levelCount++;
+                levelNr++;
             } else if (x > breiteLevel && x < breiteSiedlung){
                 System.out.println("siedlung");
+            } else if (x > breiteSiedlung && x < breiteZurueck){
+                if (levelCount > 2 && levelNr > 1){
+                    levelNr -= 1;
+                    tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
+                }
+                System.out.println("zurück");
+            } else if (x > breiteZurueck && x < breiteVor){
+                if (levelCount > levelNr){
+                    levelNr++;
+                    tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
+                }
+                System.out.println("vor");
             }
         }
     }
@@ -393,21 +609,23 @@ public class Leveleditor extends PApplet {
         leerenButton.zeichne(app, breiteLaden, SpielfeldHoehe);
         levelButton.zeichne(app, breiteLeeren, SpielfeldHoehe);
         siedlungButton.zeichne(app, breiteLevel, SpielfeldHoehe);
+        bildZurueck.zeichne(app, breiteSiedlung, SpielfeldHoehe);
+        bildVor.zeichne(app, breiteZurueck, SpielfeldHoehe);
     }
 
-    public void speichereSpielwelt(){
-        //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
-
-        dateiService.speichereSpielwelt(spielwelt, "spielwelt.json");
-    }
-
-    /**
-     * Lädt mithilfe des DateiService eine JSON Datei
-     * @return die geladene Spielwelt vom Typ ISpielwelt
-     */
-    public ISpielwelt ladeSpielwelt(){
-        return dateiService.ladeSpielwelt("spielwelt.json");
-    }
+//    public void speichereSpielwelt(){
+//        //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
+//
+//        dateiService.speichereSpielwelt(spielwelt, "spielwelt.json");
+//    }
+//
+//    /**
+//     * Lädt mithilfe des DateiService eine JSON Datei
+//     * @return die geladene Spielwelt vom Typ ISpielwelt
+//     */
+//    public ISpielwelt ladeSpielwelt(){
+//        return dateiService.ladeSpielwelt("spielwelt.json");
+//    }
 
 //    /**
 //     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
