@@ -120,9 +120,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
+//        System.out.println(this.getAusrichtung());
+        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
 
-        aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
-        aktiveWaffe.setAusrichtung(this.getAusrichtung());
+            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
+            aktiveWaffe.setAusrichtung(this.getAusrichtung());
+            aktiveWaffe.zeichne(app);
+        }
 
 
 
@@ -320,7 +324,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void setAktiveWaffe(Waffe waffe){
-
         aktiveWaffe = waffe;
     }
 
