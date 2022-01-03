@@ -110,8 +110,8 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
-        addMonster(feuerMonster);
+//        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+//        addMonster(feuerMonster);
     }
 
     /**

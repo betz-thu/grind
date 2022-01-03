@@ -35,8 +35,8 @@ public class DummySpielwelt implements ISpielwelt {
     }
 
     @Override
-    public void addSzene(ISzene szene){
-        szenen.add(szene);
+    public void addSzene(ISzene szene, int szenenNummer){
+        szenen.add(szenenNummer, szene);
         anzahlSzenen = szenen.size();
     }
 
