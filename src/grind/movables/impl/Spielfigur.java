@@ -22,9 +22,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     float GESCHWINDIGKEIT = 3f;
     int gold = 5;
+    boolean abgeschossen = false;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
     transient Bogen testbogen = new Bogen(40,40,1);
+    transient Pfeil testpfeil = new Pfeil(35,35,1);
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -124,13 +126,23 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 //        System.out.println(this.getAusrichtung());
-        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
 
+
+        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+            if (!abgeschossen){
+                testpfeil.setPosition(this.getPosX(), this.getPosY());
+            }
+            abgeschossen = true;
             aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
             aktiveWaffe.setAusrichtung(this.getAusrichtung());
             aktiveWaffe.zeichne(app);
+//            testpfeil.zeichne(app);
+//            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
         }
-
+        if (abgeschossen && aktiveWaffe instanceof Bogen){
+            testpfeil.zeichne(app);
+            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
+        }
 
 
 
