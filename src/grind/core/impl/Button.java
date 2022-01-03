@@ -5,14 +5,20 @@ import processing.core.PApplet;
 
 public class Button extends PApplet {
 
-    private int typ;
-    private final static int breite = Einstellungen.LAENGE_KACHELN_X * 3;
-    private final static int hoehe = Einstellungen.LAENGE_KACHELN_Y;
+    private final int typ;
+    private final int breite = Einstellungen.LAENGE_KACHELN_X * 3;
+    private final int hoehe = Einstellungen.LAENGE_KACHELN_Y;
 
     public Button(int typ){
         this.typ = typ;
     }
 
+    /**
+     * Zeichnet den Button abhängig vom Typ an der Stelle x0, y0
+     * @param app Applet auf das gezeichnet werden soll
+     * @param x0 Anfangsposition in x
+     * @param y0 Anfangsposition in y
+     */
     public void zeichne(PApplet app, int x0, int y0){
         app.pushStyle();
         float textverhaeltnis = ((Einstellungen.LAENGE_KACHELN_X * Einstellungen.LAENGE_KACHELN_Y) / 1600f);
@@ -76,10 +82,18 @@ public class Button extends PApplet {
         app.popStyle();
     }
 
+    /**
+     * Gibt die Breite des Buttons zurück
+     * @return Breite des Buttons
+     */
     public int getBreite(){
         return breite;
     }
 
+    /**
+     * Gibt die Höhe des Buttons zurück
+     * @return Höhe des Buttons
+     */
     public int getHoehe(){
         return hoehe;
     }

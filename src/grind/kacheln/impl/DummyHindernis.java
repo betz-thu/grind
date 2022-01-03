@@ -3,7 +3,6 @@ package grind.kacheln.impl;
 import grind.kacheln.IKachel;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
-import processing.core.PImage;
 
 public class DummyHindernis implements IKachel {
 
