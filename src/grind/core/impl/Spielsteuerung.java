@@ -423,11 +423,4 @@ public class Spielsteuerung extends PApplet {
     public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
     }
-
-//    /**
-//     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
-//     */
-//    public void speichereSpielwelt(){
-//        this.dateiService.speichereSpielwelt(this.spielwelt,"spielwelt.json");
-//    }
 }

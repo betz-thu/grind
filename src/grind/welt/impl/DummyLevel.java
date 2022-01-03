@@ -1,25 +1,13 @@
 package grind.welt.impl;
 
-import grind.movables.impl.*;
-import grind.util.Richtung;
 
-import grind.movables.monster.DornPflanze;
-import grind.movables.monster.Geist;
-import grind.movables.monster.Zombie;
-import grind.util.Einstellungen;
 import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
-import grind.kacheln.impl.TileMap;
 import grind.movables.IMovable;
-import grind.movables.impl.Gold;
-import grind.movables.impl.Heiltrank;
-import grind.movables.impl.Mango;
-import grind.movables.impl.Spielfigur;
 
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @Autor Megatronik
@@ -89,16 +77,27 @@ public class DummyLevel implements ILevel {
         return this;
     }
 
+    /**
+     * Setzt die übergebene Tilemap im Level
+     * @param tileMap Die zu setzende Tilemap
+     */
     @Override
     public void setTilemap(ITileMap tileMap) {
         this.tileMap = tileMap;
     }
 
+    /**
+     * Fügt ein Movable der Liste Positionen zu
+     * @param movable Das Movable welches hinzugefügt werden soll
+     */
     @Override
     public void addPosition(IMovable movable) {
         this.positionen.add(movable);
     }
 
+    /**
+     * Löscht alle Movables aus Positionen
+     */
     @Override
     public void clearPosition() {
         this.positionen.clear();

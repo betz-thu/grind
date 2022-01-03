@@ -253,10 +253,18 @@ public class Spielmodell implements ISpielmodell {
         movables.add(monster);
     }
 
+    /**
+     * Gibt die Spielwelt zurück
+     * @return ISpielwelt
+     */
     public ISpielwelt getSpielwelt(){
         return this.spielwelt;
     }
 
+    /**
+     * Setzt die übergebene Spielwelt
+     * @param spielwelt Die zu setzende Spielwelt
+     */
     public void setSpielwelt(ISpielwelt spielwelt){
         this.spielwelt = spielwelt;
     }

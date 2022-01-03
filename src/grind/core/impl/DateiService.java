@@ -29,18 +29,8 @@ import java.nio.file.Paths;
 public class DateiService {
     private GsonBuilder gsonbuilder;
     private Gson gson;
-    private String json;
 
-
-
-    private ISpielwelt spielwelt;
-    private ISzene szene;
-    private ILevel level;
     private ITileMap tilemap;
-    private IKachel kachel;
-
-
-
 
     public DateiService() {
         this.gsonbuilder = new GsonBuilder();
@@ -49,6 +39,7 @@ public class DateiService {
  * Custom Serializer für die Serialisierung von einem IMovable.
  * Vorgehen:
  * 1. Standartmäßige Serialisierung von IMovable mit GSON
+ * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<IMovable> iMovableJsonSerializer = new JsonSerializer<IMovable>() {
             @Override
@@ -61,7 +52,8 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom DeSerializer für die Deserialisierung von einem IMovable.
+ * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<IMovable> iMovableJsonDeserializer = new JsonDeserializer<IMovable>() {
             @Override
@@ -144,7 +136,10 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom Serializer für die Serialisierung von einer ISzene.
+ * Vorgehen:
+ * 1. Standartmäßige Serialisierung von ISzene mit GSON
+ * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<ISzene> iSzeneJsonSerializer = new JsonSerializer<ISzene>() {
             @Override
@@ -158,7 +153,8 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom DeSerializer für die Deserialisierung von einer ISzene.
+ * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<ISzene> iSzeneJsonDeserializer = new JsonDeserializer<ISzene>() {
             @Override
@@ -186,7 +182,10 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom Serializer für die Serialisierung von eine ITilemap.
+ * Vorgehen:
+ * 1. Standartmäßige Serialisierung von ITilemap mit GSON
+ * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<ITileMap> iTileMapJsonSerializer = new JsonSerializer<ITileMap>() {
             @Override
@@ -200,7 +199,8 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom DeSerializer für die Deserialisierung von einer ITilemap.
+ * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<ITileMap> iTileMapJsonDeserializer = new JsonDeserializer<ITileMap>() {
             @Override
@@ -228,7 +228,10 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom Serializer für die Serialisierung von einer IKachel.
+ * Vorgehen:
+ * 1. Standartmäßige Serialisierung von IKachel mit GSON
+ * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<IKachel> iKachelJsonSerializer = new JsonSerializer<IKachel>() {
             @Override
@@ -240,7 +243,8 @@ public class DateiService {
             }
         };
 /**
- *
+ * Custom DeSerializer für die Deserialisierung von einer IKachel.
+ * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<IKachel> iKachelJsonDeserializer = new JsonDeserializer<IKachel>() {
             @Override
@@ -288,7 +292,7 @@ public class DateiService {
             }
         };
 /**
- *
+ * Registieren der einzelnen Serializer/DeSerializer im Gsonbuilder
  */
         gsonbuilder.registerTypeAdapter(IMovable.class, iMovableJsonSerializer);
         gsonbuilder.registerTypeAdapter(IMovable.class, iMovableJsonDeserializer);
@@ -332,9 +336,6 @@ public class DateiService {
      * @param dateiname Dateiname der JSON Datei
      */
     protected void speichereSpielwelt(ISpielwelt spielwelt, String dateiname) {
-        json = gson.toJson(spielwelt);
-
-
         try {
             Writer writer = Files.newBufferedWriter(Paths.get(dateiname));
             gson.toJson(spielwelt, writer);
