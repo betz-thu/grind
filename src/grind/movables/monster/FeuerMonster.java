@@ -20,8 +20,8 @@ import java.util.Random;
  * Treffen Spielfigur und Feuermonster aufeinander so erleidet die Spielfugur alle 2 Sekunden Schaden
  */
 public class FeuerMonster extends Monster{
-    final int posX;
-    final int posY;
+    transient final int posX;
+    transient final int posY;
     private final static int GESCHWINDIGKEIT = 2;
     final int deltaX;
     final int deltaY;
@@ -56,7 +56,7 @@ public class FeuerMonster extends Monster{
 
     private long startTime;
     FeuerModus feuerModus;
-    final int schaden = 20;
+    transient final int schaden = 20;
 
     /**
      * @MEGAtroniker

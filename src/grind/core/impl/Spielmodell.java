@@ -13,6 +13,7 @@ import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,7 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);
+
         if (szene instanceof ILevel) {
             ILevel level = (ILevel) szene;
             betreteLevel(level);

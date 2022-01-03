@@ -50,7 +50,7 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.dateiService = new DateiService();
+        this.dateiService = new DateiService(this);
         this.spielmodell = new Spielmodell(ladeSpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());

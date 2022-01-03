@@ -9,9 +9,11 @@ import grind.kacheln.impl.*;
 import grind.movables.IMovable;
 import grind.movables.impl.*;
 import grind.movables.monster.DornPflanze;
+import grind.movables.monster.FeuerMonster;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
 import grind.util.Einstellungen;
+import grind.util.FeuerModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -31,8 +33,12 @@ public class DateiService {
     private Gson gson;
 
     private ITileMap tilemap;
+    private Spielsteuerung spielsteuerung;
 
-    public DateiService() {
+    //TODO: Spielsteuerung braucht malerweise nicht übergeben werden.
+    // --> Workaround für das FeuerMonster, da dieses die Spielsteuerung braucht.
+    public DateiService(Spielsteuerung spielsteuerung) {
+        this.spielsteuerung = spielsteuerung;
         this.gsonbuilder = new GsonBuilder();
         this.gsonbuilder.setLenient();
 /**
@@ -128,6 +134,8 @@ public class DateiService {
                     case "class grind.movables.impl.Levelende":
                         iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
                         break;
+                    case "class grind.movables.monster.FeuerMonster":
+                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
                     default:
                         break;
                 }

@@ -71,7 +71,7 @@ public class Leveleditor extends PApplet {
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
-        this.dateiService = new DateiService();
+        this.dateiService = new DateiService(this.spielsteuerung);
         this.aktuelleKachel = null;
         this.aktuellesMovable = null;
         this.exitButton = new Button(0);
@@ -672,7 +672,7 @@ public class Leveleditor extends PApplet {
      * Springt in der Spielwelt ein Level zurück
      */
     private void springeZurueck() {
-        if (levelCount > 2 && levelNr > 1){
+        if (levelCount >= 2 && levelNr > 1){
             spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
 
             levelNr -= 1;
@@ -728,8 +728,6 @@ public class Leveleditor extends PApplet {
                 if (movable instanceof Spielfigur) {
                     speicherHinweis = 0;
                     anzahlSpielfiguren++;
-                } else {
-                    speicherHinweis = 2;
                 }
             }
             if (anzahlSpielfiguren > 1) {
