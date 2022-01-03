@@ -24,6 +24,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
+    transient Bogen testbogen = new Bogen(40,40,1);
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -32,7 +33,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int inventarGroeße;
     private int guiGroeße;
     public boolean waffeAusgestattet=false;
-    Waffe aktiveWaffe = testwaffe;
+//    Waffe aktiveWaffe = testwaffe;
+    Waffe aktiveWaffe = testbogen;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -50,7 +52,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-        setAktiveWaffe(testwaffe);
+//        setAktiveWaffe(testwaffe);
+        setAktiveWaffe(testbogen);
         inventarGroeße=10;
         guiGroeße=50;
 }
