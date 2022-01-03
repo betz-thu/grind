@@ -99,6 +99,11 @@ public class DummyLevel implements ILevel {
         this.positionen.add(movable);
     }
 
+    @Override
+    public void clearPosition() {
+        this.positionen.clear();
+    }
+
     /**
      * Zeichnet die aktuelle Tilemap auf dem Applet app
      * @param app Applet auf dem gezeichnet wird
