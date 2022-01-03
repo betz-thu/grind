@@ -22,7 +22,7 @@ public class TileMap implements ITileMap {
     transient IKachel holzbrücke;
     transient IKachel levelausgang;
     transient IKachel dummyHindernis;
-    List<IKachel> kachelarten = new ArrayList<>();
+    transient List<IKachel> kachelarten = new ArrayList<>();
     transient Random rand = new Random();
 
     /**

@@ -11,6 +11,7 @@ import grind.movables.impl.*;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -131,6 +132,9 @@ public class DateiService {
                         break;
                     case "class grind.movables.impl.Schwert":
                         iMovable = new Schwert(posX, posY, 1);
+                        break;
+                    case "class grind.movables.impl.Levelende":
+                        iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
                         break;
                     default:
                         break;
