@@ -333,7 +333,10 @@ public class Spielsteuerung extends PApplet {
         int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
         int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
 
-
+        int PfeilXp = this.spielmodell.getFigur().getPfeil().getPosX()+(spielmodell.getFigur().getPfeil().getGroesse()/2);
+        int PfeilXn = this.spielmodell.getFigur().getPfeil().getPosX()-(spielmodell.getFigur().getPfeil().getGroesse()/2);
+        int PfeilYp = this.spielmodell.getFigur().getPfeil().getPosY()+(spielmodell.getFigur().getPfeil().getGroesse()/2);
+        int PfeilYn = this.spielmodell.getFigur().getPfeil().getPosY()-(spielmodell.getFigur().getPfeil().getGroesse()/2);
 
 
 
@@ -371,6 +374,20 @@ public class Spielsteuerung extends PApplet {
                     ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
 
                 }
+            }
+            else if ((PfeilXp>MovableXn)&(PfeilXn<MovableXp)&(PfeilYp>MovableYn)&(PfeilYn<MovableYp)){
+                if (movable instanceof Monster){
+                    System.out.println("Pfeil: " + ((Monster)movable).getLebensenergie());
+                    ((Monster)movable).reduziereLebensenergie(spielmodell.getFigur().getPfeil().getSchaden());
+                    spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
+                    spielmodell.getFigur().setPfeilAbgeschossen(false);
+                    spielmodell.getFigur().getPfeil().setPosition(0,0);
+                }
+
+            }
+            if (this.isSpielfeldrand(this.spielmodell.getFigur().getPfeil().getPosX(),this.spielmodell.getFigur().getPfeil().getPosY())) {
+                spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
+                spielmodell.getFigur().setPfeilAbgeschossen(false);
             }
         }
     }

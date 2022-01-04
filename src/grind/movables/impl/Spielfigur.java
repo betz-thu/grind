@@ -22,7 +22,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     float GESCHWINDIGKEIT = 3f;
     int gold = 5;
-    boolean abgeschossen = false;
+    private boolean abgeschossen = false;
+    Richtung pfeilrichtung = Richtung.N;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
     transient Bogen testbogen = new Bogen(40,40,1);
@@ -131,6 +132,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             if (!abgeschossen){
                 testpfeil.setPosition(this.getPosX(), this.getPosY());
+                pfeilrichtung = this.getAusrichtung();
             }
             abgeschossen = true;
             aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
@@ -141,7 +143,20 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
         if (abgeschossen && aktiveWaffe instanceof Bogen){
             testpfeil.zeichne(app);
-            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
+            if (pfeilrichtung == Richtung.N){
+                testpfeil.setPosition(testpfeil.getPosX()+0, testpfeil.getPosY() - testpfeil.getGeschwindigkeit());
+                this.getPfeil().setAusrichtung(Richtung.N);
+            }else if (pfeilrichtung == Richtung.O){
+                testpfeil.setPosition(testpfeil.getPosX()+testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
+                this.getPfeil().setAusrichtung(Richtung.O);
+            }else if (pfeilrichtung == Richtung.S){
+                testpfeil.setPosition(testpfeil.getPosX()+0, testpfeil.getPosY() + testpfeil.getGeschwindigkeit());
+                this.getPfeil().setAusrichtung(Richtung.S);
+            }else if (pfeilrichtung == Richtung.W){
+                testpfeil.setPosition(testpfeil.getPosX()-testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
+                this.getPfeil().setAusrichtung(Richtung.W);
+            }
+
         }
 
 
@@ -344,6 +359,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public Waffe getWaffe(){
         return this.testwaffe;
+    }
+
+    public Waffe getPfeil(){
+        return this.testpfeil;
+    }
+
+    public void setPfeilAbgeschossen(boolean setzteAuf){
+        this.abgeschossen = setzteAuf;
     }
 
     public void setInventarGroeße(int inventarGroeße) {

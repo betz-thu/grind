@@ -46,7 +46,9 @@ public class Pfeil extends Waffe{
             case W:
                 n = 1;
         }
-
+//        if (this.getSpielmodell.getFigur().getAusrichtung() == Richtung.N){
+//
+//        }
         app.translate(this.getPosX(),this.getPosY());
         app.rotate(PConstants.HALF_PI*n);
 
@@ -58,8 +60,8 @@ public class Pfeil extends Waffe{
         app.popStyle();
     }
 
-    public void ladeBild(PImage bogen, PApplet app){
-        app.image(bogen, 0,0, 40, 40);
+    public void ladeBild(PImage pfeil1, PApplet app){
+        app.image(pfeil1, 0,0, 40, 40);
     }
 
     @Override
@@ -76,5 +78,10 @@ public class Pfeil extends Waffe{
     @Override
     public int getStufe() {
         return stufe;
+    }
+
+    public int getGeschwindigkeit(){
+        int geschwindigkeit = 5;
+        return geschwindigkeit;
     }
 }
