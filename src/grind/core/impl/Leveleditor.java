@@ -361,7 +361,8 @@ public class Leveleditor extends PApplet {
         } else if (movable instanceof Zombie){
             tempMovable = new Zombie(posX, posY, this.tileMap);
         }
-        this.spielwelt.getSzene(this.levelNr-1).getLevel().addPosition(tempMovable);
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.addPosition(tempMovable);
     }
 
     /**
@@ -498,10 +499,11 @@ public class Leveleditor extends PApplet {
      * @param app Applet auf das gezeichnet werden soll
      */
     private void zeichneMovables(PApplet app){
-        int anzahlPos = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().size();
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        int anzahlPos = level.getLevel().getPositionen().size();
         IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
-            movable = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().get(i);
+            movable = level.getLevel().getPositionen().get(i);
 
             if(movable instanceof Spielfigur){
                 app.image(spielfigurBild, movable.getPosX(), movable.getPosY(), Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
@@ -607,7 +609,8 @@ public class Leveleditor extends PApplet {
      * Speichert die aktulle Spielwelt und resettet die Anzeige
      */
     private void speichereSpielwelt() {
-        spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.getLevel().setTilemap(tileMap);
         pruefeSpeicherkriterien();
         if (speicherHinweis == 0){
             levelCount = 1;
@@ -627,7 +630,8 @@ public class Leveleditor extends PApplet {
         speicherHinweis = 0;
         levelNr = 1;
         spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
-        tileMap = (TileMap) spielwelt.getSzene(levelNr - 1).getLevel().getTileMap();
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        tileMap = (TileMap) level.getLevel().getTileMap();
         levelCount = spielwelt.getSzenenanzahl();
     }
 
@@ -638,7 +642,8 @@ public class Leveleditor extends PApplet {
         System.out.println("leeren");
         //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
         tileMap = new TileMap();
-        spielwelt.getSzene(levelNr-1).getLevel().clearPosition();
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.getLevel().clearPosition();
         //Anstatt alle Felder mit Wiese zu nullen wie unten
         //leereTilemap();
     }
@@ -649,12 +654,14 @@ public class Leveleditor extends PApplet {
     private void neuesLevel() {
         System.out.println("level");
         ILevel level = new DummyLevel();
-        spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
+        ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        iLevel1.getLevel().setTilemap(tileMap);
         spielwelt.addSzene(level, levelNr);
 
-        spielwelt.getSzene(levelNr).getLevel().clearPosition();
+        ILevel iLevel2 = (ILevel) this.spielwelt.getSzene(levelNr);
+        iLevel2.getLevel().clearPosition();
         tileMap = new TileMap();
-        spielwelt.getSzene(levelNr).getLevel().setTilemap(tileMap);
+        iLevel2.getLevel().setTilemap(tileMap);
         levelCount++;
         levelNr++;
         anzeigeTitelLevel(levelNr);
@@ -673,10 +680,11 @@ public class Leveleditor extends PApplet {
      */
     private void springeZurueck() {
         if (levelCount >= 2 && levelNr > 1){
-            spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
+            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level.getLevel().setTilemap(tileMap);
 
             levelNr -= 1;
-            tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
+            tileMap = (TileMap) level.getLevel().getTileMap();
         }
         System.out.println("zurück");
     }
@@ -686,10 +694,11 @@ public class Leveleditor extends PApplet {
      */
     private void springeVor() {
         if (levelCount > levelNr){
-            spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
+            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level.getLevel().setTilemap(tileMap);
 
             levelNr++;
-            tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
+            tileMap = (TileMap) level.getLevel().getTileMap();
         }
         System.out.println("vor");
     }
@@ -703,9 +712,10 @@ public class Leveleditor extends PApplet {
 
         for (int i = 0; i < szenenAnzahl; i++){
             speicherHinweisLevel = i + 1;
-            ITileMap pruefTilemap = spielwelt.getSzene(i).getLevel().getTileMap();
+            ILevel level = (ILevel) this.spielwelt.getSzene(i);
+            ITileMap pruefTilemap = level.getLevel().getTileMap();
             int sizeKachelarten = pruefTilemap.getKachelarten().size();
-            int sizeMovables = spielwelt.getSzene(i).getLevel().getPositionen().size();
+            int sizeMovables = level.getLevel().getPositionen().size();
 
             pruefeLevelausgang(pruefTilemap, sizeKachelarten);
 
@@ -724,7 +734,8 @@ public class Leveleditor extends PApplet {
 
         if (speicherHinweis == 0) {
             for (int j = 0; j < sizeMovables; j++) {
-                IMovable movable = spielwelt.getSzene(szenenNr).getLevel().getPositionen().get(j);
+                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                IMovable movable = level.getLevel().getPositionen().get(j);
                 if (movable instanceof Spielfigur) {
                     speicherHinweis = 0;
                     anzahlSpielfiguren++;
@@ -741,7 +752,8 @@ public class Leveleditor extends PApplet {
     private void pruefeLevelende(int szenenNr, int sizeMovables) {
         if (speicherHinweis != 0){
             for (int j = 0; j < sizeMovables; j++) {
-                IMovable movable = spielwelt.getSzene(szenenNr).getLevel().getPositionen().get(j);
+                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                IMovable movable = level.getLevel().getPositionen().get(j);
                 if (movable instanceof Levelende) {
                     speicherHinweis = 0;
                     j = sizeMovables;

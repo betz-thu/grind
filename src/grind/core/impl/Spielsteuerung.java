@@ -13,6 +13,7 @@ import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
@@ -311,10 +312,13 @@ public class Spielsteuerung extends PApplet {
     private boolean pruefeLevelausgang() {
         int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
         int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
-        if (spielerKachel instanceof Levelausgang){
-//            System.out.println(spielerKachel);
-            levelBeendet = true;
+        if (spielmodell.getSzene() instanceof ILevel){
+            ILevel level = (ILevel) spielmodell.getSzene();
+            IKachel spielerKachel = level.getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
+            if (spielerKachel instanceof Levelausgang){
+    //            System.out.println(spielerKachel);
+                levelBeendet = true;
+            }
         }
         return levelBeendet;
     }
