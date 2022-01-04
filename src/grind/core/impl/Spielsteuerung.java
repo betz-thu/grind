@@ -311,14 +311,12 @@ public class Spielsteuerung extends PApplet {
         }else if(mouseButton==LEFT && klicked==true){
             int neuePos = Spieler.getInvPos(mouseX, mouseY);
             if(neuePos>=0) {
-                klicked = false;
                 Spieler.getInventar().add(neuePos,Spieler.auswahl);
-                Spieler.auswahl = null;
             }else{
                 Spieler.getInventar().add(Spieler.auswahl);
-                klicked = false;
-                Spieler.auswahl = null;
             }
+            Spieler.auswahl = null;
+            klicked = false;
 
         }
 
