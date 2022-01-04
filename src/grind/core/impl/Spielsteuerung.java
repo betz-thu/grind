@@ -42,6 +42,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    boolean klicked;
 
 
 
@@ -57,6 +58,7 @@ public class Spielsteuerung extends PApplet {
 
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.klicked = false;
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -186,17 +188,23 @@ public class Spielsteuerung extends PApplet {
             }
             //Inventar öffnen
             if(keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
-                    Spieler.setInventarGroeße(30);
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                    Spieler.setInventarGuiGroeße(30);
                     Spieler.playBackpackOpenSound();
                     keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
-                    Spieler.setInventarGroeße(10);
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                    Spieler.setInventarGuiGroeße(10);
                     keyPressed = false;
                     Spieler.playBackpackCloseSound();
                 }
+
             }
+
+
+
         }
+
+
 
         szeneUeberspringen();
     }
@@ -284,7 +292,37 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+
+        //Items mit klick verwenden
+        if(mouseButton==RIGHT) {
+            Spieler.klickItems(mouseX, mouseY);
+        }
+
+        //Items verschieben
+        if(mouseButton==LEFT && klicked==false){
+            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            if(invPos>=0){
+                klicked = true;
+                Spieler.auswahl = Spieler.getInventar().get(invPos);
+                Spieler.getInventar().remove(invPos);
+                Spieler.auswahl.setPosition(mouseX, mouseY);
+                Spieler.auswahl.zeichne(this);
+            }
+        }else if(mouseButton==LEFT && klicked==true){
+            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            if(neuePos>=0) {
+                Spieler.getInventar().add(neuePos,Spieler.auswahl);
+            }else{
+                Spieler.getInventar().add(Spieler.auswahl);
+            }
+            Spieler.auswahl = null;
+            klicked = false;
+
+        }
+
+
     }
+
 
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
