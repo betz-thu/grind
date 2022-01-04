@@ -314,7 +314,12 @@ public class Spielsteuerung extends PApplet {
                 klicked = false;
                 Spieler.getInventar().add(neuePos,Spieler.auswahl);
                 Spieler.auswahl = null;
+            }else{
+                Spieler.getInventar().add(Spieler.auswahl);
+                klicked = false;
+                Spieler.auswahl = null;
             }
+
         }
 
 
