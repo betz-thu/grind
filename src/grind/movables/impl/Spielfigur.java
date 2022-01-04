@@ -32,6 +32,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int guiGroeße;
     public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
+
+
+    public Gegenstand auswahl;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -52,6 +55,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testwaffe);
         inventarGuiGroeße =10;
         guiGroeße=50;
+
+
 }
 
     /**
@@ -69,9 +74,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //Zeichne kleines Inventar
         zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
         zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
-
-
+        if(auswahl!=null) {
+            auswahl.setPosition(app.mouseX, app.mouseY);
+            auswahl.zeichne(app);
+        }
         gameover(app);
+
     }
 
     @Override
@@ -362,6 +370,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void klickItems(int x, int y){
+        int invPos = getInvPos(x,y);
+        if(invPos>=0) {
+            benutze(invPos);
+        }
+    }
+
+
+    public int getInvPos(int x, int y){
         boolean xBereich;
         boolean yBereich;
         for(int i=0; i<inventar.size(); i++){
@@ -369,9 +385,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
             yBereich = (y<=inventar.get(i).getPosY()+guiGroeße/2 && y>inventar.get(i).getPosY()-guiGroeße/2);
             if(xBereich && yBereich){
                 System.out.println("clicked");
-                benutze(i);
-                return;
+                return i;
             }
         }
+        return -1;
     }
 }

@@ -41,6 +41,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    boolean klicked;
 
 
 
@@ -55,6 +56,7 @@ public class Spielsteuerung extends PApplet {
 
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.klicked = false;
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -290,10 +292,34 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+
         //Items mit klick verwenden
-        Spieler.klickItems(mouseX, mouseY);
+        if(mouseButton==RIGHT) {
+            Spieler.klickItems(mouseX, mouseY);
+        }
+
+        //Items verschieben
+        if(mouseButton==LEFT && klicked==false){
+            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            if(invPos>=0){
+                klicked = true;
+                Spieler.auswahl = Spieler.getInventar().get(invPos);
+                Spieler.getInventar().remove(invPos);
+                Spieler.auswahl.setPosition(mouseX, mouseY);
+                Spieler.auswahl.zeichne(this);
+            }
+        }else if(mouseButton==LEFT && klicked==true){
+            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            if(neuePos>=0) {
+                klicked = false;
+                Spieler.getInventar().add(neuePos,Spieler.auswahl);
+                Spieler.auswahl = null;
+            }
+        }
+
 
     }
+
 
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
