@@ -11,7 +11,7 @@ public class Geist extends Monster{
     private int geschwindigkeit = 5;
     transient private int deltaX = geschwindigkeit;
     transient private int deltaY = geschwindigkeit;
-    transient private int schaden = 5;
+    transient private int schaden = 15;
 
 
     transient ITileMap tileMap;

@@ -12,7 +12,7 @@ public class Zombie extends Monster{
     transient private final static int GESCHWINDIGKEIT = 2;
     transient private int deltaX;
     transient private int deltaY;
-    transient private int schaden = 1;
+    transient private int schaden = 15;
     transient ITileMap tileMap;
 
     private boolean hilfsVariable = false;
@@ -30,12 +30,7 @@ public class Zombie extends Monster{
 
     }
 
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_ZOMBIE/2f + 20)){ // 20 = spielerradius
-            //System.out.println("Kollision mit Zombie");
-        }
-    }
+
 
     @Override
     public void zeichne(PApplet app) {

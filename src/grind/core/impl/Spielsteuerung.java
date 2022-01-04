@@ -345,7 +345,6 @@ public class Spielsteuerung extends PApplet {
             if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
-
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
                 }
                 else if(movable instanceof ISchatz){

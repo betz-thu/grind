@@ -24,6 +24,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
+    long spielerErhieltSchadenTime;
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -53,6 +54,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testwaffe);
         inventarGroeße=10;
         guiGroeße=50;
+        spielerErhieltSchadenTime = System.currentTimeMillis(); // Spieler hat bis hierher kein Schaden erhalten
 }
 
     /**
@@ -218,7 +220,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void erhalteSchaden(int schaden) {
-        this.lebensenergie -= schaden;
+
+        long spielerErhältNächstenSchadenTime = System.currentTimeMillis();
+
+        if(spielerErhältNächstenSchadenTime - spielerErhieltSchadenTime > 2000){
+            this.lebensenergie -= schaden;
+            spielerErhieltSchadenTime = System.currentTimeMillis();
+        }
+
     }
 
     /**
