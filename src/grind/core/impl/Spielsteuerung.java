@@ -43,6 +43,10 @@ public class Spielsteuerung extends PApplet {
     boolean pressed = false;
     boolean levelBeendet = false;
 
+    int CountStart;
+    int duration = 300;
+    int time = 300;
+
 
 
     /**
@@ -56,7 +60,7 @@ public class Spielsteuerung extends PApplet {
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
 
         this.Spieler = (Spielfigur) spielmodell.getFigur();
-        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.SpielerGeschwindigkeit = (int) Spieler.getGeschwindigkeit();
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -87,6 +91,7 @@ public class Spielsteuerung extends PApplet {
     public void setup() {
         imageMode(PConstants.CORNER);
         Spieler.ladeIMGSpielfigur(this);
+        CountStart = millis();
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
 
     }
@@ -100,6 +105,45 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+        countdown();
+        gameover();
+    }
+
+    public int countdown(){
+        if(time>0){
+            time = duration-(millis()-CountStart)/1000;
+            fill(0);
+            text (time,1150,20);
+        }return time;
+    }
+
+    public void gameover() {
+        if (Spieler.getLebensenergie() <= 0) {
+            Spieler.setLebensenergie(0);
+            fill(0, 0, 0);
+            rect(200, 120, 800, 600);
+            fill(138, 3, 3);
+            textSize(80);
+            text("Game Over", 400, 350);
+            textSize(25);
+            text("Press 'R' to Restart", 490, 420);
+            text("Press 'Q' to Exit", 490, 460);
+            //Bewegung deaktivieren
+
+            if (keyPressed) {
+                if (key == 'R' || key == 'r') {
+                    restart();
+                }
+            }
+            if (key == 'Q' || key == 'q') {
+                System.exit(0);
+            }
+        }
+    }
+
+
+    public void restart() {
+        System.out.println("restart");
     }
 
     /**

@@ -4,10 +4,18 @@ package grind.welt.impl;
 import grind.welt.ILevel;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
-
+import grind.movables.impl.*;
+import grind.movables.monster.DornPflanze;
+import grind.movables.monster.Geist;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
+import grind.util.Richtung;
+import grind.welt.ILevel;
 import processing.core.PApplet;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Autor Megatronik
@@ -37,6 +45,18 @@ public class DummyLevel implements ILevel {
 //        positionen.add(new Spielfigur(600, 400,Richtung.N));
 //        positionen.add(new Schwert(650,450,1));
 
+//        Random random = new Random();
+//        positionen.add(new Gold(650, 400, Einstellungen.GROESSE_GOLD));
+//        positionen.add(new Heiltrank(700, 400, Einstellungen.GROESSE_HEILTRANK));
+//        positionen.add(new Mango(750, 400, Einstellungen.GROESSE_MANGO));
+//        positionen.add(new Geist(60,200,tileMap, Einstellungen.GROESSE_GEIST));
+//        positionen.add(new DornPflanze(200, 50, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
+//        positionen.add(new DornPflanze(600, 500, tileMap, Einstellungen.GROESSE_DORNPFLANZE));
+//        positionen.add(new Zombie((float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X),
+//                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap, Einstellungen.GROESSE_ZOMBIE));
+//        positionen.add(new Zombie(350, 600, tileMap, Einstellungen.GROESSE_ZOMBIE));
+//        positionen.add(new Spielfigur(600, 400,Richtung.N, Einstellungen.GROESSE_SPIELFIGUR));
+//        positionen.add(new Stern(800,400));
     }
 
     /**

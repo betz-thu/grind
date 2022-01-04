@@ -151,6 +151,7 @@ public class Leveleditor extends PApplet {
         this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
         this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
         this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap);
+        this.menuArrayMovables[11][0] =new Stern(0,0);
 
     }
 
@@ -360,6 +361,8 @@ public class Leveleditor extends PApplet {
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
             tempMovable = new Zombie(posX, posY, this.tileMap);
+        } else if (movable instanceof Stern){
+            tempMovable = new Stern(posX, posY);
         }
         this.spielwelt.getSzene(this.levelNr-1).getLevel().addPosition(tempMovable);
     }

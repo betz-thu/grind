@@ -3,6 +3,7 @@ package grind.movables.impl;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.movables.ISpielfigur;
 import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -15,12 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author MEGAtronik
+ * @Autor Megatronik
  * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    float GESCHWINDIGKEIT = 3f;
+    private float GESCHWINDIGKEIT = 3f;
+    private int Lebensenergie = 85;
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
@@ -35,13 +37,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
     /**
-     * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
      */
-    public float getGESCHWINDIGKEIT() {
-        return GESCHWINDIGKEIT;
-    }
+
 
     /**
      * Konstruktor Spielfigur
@@ -228,6 +227,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
             spielerErhieltSchadenTime = System.currentTimeMillis();
         }
 
+    }
+
+    @Override
+    public void setGeschwindigkeit(float immunGeschwindigkeit) {
+        this.GESCHWINDIGKEIT = immunGeschwindigkeit;
+    }
+
+    @Override
+    public float getGeschwindigkeit() {
+        return this.GESCHWINDIGKEIT;
     }
 
     /**

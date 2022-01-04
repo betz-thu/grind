@@ -12,6 +12,8 @@ public interface ISpielfigur extends IMovable {
     int getLebensenergie();
     void setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
+    void setGeschwindigkeit(float immunGeschwindigkeit);
+    float getGeschwindigkeit();
 
     @Override
     int getGroesse();

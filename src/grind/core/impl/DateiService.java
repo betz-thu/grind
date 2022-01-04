@@ -113,6 +113,9 @@ public class DateiService {
                     case "class grind.movables.impl.Spielfigur":
                         iMovable = new Spielfigur(posX, posY, richtung);
                         break;
+                    case "class grind.movables.impl.Stern":
+                        iMovable = new Stern(posX,posY);
+                        break;
                     case "class grind.movables.monster.DornPflanze":
                         iMovable = new DornPflanze(posX, posY, tilemap);
                         break;
