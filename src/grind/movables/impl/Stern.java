@@ -32,13 +32,15 @@ public class Stern extends Gegenstand{
 
     @Override
     public void beimAnwenden(ISpielfigur figur) {
-        immunität(figur);
+        SpielerWirdImmunUndSchneller(figur);
     }
 
 
-    public void immunität(ISpielfigur figur){
+    public void SpielerWirdImmunUndSchneller(ISpielfigur figur){
         float alteGeschwindigkeit = figur.getGeschwindigkeit();
         float neueGeschwindigkeit = alteGeschwindigkeit+5f;
+        figur.setImmun(true);
+
 
         figur.setGeschwindigkeit(neueGeschwindigkeit);
         Timer timer = new Timer();
@@ -46,8 +48,10 @@ public class Stern extends Gegenstand{
             @Override
             public void run() {
                 figur.setGeschwindigkeit(alteGeschwindigkeit);
+                figur.setImmun(false);
+
             }
-        }, 2000);
+        }, 6000); // 6 Sekunden höhere Geschwindigkeit und Immunität
 
 
 

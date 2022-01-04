@@ -14,6 +14,8 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @Autor Megatronik
@@ -21,6 +23,8 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
+    long spielerErhältNächstenSchadenTime;
+    private boolean isImmun = false;
     private float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
@@ -220,14 +224,37 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhalteSchaden(int schaden) {
 
-        long spielerErhältNächstenSchadenTime = System.currentTimeMillis();
-
-        if(spielerErhältNächstenSchadenTime - spielerErhieltSchadenTime > 2000){
+        if(!isImmun){
             this.lebensenergie -= schaden;
-            spielerErhieltSchadenTime = System.currentTimeMillis();
+            setImmun(true);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    setImmun(false);
+
+                }
+
+            }, 2000); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
         }
 
+
+
+
     }
+
+
+    @Override
+    public void setImmun(boolean isImmun) {
+        this.isImmun = isImmun;
+    }
+    @Override
+    public boolean isImmun() {
+        return this.isImmun;
+    }
+
+
+
 
     @Override
     public void setGeschwindigkeit(float immunGeschwindigkeit) {
