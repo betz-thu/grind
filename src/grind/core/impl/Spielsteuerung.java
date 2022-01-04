@@ -314,7 +314,7 @@ public class Spielsteuerung extends PApplet {
         int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
         if (spielmodell.getSzene() instanceof ILevel){
             ILevel level = (ILevel) spielmodell.getSzene();
-            IKachel spielerKachel = level.getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
+            IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX,spielerPosY);
             if (spielerKachel instanceof Levelausgang){
     //            System.out.println(spielerKachel);
                 levelBeendet = true;

@@ -13,6 +13,5 @@ public interface ILevel extends ISzene {
     void setTilemap(ITileMap tileMap);
     void addPosition(IMovable movable);
     void clearPosition();
-    ILevel getLevel();
     void zeichne(PApplet app);
 }
