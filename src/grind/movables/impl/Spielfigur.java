@@ -54,7 +54,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testwaffe);
         inventarGroeße=10;
         guiGroeße=50;
-        spielerErhieltSchadenTime = System.currentTimeMillis(); // Spieler hat bis hierher kein Schaden erhalten
+        spielerErhieltSchadenTime = System.currentTimeMillis() - 2500; // Spieler hat bis hierher kein Schaden erhalten
 }
 
     /**

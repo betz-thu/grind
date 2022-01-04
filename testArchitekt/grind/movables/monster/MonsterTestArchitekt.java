@@ -7,7 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MonsterTest {
+import static org.junit.Assert.*;
+
+public class MonsterTestArchitekt {
     public static final int SCHADEN = 12;
     public static final int LEBENSENERGIE = 90;
 
@@ -23,12 +25,12 @@ public class MonsterTest {
         spielfigur.setLebensenergie(LEBENSENERGIE);
     }
 
-    @Test
-    public void reduziereLebensenergie() {
-        int anfangswert = monster.getLebensenergie();
-        monster.reduziereLebensenergie(SCHADEN);
-        Assert.assertEquals(anfangswert-SCHADEN, monster.getLebensenergie());
-    }
 
+    @Test
+    public void beiKollision() {
+        int spielfigurLebenVorher = spielfigur.getLebensenergie();
+        monster.beiKollision(spielfigur);
+        Assert.assertEquals(spielfigurLebenVorher-SCHADEN,  spielfigur.getLebensenergie());
+    }
 
 }
