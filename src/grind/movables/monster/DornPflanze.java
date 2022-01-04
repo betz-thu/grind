@@ -37,12 +37,6 @@ public class DornPflanze extends Monster {
 
     }
 
-
-
-
-
-
-
     @Override
     public void vorBetreten(IKachel kachel) {
         if (kachel.istHindernis()) {

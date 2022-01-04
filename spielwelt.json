@@ -2009,6 +2009,12 @@
           "classname": "class grind.movables.monster.Geist"
         },
         {
+          "posX": 200.0,
+          "posY": 200.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Stern"
+        },
+        {
           "hilfsVariable": false,
           "lebensenergie": 100,
           "schaden": 1,
