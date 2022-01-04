@@ -500,10 +500,10 @@ public class Leveleditor extends PApplet {
      */
     private void zeichneMovables(PApplet app){
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        int anzahlPos = level.getLevel().getPositionen().size();
+        int anzahlPos = level.getPositionen().size();
         IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
-            movable = level.getLevel().getPositionen().get(i);
+            movable = level.getPositionen().get(i);
 
             if(movable instanceof Spielfigur){
                 app.image(spielfigurBild, movable.getPosX(), movable.getPosY(), Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
@@ -610,7 +610,7 @@ public class Leveleditor extends PApplet {
      */
     private void speichereSpielwelt() {
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        level.getLevel().setTilemap(tileMap);
+        level.setTilemap(tileMap);
         pruefeSpeicherkriterien();
         if (speicherHinweis == 0){
             levelCount = 1;
@@ -631,7 +631,7 @@ public class Leveleditor extends PApplet {
         levelNr = 1;
         spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        tileMap = (TileMap) level.getLevel().getTileMap();
+        tileMap = (TileMap) level.getTileMap();
         levelCount = spielwelt.getSzenenanzahl();
     }
 
@@ -643,7 +643,7 @@ public class Leveleditor extends PApplet {
         //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
         tileMap = new TileMap();
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        level.getLevel().clearPosition();
+        level.clearPosition();
         //Anstatt alle Felder mit Wiese zu nullen wie unten
         //leereTilemap();
     }
@@ -655,13 +655,13 @@ public class Leveleditor extends PApplet {
         System.out.println("level");
         ILevel level = new DummyLevel();
         ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        iLevel1.getLevel().setTilemap(tileMap);
+        iLevel1.setTilemap(tileMap);
         spielwelt.addSzene(level, levelNr);
 
         ILevel iLevel2 = (ILevel) this.spielwelt.getSzene(levelNr);
-        iLevel2.getLevel().clearPosition();
+        iLevel2.clearPosition();
         tileMap = new TileMap();
-        iLevel2.getLevel().setTilemap(tileMap);
+        iLevel2.setTilemap(tileMap);
         levelCount++;
         levelNr++;
         anzeigeTitelLevel(levelNr);
@@ -681,10 +681,11 @@ public class Leveleditor extends PApplet {
     private void springeZurueck() {
         if (levelCount >= 2 && levelNr > 1){
             ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-            level.getLevel().setTilemap(tileMap);
+            level.setTilemap(tileMap);
 
             levelNr -= 1;
-            tileMap = (TileMap) level.getLevel().getTileMap();
+            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            tileMap = (TileMap) level.getTileMap();
         }
         System.out.println("zurück");
     }
@@ -695,10 +696,11 @@ public class Leveleditor extends PApplet {
     private void springeVor() {
         if (levelCount > levelNr){
             ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-            level.getLevel().setTilemap(tileMap);
+            level.setTilemap(tileMap);
 
             levelNr++;
-            tileMap = (TileMap) level.getLevel().getTileMap();
+            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            tileMap = (TileMap) level.getTileMap();
         }
         System.out.println("vor");
     }
@@ -713,9 +715,9 @@ public class Leveleditor extends PApplet {
         for (int i = 0; i < szenenAnzahl; i++){
             speicherHinweisLevel = i + 1;
             ILevel level = (ILevel) this.spielwelt.getSzene(i);
-            ITileMap pruefTilemap = level.getLevel().getTileMap();
+            ITileMap pruefTilemap = level.getTileMap();
             int sizeKachelarten = pruefTilemap.getKachelarten().size();
-            int sizeMovables = level.getLevel().getPositionen().size();
+            int sizeMovables = level.getPositionen().size();
 
             pruefeLevelausgang(pruefTilemap, sizeKachelarten);
 
@@ -735,7 +737,7 @@ public class Leveleditor extends PApplet {
         if (speicherHinweis == 0) {
             for (int j = 0; j < sizeMovables; j++) {
                 ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
-                IMovable movable = level.getLevel().getPositionen().get(j);
+                IMovable movable = level.getPositionen().get(j);
                 if (movable instanceof Spielfigur) {
                     speicherHinweis = 0;
                     anzahlSpielfiguren++;
@@ -753,7 +755,7 @@ public class Leveleditor extends PApplet {
         if (speicherHinweis != 0){
             for (int j = 0; j < sizeMovables; j++) {
                 ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
-                IMovable movable = level.getLevel().getPositionen().get(j);
+                IMovable movable = level.getPositionen().get(j);
                 if (movable instanceof Levelende) {
                     speicherHinweis = 0;
                     j = sizeMovables;
