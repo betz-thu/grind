@@ -132,60 +132,52 @@ public class Spielsteuerung extends PApplet {
                 if (isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y - Schulterbreite) && isErlaubteKoordinate(x + SpielerGeschwindigkeit + 20, y + Schulterbreite)) {
                     Spieler.bewege(Richtung.O);
                 }
-            }
-            else if (key == '1') {
+            } else if (key == '1') {
                 Tastendruck = 0;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='2') {
+            } else if (key == '2') {
                 Tastendruck = 1;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='3') {
+            } else if (key == '3') {
                 Tastendruck = 2;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='4') {
+            } else if (key == '4') {
                 Tastendruck = 3;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='5') {
+            } else if (key == '5') {
                 Tastendruck = 4;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='6') {
+            } else if (key == '6') {
                 Tastendruck = 5;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='7') {
+            } else if (key == '7') {
                 Tastendruck = 6;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='8') {
+            } else if (key == '8') {
                 Tastendruck = 7;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='9') {
+            } else if (key == '9') {
                 Tastendruck = 8;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='0') {
+            } else if (key == '0') {
                 Tastendruck = 9;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
 
             }
+
+
             //Inventar öffnen
-            if(keyPressed) {
+            if (keyPressed) {
                 if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
                     Spieler.setInventarGroeße(30);
                     Spieler.playBackpackOpenSound();
@@ -197,6 +189,7 @@ public class Spielsteuerung extends PApplet {
                 }
             }
         }
+
 
         szeneUeberspringen();
     }
