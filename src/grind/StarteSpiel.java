@@ -1,6 +1,7 @@
 package grind;
 
-import grind.core.impl.Spielsteuerung;
+
+import grind.core.impl.*;
 import grind.core.impl.Leveleditor;
 import processing.core.PApplet;
 

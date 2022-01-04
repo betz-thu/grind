@@ -8,7 +8,10 @@ import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.FeuerMonster;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
 import grind.util.FeuerModus;
+import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -16,6 +19,7 @@ import grind.welt.ISzene;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -53,7 +57,7 @@ public class Spielmodell implements ISpielmodell {
     /**
      * Löscht Movable aus Liste der Positionen und aus Liste der movables
      * z. B. Für das Einsammeln eines Schatzes
-     * @param movable
+     * @param
      */
     /*@Override
     public void removeMovable(IMovable movable){
@@ -96,11 +100,20 @@ public class Spielmodell implements ISpielmodell {
     }
 
     private void betreteLevel(ILevel level) {
+        Random random = new Random();
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
         IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
+        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
+        IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
+        IMonster zombie2 = (new Zombie(350, 600, tileMap,Richtung.N,this.steuerung,LaufModus.DEFAULT));
+        IMonster zombie3 = (new Zombie(100, 400, tileMap,Richtung.N,this.steuerung,LaufModus.JAGDT));
         addMonster(feuerMonster);
+        addMonster(zombie1);
+        addMonster(zombie2);
+        addMonster(zombie3);
     }
 
     private void kopiereTilemap() {
