@@ -151,7 +151,7 @@ public class Leveleditor extends PApplet {
         this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
         this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
         this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap);
-        this.menuArrayMovables[11][0] =new Stern(0,0);
+        this.menuArrayMovables[11][0] = new Stern(0,0);
 
     }
 
