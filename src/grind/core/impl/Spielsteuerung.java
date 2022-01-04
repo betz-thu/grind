@@ -404,7 +404,7 @@ public class Spielsteuerung extends PApplet {
                     return;
                 }
                 else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen
+
                 }
 
             }

@@ -5,6 +5,10 @@ import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
+import java.sql.Time;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Stern extends Gegenstand{
 
     public Stern(int posX, int posY) {
@@ -33,8 +37,19 @@ public class Stern extends Gegenstand{
 
 
     public void immunität(ISpielfigur figur){
-        System.out.println("immun");
-        figur.setGeschwindigkeit((figur.getGeschwindigkeit()+5f));
+        float alteGeschwindigkeit = figur.getGeschwindigkeit();
+        float neueGeschwindigkeit = alteGeschwindigkeit+5f;
+
+        figur.setGeschwindigkeit(neueGeschwindigkeit);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                figur.setGeschwindigkeit(alteGeschwindigkeit);
+            }
+        }, 2000);
+
+
 
     }
 }

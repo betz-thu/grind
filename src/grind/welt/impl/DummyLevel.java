@@ -56,7 +56,7 @@ public class DummyLevel implements ILevel {
 //                (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y),tileMap, Einstellungen.GROESSE_ZOMBIE));
 //        positionen.add(new Zombie(350, 600, tileMap, Einstellungen.GROESSE_ZOMBIE));
 //        positionen.add(new Spielfigur(600, 400,Richtung.N, Einstellungen.GROESSE_SPIELFIGUR));
-//        positionen.add(new Stern(800,400));
+//      positionen.add(new Stern(800,400));
     }
 
     /**

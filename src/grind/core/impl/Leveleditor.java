@@ -67,7 +67,7 @@ public class Leveleditor extends PApplet {
         Einstellungen.LAENGE_KACHELN_Y = 30;
         Einstellungen.LAENGE_KACHELN_X = 30;
         this.menuArrayKacheln = new IKachel[menuHoehe][menuBreite];
-        this.menuArrayMovables = new IMovable[11][1];
+        this.menuArrayMovables = new IMovable[12][1];
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
@@ -307,7 +307,7 @@ public class Leveleditor extends PApplet {
                     aktuelleKachel = getMenukacheliKachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
                 }
             } else if (mouseX > SpielfeldBreite + menuBreite && mouseX <= SpielfeldBreite + (2 * menuBreite) * Einstellungen.LAENGE_KACHELN_X){
-                if (mouseY < 11 * Einstellungen.LAENGE_KACHELN_Y){
+                if (mouseY < 12 * Einstellungen.LAENGE_KACHELN_Y){
                     aktuelleKachel = null;
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }

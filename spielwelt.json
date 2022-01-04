@@ -1953,6 +1953,12 @@
           "classname": "class grind.movables.monster.DornPflanze"
         },
         {
+          "posX": 500.0,
+          "posY": 500.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Stern"
+        },
+        {
           "deltaX": -2,
           "deltaY": -2,
           "schussZaehler": 0,
