@@ -344,6 +344,7 @@ public class Spielsteuerung extends PApplet {
             int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
             int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
             int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+
             if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
                 if (movable instanceof IMonster) {
@@ -369,22 +370,20 @@ public class Spielsteuerung extends PApplet {
                         System.out.println("Waffe wurde aufgesammelt!");
                         spielmodell.removeMovable(movable);
                         //Spieler.waffeAusgestattet = true;
-                    }
-
-
-                    else if (movable instanceof Nahrung) {
+                    } else if (movable instanceof Nahrung) {
                         // TODO: Nahrung zu Inventar hinzufügen
                     }
-
+                }
                 } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
-                        System.out.println("Aktueller Schwertschaden: "+spielmodell.getFigur().getWaffe().getSchaden());
+                        System.out.println("Kollision!!");
                         ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
 
                     }
                 }
-                } else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
+
+            else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
                     if (movable instanceof Monster) {
                         System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
                         ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getPfeil().getSchaden());
