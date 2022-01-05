@@ -23,5 +23,8 @@ public interface ISpielfigur extends IMovable {
     void playApfelSound();
     void playSwallowSound();
     void playZombieAttacSound();
-    public void playZombieAroundSound();
+    void playZombieAroundSound();
+    void playFeuerMonsterAroundSound();
+    void playFeuerBallFlyBy();
+    void playGeistAround();
 }

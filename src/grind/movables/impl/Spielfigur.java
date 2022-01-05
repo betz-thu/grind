@@ -338,16 +338,41 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @MEGAtroniker
      */
     public void playZombieAttacSound() {
-        File backpackSound = new File("Zombie_attac.wav");
-        setupSound(backpackSound);
+        File zombieAttac = new File("Zombie_attac.wav");
+        setupSound(zombieAttac);
     }
 
     /**
      * @MEGAtroniker
      */
     public void playZombieAroundSound() {
-        File backpackSound = new File("Zombie_in_der_Naehe.wav");
-        setupSound(backpackSound);
+        File zombieAround = new File("Zombie_in_der_Naehe.wav");
+        setupSound(zombieAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playFeuerMonsterAroundSound() {
+        File feuerMonsterAround = new File("Feuermonster_Around.wav");
+        setupSound(feuerMonsterAround);
+    }
+
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playFeuerBallFlyBy() {
+        File feuerBallAround = new File("Feuerball__flyBy.wav");
+        setupSound(feuerBallAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playGeistAround() {
+        File gohstAround = new File("Gohst_Around.wav");
+        setupSound(gohstAround);
     }
 
         private void setupSound(File Sound){

@@ -295,8 +295,8 @@ public class Spielsteuerung extends PApplet {
 
     public void pruefeUmgebung(){
         for (IMovable movable : this.spielmodell.getMovables()) {
-            if(movable instanceof Zombie) {
-                ((IMonster) movable).inDerNaehe(spielmodell.getFigur());
+            if(movable instanceof Monster) {
+                ((IMonster) movable).inDerNaehe(spielmodell.getFigur(),movable);
             }
         }
     }

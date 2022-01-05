@@ -5,6 +5,7 @@ import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
@@ -133,6 +134,9 @@ public class FeuerMonster extends Monster{
         FeuerModus(this.feuerModus,this.feuerRate);
         if(hatKollidiert){
             resetTimer();
+        }
+        if(inDerNaehe){
+            resetTimerNaehe();
         }
     }
 
@@ -306,4 +310,8 @@ public class FeuerMonster extends Monster{
 
 
 
+    @Override
+    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
+        super.inDerNaehe(figur, monster);
+    }
 }

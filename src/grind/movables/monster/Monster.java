@@ -15,6 +15,8 @@ public abstract class Monster extends Movable implements IMonster {
     ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
+    private long startTimeNaehe;
+    public boolean inDerNaehe=false;
 
 
 
@@ -71,9 +73,41 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
-    @Override
-    public void inDerNaehe(ISpielfigur figur) {
 
+
+    public void inDerNaehe(ISpielfigur figur, IMovable monster){
+        float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
+        float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
+        if(aktuelleDistanz>kollisionsDistantz&&aktuelleDistanz<120&&!inDerNaehe){
+            playMonsterSound(figur, monster);
+            startTimeNaehe = System.currentTimeMillis();
+            setInDerNaehe(true);
+        }
     }
+
+    private void playMonsterSound(ISpielfigur figur,IMovable monster) {
+        if(monster instanceof Zombie){
+            figur.playZombieAroundSound();
+        }if(monster instanceof FeuerMonster){
+            figur.playFeuerMonsterAroundSound();
+        }if(monster instanceof Feuerball){
+             figur.playFeuerBallFlyBy();
+        }if(monster instanceof Geist) {
+             figur.playGeistAround();
+        }
+    }
+
+    private void setInDerNaehe(boolean inDerNaehe) {
+        this.inDerNaehe = inDerNaehe;
+    }
+
+
+    public void resetTimerNaehe(){
+        long endTime = System.currentTimeMillis();
+        if(endTime-startTimeNaehe>=2000){
+            setInDerNaehe(false);
+        }
+    }
+
 }
 

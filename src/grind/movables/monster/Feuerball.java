@@ -3,6 +3,7 @@ package grind.movables.monster;
 import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -103,5 +104,10 @@ public class Feuerball extends Monster{
     @Override
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
+    }
+
+    @Override
+    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
+        super.inDerNaehe(figur,monster);
     }
 }

@@ -4,6 +4,7 @@ import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
@@ -35,8 +36,8 @@ public class Zombie extends Monster{
     private boolean hatKollidiert=false;
     private long startTime;
     private boolean hilfsVariable = false;
-    private long startTimeNaehe;
-    private boolean inDerNaehe=false;
+   // private long startTimeNaehe;
+    //private boolean inDerNaehe=false;
 
     /**
      * @MEGAtroniker
@@ -83,16 +84,17 @@ public class Zombie extends Monster{
         }
     }
 
-
-    public void inDerNaehe(ISpielfigur figur){
-        float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
+    @Override
+    public void inDerNaehe(ISpielfigur figur, IMovable monster){
+        super.inDerNaehe(figur, monster);
+        /*float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz>kollisionsDistantz&&aktuelleDistanz<120&&!inDerNaehe){
             figur.playZombieAroundSound();
             System.out.println("Zombie in der nähe");
             startTimeNaehe = System.currentTimeMillis();
             setInDerNaehe(true);
-        }
+        }*/
     }
 
 
@@ -346,21 +348,21 @@ public class Zombie extends Monster{
             setHatKollidiert(false);
         }
     }
-
+/*
     public void resetTimerNaehe(){
         long endTime = System.currentTimeMillis();
         if(endTime-startTimeNaehe>=2000){
             setInDerNaehe(false);
         }
-    }
+    }*/
 
 
 
 
-
+/*
     private void setInDerNaehe(boolean inDerNaehe) {
         this.inDerNaehe = inDerNaehe;
-    }
+    }*/
 
 
     /**

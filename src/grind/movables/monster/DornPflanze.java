@@ -4,6 +4,7 @@ import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.welt.impl.DummyLevel;
@@ -63,6 +64,11 @@ public class DornPflanze extends Monster {
     @Override
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
+    }
+
+    @Override
+    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
+
     }
 }
 
