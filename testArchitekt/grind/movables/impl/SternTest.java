@@ -57,7 +57,7 @@ public class SternTest {
                 Assert.assertEquals(false, figur.isImmun());
                 // Testet, ob Geschwindigkeit wieder auf Normalzustand ist.
                 Assert.assertEquals(geschwindigkeitVorStern, figur.getGeschwindigkeit(), 0.1);
-
+                timer.cancel();
 
             }
 

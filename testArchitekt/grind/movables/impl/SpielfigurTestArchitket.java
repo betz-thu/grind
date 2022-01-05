@@ -45,6 +45,7 @@ public class SpielfigurTestArchitket {
                 figur.erhalteSchaden(SCHADEN);
                 // Testet, ob nach Figur nach einer gewissen Immunitätsdauer wieder Schaden bekommt
                 Assert.assertEquals(lebenNacher -SCHADEN, figur.getLebensenergie());
+                timer.cancel();
             }
 
         }, IMMUNITÄTSDAUER + 1);

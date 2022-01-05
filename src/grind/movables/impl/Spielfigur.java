@@ -232,7 +232,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 @Override
                 public void run() {
                     setImmun(false);
-
+                    timer.cancel();
                 }
 
             }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun

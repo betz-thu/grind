@@ -52,7 +52,7 @@ public class Stern extends Gegenstand{
             public void run() {
                 figur.setGeschwindigkeit(alteGeschwindigkeit);
                 figur.setImmun(false);
-
+                timer.cancel();
             }
         }, DAUERSTERNEVENT); // 6 Sekunden höhere Geschwindigkeit und Immunität
 
