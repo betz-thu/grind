@@ -14,7 +14,7 @@ public class SpielfigurTestArchitket {
 
     private Spielfigur figur;
     public static final int SCHADEN = 15;
-    public static final int IMMUNITÄTSDAUER = 2000; // in ms
+    public static final int IMMUNITÄTSDAUER = Spielfigur.IMMUNITÄTSDAUERNACHSCHADEN; // in ms
 
 
     @Before

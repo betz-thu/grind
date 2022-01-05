@@ -23,14 +23,14 @@ import java.util.TimerTask;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    long spielerErhältNächstenSchadenTime;
+    public static final int IMMUNITÄTSDAUERNACHSCHADEN = 2000; // in [ms]
     private boolean isImmun = false;
     private float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
-    long spielerErhieltSchadenTime;
+
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -57,7 +57,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testwaffe);
         inventarGroeße=10;
         guiGroeße=50;
-        spielerErhieltSchadenTime = System.currentTimeMillis() - 2500; // Spieler hat bis hierher kein Schaden erhalten
+
 }
 
     /**
@@ -235,7 +235,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
                 }
 
-            }, 2000); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+            }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
         }
 
 

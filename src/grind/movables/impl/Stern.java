@@ -11,6 +11,9 @@ import java.util.TimerTask;
 
 public class Stern extends Gegenstand{
 
+    public static final int DAUERSTERNEVENT = 6000; // in [ms]
+    public static final float DAUERGESCHWINDIGKEITSBOOST = 5f;
+
     public Stern(int posX, int posY) {
         super(posX, posY,Einstellungen.LAENGE_KACHELN_X/2);
     }
@@ -38,7 +41,7 @@ public class Stern extends Gegenstand{
 
     public void SpielerWirdImmunUndSchneller(ISpielfigur figur){
         float alteGeschwindigkeit = figur.getGeschwindigkeit();
-        float neueGeschwindigkeit = alteGeschwindigkeit+5f;
+        float neueGeschwindigkeit = alteGeschwindigkeit+DAUERGESCHWINDIGKEITSBOOST;
         figur.setImmun(true);
 
 
@@ -51,7 +54,7 @@ public class Stern extends Gegenstand{
                 figur.setImmun(false);
 
             }
-        }, 6000); // 6 Sekunden höhere Geschwindigkeit und Immunität
+        }, DAUERSTERNEVENT); // 6 Sekunden höhere Geschwindigkeit und Immunität
 
 
 
