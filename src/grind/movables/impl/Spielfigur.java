@@ -28,6 +28,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     transient Waffe testwaffe = new Schwert(35,35,1);
     transient Bogen testbogen = new Bogen(40,40,1);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
+    transient Spezialattacke testattacke = new Spezialattacke(60,60,1);
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -128,7 +129,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 //        System.out.println(this.getAusrichtung());
 
-
+        //testattacke.zeichne(app);
         if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             if (!abgeschossen){
                 testpfeil.setPosition(this.getPosX(), this.getPosY());
