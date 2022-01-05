@@ -25,7 +25,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
     transient PImage spielfigurOhneWaffe;
-    transient Waffe testwaffe = new Schwert(30,30,1);
+    transient Waffe testwaffe = new Schwert(42,42,1);
     transient Bogen testbogen = new Bogen(40,40,1);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
 
@@ -35,9 +35,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     private int inventarGroeße;
     private int guiGroeße;
-    public boolean waffeAusgestattet=false;
-//    Waffe aktiveWaffe = testwaffe;
-    Waffe aktiveWaffe = testbogen;
+    //public boolean waffeAusgestattet=false;
+    Waffe aktiveWaffe = testwaffe;
+    //Waffe aktiveWaffe = testbogen;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -55,7 +55,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-//        setAktiveWaffe(testwaffe);
+       //setAktiveWaffe(testwaffe);
         setAktiveWaffe(testbogen);
         inventarGroeße=10;
         guiGroeße=50;
@@ -221,7 +221,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 Waffe waffe =  (Waffe) inventar.get(position);
                 this.setAktiveWaffe(waffe);
                 inventar.remove(position);
-                waffeAusgestattet=true;
+                System.out.println("Neue Waffe ausgerüstet");
+
+                //waffeAusgestattet=true;
                 //inventar.get(position).beimAnwenden(this);
                 //Waffe nicht entfernen, soll im Inventar verbleiben?
             }
@@ -357,8 +359,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         aktiveWaffe = waffe;
     }
 
+    //public Waffe getWaffe(){
+     //   return this.testwaffe;
+    //}
     public Waffe getWaffe(){
-        return this.testwaffe;
+        return aktiveWaffe;
     }
 
     public Waffe getPfeil(){

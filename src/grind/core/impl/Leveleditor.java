@@ -150,7 +150,7 @@ public class Leveleditor extends PApplet {
 
         //Befüllen des Menuarrays mit den Movables
         this.menuArrayMovables[0][0] = new Spielfigur(0,0, Richtung.N);
-        this.menuArrayMovables[1][0] = new Schwert(0,0,1);
+        this.menuArrayMovables[1][0] = new Schwert(40,40,1);
         this.menuArrayMovables[2][0] = new Mango(0,0);
         this.menuArrayMovables[3][0] = new Levelende(0,0,40);
         this.menuArrayMovables[4][0] = new Heiltrank(0,0);
