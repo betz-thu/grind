@@ -55,8 +55,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-       setAktiveWaffe(testwaffe);
-        //setAktiveWaffe(testbogen);
+       //setAktiveWaffe(testwaffe);
+        setAktiveWaffe(testbogen);
         inventarGroeße=10;
         guiGroeße=50;
 }
@@ -219,6 +219,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             }
             else if(inventar.get(position) instanceof Waffe){
                 Waffe waffe =  (Waffe) inventar.get(position);
+                inventar.add(aktiveWaffe);
                 this.setAktiveWaffe(waffe);
                 inventar.remove(position);
                 System.out.println("Neue Waffe ausgerüstet");
@@ -356,6 +357,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public void setAktiveWaffe(Waffe waffe){
+        //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.
+        //inventar.add(aktiveWaffe);
+        //neue Waffe ausrüsten
         aktiveWaffe = waffe;
     }
 

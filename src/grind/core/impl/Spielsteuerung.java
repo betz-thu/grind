@@ -364,11 +364,12 @@ public class Spielsteuerung extends PApplet {
 
                         return;
                     }
-
-                    if ((movable instanceof Waffe)) { //& !(Spieler.waffeAusgestattet)) {
+                    //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
+                    if ((movable instanceof Waffe)) {
                         ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
                         System.out.println("Waffe wurde aufgesammelt!");
                         spielmodell.removeMovable(movable);
+
                         //Spieler.waffeAusgestattet = true;
                     } else if (movable instanceof Nahrung) {
                         // TODO: Nahrung zu Inventar hinzufügen
