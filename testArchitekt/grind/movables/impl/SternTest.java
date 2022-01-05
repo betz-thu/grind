@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,6 +30,11 @@ public class SternTest {
 
     @Test
     public void beimSammeln() {
+
+        stern.beimSammeln(figur);
+
+        // Inventargröße der Figur wird um 1 erhöht
+        Assert.assertEquals(1, figur.getInventar().size());
     }
 
     @Test
