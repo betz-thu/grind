@@ -77,7 +77,6 @@ public class Zombie extends Monster{
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz < kollisionsDistantz&&!hatKollidiert){
             figur.playZombieAttacSound();
-            System.out.println("Zombie atakke");
             startTime = System.currentTimeMillis();
             setHatKollidiert(true);
             figur.erhalteSchaden(this.schaden);
@@ -87,14 +86,6 @@ public class Zombie extends Monster{
     @Override
     public void inDerNaehe(ISpielfigur figur, IMovable monster){
         super.inDerNaehe(figur, monster);
-        /*float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
-        float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
-        if(aktuelleDistanz>kollisionsDistantz&&aktuelleDistanz<120&&!inDerNaehe){
-            figur.playZombieAroundSound();
-            System.out.println("Zombie in der nähe");
-            startTimeNaehe = System.currentTimeMillis();
-            setInDerNaehe(true);
-        }*/
     }
 
 

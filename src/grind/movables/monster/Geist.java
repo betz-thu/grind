@@ -57,6 +57,10 @@ public class Geist extends Monster{
 
 
         this.setPosition(posX, posY);
+
+        if(inDerNaehe){
+            resetTimerNaehe();
+        }
     }
 
 
