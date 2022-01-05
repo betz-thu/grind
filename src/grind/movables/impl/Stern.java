@@ -42,15 +42,16 @@ public class Stern extends Gegenstand{
     public void SpielerWirdImmunUndSchneller(ISpielfigur figur){
         float alteGeschwindigkeit = figur.getGeschwindigkeit();
         float neueGeschwindigkeit = alteGeschwindigkeit+DAUERGESCHWINDIGKEITSBOOST;
+
         figur.setImmun(true);
-
-
+        figur.setSternAngewandt(true);
         figur.setGeschwindigkeit(neueGeschwindigkeit);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 figur.setGeschwindigkeit(alteGeschwindigkeit);
+                figur.setSternAngewandt(false);
                 figur.setImmun(false);
                 timer.cancel();
             }

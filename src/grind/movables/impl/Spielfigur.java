@@ -25,6 +25,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     public static final int IMMUNITÄTSDAUERNACHSCHADEN = 2000; // in [ms]
     private boolean isImmun = false;
+    private boolean isSternAngewandt = false;
+
     private float GESCHWINDIGKEIT = 3f;
     private int Lebensenergie = 85;
     int gold = 5;
@@ -224,23 +226,40 @@ public class Spielfigur extends Movable implements ISpielfigur {
     @Override
     public void erhalteSchaden(int schaden) {
 
-        if(!isImmun){
+        if(!isImmun && !isSternAngewandt){
             this.lebensenergie -= schaden;
             setImmun(true);
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    // Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                    if(isSternAngewandt){
+                        setImmun(true);
+                        Timer timer2 = new Timer();
+                        timer2.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                setImmun(false);
+                                timer2.cancel();
+                            }
+                        }, Stern.DAUERSTERNEVENT) ;
+                    }
+
                     setImmun(false);
                     timer.cancel();
                 }
 
             }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
         }
-
-
-
-
+    }
+    @Override
+    public void setSternAngewandt(boolean angewandt){
+        this.isSternAngewandt = angewandt;
+    }
+    @Override
+    public boolean isSternAngewandt(){
+        return this.isSternAngewandt;
     }
 
 

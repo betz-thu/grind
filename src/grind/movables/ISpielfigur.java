@@ -16,6 +16,8 @@ public interface ISpielfigur extends IMovable {
     float getGeschwindigkeit();
     void setImmun(boolean isImmun);
     boolean isImmun();
+    void setSternAngewandt(boolean angewandt);
+    boolean isSternAngewandt();
 
     @Override
     int getGroesse();
