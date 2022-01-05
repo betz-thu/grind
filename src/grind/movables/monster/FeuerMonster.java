@@ -304,4 +304,6 @@ public class FeuerMonster extends Monster{
         this.spielmodell = spielmodell;
     }
 
+
+
 }

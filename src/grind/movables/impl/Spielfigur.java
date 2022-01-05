@@ -333,7 +333,24 @@ public class Spielfigur extends Movable implements ISpielfigur {
         File backpackSound = new File("backpack_reverse.wav");
         setupSound(backpackSound);
     }
-    private void setupSound(File Sound){
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playZombieAttacSound() {
+        File backpackSound = new File("Zombie_attac.wav");
+        setupSound(backpackSound);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playZombieAroundSound() {
+        File backpackSound = new File("Zombie_in_der_Naehe.wav");
+        setupSound(backpackSound);
+    }
+
+        private void setupSound(File Sound){
         try{
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(Sound));

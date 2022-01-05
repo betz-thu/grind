@@ -19,7 +19,6 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
-
     /**
      * Konstruktor 1
      * @param posX
@@ -48,10 +47,11 @@ public abstract class Monster extends Movable implements IMonster {
 
     @Override
     public void beiKollision(ISpielfigur figur) {
-
         figur.erhalteSchaden(this.schaden);
-
     }
+
+
+
 
     public void setSchaden(int schaden) {
         this.schaden = schaden;
@@ -71,7 +71,9 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
+    @Override
+    public void inDerNaehe(ISpielfigur figur) {
 
-
+    }
 }
 

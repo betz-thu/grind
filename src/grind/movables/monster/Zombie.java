@@ -5,13 +5,12 @@ import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.ISpielfigur;
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.LaufModus;
 import grind.util.Richtung;
 import processing.core.PApplet;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,13 +28,15 @@ public class Zombie extends Monster{
     private int deltaX;
     private int deltaY;
     private ITileMap tileMap;
-    private int schaden = 20;
+    private int schaden = 2;
     private Spielsteuerung steuerung;
     private LaufModus laufModus;
     private Richtung ausrichtung;
     private boolean hatKollidiert=false;
     private long startTime;
     private boolean hilfsVariable = false;
+    private long startTimeNaehe;
+    private boolean inDerNaehe=false;
 
     /**
      * @MEGAtroniker
@@ -74,11 +75,27 @@ public class Zombie extends Monster{
         float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz < kollisionsDistantz&&!hatKollidiert){
+            figur.playZombieAttacSound();
+            System.out.println("Zombie atakke");
             startTime = System.currentTimeMillis();
             setHatKollidiert(true);
             figur.erhalteSchaden(this.schaden);
         }
     }
+
+
+    public void inDerNaehe(ISpielfigur figur){
+        float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
+        float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
+        if(aktuelleDistanz>kollisionsDistantz&&aktuelleDistanz<120&&!inDerNaehe){
+            figur.playZombieAroundSound();
+            System.out.println("Zombie in der nähe");
+            startTimeNaehe = System.currentTimeMillis();
+            setInDerNaehe(true);
+        }
+    }
+
+
 
     /**
      * @MEGAtroniker nicht von uns
@@ -125,6 +142,9 @@ public class Zombie extends Monster{
         bewegeMovable(posX, posY);
         if(hatKollidiert){
             resetTimer();
+        }
+        if(inDerNaehe){
+            resetTimerNaehe();
         }
     }
 
@@ -313,6 +333,7 @@ public class Zombie extends Monster{
     }
 
 
+
     /**
      * @MEGAtroniker
      * Methode resetTimer setzt booleand hatKollidiert auf false,
@@ -322,8 +343,23 @@ public class Zombie extends Monster{
     public void resetTimer(){
         long endTime = System.currentTimeMillis();
         if(endTime-startTime>=2000){
-            hatKollidiert=false;
+            setHatKollidiert(false);
         }
+    }
+
+    public void resetTimerNaehe(){
+        long endTime = System.currentTimeMillis();
+        if(endTime-startTimeNaehe>=2000){
+            setInDerNaehe(false);
+        }
+    }
+
+
+
+
+
+    private void setInDerNaehe(boolean inDerNaehe) {
+        this.inDerNaehe = inDerNaehe;
     }
 
 
@@ -337,13 +373,6 @@ public class Zombie extends Monster{
     }
 
 
-    /**
-     * @MEGAtroniker
-     * Getter, notwendig für die tests und kapselung
-     * @return
-     */
-    public boolean isHatKollidiert() {
-        return hatKollidiert;
-    }
+
 
 }

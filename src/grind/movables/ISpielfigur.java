@@ -22,4 +22,6 @@ public interface ISpielfigur extends IMovable {
     Waffe getWaffe();
     void playApfelSound();
     void playSwallowSound();
+    void playZombieAttacSound();
+    public void playZombieAroundSound();
 }

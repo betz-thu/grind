@@ -12,6 +12,7 @@ import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
+import grind.movables.monster.Zombie;
 import grind.util.Richtung;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
@@ -206,6 +207,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void aktualisiere() {
+        pruefeUmgebung();
         pruefeKollisionen();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
@@ -268,9 +270,6 @@ public class Spielsteuerung extends PApplet {
         int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
 
 
-
-
-
         for (IMovable movable : this.spielmodell.getMovables()) {
             int MovableXp = movable.getPosX()+movable.getGroesse()/2;
             int MovableXn = movable.getPosX()-movable.getGroesse()/2;
@@ -279,7 +278,6 @@ public class Spielsteuerung extends PApplet {
             if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
-
                     ((IMonster) movable).beiKollision(spielmodell.getFigur());
                 }
                 else if(movable instanceof ISchatz){
@@ -291,6 +289,14 @@ public class Spielsteuerung extends PApplet {
                     // TODO: Nahrung zu Inventar hinzufügen
                 }
 
+            }
+        }
+    }
+
+    public void pruefeUmgebung(){
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            if(movable instanceof Zombie) {
+                ((IMonster) movable).inDerNaehe(spielmodell.getFigur());
             }
         }
     }
