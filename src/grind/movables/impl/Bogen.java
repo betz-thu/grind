@@ -1,5 +1,11 @@
 package grind.movables.impl;
 
+import grind.movables.ISpielfigur;
+import grind.util.Richtung;
+import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PImage;
+
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.impl.TileMap;
 import grind.movables.ISpielfigur;
@@ -8,16 +14,16 @@ import grind.util.Richtung;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
+public class Bogen extends Waffe{
 
-public class Schwert extends Waffe{
 
     private int stufe;
-    PImage schwertStufe1;
+    PImage Bogen1;
     PImage schwertStufe2;
 
 
 
-    public Schwert(int x, int y, int stufe) {
+    public Bogen(int x, int y, int stufe) {
         super(x, y, 40);
         this.stufe=stufe;
         if (getAusrichtung()==null){
@@ -27,25 +33,20 @@ public class Schwert extends Waffe{
     }
 
 
-    public void zeichneSchwert(PApplet app) {
-    /*public void zeichneSchwert(PApplet app) {
-
-        if (!geladen){
-            schwertStufe1 = app.loadImage("newSword1.png");
-            schwertStufe2 = app.loadImage("newSword2.png");
-            geladen = true;
-        }
-
+    public void zeichneBogen(PApplet app) {
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
 
         //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
-        PImage schwert = schwertStufe1;
-        if (stufe == 2) {
-            schwert = schwertStufe2;
+        PImage bogen = Bogen1;
+        if (stufe == 1) {
+            bogen = app.loadImage("Bogen1.png");
         }
-        /*
+//        else if (stufe == 2) {
+//            schwert = app.loadImage("newSword2.png");
+//        }
+
         int n =1;
         switch (this.ausrichtung) {
             case N:
@@ -66,7 +67,7 @@ public class Schwert extends Waffe{
 
 
 
-        ladeBild(schwert, app);
+        ladeBild(bogen, app);
 
         app.popMatrix();
         app.popStyle();
@@ -74,15 +75,15 @@ public class Schwert extends Waffe{
 
 
 
-    /*public void ladeBild(PImage schwert, PApplet app){
-        app.image(schwert, 0,0, 40, 40);
-    }*/
+    public void ladeBild(PImage bogen, PApplet app){
+        app.image(bogen, 0,0, 40, 40);
+    }
     @Override
     public int getSchaden() {
         /**
-         * Berechnet den Schaden, welchen ein Schwert anrichtet.
+         * Berechnet den Schaden, welchen ein Bogen anrichtet.
          */
-        int schaden = 10* this.stufe;
+        int schaden = 0* this.stufe;
         return schaden;
     }
 
@@ -91,10 +92,10 @@ public class Schwert extends Waffe{
         return stufe;
     }
 
-    /*@Override
-    public void zeichne(Spielsteuerung app) {
-        zeichneSchwert(app);
-    }*/
+    @Override
+    public void zeichne(PApplet app) {
+        zeichneBogen(app);
+    }
 
 
     public int getGroesse(){

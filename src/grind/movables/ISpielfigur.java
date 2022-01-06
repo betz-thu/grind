@@ -19,6 +19,8 @@ public interface ISpielfigur extends IMovable {
     List<Gegenstand> getInventar();
     void erhalteSchaden(int schaden);
     Waffe getWaffe();
+    Waffe getPfeil();
+    void setPfeilAbgeschossen(boolean setzteAuf);
     void playApfelSound();
     void playSwallowSound();
     void playZombieAttacSound();
