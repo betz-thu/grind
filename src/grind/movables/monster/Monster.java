@@ -1,6 +1,7 @@
 package grind.movables.monster;
 
 import grind.core.ISpielmodell;
+import grind.core.impl.Spielsteuerung;
 import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Movable;
@@ -40,6 +41,10 @@ public abstract class Monster extends Movable implements IMonster {
      */
     public Monster(float posX, float posY, Richtung ausrichtung,int groesse) {
         super(posX,posY,ausrichtung,groesse);
+    }
+
+    public Monster(float posX, float posY, Richtung ausrichtung, Spielsteuerung spielsteuerung, int groesse) {
+        super(posX,posY,ausrichtung, spielsteuerung,groesse);
     }
 
 

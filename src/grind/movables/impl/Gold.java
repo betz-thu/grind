@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -16,7 +17,7 @@ public class Gold extends Waehrung {
     }
 
     @Override
-    public void zeichne(PApplet app) {
+    public void zeichne(Spielsteuerung app) {
         app.pushStyle();
         app.stroke(200, 225, 75);
         app.fill(175, 125, 75);

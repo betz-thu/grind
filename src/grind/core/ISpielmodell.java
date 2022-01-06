@@ -1,6 +1,7 @@
 package grind.core;
 
 import grind.core.impl.Spielmodell;
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
@@ -19,7 +20,7 @@ public interface ISpielmodell {
 
     void betreteSzene(int n);
     void bewege();
-    void zeichne(PApplet app);
+    void zeichne(Spielsteuerung spielsteuerung);
 
     ISpielfigur getFigur();
     ITileMap getTileMap();

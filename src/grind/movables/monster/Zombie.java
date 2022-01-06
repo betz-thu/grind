@@ -25,11 +25,9 @@ public class Zombie extends Monster{
     transient private final static int GESCHWINDIGKEIT = 2;
     transient private int deltaX;
     transient private int deltaY;
-    transient private int schaden = 1;
+    transient private int schaden = 10;
     transient ITileMap tileMap;
-    transient private Spielsteuerung steuerung;
     transient private LaufModus laufModus;
-    transient private Richtung ausrichtung;
     private boolean hilfsVariable = false;
 
 
@@ -44,14 +42,12 @@ public class Zombie extends Monster{
      * @param laufModus DEFAULT:1.Zombie; RANDOM:2.Zombie; JAGT:3.Zombie;
      */
     public Zombie(float posX, float posY, ITileMap tileMap, Richtung ausrichtung, Spielsteuerung steuerung, LaufModus laufModus) {
-        super(posX, posY, Einstellungen.GROESSE_ZOMBIE);
+        super(posX, posY,ausrichtung, steuerung, Einstellungen.GROESSE_ZOMBIE);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
         this.deltaX = -GESCHWINDIGKEIT;
         this.deltaY = -GESCHWINDIGKEIT;
-        this.ausrichtung = ausrichtung;
-        this.steuerung=steuerung;
         this.laufModus=laufModus;
         setSchaden(schaden);
     }
@@ -61,11 +57,11 @@ public class Zombie extends Monster{
      * @MEGAtroniker nicht von uns
      * @param app
      */
-    @Override
+    /*@Override
     public void zeichne(PApplet app) {
         app.fill(0, 127, 127);
         app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-    }
+    }*/
 
 
     /**
@@ -123,15 +119,15 @@ public class Zombie extends Monster{
                 int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
                 if(Math.abs(abstandX)>Math.abs(abstandY)){
                     if(abstandX>0){
-                        ausrichtung=Richtung.O;
+                        setAusrichtung(Richtung.O);
                     }else{
-                        ausrichtung=Richtung.W;
+                        setAusrichtung(Richtung.W);
                     }
                 }else{
                     if(abstandY>0){
-                        ausrichtung=Richtung.S;
+                        setAusrichtung(Richtung.S);
                     }else{
-                        ausrichtung=Richtung.N;
+                        setAusrichtung(Richtung.N);
                     }
                 }
                 bewegeMovable(posX, posY);
@@ -150,7 +146,7 @@ public class Zombie extends Monster{
     private void bewegeRandom(Random random,  int posX, int posY) {
             int zufall= random.nextInt(50);
             if(zufall==0){
-                ausrichtung=Richtung.randomRichtung();;
+                setAusrichtung(Richtung.randomRichtung());
                 bewegeMovable(posX, posY);
                 }
     }
@@ -164,13 +160,13 @@ public class Zombie extends Monster{
      * @param posY aktuelle Y Position
      */
     private void bewegeMovable(int posX, int posY) {
-        switch (ausrichtung) {
+        switch (getAusrichtung()) {
             case W:
-                if (bewegeWestlich(posY, posX - 2 * GESCHWINDIGKEIT, posX - GESCHWINDIGKEIT, posY, Richtung.N)) break;
+                if (bewegeWestlich(posY, posX - 2 * GESCHWINDIGKEIT, posX - GESCHWINDIGKEIT, posY)) break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT, Richtung.O)) break;
+                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT)) break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY, Richtung.S)) break;
+                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY)) break;
             case S:
                 bewegeSuedlich(posX, posY);
         }
@@ -182,11 +178,11 @@ public class Zombie extends Monster{
      * @param posY aktuelle Y Position
      */
     private void bewegeSuedlich(int posX, int posY) {
-        if(steuerung.isErlaubteKoordinate(posX, posY + 2*GESCHWINDIGKEIT)){
+        if(getSpielsteuerung().isErlaubteKoordinate(posX, posY + 2*GESCHWINDIGKEIT)){
             this.setPosition(posX, posY +GESCHWINDIGKEIT);
             return;
         }else{
-            ausrichtung=Richtung.W;
+            setAusrichtung(Richtung.W);
         }
     }
 
@@ -197,15 +193,14 @@ public class Zombie extends Monster{
      * @param i
      * @param i2
      * @param posY2
-     * @param s
      * @return
      */
-    private boolean bewegeOestlich(int posY, int i, int i2, int posY2, Richtung s) {
-        if (steuerung.isErlaubteKoordinate(i, posY)) {
+    private boolean bewegeOestlich(int posY, int i, int i2, int posY2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
             this.setPosition(i2, posY2);
             return true;
         } else {
-            ausrichtung = s;
+            setAusrichtung(Richtung.S);
         }
         return false;
     }
@@ -217,15 +212,14 @@ public class Zombie extends Monster{
      * @param i
      * @param posX2
      * @param i2
-     * @param o
      * @return
      */
-    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2, Richtung o) {
-        if (steuerung.isErlaubteKoordinate(posX, i)) {
+    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
             this.setPosition(posX2, i2);
             return true;
         } else {
-            ausrichtung = o;
+            setAusrichtung(Richtung.O);
         }
         return false;
     }
@@ -237,15 +231,14 @@ public class Zombie extends Monster{
      * @param i
      * @param i2
      * @param posY2
-     * @param n
      * @return
      */
-    private boolean bewegeWestlich(int posY, int i, int i2, int posY2, Richtung n) {
-        if (steuerung.isErlaubteKoordinate(i, posY)) {
+    private boolean bewegeWestlich(int posY, int i, int i2, int posY2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
             this.setPosition(i2, posY2);
             return true;
         } else {
-            ausrichtung = n;
+            setAusrichtung(Richtung.N);
         }
         return false;
     }

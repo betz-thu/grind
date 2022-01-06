@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.IMovable;
 import grind.util.Richtung;
 
@@ -9,6 +10,8 @@ import grind.util.Richtung;
  * getAusrichtung und setAusrichtung, um Ausrichtung zu setzen oder zu übergeben.
  */
 import grind.movables.ISpielfigur;
+import processing.core.PConstants;
+import processing.core.PImage;
 
 public abstract class Movable implements IMovable {
 
@@ -16,6 +19,7 @@ public abstract class Movable implements IMovable {
     float posY;
     int groesse;
     Richtung ausrichtung;
+    transient private Spielsteuerung spielsteuerung;
 
     public Movable(float posX, float posY, int groesse) {
         this.posX = posX;
@@ -35,6 +39,58 @@ public abstract class Movable implements IMovable {
         this.posX = posX;
         this.posY = posY;
         this.groesse = groesse;
+    }
+
+    public Movable(float posX, float posY, Richtung ausrichtung, Spielsteuerung spielsteuerung, int groesse) {
+        this.ausrichtung = ausrichtung;
+        this.posX = posX;
+        this.posY = posY;
+        this.groesse = groesse;
+        this.spielsteuerung = spielsteuerung;
+    }
+
+    public void zeichne(Spielsteuerung spielsteuerung) {
+        spielsteuerung.pushStyle();
+        spielsteuerung.imageMode(PConstants.CENTER);
+        spielsteuerung.pushMatrix();
+        spielsteuerung.translate(this.posX, this.posY);
+        if(this.ausrichtung!=null){
+            int n = 1;
+            switch (this.ausrichtung) {
+                case N:
+                    n = 0;
+                    break;
+                case O:
+                    n = 1;
+                    break;
+                case S:
+                    n = 2;
+                    break;
+                case W:
+                    n = 3;
+            }
+            spielsteuerung.rotate(PConstants.HALF_PI*n);
+        }
+        PImage img;
+        if (this.getClass().toString().equals("class grind.movables.impl.Schwert")) {
+            if (this.getStufe() == 1) {
+                img = (PImage) spielsteuerung.getImages().get("Schwert Level 1");
+            } else {
+                img = (PImage) spielsteuerung.getImages().get("Schwert Level 2");
+            }
+        } else if(spielsteuerung.getImages().get(this.getClass().toString())==null) {
+            img = (PImage) spielsteuerung.getImages().get("class grind.movables.monster.Zombie");
+            System.out.println("Bild für "+this.getClass().toString()+" fehlt noch.");
+        } else {
+            img = (PImage) spielsteuerung.getImages().get(this.getClass().toString());
+        }
+        spielsteuerung.image(img, 0, 0, this.getGroesse(), this.getGroesse());
+        spielsteuerung.popMatrix();
+        spielsteuerung.popStyle();
+    }
+
+    public int getStufe() {
+        return 0;
     }
 
     @Override
@@ -77,4 +133,7 @@ public abstract class Movable implements IMovable {
         this.ausrichtung = ausrichtung;
     }
 
+    public Spielsteuerung getSpielsteuerung() {
+        return spielsteuerung;
+    }
 }

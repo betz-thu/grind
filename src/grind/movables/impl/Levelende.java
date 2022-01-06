@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -9,7 +10,7 @@ public class Levelende extends Gegenstand{
         super(posX, posY, groesse);
     }
 
-    public void zeichne(PApplet app){
+    public void zeichne(Spielsteuerung app){
         app.pushStyle();
         app.stroke(255, 255, 255);
         app.fill(255, 255, 255);

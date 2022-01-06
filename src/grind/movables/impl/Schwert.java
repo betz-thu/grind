@@ -23,7 +23,7 @@ public class Schwert extends Waffe{
     }
 
 
-    public void zeichneSchwert(PApplet app) {
+    /*public void zeichneSchwert(PApplet app) {
 
         if (!geladen){
             schwertStufe1 = app.loadImage("newSword1.png");
@@ -55,7 +55,7 @@ public class Schwert extends Waffe{
             case W:
                 n = 1;
         }
-        */
+
         app.translate(this.getPosX(),this.getPosY());
 
         //app.rotate(PConstants.HALF_PI*n);
@@ -66,13 +66,13 @@ public class Schwert extends Waffe{
 
         app.popMatrix();
         app.popStyle();
-    }
+    }*/
 
 
 
-    public void ladeBild(PImage schwert, PApplet app){
+    /*public void ladeBild(PImage schwert, PApplet app){
         app.image(schwert, 0,0, 40, 40);
-    }
+    }*/
     @Override
     public int getSchaden() {
         /**
@@ -87,10 +87,10 @@ public class Schwert extends Waffe{
         return stufe;
     }
 
-    @Override
-    public void zeichne(PApplet app) {
+    /*@Override
+    public void zeichne(Spielsteuerung app) {
         zeichneSchwert(app);
-    }
+    }*/
 
 
     public int getGroesse(){

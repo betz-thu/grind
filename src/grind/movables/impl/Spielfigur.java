@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
@@ -21,7 +22,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     float GESCHWINDIGKEIT = 3f;
     int gold = 5;
-    transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
 
     int lebensenergie = 100;//Kapselung?
@@ -63,22 +63,22 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * Methode zeichne: zeichnet Bild der Spielfigur, abhängig von Ausrichtung und Position.
      * Dadurch schaut die Spielfigur immer in Laufrichtung.
      * Bild: "SpielfigurOhneWaffe.jpg"
-     * @param app PApplet, für Darstellung in Processing.
+     * @param spielsteuerung Spielsteuerung, für Darstellung in Processing.
      */
     @Override
-    public void zeichne(PApplet app) {
-        zeichneSpielfigur(app);
-        zeichneLebensbalken(app);
-        zeichneKontostand(app);
+    public void zeichne(Spielsteuerung spielsteuerung) {
+        zeichneSpielfigur(spielsteuerung);
+        zeichneLebensbalken(spielsteuerung);
+        zeichneKontostand(spielsteuerung);
 
         //Zeichne kleines Inventar
-        zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
+        zeichneInventar(spielsteuerung, inventarGuiGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(spielsteuerung, inventarGuiGroeße, 550, 720, guiGroeße);
         if(auswahl!=null) {
-            auswahl.setPosition(app.mouseX, app.mouseY);
-            auswahl.zeichne(app);
+            auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
+            auswahl.zeichne(spielsteuerung);
         }
-        gameover(app);
+        gameover(spielsteuerung);
 
     }
 
@@ -92,7 +92,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
      * @param app
      */
-    private void zeichneSpielfigur(PApplet app) {
+    public void zeichneSpielfigur(Spielsteuerung app) {
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
@@ -122,7 +122,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 schwertPositionY =0;
         }
         app.rotate(PConstants.HALF_PI*n);
-        app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
+        app.image((PImage) app.getImages().get(this.getClass().toString()), 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
 
@@ -137,7 +137,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     }
 
-    public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
+    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
         int zaehler = 0;
 
@@ -170,7 +170,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
     }
 
-    public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
+    public void zeichneInventarInhalt(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         for (int j = 0; j < inventar.size(); j++) {
             if (j % 10 == 0 && j > 0) {
                 startkoordinateY -= guiGroeße;
@@ -205,7 +205,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
-    private void zeichneKontostand(PApplet app) {
+    private void zeichneKontostand(Spielsteuerung app) {
         app.fill(255,215,0);
         app.rect(10,5,gold*5,10);
         app.text(Integer.toString(gold),20+gold*5,15);
@@ -317,14 +317,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
-    /**
-     * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
-     * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
-     * @param app
-     */
-    public void ladeIMGSpielfigur(PApplet app) {
-        spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
-    }
 
     public void setAktiveWaffe(Waffe waffe){
 
@@ -332,7 +324,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     public Waffe getWaffe(){
-        return this.testwaffe;
+        return this.aktiveWaffe;
     }
 
     public void setInventarGuiGroeße(int inventarGuiGroeße) {
