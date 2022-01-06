@@ -463,7 +463,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     public void anzeigeTitelLevel(int LevelNr){
-        frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
+        surface.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 
     /**

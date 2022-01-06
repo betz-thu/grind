@@ -12,10 +12,10 @@ public abstract class Monster extends Movable implements IMonster {
     transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
-    private long startTimeNaehe;
-    private boolean inDerNaehe=false;            //kaplselung
-    private boolean hatKollidiert=false;         //kaplselung
-    private long startTimeAttac;
+    transient private long startTimeNaehe;
+    transient private boolean inDerNaehe=false;            //kaplselung
+    transient private boolean hatKollidiert=false;         //kaplselung
+    transient private long startTimeAttac;
 
 
 

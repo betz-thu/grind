@@ -371,7 +371,7 @@ public class Leveleditor extends PApplet {
      * @param LevelNr Aktuelle Levelnummer
      */
     public void anzeigeTitelLevel(int LevelNr){
-        frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
+        surface.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
     }
 
     /**

@@ -27,9 +27,9 @@ public class Zombie extends Monster{
     transient private int deltaY;
     transient private int schaden = 1;
     transient ITileMap tileMap;
-    private Spielsteuerung steuerung;
-    private LaufModus laufModus;
-    private Richtung ausrichtung;
+    transient private Spielsteuerung steuerung;
+    transient private LaufModus laufModus;
+    transient private Richtung ausrichtung;
     private boolean hilfsVariable = false;
 
 

@@ -9,8 +9,8 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class DornPflanze extends Monster {
-    private int posX;
-    private int posY;
+    transient private int posX;
+    transient private int posY;
     transient private int schaden = 1;
 
 
