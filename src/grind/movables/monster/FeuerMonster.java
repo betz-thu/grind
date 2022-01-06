@@ -27,14 +27,10 @@ public class FeuerMonster extends Monster{
     final int deltaX;
     final int deltaY;
     transient ITileMap tileMap;
-    transient Spielsteuerung steuerung;
-    transient Richtung ausrichtung;
     transient Feuerball feuerball;
     private int schussZaehler=0;
     transient Random rand;
     final int feuerRate;
-    //private boolean hatKollidiert=false;
-    //private long startTime;
     FeuerModus feuerModus;
     transient final int schaden = 20;
 
@@ -49,14 +45,12 @@ public class FeuerMonster extends Monster{
      * @param ausrichtung   Laufrichtung
      */
     public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung,int feuerRate,FeuerModus feuerModus) {
-        super(posX, posY,ausrichtung,Einstellungen.GROESSE_FEUERMONSTER);
+        super(posX, posY,ausrichtung,steuerung,Einstellungen.GROESSE_FEUERMONSTER);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
         this.deltaX = -GESCHWINDIGKEIT; // gibt dem FeuerMonster eine Anfangsrichtung und geschwindigkeit
         this.deltaY = -GESCHWINDIGKEIT;
-        this.steuerung=steuerung;
-        this.ausrichtung=ausrichtung;
         rand = new Random();
         this.feuerRate=feuerRate;
         this.feuerModus=feuerModus;
@@ -70,11 +64,11 @@ public class FeuerMonster extends Monster{
      * Die Methode zeiche definiert die Darstellung des Feuremonsters
      * @param app  app zur Darstellung
      */
-    @Override
-    public void zeichne(PApplet app) {
+    /*@Override
+    public void zeichne(Spielsteuerung app) {
         app.fill(255,100,0);
         app.ellipse(this.getPosX(), this.getPosY(),(float) this.getGroesse(), (float) this.getGroesse());
-    }
+    }*/
 
     /**
      * @MEGAtroniker
@@ -87,15 +81,15 @@ public class FeuerMonster extends Monster{
         super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
-        switch (ausrichtung) {
+        switch (getAusrichtung()) {
             case W:
                 if (bewegeWestlich(posX, posY)) break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT, Richtung.O)) break;
+                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT)) break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY, Richtung.S)) break;
+                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY)) break;
             case S:
-                bewegeSuedlich(posX, posY + 2 * GESCHWINDIGKEIT, posX, posY + GESCHWINDIGKEIT, Richtung.W);
+                bewegeSuedlich(posX, posY + 2 * GESCHWINDIGKEIT, posX, posY + GESCHWINDIGKEIT);
                 break;
         }
         FeuerModus(this.feuerModus,this.feuerRate);
@@ -111,11 +105,11 @@ public class FeuerMonster extends Monster{
      * @return
      */
     private boolean bewegeWestlich(int posX, int posY) {
-        if(steuerung.isErlaubteKoordinate(posX - 2*GESCHWINDIGKEIT, posY)){
+        if(getSpielsteuerung().isErlaubteKoordinate(posX - 2*GESCHWINDIGKEIT, posY)){
             this.setPosition(posX - GESCHWINDIGKEIT, posY);
             return true;
         }else{
-            ausrichtung=Richtung.N;
+            setAusrichtung(Richtung.N);
         }
         return false;
     }
@@ -127,15 +121,14 @@ public class FeuerMonster extends Monster{
      * @param i
      * @param posX2
      * @param i2
-     * @param o
      * @return
      */
-    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2, Richtung o) {
-        if (steuerung.isErlaubteKoordinate(posX, i)) {
+    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
             this.setPosition(posX2, i2);
             return true;
         } else {
-            ausrichtung = o;
+            setAusrichtung(Richtung.O);
         }
         return false;
     }
@@ -147,15 +140,14 @@ public class FeuerMonster extends Monster{
      * @param i
      * @param i2
      * @param posY2
-     * @param s
      * @return
      */
-    private boolean bewegeOestlich(int posY, int i, int i2, int posY2, Richtung s) {
-        if (steuerung.isErlaubteKoordinate(i, posY)) {
+    private boolean bewegeOestlich(int posY, int i, int i2, int posY2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
             this.setPosition(i2, posY2);
             return true;
         } else {
-            ausrichtung = s;
+            setAusrichtung(Richtung.S);
         }
         return false;
     }
@@ -167,14 +159,13 @@ public class FeuerMonster extends Monster{
      * @param i
      * @param posX2
      * @param i2
-     * @param w
      */
-    private void bewegeSuedlich(int posX, int i, int posX2, int i2, Richtung w) {
-        if (steuerung.isErlaubteKoordinate(posX, i)) {
+    private void bewegeSuedlich(int posX, int i, int posX2, int i2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
             this.setPosition(posX2, i2);
             return;
         } else {
-            ausrichtung = w;
+            setAusrichtung(Richtung.W);
         }
     }
 
@@ -218,7 +209,7 @@ public class FeuerMonster extends Monster{
     public void shootFeuerball(){
         int abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
         int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
-        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.steuerung);
+        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.getSpielsteuerung());
         this.spielmodell.addMonster(feuerball);
     }
 

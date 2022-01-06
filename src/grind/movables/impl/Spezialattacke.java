@@ -18,7 +18,6 @@ import processing.core.PImage;
     public class Spezialattacke extends Waffe{
 
         private int stufe;
-        PImage bluefirering;
 
 
 
@@ -32,33 +31,6 @@ import processing.core.PImage;
 
         }
 
-
-        public void zeichneSpezialattacke(PApplet app) {
-            app.pushStyle();
-            app.imageMode(PConstants.CENTER);
-            app.pushMatrix();
-
-            PImage spezialattacke = bluefirering;
-            if (stufe == 1) {
-                spezialattacke = app.loadImage("bluefirering.png");
-            }
-            else if (stufe == 2) {
-                spezialattacke = app.loadImage("bluefirering.png");
-            }
-
-            app.translate(this.getPosX(),this.getPosY());
-
-            ladeBild(spezialattacke, app);
-
-            app.popMatrix();
-            app.popStyle();
-        }
-
-
-
-        public void ladeBild(PImage waffe, PApplet app){
-           app.image(waffe, 0,0, 220, 132);
-        }
         @Override
         public int getSchaden() {
             /**
@@ -73,12 +45,6 @@ import processing.core.PImage;
             return stufe;
         }
 
-        @Override
-        public void zeichne(PApplet app) {
-            zeichneSpezialattacke(app);
-        }
-
-
         public int getGroesse(){
             return 40;
         }
@@ -88,14 +54,6 @@ import processing.core.PImage;
 
         }
 
-//    @Override
-//    public void setAusrichtung(Richtung ausrichtung) {
-//        super.setAusrichtung(ausrichtung);
-//    }
-//    @Override
-//    public boolean kollision(){
-//
-//    }
     }
 
 

@@ -46,9 +46,10 @@ public class Feuerball extends Monster{
      * @param app  app zur Darstellung
      */
     @Override
-    public void zeichne(PApplet app) {
+    public void zeichne(Spielsteuerung app) {
         app.pushStyle();
-        app.fill(255,100,0);
+        app.noStroke();
+        app.fill(255,100,0,200);
         app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_FEUERBALL , (float)Einstellungen.GROESSE_FEUERBALL);
         app.popStyle();
     }

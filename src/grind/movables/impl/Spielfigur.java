@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
@@ -23,7 +24,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
-    transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(35,35,1);
     transient Bogen testbogen = new Bogen(40,40,1);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
@@ -62,28 +62,31 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testbogen);
         inventarGuiGroeße =10;
         guiGroeße=50;
+
+
 }
 
     /**
      * Methode zeichne: zeichnet Bild der Spielfigur, abhängig von Ausrichtung und Position.
      * Dadurch schaut die Spielfigur immer in Laufrichtung.
      * Bild: "SpielfigurOhneWaffe.jpg"
-     * @param app PApplet, für Darstellung in Processing.
+     * @param spielsteuerung Spielsteuerung, für Darstellung in Processing.
      */
     @Override
-    public void zeichne(PApplet app) {
-        zeichneSpielfigur(app);
-        zeichneLebensbalken(app);
-        zeichneKontostand(app);
+    public void zeichne(Spielsteuerung spielsteuerung) {
+        zeichneSpielfigur(spielsteuerung);
+        zeichneLebensbalken(spielsteuerung);
+        zeichneKontostand(spielsteuerung);
 
         //Zeichne kleines Inventar
-        zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
+        zeichneInventar(spielsteuerung, inventarGuiGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(spielsteuerung, inventarGuiGroeße, 550, 720, guiGroeße);
         if(auswahl!=null) {
-            auswahl.setPosition(app.mouseX, app.mouseY);
-            auswahl.zeichne(app);
+            auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
+            auswahl.zeichne(spielsteuerung);
         }
-        gameover(app);
+        gameover(spielsteuerung);
+
     }
 
     @Override
@@ -96,7 +99,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
      * @param app
      */
-    private void zeichneSpielfigur(PApplet app) {
+    public void zeichneSpielfigur(Spielsteuerung app) {
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
@@ -107,42 +110,41 @@ public class Spielfigur extends Movable implements ISpielfigur {
         switch (this.ausrichtung) {
             case N:
                 n = 0;
-                schwertPositionX =0;
-                schwertPositionY =-1;
+                schwertPositionX = 0;
+                schwertPositionY = -1;
                 break;
             case O:
                 n = 1;
-                schwertPositionX =1;
-                schwertPositionY =0;
+                schwertPositionX = 1;
+                schwertPositionY = 0;
                 break;
             case S:
                 n = 2;
-                schwertPositionX =0;
-                schwertPositionY =1;
+                schwertPositionX = 0;
+                schwertPositionY = 1;
                 break;
             case W:
                 n = 3;
-                schwertPositionX =-1;
-                schwertPositionY =0;
+                schwertPositionX = -1;
+                schwertPositionY = 0;
         }
-        app.rotate(PConstants.HALF_PI*n);
-        app.image(spielfigurOhneWaffe, 0, 0, groesse, groesse);
+        app.rotate(PConstants.HALF_PI * n);
+        app.image((PImage) app.getImages().get(this.getClass().toString()), 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
 
 
-
         //testattacke.zeichne(app);
-        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
-            if (!abgeschossen){
+        if (app.key == ' ') { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+            if (!abgeschossen) {
                 /**
                  * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
                  */
-                if (this.getAusrichtung()==Richtung.N){
+                if (this.getAusrichtung() == Richtung.N) {
                     testpfeil.setPosition(this.getPosX(), this.getPosY() - this.getGroesse());
-                } else if (this.getAusrichtung()==Richtung.O){
+                } else if (this.getAusrichtung() == Richtung.O) {
                     testpfeil.setPosition(this.getPosX() + this.getGroesse(), this.getPosY());
-                } else if (this.getAusrichtung()==Richtung.S){
+                } else if (this.getAusrichtung() == Richtung.S) {
                     testpfeil.setPosition(this.getPosX(), this.getPosY() + this.getGroesse());
                 } else {
                     testpfeil.setPosition(this.getPosX() - this.getGroesse(), this.getPosY());
@@ -151,39 +153,36 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 pfeilrichtung = this.getAusrichtung();
             }
             abgeschossen = true;
-            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
+            aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
             aktiveWaffe.setAusrichtung(this.getAusrichtung());
             aktiveWaffe.zeichne(app);
 //            testpfeil.zeichne(app);
 //            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
         }
-        if (abgeschossen && aktiveWaffe instanceof Bogen){
+        if (abgeschossen && aktiveWaffe instanceof Bogen) {
             /**
              * Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
              */
             testpfeil.zeichne(app);
-            if (pfeilrichtung == Richtung.N){
-                testpfeil.setPosition(testpfeil.getPosX()+0, testpfeil.getPosY() - testpfeil.getGeschwindigkeit());
+            if (pfeilrichtung == Richtung.N) {
+                testpfeil.setPosition(testpfeil.getPosX() + 0, testpfeil.getPosY() - testpfeil.getGeschwindigkeit());
                 this.getPfeil().setAusrichtung(Richtung.N);
-            }else if (pfeilrichtung == Richtung.O){
-                testpfeil.setPosition(testpfeil.getPosX()+testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
+            } else if (pfeilrichtung == Richtung.O) {
+                testpfeil.setPosition(testpfeil.getPosX() + testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
                 this.getPfeil().setAusrichtung(Richtung.O);
-            }else if (pfeilrichtung == Richtung.S){
-                testpfeil.setPosition(testpfeil.getPosX()+0, testpfeil.getPosY() + testpfeil.getGeschwindigkeit());
+            } else if (pfeilrichtung == Richtung.S) {
+                testpfeil.setPosition(testpfeil.getPosX() + 0, testpfeil.getPosY() + testpfeil.getGeschwindigkeit());
                 this.getPfeil().setAusrichtung(Richtung.S);
-            }else if (pfeilrichtung == Richtung.W){
-                testpfeil.setPosition(testpfeil.getPosX()-testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
+            } else if (pfeilrichtung == Richtung.W) {
+                testpfeil.setPosition(testpfeil.getPosX() - testpfeil.getGeschwindigkeit(), testpfeil.getPosY() + 0);
                 this.getPfeil().setAusrichtung(Richtung.W);
             }
 
+
         }
-
-
-
-
     }
 
-    public void zeichneInventar(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
+    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
         int zaehler = 0;
 
@@ -216,7 +215,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
     }
 
-    public void zeichneInventarInhalt(PApplet app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
+    public void zeichneInventarInhalt(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         for (int j = 0; j < inventar.size(); j++) {
             if (j % 10 == 0 && j > 0) {
                 startkoordinateY -= guiGroeße;
@@ -254,7 +253,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
-    private void zeichneKontostand(PApplet app) {
+    private void zeichneKontostand(Spielsteuerung app) {
         app.fill(255,215,0);
         app.rect(10,5,gold*5,10);
         app.text(Integer.toString(gold),20+gold*5,15);
@@ -369,11 +368,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
      * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
-     * @param app
      */
-    public void ladeIMGSpielfigur(PApplet app) {
+    /*public void ladeIMGSpielfigur(PApplet app) {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
-    }
+    }*/
 
     public void setAktiveWaffe(Waffe waffe){
         //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.

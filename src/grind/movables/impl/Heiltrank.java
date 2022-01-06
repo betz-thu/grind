@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -16,13 +17,6 @@ public class Heiltrank extends Nahrung {
         return this.punkte;
     }
 
-    public void zeichne(PApplet app) {
-        app.pushStyle();
-        app.stroke(104,34,139);
-        app.fill(104,34,139);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_HEILTRANK, Einstellungen.GROESSE_HEILTRANK);
-        app.popStyle();
-    }
     @Override
     public void beimAnwenden(ISpielfigur figur){
         super.beimAnwenden(figur);

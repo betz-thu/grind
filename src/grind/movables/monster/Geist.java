@@ -1,6 +1,7 @@
 package grind.movables.monster;
 
 import grind.core.ISpielmodell;
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
@@ -25,9 +26,12 @@ public class Geist extends Monster{
     }
 
     @Override
-    public void zeichne(PApplet app) {
-        app.fill(255, 255, 255);
+    public void zeichne(Spielsteuerung app) {
+        app.pushStyle();
+        app.noStroke();
+        app.fill(255, 255, 255,30);
         app.ellipse(this.getPosX(), this.getPosY(), (float) Einstellungen.GROESSE_GEIST, (float) Einstellungen.GROESSE_GEIST);
+        app.popStyle();
     }
     @Override
     public void bewege() {

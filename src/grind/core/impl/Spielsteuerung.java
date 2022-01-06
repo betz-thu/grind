@@ -9,22 +9,18 @@ import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.impl.*;
-import grind.movables.monster.DornPflanze;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
-import grind.movables.monster.Zombie;
 import grind.util.Richtung;
-import grind.core.ISpielmodell;
-import grind.kacheln.IKachel;
-import grind.kacheln.ITileMap;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
-import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
-import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * @Autor Megatronik
@@ -38,6 +34,8 @@ public class Spielsteuerung extends PApplet {
     int Tastendruck;
     private String fTaste;
     private DateiService dateiService;
+
+    Dictionary<String, PImage> images = new Hashtable<String, PImage>();
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
@@ -94,9 +92,29 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
-        Spieler.ladeIMGSpielfigur(this);
+        //Spieler.ladeIMGSpielfigur(this);
+        ladeBilder(this);
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
 
+    }
+
+    public void ladeBilder(Spielsteuerung spielsteuerung) {
+        Dictionary images = new Hashtable();
+        images.put("class grind.movables.monster.Zombie",(PImage) spielsteuerung.loadImage("Zombie.png"));
+        images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
+        images.put("class grind.movables.impl.Heiltrank",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
+        images.put("class grind.movables.impl.Apfel",(PImage) spielsteuerung.loadImage("Apfel.png"));
+        images.put("class grind.movables.impl.Mango",(PImage) spielsteuerung.loadImage("Mango.png"));
+        images.put("class grind.movables.impl.Gold",(PImage) spielsteuerung.loadImage("Gold.png"));
+        images.put("class grind.movables.monster.FeuerMonster",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
+        images.put("class grind.movables.monster.DornPflanze",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
+        images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
+        images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
+        images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
+        images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        spielsteuerung.setImages(images);
     }
 
     /**
@@ -118,7 +136,7 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
-        int Schulterbreite = 15;
+        int Schulterbreite = 10;
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
@@ -494,5 +512,13 @@ public class Spielsteuerung extends PApplet {
      */
     public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
+    }
+
+    public Dictionary getImages() {
+        return images;
+    }
+
+    public void setImages(Dictionary images) {
+        this.images = images;
     }
 }

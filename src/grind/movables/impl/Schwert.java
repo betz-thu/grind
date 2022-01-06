@@ -1,19 +1,9 @@
 package grind.movables.impl;
-
-import grind.core.impl.Spielsteuerung;
-import grind.kacheln.impl.TileMap;
 import grind.movables.ISpielfigur;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
-import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PImage;
-
 public class Schwert extends Waffe{
 
     private int stufe;
-    PImage schwertStufe1;
-    PImage schwertStufe2;
 
 
 
@@ -26,52 +16,6 @@ public class Schwert extends Waffe{
 
     }
 
-
-    public void zeichneSchwert(PApplet app) {
-        app.pushStyle();
-        app.imageMode(PConstants.CENTER);
-        app.pushMatrix();
-
-        //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
-        PImage schwert = schwertStufe1;
-        if (stufe == 1) {
-            schwert = app.loadImage("newSword1.png");
-        }
-        else if (stufe == 2) {
-            schwert = app.loadImage("newSword2.png");
-        }
-
-        int n =1;
-        switch (this.ausrichtung) {
-            case N:
-                n = 2;
-                break;
-            case O:
-                n = 3;
-                break;
-            case S:
-                n = 0;
-                break;
-            case W:
-                n = 1;
-        }
-
-        app.translate(this.getPosX(),this.getPosY());
-        app.rotate(PConstants.HALF_PI*n);
-
-
-
-        ladeBild(schwert, app);
-
-        app.popMatrix();
-        app.popStyle();
-    }
-
-
-
-    public void ladeBild(PImage schwert, PApplet app){
-        app.image(schwert, 0,0, 40, 40);
-    }
     @Override
     public int getSchaden() {
         /**
@@ -86,12 +30,6 @@ public class Schwert extends Waffe{
         return stufe;
     }
 
-    @Override
-    public void zeichne(PApplet app) {
-        zeichneSchwert(app);
-    }
-
-
     public int getGroesse(){
         return 40;
     }
@@ -100,13 +38,4 @@ public class Schwert extends Waffe{
     public void beimAnwenden(ISpielfigur figur) {
 
     }
-
-//    @Override
-//    public void setAusrichtung(Richtung ausrichtung) {
-//        super.setAusrichtung(ausrichtung);
-//    }
-//    @Override
-//    public boolean kollision(){
-//
-//    }
 }

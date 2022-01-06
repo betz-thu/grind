@@ -118,7 +118,7 @@ public class Spielmodell implements ISpielmodell {
         kopiereTilemap();
         kopiereMovables();
         //muss wo anders sein!!!!
-        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+        /*IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
         float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
         float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
         IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
@@ -131,7 +131,7 @@ public class Spielmodell implements ISpielmodell {
         addMonster(zombie2);
         addMonster(zombie3);
         addMonster(dornPflanze1);
-        addMonster(dornPflanze2);
+        addMonster(dornPflanze2);*/
     }
 
     /**
@@ -181,20 +181,21 @@ public class Spielmodell implements ISpielmodell {
 
     /**
      * Zeichnet das Level, Spielfigur und Movables
-     * @param app Das Applet auf das gezeichnet wird
+     * @param spielsteuerung Das Applet auf das gezeichnet wird,
+     * muss Spielsteuerung sein um auf geladene liste der MovableBilder zugreifen zu können.
      */
     @Override
-    public void zeichne(PApplet app) {
+    public void zeichne(Spielsteuerung spielsteuerung) {
 
         if (this.level != null) {
-            this.level.zeichne(app);
+            this.level.zeichne(spielsteuerung);
         }
 
         for (IMovable movable : this.movables) {
-            movable.zeichne(app);
+            movable.zeichne(spielsteuerung);
         }
 
-        this.figur.zeichne(app);
+        this.figur.zeichne(spielsteuerung);
 
     }
 

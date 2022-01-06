@@ -1,6 +1,7 @@
 package grind.movables.monster;
 
 import grind.core.ISpielmodell;
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
@@ -11,7 +12,7 @@ import processing.core.PApplet;
 public class DornPflanze extends Monster {
     transient private int posX;
     transient private int posY;
-    transient private int schaden = 1;
+    transient private int schaden = 20;
 
 
 
@@ -26,13 +27,13 @@ public class DornPflanze extends Monster {
 
     }
 
-    @Override
-    public void zeichne(PApplet app) {
+    /*@Override
+    public void zeichne(Spielsteuerung app) {
         app.fill(0, 255, 127);
         app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
         IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
         vorBetreten(kachel);
-    }
+    }*/
 
 
 

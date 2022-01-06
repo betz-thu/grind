@@ -1,5 +1,6 @@
 package grind.movables;
 
+import grind.core.impl.Spielsteuerung;
 import grind.util.Richtung;
 import processing.core.PApplet;
 /**
@@ -13,7 +14,7 @@ public interface IMovable {
     int getPosY();
     int getGroesse();
     void setPosition(int x, int y);
-    void zeichne(PApplet app);
+    void zeichne(Spielsteuerung spielsteuerung);
     void bewege();
     Richtung getAusrichtung();
 
