@@ -130,7 +130,7 @@ public class DateiService {
                         iMovable = new Mango(posX, posY);
                         break;
                     case "class grind.movables.impl.Schwert":
-                        iMovable = new Schwert(posX, posY, 1);
+                        iMovable = new Schwert(posX, posY, 2);
                         break;
                     case "class grind.movables.impl.Levelende":
                         iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
