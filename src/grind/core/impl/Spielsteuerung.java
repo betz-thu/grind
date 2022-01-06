@@ -43,8 +43,8 @@ public class Spielsteuerung extends PApplet {
     boolean levelBeendet = false;
 
     int CountStart;
-    int duration = 20;
-    int time = 20;
+    int duration = 100;
+    int time = 100;
 
 
     /**
@@ -429,14 +429,18 @@ public class Spielsteuerung extends PApplet {
     }
 
 
-    public void gameover(IMonster monster) {
+    public void gameover() {
         if (Spieler.getLebensenergie() <= 0 || time <= 0) {
             pushStyle();
-
+//            looping = !looping;
             List<Gegenstand> inhalt = Spieler.getInventar();
             inhalt.clear();
             Spieler.setGeschwindigkeit(0);
-            monster.setGeschwindigkeit(0);
+            for(IMovable movable: this.spielmodell.getMovables()){
+                if(movable instanceof IMonster){
+                    ((IMonster) movable).setGeschwindigkeit(0);
+                }
+            }
             fill(0, 0, 0);
             rect(200, 120, 800, 600);
             fill(138, 3, 3);
@@ -467,12 +471,17 @@ public class Spielsteuerung extends PApplet {
 
     public void restart() {
 
-        Spieler.setLebensenergie(10);
+        Spieler.setLebensenergie(100);
         Spieler.setGeschwindigkeit(3);
+        for(IMovable movable: this.spielmodell.getMovables()){
+            if(movable instanceof IMonster){
+                ((IMonster) movable).setGeschwindigkeit(1);
+            }
+        }
         
         setup();
-        time = 20;
-        duration = 20;
+        time = 100;
+        duration = 100;
         Spieler.setGold(5);
 
         ISpielwelt resetSpielwelt = ladeSpielwelt();

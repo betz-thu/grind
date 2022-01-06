@@ -10,7 +10,7 @@ public abstract class Monster extends Movable implements IMonster {
     private int lebensenergie = 100;
     private int schaden;
     int groesse;
-    int geschwindigkeit =1;
+    int geschwindigkeit = 1;
 
 
     /**
@@ -22,6 +22,16 @@ public abstract class Monster extends Movable implements IMonster {
     public Monster(float posX, float posY, int groesse) {
 
         super(posX, posY, groesse);
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
+    }
+
+    @Override
+    public void setGeschwindigkeit(int geschwindigkeit) {
+        this.geschwindigkeit = geschwindigkeit;
     }
 
     /**

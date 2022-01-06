@@ -30,7 +30,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);
 
-    int lebensenergie = 10;//Kapselung?
+    int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
 
 

@@ -69,15 +69,6 @@ public class Geist extends Monster {
         // Ein Geist darf auch durch Wände gehen
     }
 
-    @Override
-    public void setGeschwindigkeit(int xGeschwindigkeit) {
-        this.geschwindigkeit= xGeschwindigkeit;
-        }
-
-    @Override
-    public int getGeschwindigkeit() {
-        return this.geschwindigkeit;
-    }
 
 
 
