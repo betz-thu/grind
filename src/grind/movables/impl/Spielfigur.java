@@ -132,7 +132,19 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //testattacke.zeichne(app);
         if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             if (!abgeschossen){
-                testpfeil.setPosition(this.getPosX(), this.getPosY());
+                /**
+                 * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
+                 */
+                if (this.getAusrichtung()==Richtung.N){
+                    testpfeil.setPosition(this.getPosX(), this.getPosY() - this.getGroesse());
+                } else if (this.getAusrichtung()==Richtung.O){
+                    testpfeil.setPosition(this.getPosX() + this.getGroesse(), this.getPosY());
+                } else if (this.getAusrichtung()==Richtung.S){
+                    testpfeil.setPosition(this.getPosX(), this.getPosY() + this.getGroesse());
+                } else {
+                    testpfeil.setPosition(this.getPosX() - this.getGroesse(), this.getPosY());
+                }
+
                 pfeilrichtung = this.getAusrichtung();
             }
             abgeschossen = true;
@@ -143,6 +155,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
 //            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
         }
         if (abgeschossen && aktiveWaffe instanceof Bogen){
+            /**
+             * Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
+             */
             testpfeil.zeichne(app);
             if (pfeilrichtung == Richtung.N){
                 testpfeil.setPosition(testpfeil.getPosX()+0, testpfeil.getPosY() - testpfeil.getGeschwindigkeit());

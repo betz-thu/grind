@@ -8,6 +8,7 @@ import processing.core.PImage;
 public class Pfeil extends Waffe{
 
     private int stufe;
+    private int geschwindigkeit = 10;
     PImage pfeil1;
 
     public Pfeil(int posX, int posY, int stufe) {
@@ -81,7 +82,6 @@ public class Pfeil extends Waffe{
     }
 
     public int getGeschwindigkeit(){
-        int geschwindigkeit = 5;
         return geschwindigkeit;
     }
 }
