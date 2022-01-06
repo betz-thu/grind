@@ -11,6 +11,7 @@ public class DornPflanze extends Monster {
     transient private int schaden = 10;
 
 
+
     transient private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
@@ -58,6 +59,16 @@ public class DornPflanze extends Monster {
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return 0;
+    }
+
 
 }
 

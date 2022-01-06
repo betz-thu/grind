@@ -1,7 +1,6 @@
 
 package grind.movables.monster;
 
-import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
@@ -22,7 +21,7 @@ import java.util.Random;
 public class FeuerMonster extends Monster{
     transient final int posX;
     transient final int posY;
-    private final static int GESCHWINDIGKEIT = 2;
+    private static int geschwindigkeit = 2;
     final int deltaX;
     final int deltaY;
     transient ITileMap tileMap;
@@ -73,8 +72,8 @@ public class FeuerMonster extends Monster{
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -GESCHWINDIGKEIT; // gibt dem FeuerMonster eine Anfangsrichtung und geschwindigkeit
-        this.deltaY = -GESCHWINDIGKEIT;
+        this.deltaX = -geschwindigkeit; // gibt dem FeuerMonster eine Anfangsrichtung und geschwindigkeit
+        this.deltaY = -geschwindigkeit;
         this.steuerung=steuerung;
         this.ausrichtung=ausrichtung;
         rand = new Random();
@@ -127,29 +126,29 @@ public class FeuerMonster extends Monster{
         int posY = this.getPosY();
         switch (ausrichtung) {
             case W:
-                if(steuerung.isErlaubteKoordinate(posX - 2*GESCHWINDIGKEIT, posY)){
-                    this.setPosition(posX - GESCHWINDIGKEIT, posY);
+                if(steuerung.isErlaubteKoordinate(posX - 2* geschwindigkeit, posY)){
+                    this.setPosition(posX - geschwindigkeit, posY);
                     break;
                 }else{
                     ausrichtung=Richtung.N;
                 }
             case N:
-                if(steuerung.isErlaubteKoordinate(posX , posY - 2*GESCHWINDIGKEIT)){
-                    this.setPosition(posX, posY-GESCHWINDIGKEIT);
+                if(steuerung.isErlaubteKoordinate(posX , posY - 2* geschwindigkeit)){
+                    this.setPosition(posX, posY- geschwindigkeit);
                     break;
                 }else{
                     ausrichtung=Richtung.O;
                 }
             case O:
-                if(steuerung.isErlaubteKoordinate(posX + 2*GESCHWINDIGKEIT, posY)){
-                    this.setPosition(posX+ GESCHWINDIGKEIT, posY);
+                if(steuerung.isErlaubteKoordinate(posX + 2* geschwindigkeit, posY)){
+                    this.setPosition(posX+ geschwindigkeit, posY);
                     break;
                 }else{
                     ausrichtung=Richtung.S;
                 }
             case S:
-                if(steuerung.isErlaubteKoordinate(posX , posY + 2*GESCHWINDIGKEIT)){
-                    this.setPosition(posX, posY+GESCHWINDIGKEIT);
+                if(steuerung.isErlaubteKoordinate(posX , posY + 2* geschwindigkeit)){
+                    this.setPosition(posX, posY+ geschwindigkeit);
                     break;
                 }else{
                     ausrichtung=Richtung.W;
@@ -227,6 +226,16 @@ public class FeuerMonster extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
 
+    }
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+        this.geschwindigkeit = xGeschwindigkeit;
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
     }
 
 

@@ -1,6 +1,5 @@
 package grind.movables.monster;
 
-import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.movables.ISpielfigur;
@@ -17,7 +16,7 @@ import static java.lang.Math.sqrt;
  * so wird diese bei verlassen des Spielfelds gelöscht.
  */
 public class Feuerball extends Monster{
-    transient final int GESCHWINDIGKEIT= 5;
+    transient int geschwindigkeit = 5;
     float deltaX;
     float deltaY;
     transient Spielsteuerung steuerung;
@@ -33,7 +32,7 @@ public class Feuerball extends Monster{
      */
     public Feuerball(float posX, float posY, int deltaX, int deltaY, Spielsteuerung steuerung) {
         super(posX, posY,Einstellungen.LAENGE_KACHELN_X/4);
-        float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / GESCHWINDIGKEIT;
+        float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / geschwindigkeit;
         this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
         this.deltaY = deltaY / abstand;
         this.steuerung=steuerung;
@@ -71,6 +70,8 @@ public class Feuerball extends Monster{
         }
     }
 
+
+
     /**
      * @MEGAtroniker
      * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
@@ -98,6 +99,16 @@ public class Feuerball extends Monster{
     @Override
     public void vorBetreten(IKachel kachel) {
 
+    }
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+        this.geschwindigkeit = xGeschwindigkeit;
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
     }
 
 }

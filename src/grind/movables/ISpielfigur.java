@@ -12,12 +12,12 @@ public interface ISpielfigur extends IMovable {
     int getLebensenergie();
     int setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
-    void setGeschwindigkeit(float immunGeschwindigkeit);
-    float getGeschwindigkeit();
     void setImmun(boolean isImmun);
     boolean isImmun();
     void setSternAngewandt(boolean angewandt);
     boolean isSternAngewandt();
+    void setGeschwindigkeit(float immunGeschwindigkeit);
+    float getGeschwindigkeit();
 
 
     @Override

@@ -1,6 +1,4 @@
 package grind.core.impl;
-
-import grind.StartLeveleditor;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
@@ -10,22 +8,13 @@ import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.impl.*;
-import grind.movables.monster.DornPflanze;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
-import grind.welt.ISzene;
-import grind.welt.impl.DummyLevel;
-import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,11 +45,6 @@ public class Spielsteuerung extends PApplet {
     int CountStart;
     int duration = 20;
     int time = 20;
-
-    int Spielerstartx;
-    int Spielerstarty;
-    int movablestartx;
-    int movavlestarty;
 
 
     /**
@@ -445,31 +429,36 @@ public class Spielsteuerung extends PApplet {
     }
 
 
-    public void gameover() {
+    public void gameover(IMonster monster) {
         if (Spieler.getLebensenergie() <= 0 || time <= 0) {
             pushStyle();
+
             List<Gegenstand> inhalt = Spieler.getInventar();
             inhalt.clear();
+            Spieler.setGeschwindigkeit(0);
+            monster.setGeschwindigkeit(0);
             fill(0, 0, 0);
             rect(200, 120, 800, 600);
             fill(138, 3, 3);
             textSize(80);
             text("Game Over", 410, 350);
             textSize(30);
-            text("Goldbetrag: " + Spieler.getGold(), 410,400);
+            text("Goldbetrag: " + Spieler.getGold(), 410, 400);
             textSize(45);
             text("Press 'R' to Restart", 410, 500);
             text("Press 'Q' to Exit", 410, 550);
-
 
             popStyle();
 
 
             if (keyPressed) {
+                loop();
                 if (key == 'R' || key == 'r') {
+                    loop();
                     restart();
                 }
                 if (key == 'Q' || key == 'q') {
+                    loop();
                     System.exit(0);
                 }
             }
@@ -478,9 +467,9 @@ public class Spielsteuerung extends PApplet {
 
     public void restart() {
 
-        clear();
-        background(255, 250, 250);
         Spieler.setLebensenergie(10);
+        Spieler.setGeschwindigkeit(3);
+        
         setup();
         time = 20;
         duration = 20;
@@ -492,32 +481,6 @@ public class Spielsteuerung extends PApplet {
         spielmodell.betreteSzene(spielmodell.getSzeneNr());
 
 
-/**Wenn GameOver aufgerufen wird,wird das Inventar gelöscht, damit man nicht Nahrung zu sich nehmen kann und dadurch
- * das Leben auf 0+ aufgefüllt wird. Zeit wird bei Restart zurückgesetzt. Gold wird ausgegeben und zurückgestzt.
- *
-    Anfängliche Spielwelt wird neu aus json datei geladen und in das Spielmodell gesetzt.
-    Erste Szene wird gesetzt und betreten
- *
- */
-
     }
-
-    public void startx(IMovable movable) {
-        if (time >= 20) {
-            Spielerstartx = Spieler.getPosX();
-            Spielerstarty = Spieler.getPosX();
-            movablestartx = movable.getPosX();
-            movavlestarty = movable.getPosY();
-        }
-        Spieler.setPosition(Spielerstartx,Spielerstarty);
-        movable.setPosition(movablestartx,movavlestarty);
-    }
-
-    /**
-     * Versuch die Startpositionen am Anfang aufzugreifen und diese bei Restart wieder in SetPosition aufrufen
-     */
-
-
-
 }
 

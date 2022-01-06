@@ -26,7 +26,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private boolean isSternAngewandt = false;
 
     private float GESCHWINDIGKEIT = 3f;
-    private int Lebensenergie = 85;
     int gold = 5;
     transient PImage spielfigurOhneWaffe;
     transient Waffe testwaffe = new Schwert(30,30,1);

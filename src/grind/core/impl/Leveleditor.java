@@ -773,23 +773,4 @@ public class Leveleditor extends PApplet {
             }
         }
     }
-//
-//    public void restart (){
-//        if (keyPressed)
-//            if (key == 'R' || key == 'r'){
-//                loop();
-//                levelNr = 1;
-//                neuesLevel();
-//                System.out.println("RRR");
-//                clear();
-//                draw();
-//                setup();
-//
-//                new StartLeveleditor();
-//                new Leveleditor();
-//            }
-//
-//    }
-
-
 }

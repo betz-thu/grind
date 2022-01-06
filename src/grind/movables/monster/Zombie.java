@@ -2,14 +2,13 @@ package grind.movables.monster;
 
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
-import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Zombie extends Monster{
     transient private int posX;
     transient private int posY;
-    transient private final static int GESCHWINDIGKEIT = 2;
+    transient private static int geschwindigkeit = 2;
     transient private int deltaX;
     transient private int deltaY;
     transient private int schaden = 15;
@@ -23,8 +22,8 @@ public class Zombie extends Monster{
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -GESCHWINDIGKEIT; // gibt Zombie eine Anfangsrichtung und geschwindigkeit
-        this.deltaY = -GESCHWINDIGKEIT;
+        this.deltaX = -geschwindigkeit; // gibt Zombie eine Anfangsrichtung und geschwindigkeit
+        this.deltaY = -geschwindigkeit;
 
         setSchaden(schaden);
 
@@ -108,5 +107,16 @@ public class Zombie extends Monster{
 
         }
     }
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+        this.geschwindigkeit = xGeschwindigkeit;
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
+    }
+
 
 }

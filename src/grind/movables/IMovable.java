@@ -18,6 +18,7 @@ public interface IMovable {
     Richtung getAusrichtung();
 
 
+
     void setAusrichtung(Richtung richtung);
 }
 
