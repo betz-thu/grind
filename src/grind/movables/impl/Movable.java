@@ -78,6 +78,18 @@ public abstract class Movable implements IMovable {
             } else {
                 img = (PImage) spielsteuerung.getImages().get("Schwert Level 2");
             }
+        } else if (this.getClass().toString().equals("class grind.movables.impl.Bogen")){
+            if (this.getStufe() == 1) {
+                img = (PImage) spielsteuerung.getImages().get("Bogen Level 1");
+            } else {
+                img = (PImage) spielsteuerung.getImages().get("Bogen Level 2");
+            }
+        } else if (this.getClass().toString().equals("class grind.movables.impl.Spezialattacke")){
+            if (this.getStufe() == 1) {
+                img = (PImage) spielsteuerung.getImages().get("Spezialattacke Level 1");
+            } else {
+                img = (PImage) spielsteuerung.getImages().get("Spezialattacke Level 2");
+            }
         } else if(spielsteuerung.getImages().get(this.getClass().toString())==null) {
             img = (PImage) spielsteuerung.getImages().get("class grind.movables.monster.Zombie");
             System.out.println("Bild für "+this.getClass().toString()+" fehlt noch.");

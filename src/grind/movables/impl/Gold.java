@@ -15,13 +15,4 @@ public class Gold extends Waehrung {
     int getWert() {
         return 1;
     }
-
-    @Override
-    public void zeichne(Spielsteuerung app) {
-        app.pushStyle();
-        app.stroke(200, 225, 75);
-        app.fill(175, 125, 75);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_GOLD, Einstellungen.GROESSE_GOLD);
-        app.popStyle();
-    }
 }
