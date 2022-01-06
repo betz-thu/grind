@@ -8,6 +8,7 @@ import grind.movables.impl.*;
 import grind.movables.monster.*;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
+import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -150,7 +151,7 @@ public class Leveleditor extends PApplet {
         this.menuArrayMovables[7][0] = new DornPflanze(0,0,this.tileMap);
         this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
         this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
-        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap);
+        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
 
     }
 
@@ -359,7 +360,7 @@ public class Leveleditor extends PApplet {
         } else if (movable instanceof Geist){
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap);
+            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
         }
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
         level.addPosition(tempMovable);

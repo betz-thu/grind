@@ -11,7 +11,7 @@ import processing.core.PApplet;
 public class DornPflanze extends Monster {
     private int posX;
     private int posY;
-    private int schaden = 1;
+    transient private int schaden = 1;
 
 
 
