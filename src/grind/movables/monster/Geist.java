@@ -10,12 +10,12 @@ import grind.util.Einstellungen;
 
 public class Geist extends Monster{
     private int geschwindigkeit = 5;
-    private int deltaX = geschwindigkeit;
-    private int deltaY = geschwindigkeit;
-    private int schaden = 25;
+    transient private int deltaX = geschwindigkeit;
+    transient private int deltaY = geschwindigkeit;
+    transient private int schaden = 5;
 
 
-    ITileMap tileMap;
+    transient ITileMap tileMap;
 
 
     public Geist(float posX, float posY,ITileMap tileMap) {
@@ -55,8 +55,6 @@ public class Geist extends Monster{
 
 
         this.setPosition(posX, posY);
-
-
     }
 
 
@@ -78,5 +76,5 @@ public class Geist extends Monster{
         this.spielmodell = spielmodell;
     }
 
-    
+
 }

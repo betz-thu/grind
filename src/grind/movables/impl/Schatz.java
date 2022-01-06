@@ -5,9 +5,12 @@ import grind.movables.ISpielfigur;
 
 public abstract class Schatz extends Movable implements ISchatz {
 
-    int posX;
-    int posY;
-    int groesse;
+/*
+    @Autor D0KRay 16.12.2021
+    Auskommentiert da nicht benötigt und beim Generieren einer JSON Datei eine Exception geworfen wird
+        int posX;
+        int posY;
+ */
 
     public Schatz(int posX, int posY, int groesse) {
         super(posX, posY, groesse);

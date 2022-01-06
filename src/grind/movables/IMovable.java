@@ -1,8 +1,6 @@
 package grind.movables;
 
-import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.movables.impl.Spielfigur;
 import processing.core.PApplet;
 /**
  * @Autor Megatroniker

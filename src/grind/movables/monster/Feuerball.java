@@ -18,7 +18,7 @@ import static java.lang.Math.sqrt;
  * so wird diese bei verlassen des Spielfelds gelöscht.
  */
 public class Feuerball extends Monster{
-    final int GESCHWINDIGKEIT= 5;
+    transient final int GESCHWINDIGKEIT= 5;
     float deltaX;
     float deltaY;
     Spielsteuerung steuerung;

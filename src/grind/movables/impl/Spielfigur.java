@@ -19,19 +19,22 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    private final float GESCHWINDIGKEIT = 3f;
+    float GESCHWINDIGKEIT = 3f;
     int gold = 5;
-    PImage spielfigurOhneWaffe;
-    Waffe testwaffe = new Schwert(30,30,1);
+    transient PImage spielfigurOhneWaffe;
+    transient Waffe testwaffe = new Schwert(30,30,1);
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
 
 
-    private int inventarGroeße;
+    private int inventarGuiGroeße;
     private int guiGroeße;
+    public boolean waffeAusgestattet=false;
+    Waffe aktiveWaffe = testwaffe;
 
-    Waffe aktiveWaffe;
+
+    public Gegenstand auswahl;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -49,9 +52,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-        aktiviereWaffe(testwaffe);
-        inventarGroeße=10;
+        setAktiveWaffe(testwaffe);
+        inventarGuiGroeße =10;
         guiGroeße=50;
+
+
 }
 
     /**
@@ -67,11 +72,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneKontostand(app);
 
         //Zeichne kleines Inventar
-        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
-
-
+        zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
+        if(auswahl!=null) {
+            auswahl.setPosition(app.mouseX, app.mouseY);
+            auswahl.zeichne(app);
+        }
         gameover(app);
+
     }
 
     @Override
@@ -120,12 +128,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
-        if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+        aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
+        aktiveWaffe.setAusrichtung(this.getAusrichtung());
 
-            aktiveWaffe.setPosition(this.getPosX()+aktiveWaffe.getGroesse()*schwertPositionX,this.getPosY()+aktiveWaffe.getGroesse()*schwertPositionY);
-            aktiveWaffe.setAusrichtung(this.getAusrichtung());
-            aktiveWaffe.zeichne(app);
-        }
+
 
 
 
@@ -184,6 +190,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
             }
+            else if(inventar.get(position) instanceof Waffe){
+                Waffe waffe =  (Waffe) inventar.get(position);
+                this.setAktiveWaffe(waffe);
+                inventar.remove(position);
+                waffeAusgestattet=true;
+                //inventar.get(position).beimAnwenden(this);
+                //Waffe nicht entfernen, soll im Inventar verbleiben?
+            }
         }
     }
 
@@ -219,18 +233,32 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * */
     public void gameover(PApplet app) {
         if (lebensenergie <= 0) {
-            System.out.println("Game Over");
-            lebensenergie = 0;
-            app.fill(0,0,0);
-            app.rect (200,120,800,600);
-            app.fill(138,3,3);
-            app.textSize(60);
-            app.text("Game Over",410,350 );
-            app.text("Please Restart",410,450);
+                System.out.println("Game Over");
+                lebensenergie = 0;
+                app.fill(0,0,0);
+                app.rect (200,120,800,600);
+                app.fill(138,3,3);
+                app.textSize(60);
+                app.text("Game Over",410,350 );
+                app.text("Please Restart",410,450);
+
+                if (app.keyPressed){
+                    if (app.key == 'R' || app.key == 'r'){
+                        restart();
+                    }
+                }
+                    if (app.key =='Q' || app.key =='q'){
+                        System.exit(0);
+                }
+            }
         }
+
+
+    public void restart(){
+        System.out.println("restart");
+
+
     }
-
-
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
      * @param richtung enum für die Richtungsangabe.
@@ -298,10 +326,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
     }
 
-    public void aktiviereWaffe(Waffe waffe){
-        if(aktiveWaffe!=null){
-            getInventar().add(aktiveWaffe);
-        }
+    public void setAktiveWaffe(Waffe waffe){
+
         aktiveWaffe = waffe;
     }
 
@@ -309,12 +335,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return this.testwaffe;
     }
 
-    public void setInventarGroeße(int inventarGroeße) {
-        this.inventarGroeße = inventarGroeße;
+    public void setInventarGuiGroeße(int inventarGuiGroeße) {
+        this.inventarGuiGroeße = inventarGuiGroeße;
     }
 
-    public int getInventarGroeße() {
-        return inventarGroeße;
+    public int getInventarGuiGroeße() {
+        return inventarGuiGroeße;
     }
 
     public void playApfelSound(){
@@ -403,5 +429,27 @@ public class Spielfigur extends Movable implements ISpielfigur {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void klickItems(int x, int y){
+        int invPos = getInvPos(x,y);
+        if(invPos>=0) {
+            benutze(invPos);
+        }
+    }
+
+
+    public int getInvPos(int x, int y){
+        boolean xBereich;
+        boolean yBereich;
+        for(int i=0; i<inventar.size(); i++){
+            xBereich = (x<=inventar.get(i).getPosX()+guiGroeße/2 && x>inventar.get(i).getPosX()-guiGroeße/2);
+            yBereich = (y<=inventar.get(i).getPosY()+guiGroeße/2 && y>inventar.get(i).getPosY()-guiGroeße/2);
+            if(xBereich && yBereich){
+                System.out.println("clicked");
+                return i;
+            }
+        }
+        return -1;
     }
 }

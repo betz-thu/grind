@@ -20,13 +20,13 @@ import java.util.Random;
  *  3. Der Zombi läuft mit hoher Wahrscheinlichkeit in Spielerrichtung, sehr selten läuft er vohersebar
  */
 public class Zombie extends Monster{
-    private int posX;
-    private int posY;
-    private final static int GESCHWINDIGKEIT = 1;
-    private int deltaX;
-    private int deltaY;
-    private ITileMap tileMap;
-    private int schaden = 5;
+    transient private int posX;
+    transient private int posY;
+    transient private final static int GESCHWINDIGKEIT = 2;
+    transient private int deltaX;
+    transient private int deltaY;
+    transient private int schaden = 1;
+    transient ITileMap tileMap;
     private Spielsteuerung steuerung;
     private LaufModus laufModus;
     private Richtung ausrichtung;
@@ -175,7 +175,6 @@ public class Zombie extends Monster{
                 bewegeSuedlich(posX, posY);
         }
     }
-
 
     /**
      * @MEGAtroniker

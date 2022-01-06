@@ -8,9 +8,8 @@ import grind.util.Richtung;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
-
 public abstract class Monster extends Movable implements IMonster {
-    ISpielmodell spielmodell;
+    transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
     private long startTimeNaehe;
@@ -32,8 +31,6 @@ public abstract class Monster extends Movable implements IMonster {
 
         super(posX, posY, groesse);
     }
-
-
 
     /**
      * Konstruktor 2 wenn die Ausrichtung(N,S,W,O) für die Fortbewegung relevant ist
@@ -181,5 +178,14 @@ public abstract class Monster extends Movable implements IMonster {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
 }
 

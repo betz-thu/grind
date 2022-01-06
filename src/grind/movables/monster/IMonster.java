@@ -4,7 +4,6 @@ import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
-import grind.movables.impl.Movable;
 
 public interface IMonster extends IMovable {
     int getLebensenergie();

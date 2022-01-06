@@ -21,22 +21,22 @@ import java.util.Random;
  * Treffen Spielfigur und Feuermonster aufeinander so erleidet die Spielfugur alle 2 Sekunden Schaden
  */
 public class FeuerMonster extends Monster{
-    final int posX;
-    final int posY;
-    private final static int GESCHWINDIGKEIT = 0;
+    transient final int posX;
+    transient final int posY;
+    private final static int GESCHWINDIGKEIT = 2;
     final int deltaX;
     final int deltaY;
-    ITileMap tileMap;
-    Spielsteuerung steuerung;
-    Richtung ausrichtung;
-    Feuerball feuerball;
+    transient ITileMap tileMap;
+    transient Spielsteuerung steuerung;
+    transient Richtung ausrichtung;
+    transient Feuerball feuerball;
     private int schussZaehler=0;
-    Random rand;
+    transient Random rand;
     final int feuerRate;
     //private boolean hatKollidiert=false;
     //private long startTime;
     FeuerModus feuerModus;
-    final int schaden = 20;
+    transient final int schaden = 20;
 
     /**
      * @MEGAtroniker
@@ -75,7 +75,6 @@ public class FeuerMonster extends Monster{
         app.fill(255,100,0);
         app.ellipse(this.getPosX(), this.getPosY(),(float) this.getGroesse(), (float) this.getGroesse());
     }
-
 
     /**
      * @MEGAtroniker
@@ -179,7 +178,6 @@ public class FeuerMonster extends Monster{
         }
     }
 
-
     /**
      * @MEGAtroniker
      * Methode FeuerModus ermöglicht dem Feuermonster in 3 verschiedenen Modi Feuerbälle zu schießen.
@@ -211,7 +209,6 @@ public class FeuerMonster extends Monster{
             }
         }
     }
-
 
     /**
      * @MEGAtroniker
@@ -252,7 +249,5 @@ public class FeuerMonster extends Monster{
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
-
-
 
 }

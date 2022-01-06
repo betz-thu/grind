@@ -1,19 +1,17 @@
 package grind.movables.monster;
 
 import grind.core.ISpielmodell;
-import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 
 public class DornPflanze extends Monster {
     private int posX;
     private int posY;
-    private int schaden = 25;
+    private int schaden = 1;
 
 
 
@@ -36,23 +34,14 @@ public class DornPflanze extends Monster {
         vorBetreten(kachel);
     }
 
-    @Override
-    public void bewege() {
-        super.bewege();
-
-    }
-
-
-
-
-
 
 
     @Override
     public void vorBetreten(IKachel kachel) {
         if (kachel.istHindernis()) {
-            posX += Einstellungen.LAENGE_KACHELN_X;
-            posY += Einstellungen.LAENGE_KACHELN_Y;
+            int posX = this.getPosX() + Einstellungen.LAENGE_KACHELN_X;
+            int posY = this.getPosY() + Einstellungen.LAENGE_KACHELN_Y;
+            this.setPosition(posX, posY);
         }
     }
 
@@ -65,7 +54,5 @@ public class DornPflanze extends Monster {
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
-
-
 }
 

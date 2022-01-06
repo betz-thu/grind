@@ -2,15 +2,15 @@ package grind.movables.impl;
 
 import grind.util.Richtung;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 class SpielfigurTest {
     private Schwert schwert1;
     private Schwert schwert2;
     private Spielfigur figur;
 
-    @BeforeEach
+    @Before
     void setUp() {
         schwert1 = new Schwert(100, 100, 1);
         schwert2 = new Schwert(200, 200, 2);
@@ -19,8 +19,8 @@ class SpielfigurTest {
 
     @Test
     void aktiviereWaffe() {
-        figur.aktiviereWaffe(schwert2);
-        figur.aktiviereWaffe(schwert1);
+        figur.setAktiveWaffe(schwert2);
+        figur.setAktiveWaffe(schwert1);
         boolean waffeImInventar = false;
         for (int i=0; i<figur.getInventar().size(); i++){
             if (figur.getInventar().get(i) instanceof Waffe){

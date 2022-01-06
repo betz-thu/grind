@@ -10,9 +10,10 @@ import processing.core.PImage;
 
 public class Schwert extends Waffe{
 
-    private int stufe;
-    PImage schwertStufe1;
-    PImage schwertStufe2;
+    transient boolean geladen = false;
+    transient private int stufe;
+    transient PImage schwertStufe1;
+    transient PImage schwertStufe2;
 
 
 
@@ -23,19 +24,23 @@ public class Schwert extends Waffe{
 
 
     public void zeichneSchwert(PApplet app) {
+
+        if (!geladen){
+            schwertStufe1 = app.loadImage("newSword1.png");
+            schwertStufe2 = app.loadImage("newSword2.png");
+            geladen = true;
+        }
+
         app.pushStyle();
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
 
         //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
         PImage schwert = schwertStufe1;
-        if (stufe == 1) {
-            schwert = app.loadImage("newSword1.png");
+        if (stufe == 2) {
+            schwert = schwertStufe2;
         }
-        else if (stufe == 2) {
-            schwert = app.loadImage("newSword2.png");
-        }
-
+        /*
         int n =1;
         switch (this.ausrichtung) {
             case N:
@@ -50,9 +55,10 @@ public class Schwert extends Waffe{
             case W:
                 n = 1;
         }
-
+        */
         app.translate(this.getPosX(),this.getPosY());
-        app.rotate(PConstants.HALF_PI*n);
+
+        //app.rotate(PConstants.HALF_PI*n);
 
 
 
@@ -93,12 +99,12 @@ public class Schwert extends Waffe{
 
     @Override
     public void beimAnwenden(ISpielfigur figur) {
-
+        super.beimAnwenden(figur);
     }
 
 
 
-//    @Override
+    //    @Override
 //    public boolean kollision(){
 //
 //    }

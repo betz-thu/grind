@@ -10,4 +10,5 @@ public interface ITileMap {
     IKachel getKachel(int x, int y);
     List<IKachel> getKachelarten();
     void zeichne(PApplet app);
+    void setKachel(IKachel kachel, int i, int j);
 }

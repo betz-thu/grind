@@ -24,16 +24,7 @@ public class LeereTileMap extends TileMap {
 
     @Override
     public IKachel getKachel(int i, int j) {
-        if (j == 10 && i < 10) {
-            return hindernis;
-        }
-        else if (j == 10 && i == 29){
-            /* setzen des Levelausgangs auf eine Position */
-            return levelausgang;
-        }
-        else {
             return leereKachel;
-        }
     }
 
     /**class LeereTileMap
