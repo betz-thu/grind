@@ -81,7 +81,7 @@ public class Bogen extends Waffe{
     @Override
     public int getSchaden() {
         /**
-         * Berechnet den Schaden, welchen ein Schwert anrichtet.
+         * Berechnet den Schaden, welchen ein Bogen anrichtet.
          */
         int schaden = 0* this.stufe;
         return schaden;

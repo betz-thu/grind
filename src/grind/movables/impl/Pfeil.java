@@ -23,7 +23,7 @@ public class Pfeil extends Waffe{
         app.imageMode(PConstants.CENTER);
         app.pushMatrix();
 
-        //ladeIMGSchwert(app);    //Lade Bild des Schwertes, für Spielfigur in Spielsteuerung setup() implementiert
+        //ladeIMGSchwert(app);    //Lade Bild des Pfeils, für Spielfigur in Spielsteuerung setup() implementiert
         PImage pfeil = pfeil1;
         if (stufe == 1) {
             pfeil = app.loadImage("pfeil.png");
@@ -71,7 +71,7 @@ public class Pfeil extends Waffe{
 
     @Override
     public int getSchaden() {
-        int schaden = 2*this.stufe;
+        int schaden = 15*this.stufe;
         return schaden;
     }
 
