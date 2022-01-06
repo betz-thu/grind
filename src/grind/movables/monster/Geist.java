@@ -3,6 +3,7 @@ package grind.movables.monster;
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import processing.core.PApplet;
 import grind.util.Einstellungen;
@@ -26,13 +27,11 @@ public class Geist extends Monster{
     @Override
     public void zeichne(PApplet app) {
         app.fill(255, 255, 255);
-//      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
-
         app.ellipse(this.getPosX(), this.getPosY(), (float) Einstellungen.GROESSE_GEIST, (float) Einstellungen.GROESSE_GEIST);
     }
     @Override
     public void bewege() {
-
+        super.bewege();
 
 
         int posX = this.getPosX();
@@ -66,5 +65,16 @@ public class Geist extends Monster{
         // Ein Geist darf auch durch Wände gehen
 
     }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
+
 
 }

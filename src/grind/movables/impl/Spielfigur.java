@@ -3,7 +3,6 @@ package grind.movables.impl;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -34,11 +33,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
     final List<Gegenstand> inventar;
 
 
-    private int inventarGroeße;
+    private int inventarGuiGroeße;
     private int guiGroeße;
     //public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
     //Waffe aktiveWaffe = testbogen;
+
+
+    public Gegenstand auswahl;
     /**
      * @MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -56,9 +58,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-       //setAktiveWaffe(testwaffe);
+        //setAktiveWaffe(testwaffe);
         setAktiveWaffe(testbogen);
-        inventarGroeße=10;
+        inventarGuiGroeße =10;
         guiGroeße=50;
 }
 
@@ -75,10 +77,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneKontostand(app);
 
         //Zeichne kleines Inventar
-        zeichneInventar(app, inventarGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(app, inventarGroeße, 550, 720, guiGroeße);
-
-
+        zeichneInventar(app, inventarGuiGroeße, 850, 720, guiGroeße);
+        zeichneInventarInhalt(app, inventarGuiGroeße, 550, 720, guiGroeße);
+        if(auswahl!=null) {
+            auswahl.setPosition(app.mouseX, app.mouseY);
+            auswahl.zeichne(app);
+        }
         gameover(app);
     }
 
@@ -127,7 +131,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
 
 
-//        System.out.println(this.getAusrichtung());
 
         //testattacke.zeichne(app);
         if (app.key==' '){ //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
@@ -379,9 +382,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         aktiveWaffe = waffe;
     }
 
-    //public Waffe getWaffe(){
-     //   return this.testwaffe;
-    //}
     public Waffe getWaffe(){
         return aktiveWaffe;
     }
@@ -394,12 +394,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         this.abgeschossen = setzteAuf;
     }
 
-    public void setInventarGroeße(int inventarGroeße) {
-        this.inventarGroeße = inventarGroeße;
+    public void setInventarGuiGroeße(int inventarGuiGroeße) {
+        this.inventarGuiGroeße = inventarGuiGroeße;
     }
 
-    public int getInventarGroeße() {
-        return inventarGroeße;
+    public int getInventarGuiGroeße() {
+        return inventarGuiGroeße;
     }
 
     public void playApfelSound(){
@@ -418,7 +418,69 @@ public class Spielfigur extends Movable implements ISpielfigur {
         File backpackSound = new File("backpack_reverse.wav");
         setupSound(backpackSound);
     }
-    private void setupSound(File Sound){
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playZombieAttacSound() {
+        File zombieAttac = new File("Zombie_attac.wav");
+        setupSound(zombieAttac);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playZombieAroundSound() {
+        File zombieAround = new File("Zombie_in_der_Naehe.wav");
+        setupSound(zombieAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playFeuerMonsterAroundSound() {
+        File feuerMonsterAround = new File("Feuermonster_Around.wav");
+        setupSound(feuerMonsterAround);
+    }
+
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playFeuerBallAroundSound() {
+        File feuerBallAround = new File("Feuerball__flyBy.wav");
+        setupSound(feuerBallAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playGeistAroundSound() {
+        File gohstAround = new File("Gohst_Around.wav");
+        setupSound(gohstAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playPflanzeAroundSound() {
+        File pflanzeAround = new File("Pflanze_Around.wav");
+        setupSound(pflanzeAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playPflanzeAttacSound() {
+        File pflanzeAttac = new File("Pflanze_Around.wav");
+        setupSound(pflanzeAttac);
+    }
+
+
+
+
+
+        private void setupSound(File Sound){
         try{
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(Sound));
@@ -426,5 +488,27 @@ public class Spielfigur extends Movable implements ISpielfigur {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void klickItems(int x, int y){
+        int invPos = getInvPos(x,y);
+        if(invPos>=0) {
+            benutze(invPos);
+        }
+    }
+
+
+    public int getInvPos(int x, int y){
+        boolean xBereich;
+        boolean yBereich;
+        for(int i=0; i<inventar.size(); i++){
+            xBereich = (x<=inventar.get(i).getPosX()+guiGroeße/2 && x>inventar.get(i).getPosX()-guiGroeße/2);
+            yBereich = (y<=inventar.get(i).getPosY()+guiGroeße/2 && y>inventar.get(i).getPosY()-guiGroeße/2);
+            if(xBereich && yBereich){
+                System.out.println("clicked");
+                return i;
+            }
+        }
+        return -1;
     }
 }

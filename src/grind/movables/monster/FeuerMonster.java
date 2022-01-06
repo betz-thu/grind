@@ -5,6 +5,7 @@ import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
@@ -20,8 +21,8 @@ import java.util.Random;
  * Treffen Spielfigur und Feuermonster aufeinander so erleidet die Spielfugur alle 2 Sekunden Schaden
  */
 public class FeuerMonster extends Monster{
-    final int posX;
-    final int posY;
+    transient final int posX;
+    transient final int posY;
     private final static int GESCHWINDIGKEIT = 2;
     final int deltaX;
     final int deltaY;
@@ -32,31 +33,10 @@ public class FeuerMonster extends Monster{
     private int schussZaehler=0;
     transient Random rand;
     final int feuerRate;
-    private boolean hatKollidiert=false;
-
-    /**
-     * @MEGAtroniker
-     * Setter setHastKollidiert für testing und kapselung
-     * @param hatKollidiert
-     */
-    public void setHatKollidiert(boolean hatKollidiert) {
-        this.hatKollidiert = hatKollidiert;
-    }
-
-
-
-    /**
-     * @MEGAtroniker
-     * Getter, notwendig für die tests und kapselung
-     * @return
-     */
-    public boolean isHatKollidiert() {
-        return hatKollidiert;
-    }
-
-    private long startTime;
+    //private boolean hatKollidiert=false;
+    //private long startTime;
     FeuerModus feuerModus;
-    final int schaden = 20;
+    transient final int schaden = 20;
 
     /**
      * @MEGAtroniker
@@ -83,21 +63,7 @@ public class FeuerMonster extends Monster{
         setSchaden(schaden);
     }
 
-    /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * @param figur Spielfigur
-     */
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
-            System.out.println("Kollision mit FeuerMonster");
-            startTime = System.currentTimeMillis();
-            //hatKollidiert=true;
-            setHatKollidiert(true);
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
+
 
     /**
      * @MEGAtroniker
@@ -118,41 +84,97 @@ public class FeuerMonster extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
         switch (ausrichtung) {
             case W:
-                if(steuerung.isErlaubteKoordinate(posX - 2*GESCHWINDIGKEIT, posY)){
-                    this.setPosition(posX - GESCHWINDIGKEIT, posY);
-                    break;
-                }else{
-                    ausrichtung=Richtung.N;
-                }
+                if (bewegeWestlich(posX, posY)) break;
             case N:
-                if(steuerung.isErlaubteKoordinate(posX , posY - 2*GESCHWINDIGKEIT)){
-                    this.setPosition(posX, posY-GESCHWINDIGKEIT);
-                    break;
-                }else{
-                    ausrichtung=Richtung.O;
-                }
+                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT, Richtung.O)) break;
             case O:
-                if(steuerung.isErlaubteKoordinate(posX + 2*GESCHWINDIGKEIT, posY)){
-                    this.setPosition(posX+ GESCHWINDIGKEIT, posY);
-                    break;
-                }else{
-                    ausrichtung=Richtung.S;
-                }
+                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY, Richtung.S)) break;
             case S:
-                if(steuerung.isErlaubteKoordinate(posX , posY + 2*GESCHWINDIGKEIT)){
-                    this.setPosition(posX, posY+GESCHWINDIGKEIT);
-                    break;
-                }else{
-                    ausrichtung=Richtung.W;
-                }
+                bewegeSuedlich(posX, posY + 2 * GESCHWINDIGKEIT, posX, posY + GESCHWINDIGKEIT, Richtung.W);
+                break;
         }
         FeuerModus(this.feuerModus,this.feuerRate);
-        if(hatKollidiert){
-            resetTimer();
+
+
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param posY
+     * @return
+     */
+    private boolean bewegeWestlich(int posX, int posY) {
+        if(steuerung.isErlaubteKoordinate(posX - 2*GESCHWINDIGKEIT, posY)){
+            this.setPosition(posX - GESCHWINDIGKEIT, posY);
+            return true;
+        }else{
+            ausrichtung=Richtung.N;
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param i
+     * @param posX2
+     * @param i2
+     * @param o
+     * @return
+     */
+    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2, Richtung o) {
+        if (steuerung.isErlaubteKoordinate(posX, i)) {
+            this.setPosition(posX2, i2);
+            return true;
+        } else {
+            ausrichtung = o;
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posY
+     * @param i
+     * @param i2
+     * @param posY2
+     * @param s
+     * @return
+     */
+    private boolean bewegeOestlich(int posY, int i, int i2, int posY2, Richtung s) {
+        if (steuerung.isErlaubteKoordinate(i, posY)) {
+            this.setPosition(i2, posY2);
+            return true;
+        } else {
+            ausrichtung = s;
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param i
+     * @param posX2
+     * @param i2
+     * @param w
+     */
+    private void bewegeSuedlich(int posX, int i, int posX2, int i2, Richtung w) {
+        if (steuerung.isErlaubteKoordinate(posX, i)) {
+            this.setPosition(posX2, i2);
+            return;
+        } else {
+            ausrichtung = w;
         }
     }
 
@@ -200,29 +222,32 @@ public class FeuerMonster extends Monster{
         this.spielmodell.addMonster(feuerball);
     }
 
-    /**
-     * @MEGAtroniker
-     * Methode resetTimer setzt booleand hatKollidiert auf false,
-     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
-     */
-    public void resetTimer(){
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=2000){
-            hatKollidiert=false;
-        }
-    }
 
-    /**
-     * @MEGAtroniker
-     * is never used!!!!!!!!!
-     * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel nope
-     */
+
     @Override
     public void vorBetreten(IKachel kachel) {
 
     }
 
+
+    /**
+     * @MEGAtroniker
+     * Getter, notwendig für die tests und kapselung
+     * @return
+     */
+    public ISpielmodell getSpielmodell() {
+        return this.spielmodell;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * Getter, notwendig für die tests und kapselung
+     * @return
+     */
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
 
 }

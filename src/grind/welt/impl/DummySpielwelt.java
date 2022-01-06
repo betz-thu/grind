@@ -1,6 +1,5 @@
 package grind.welt.impl;
 
-import grind.kacheln.IKachel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 
@@ -34,17 +33,29 @@ public class DummySpielwelt implements ISpielwelt {
         return szenen.get(n);
     }
 
+    /**
+     * Fügt die übergebene Szene der Spielwelt an der gewünschten Stelle hinzu
+     * @param szene Szene welche hinzugefügt werden soll
+     * @param szenenNummer Position der Szene in der Liste
+     */
     @Override
-    public void addSzene(ISzene szene){
-        szenen.add(szene);
+    public void addSzene(ISzene szene, int szenenNummer){
+        szenen.add(szenenNummer, szene);
         anzahlSzenen = szenen.size();
     }
 
+    /**
+     * Gibt die Anzahl der Szenen zurück
+     * @return Szenenanzahl
+     */
     @Override
     public int getSzenenanzahl() {
         return szenen.size();
     }
 
+    /**
+     * Löscht alle Szenen aus der Spielwelt
+     */
     @Override
     public void removeSzenen() {
         this.szenen.clear();

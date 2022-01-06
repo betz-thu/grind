@@ -9,10 +9,18 @@ import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
 import grind.movables.impl.*;
+import grind.movables.monster.DornPflanze;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
+import grind.movables.monster.Zombie;
+import grind.util.Richtung;
+import grind.core.ISpielmodell;
+import grind.kacheln.IKachel;
+import grind.kacheln.ITileMap;
+import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
@@ -42,6 +50,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    boolean klicked;
 
 
 
@@ -50,13 +59,14 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-        this.dateiService = new DateiService();
+        this.dateiService = new DateiService(this);
         this.spielmodell = new Spielmodell(ladeSpielwelt(),this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
 
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.klicked = false;
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -68,7 +78,6 @@ public class Spielsteuerung extends PApplet {
         return SpielfeldHoehe;
     }
 
-
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
@@ -77,7 +86,6 @@ public class Spielsteuerung extends PApplet {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         size(SpielfeldBreite, SpielfeldHoehe);
-
     }
 
     /**
@@ -186,12 +194,12 @@ public class Spielsteuerung extends PApplet {
             }
             //Inventar öffnen
             if(keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
-                    Spieler.setInventarGroeße(30);
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                    Spieler.setInventarGuiGroeße(30);
                     Spieler.playBackpackOpenSound();
                     keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
-                    Spieler.setInventarGroeße(10);
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                    Spieler.setInventarGuiGroeße(10);
                     keyPressed = false;
                     Spieler.playBackpackCloseSound();
                 }
@@ -257,6 +265,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void aktualisiere() {
+        pruefeUmgebung();
         pruefeKollisionen();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
@@ -284,6 +293,35 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+
+        //Items mit klick verwenden
+        if(mouseButton==RIGHT) {
+            Spieler.klickItems(mouseX, mouseY);
+        }
+
+        //Items verschieben
+        if(mouseButton==LEFT && klicked==false){
+            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            if(invPos>=0){
+                klicked = true;
+                Spieler.auswahl = Spieler.getInventar().get(invPos);
+                Spieler.getInventar().remove(invPos);
+                Spieler.auswahl.setPosition(mouseX, mouseY);
+                Spieler.auswahl.zeichne(this);
+            }
+        }else if(mouseButton==LEFT && klicked==true){
+            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            if(neuePos>=0) {
+                Spieler.getInventar().add(neuePos,Spieler.auswahl);
+            }else{
+                Spieler.getInventar().add(Spieler.auswahl);
+            }
+            Spieler.auswahl = null;
+            klicked = false;
+
+        }
+
+
     }
 
     public boolean ueberpruefeLevelende() {
@@ -311,10 +349,13 @@ public class Spielsteuerung extends PApplet {
     private boolean pruefeLevelausgang() {
         int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
         int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
-        if (spielerKachel instanceof Levelausgang){
-//            System.out.println(spielerKachel);
-            levelBeendet = true;
+        if (spielmodell.getSzene() instanceof ILevel){
+            ILevel level = (ILevel) spielmodell.getSzene();
+            IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX,spielerPosY);
+            if (spielerKachel instanceof Levelausgang){
+    //            System.out.println(spielerKachel);
+                levelBeendet = true;
+            }
         }
         return levelBeendet;
     }
@@ -347,14 +388,10 @@ public class Spielsteuerung extends PApplet {
 
             if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
-                if (movable instanceof IMonster) {
-
-                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
-
-
-                } else if (movable instanceof ISchatz) {
-
-
+                if(movable instanceof IMonster) {
+                    ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
+                }
+                else if(movable instanceof ISchatz){
                     if (!(movable instanceof Waffe)) {
                         ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
                         //}
@@ -402,6 +439,14 @@ public class Spielsteuerung extends PApplet {
             }
         }
 
+    public void pruefeUmgebung(){
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            if(movable instanceof Monster) {
+                ((IMonster) movable).inDerNaehe(spielmodell.getFigur(),movable);
+            }
+        }
+    }
+
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
@@ -440,7 +485,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     public void anzeigeTitelLevel(int LevelNr){
-        frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
+        surface.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 
     /**
@@ -450,11 +495,4 @@ public class Spielsteuerung extends PApplet {
     public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
     }
-
-//    /**
-//     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
-//     */
-//    public void speichereSpielwelt(){
-//        this.dateiService.speichereSpielwelt(this.spielwelt,"spielwelt.json");
-//    }
 }

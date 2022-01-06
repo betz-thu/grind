@@ -1,15 +1,14 @@
 package grind.core.impl;
 
-import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.*;
 import grind.movables.IMovable;
-import grind.movables.ISchatz;
 import grind.movables.impl.*;
 import grind.movables.monster.*;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
+import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -25,49 +24,45 @@ public class Leveleditor extends PApplet {
     private static int SpielfeldHoehe;
     private final Spielsteuerung spielsteuerung;
 
-    private int menuBreite = 1;
-    private int menuHoehe = 8;
-    private int breiteExit;
-    private int breiteSpeichern;
-    private int breiteLaden;
-    private int breiteLeeren;
-    private int breiteLevel;
-    private int breiteSiedlung;
-    private int breiteVor;
-    private int breiteZurueck;
+    private final int menuBreite = 1;
+    private final int menuHoehe = 8;
+    private final int breiteExit;
+    private final int breiteSpeichern;
+    private final int breiteLaden;
+    private final int breiteLeeren;
+    private final int breiteLevel;
+    private final int breiteSiedlung;
+    private final int breiteVor;
+    private final int breiteZurueck;
     private int levelCount = 1;
     private int levelNr = 1;
     private int speicherHinweisLevel;
-    private boolean speicherHinweis = true;
+    private int speicherHinweis = 1;
 
-    // private ITileMap tileMap;
-
-    private int Tastendruck;
-    private String fTaste;
-    private boolean pressed = false;
-    private boolean levelBeendet = false;
     private DateiService dateiService;
     private ISpielwelt spielwelt;
-    private ISpielmodell spielmodell;
     private TileMap tileMap;
     private IKachel[][] menuArrayKacheln;
     private IMovable[][] menuArrayMovables;
     private IKachel aktuelleKachel;
     private IMovable aktuellesMovable;
-    private Button exitButton;
-    private Button speichernButton;
-    private Button ladeButton;
-    private Button leerenButton;
-    private Button levelButton;
-    private Button siedlungButton;
-    private Button bildVor;
-    private Button bildZurueck;
+    private final Button exitButton;
+    private final Button speichernButton;
+    private final Button ladeButton;
+    private final Button leerenButton;
+    private final Button levelButton;
+    private final Button siedlungButton;
+    private final Button bildVor;
+    private final Button bildZurueck;
     private PImage spielfigurBild;
 
 
     /**
-     * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
-     * und Tilemap.
+     * Konstruktor des Leveleditors
+     * Erstellt von den benötigten Klassen Instanzen um die Darstellung der einzelnen Spielobjekte zu ermöglichen
+     * Befüllt die Menüs mit den entsprechenden Instanzen der Klassen
+     * Ändert die Kachelgräße um den Leveleditor auch auf kleineren Bildschirmen vollständig anzuzeigen
+     * Legt die Größe der Buttons anhand der Kachelgrößen fest
      */
     public Leveleditor(){
         Einstellungen.LAENGE_KACHELN_Y = 30;
@@ -77,10 +72,7 @@ public class Leveleditor extends PApplet {
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
-        //this.spielmodell = new Spielmodell(this.spielwelt,this.spielsteuerung);
-        this.dateiService = new DateiService();
-//        this.Spieler = (Spielfigur) spielmodell.getFigur();
-//        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.dateiService = new DateiService(this.spielsteuerung);
         this.aktuelleKachel = null;
         this.aktuellesMovable = null;
         this.exitButton = new Button(0);
@@ -159,42 +151,9 @@ public class Leveleditor extends PApplet {
         this.menuArrayMovables[7][0] = new DornPflanze(0,0,this.tileMap);
         this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
         this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
-        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap);
-
-
-
-/*
-// Inhalt des Spielsteuerung Konstruktors
-        this.spielmodell = new Spielmodell(new DummySpielwelt(),this);
-        // this.spielmodell.betreteSzene(1);
-        this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
-
-        this.Spieler = (Spielfigur) spielmodell.getFigur();
-        this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
-        // this.tileMap = (ITileMap) spielmodell.getTileMap();
-        */
+        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
 
     }
-
-
-
-
-    public ISpielmodell getSpielmodell() {
-        return spielmodell;
-    }
-
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
-    }
-
-    public int getSpielfeldBreite() {
-        return SpielfeldBreite;
-    }
-
-    public int getSpielfeldHoehe() {
-        return SpielfeldHoehe;
-    }
-
 
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
@@ -203,25 +162,24 @@ public class Leveleditor extends PApplet {
     public void settings() {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
-        //fullScreen();
-        //size(displayWidth,displayHeight);
         size(SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X*2,SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y);
     }
 
     /**
-     * Methode setup, lädt Darstellung der Spielfigur.
+     * Methode setup, lädt Darstellung der Spielfigur und zeigt den Titel des Programms an
      */
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
         spielfigurBild = loadImage("SpielfigurOhneWaffe.jpg");
+        anzeigeTitelLevel(levelNr);
 //        Spieler.ladeIMGSpielfigur(this);
 //        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
 
     /**
      * Methode draw, zeichnet alle sichtbare Elemente.
-     * (Spielfigur, Lebensenergie, Kontostand, Tilemap)
+     * (Tilemap, Movables, Buttons, ...)
      */
     @Override
     public void draw() {
@@ -288,27 +246,30 @@ public class Leveleditor extends PApplet {
 //            pressed = false;
 //        }
 //    }
-
-    private void aktualisiere() {
-        spielmodell.entferneToteMonster();
-        spielmodell.bewege();
-        //levelBeendet = ueberpruefeLevelende();
-        starteNeueSzene();
-    }
+//
+//    private void aktualisiere() {
+//        spielmodell.entferneToteMonster();
+//        spielmodell.bewege();
+//        //levelBeendet = ueberpruefeLevelende();
+//        starteNeueSzene();
+//    }
+//
+//    /**
+//     * @author LuHe20
+//     * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
+//     */
+//    private void starteNeueSzene() {
+//        if(levelBeendet){
+//            levelBeendet = false;
+//            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
+//            spielmodell.betreteSzene(spielmodell.getSzeneNr());
+//            anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
+//        }
+//    }
 
     /**
-     * @author LuHe20
-     * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
+     * Ruft alle einzelnen zeichne Methoden auf.
      */
-    private void starteNeueSzene() {
-        if(levelBeendet){
-            levelBeendet = false;
-            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-            spielmodell.betreteSzene(spielmodell.getSzeneNr());
-            anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
-        }
-    }
-
     private void zeichne() {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap(this);
@@ -322,6 +283,16 @@ public class Leveleditor extends PApplet {
         zeichneFehler(this);
     }
 
+    /**
+     * Fragt ab welche Maustaste gedrückt wurde.
+     * Bei einem Linksklick wird überprüft, ob man sich auf einem Menupunkt (Kachel/Movable), Button oder auf
+     * der Tilemap befindet.
+     * Befindet man sich auf der Tilemap, wird das aktuell ausgewählte Objekt platziert.
+     * Befindet man sich auf einem Menupunkt, wird dieser als akutelle Mauskachel gewählt.
+     * Befindet man sich auf einem Button, wird dieser aufgerufen.
+     *
+     * Bei einem Rechtsklick wird die aktuelle Mauskachel auf null gesetzt.
+     */
     @Override
     public void mousePressed() {
         int mausXmenu = (mouseX - SpielfeldBreite) / Einstellungen.LAENGE_KACHELN_X;
@@ -357,39 +328,11 @@ public class Leveleditor extends PApplet {
         }
     }
 
-//    public boolean ueberpruefeLevelende() {
-//        //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
-//        pruefeLevelausgang();
-//
-//        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
-//            if (spielmodell.getFigur().getInventar().size()>=i+1) {
-//                if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
-//                    System.out.println("Levelende Bedingung wurde gefunden");
-//                    levelBeendet = true;
-//                    spielmodell.getFigur().getInventar().remove(i);
-//                    break;
-//                }
-//            }
-//        }
-//        return levelBeendet;
-//    }
-//    /**
-//     * @author LuHe20
-//     * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
-//     * eine Kachel des Typs: Levelausgang ist.
-//     * @return levelBeendet
-//     */
-//    private boolean pruefeLevelausgang() {
-//        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
-//        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-//        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
-//        if (spielerKachel instanceof Levelausgang){
-////            System.out.println(spielerKachel);
-//            levelBeendet = true;
-//        }
-//        return levelBeendet;
-//    }
-
+    /**
+     * Fügt das übergebene Movable im aktuellen Level in die Instanz von Spielwelt hinzu.
+     * Falls ein neues Movable im Spiel implementiert wird, muss dieses hier auch mit implementiert werden.
+     * @param movable Das zu speichernde Movable
+     */
     private void addMovablezuLevel(IMovable movable){
         Movable tempMovable = null;
         int posX = movable.getPosX();
@@ -417,46 +360,62 @@ public class Leveleditor extends PApplet {
         } else if (movable instanceof Geist){
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap);
+            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
         }
-        this.spielwelt.getSzene(this.levelNr-1).getLevel().addPosition(tempMovable);
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.addPosition(tempMovable);
     }
 
+    /**
+     * Zeigt im Fensterrahmen den Namen des Leveleditors an mit akuteller Levelnummer
+     * @param LevelNr Aktuelle Levelnummer
+     */
     public void anzeigeTitelLevel(int LevelNr){
-        frame.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
+        surface.setTitle(Einstellungen.TITLE + "   Leveleditor Level: " + Integer.toString(LevelNr));
     }
 
+    /**
+     * Zeichnet das Menü mit den verfügbaren Kacheln am rechten Rand.
+     * @param app Applet auf dem gezeichnet werden soll
+     * @param menuArray Das Menuarray mit den verschiedenen Kachelarten
+     */
     private void zeichneAssetMenu(PApplet app, IKachel[][] menuArray){
         int mapAussenX = SpielfeldBreite;
         int mapAussenY = 0;
-        for (int i = 0; i < menuArray.length; i++){
-            menuArray[i][0].zeichne(app, mapAussenX,mapAussenY);
+        for (IKachel[] iKachels : menuArray) {
+            iKachels[0].zeichne(app, mapAussenX, mapAussenY);
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
-            if (mapAussenY >= SpielfeldHoehe){
+            if (mapAussenY >= SpielfeldHoehe) {
                 mapAussenY = 0;
                 mapAussenX += Einstellungen.LAENGE_KACHELN_X;
             }
         }
     }
 
+    /**
+     * Zeichnet das Menü mit den verfügbaren Movables am rechten Rand nach den Kacheln.
+     * Die Spielfigur wird als reines Bild dargestellt, da sonst der Lebensbalken mitgezeichnet werden muss.
+     * @param app Applet auf dem gezeichnet werden soll
+     * @param menuArray Das Menuarray mit den verschiedenen Movablearten
+     */
     private void zeichneMovableMenu(PApplet app, IMovable[][] menuArray){
-        int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X;
-        int mapAussenY = 0;
+        int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X/2;
+        int mapAussenY = Einstellungen.LAENGE_KACHELN_Y/2;
         app.pushStyle();
-        app.imageMode(CORNER);
-        app.ellipseMode(CORNER);
-        app.rectMode(CORNER);
-        for (int i = 0; i < menuArray.length; i++){
-            menuArray[i][0].setPosition(mapAussenX,mapAussenY);
-            if(menuArray[i][0] instanceof Spielfigur){
+        app.imageMode(CENTER);
+        app.ellipseMode(CENTER);
+        app.rectMode(CENTER);
+        for (IMovable[] iMovables : menuArray) {
+            iMovables[0].setPosition(mapAussenX, mapAussenY);
+            if (iMovables[0] instanceof Spielfigur) {
                 app.image(spielfigurBild, mapAussenX, mapAussenY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
             } else {
-                menuArray[i][0].zeichne(app);
+                iMovables[0].zeichne(app);
             }
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
-            if (mapAussenY >= SpielfeldHoehe){
+            if (mapAussenY >= SpielfeldHoehe) {
                 mapAussenY = 0;
                 mapAussenX += Einstellungen.LAENGE_KACHELN_X;
             }
@@ -464,16 +423,37 @@ public class Leveleditor extends PApplet {
         app.popStyle();
     }
 
+    /**
+     * Gibt die Kachel an der übergebenen Position im Array zurück
+     * @param mausY Position in Y Richtung
+     * @param mausX Position in X Richtung
+     * @param iKachel Das Array mit den Kacheln
+     * @return Kachel an Stelle [x][y]
+     */
     private IKachel getMenukacheliKachel(int mausY, int mausX, IKachel[][] iKachel){
 
         return iKachel[mausY][mausX];
     }
 
+    /**
+     * Gibt das Movable an der übergebenen Position im Array zurück
+     * @param mausY Position in Y Richtung
+     * @param mausX Position in X Richtung
+     * @param iMovable Das Array mit den Movables
+     * @return Movable an Stelle [x][y]
+     */
     private IMovable getMenukacheliMovable (int mausY, int mausX, IMovable[][] iMovable){
 
         return iMovable[mausY][mausX];
     }
 
+    /**
+     * Falls es sich bei der aktuellen Mausauswahl um eine Kachel handelt, wird diese hier gezeichnet
+     * @param app Applet auf dem gezeichnet werden soll
+     * @param aktuelleKachel Die aktuelle Kachel
+     * @param mausX Position der Maus in X-Richtung
+     * @param mausY Position der Maus in Y-Richtung
+     */
     private void zeichneMausKachel(PApplet app, IKachel aktuelleKachel, int mausX, int mausY){
         if (aktuelleKachel != null) {
             pushStyle();
@@ -484,6 +464,13 @@ public class Leveleditor extends PApplet {
         }
     }
 
+    /**
+     * Falls es sich bei der aktuellen Mausauswahl um ein Movable handelt, wird dieses hier gezeichnet
+     * @param app Applet auf dem gezeichnet werden soll
+     * @param aktuellesMovable  Das aktuelle Movable
+     * @param mausX mausX Position der Maus in X-Richtung
+     * @param mausY mausY Position der Maus in Y-Richtung
+     */
     private void zeichneMausMovable(PApplet app, IMovable aktuellesMovable, int mausX, int mausY){
         if (aktuellesMovable != null) {
             pushStyle();
@@ -500,16 +487,24 @@ public class Leveleditor extends PApplet {
         }
     }
 
-
+    /**
+     * Zeichnet die Tilemap des Leveleditors
+     * @param app Applet auf das gezeichnet werden soll
+     */
     private void zeichneTileMap(PApplet app){
         tileMap.zeichne(app);
     }
 
+    /**
+     * Zeichnet die Movalbes, welche auf der Tilemap platziert wurden
+     * @param app Applet auf das gezeichnet werden soll
+     */
     private void zeichneMovables(PApplet app){
-        int anzahlPos = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().size();
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        int anzahlPos = level.getPositionen().size();
         IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
-            movable = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().get(i);
+            movable = level.getPositionen().get(i);
 
             if(movable instanceof Spielfigur){
                 app.image(spielfigurBild, movable.getPosX(), movable.getPosY(), Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
@@ -520,87 +515,10 @@ public class Leveleditor extends PApplet {
 
     }
 
-    private void zeichneCounts(PApplet app) {
-        app.pushStyle();
-        app.textSize(12);
-        app.fill(0, 0, 0);
-        app.text("Levelanzahl: " + levelCount, 20, 25);
-        app.text("LevelNr: " + levelNr, 20, 40);
-        app.popStyle();
-    }
-
-    private void zeichneFehler(PApplet app){
-        app.pushStyle();
-        app.textSize(16);
-        app.fill(200, 20, 0);
-        if (speicherHinweis && (speicherHinweisLevel != 0)) {
-            app.text("Kein Levelende/-ausgang in Level: " + speicherHinweisLevel, 130, 25);
-        }
-        app.popStyle();
-    }
-
-    private void buttonAction(int y, int x){
-        if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
-            if (x < breiteExit){
-                System.exit(0);
-            } else if (x > breiteExit && x < breiteSpeichern){
-                spielwelt.getSzene(levelNr-1).getLevel().setTilemap(tileMap);
-                for (int i = 0; i < spielwelt.getSzenenanzahl(); i++){
-                    speicherHinweis = true;
-                    speicherHinweisLevel = i + 1;
-                    for (int j = 0; j < spielwelt.getSzene(i).getLevel().getTileMap().getKachelarten().size(); j++){
-                        if (tileMap.getKachelarten().get(j) instanceof Levelausgang || tileMap.getKachelarten().get(j) instanceof Levelende){
-                            speicherHinweis = false;
-                            speicherHinweisLevel = 0;
-                        }
-                    }
-                }
-                if (!speicherHinweis){
-                    levelCount = 1;
-                    System.out.println("speichern");
-                    tileMap = new TileMap();
-                    dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
-                    spielwelt.removeSzenen();
-                }
-            } else if (x > breiteSpeichern && x < breiteLaden){
-                System.out.println("laden");
-                levelNr = 1;
-                spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
-                tileMap = (TileMap) spielwelt.getSzene(levelNr - 1).getLevel().getTileMap();
-                levelCount = spielwelt.getSzenenanzahl();
-            } else if (x > breiteLaden && x < breiteLeeren){
-                System.out.println("leeren");
-                //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
-                tileMap = new TileMap();
-                spielwelt.getSzene(levelNr-1).getLevel().getPositionen().clear();
-                //Anstatt alle Felder mit Wiese zu nullen wie unten
-                //leereTilemap();
-            } else if (x > breiteLeeren && x < breiteLevel){
-                System.out.println("level");
-                ILevel level = new DummyLevel();
-                level.setTilemap(tileMap);
-                spielwelt.addSzene(level);
-                tileMap = new TileMap();
-                levelCount++;
-                levelNr++;
-            } else if (x > breiteLevel && x < breiteSiedlung){
-                System.out.println("siedlung");
-            } else if (x > breiteSiedlung && x < breiteZurueck){
-                if (levelCount > 2 && levelNr > 1){
-                    levelNr -= 1;
-                    tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
-                }
-                System.out.println("zurück");
-            } else if (x > breiteZurueck && x < breiteVor){
-                if (levelCount > levelNr){
-                    levelNr++;
-                    tileMap = (TileMap) spielwelt.getSzene(levelNr-1).getLevel().getTileMap();
-                }
-                System.out.println("vor");
-            }
-        }
-    }
-
+    /**
+     * Zeichnet die Buttons/Schaltflächen
+     * @param app Applet auf das gezeichnet werden soll
+     */
     private void zeichneButtons(PApplet app){
 
         exitButton.zeichne(app,0, SpielfeldHoehe);
@@ -613,25 +531,250 @@ public class Leveleditor extends PApplet {
         bildVor.zeichne(app, breiteZurueck, SpielfeldHoehe);
     }
 
-//    public void speichereSpielwelt(){
-//        //TODO: TileMap und Movalbes in die Spielwelt kopieren und in JSON speichern
-//
-//        dateiService.speichereSpielwelt(spielwelt, "spielwelt.json");
-//    }
-//
-//    /**
-//     * Lädt mithilfe des DateiService eine JSON Datei
-//     * @return die geladene Spielwelt vom Typ ISpielwelt
-//     */
-//    public ISpielwelt ladeSpielwelt(){
-//        return dateiService.ladeSpielwelt("spielwelt.json");
-//    }
+    /**
+     * Zeichnet den Levelcounter und die aktuelle Levelnummer
+     * @param app Applet auf das gezeichnet werden soll
+     */
+    private void zeichneCounts(PApplet app) {
+        app.pushStyle();
+        app.textSize(12);
+        app.fill(0, 0, 0);
+        app.text("Levelanzahl: " + levelCount, 20, 25);
+        app.text("LevelNr: " + levelNr, 20, 40);
+        app.popStyle();
+    }
 
-//    /**
-//     * Speichert eine Spielwelt in einer JSON Datei ab mithilfe des DateiService
-//     */
-//    public void speichereSpielwelt(){
-//        this.dateiService.speichereSpielwelt(this.spielwelt,"spielwelt.json");
-//    }
+    /**
+     * Zeichnet die Fehlermeldungen falls beim Speichern die Speicherkriterien nicht erfüllt werden
+     * Speicherhinweis  1: Kein Levelausgang
+     *                  2: Keine Spielfigur
+     *                  3: Mehr als eine Spielfigur
+     * @param app Applet auf das gezeichnet werden soll
+     */
+    private void zeichneFehler(PApplet app){
+        app.pushStyle();
+        app.textSize(16);
+        app.fill(200, 20, 0);
+        if (speicherHinweis == 1 && (speicherHinweisLevel != 0)) {
+            app.text("Kein Levelende/-ausgang in Level: " + speicherHinweisLevel, 130, 25);
+        } else if (speicherHinweis == 2 && (speicherHinweisLevel != 0)) {
+            app.text("Keine Spielfigur in Level: " + speicherHinweisLevel, 130, 25);
+        } else if (speicherHinweis == 3 && (speicherHinweisLevel != 0)) {
+            app.text("Mehr als eine Spielfigur in Level: " + speicherHinweisLevel, 130, 25);
+        }
+        app.popStyle();
+    }
 
+    /**
+     * Führt die Aktionen aus, nachdem ein Button gedrückt wurde
+     * @param y Position der Maus in y-Richtung
+     * @param x Position der Maus in x-Richtung
+     */
+    private void buttonAction(int y, int x){
+        if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
+            if (x < breiteExit){
+                exitLeveleditor();
+
+            } else if (x > breiteExit && x < breiteSpeichern){
+                speichereSpielwelt();
+
+            } else if (x > breiteSpeichern && x < breiteLaden){
+                ladeSpielwelt();
+
+            } else if (x > breiteLaden && x < breiteLeeren){
+                leereLevel();
+
+            } else if (x > breiteLeeren && x < breiteLevel){
+                neuesLevel();
+
+            } else if (x > breiteLevel && x < breiteSiedlung){
+                neueSiedlung();
+
+            } else if (x > breiteSiedlung && x < breiteZurueck){
+                springeZurueck();
+
+            } else if (x > breiteZurueck && x < breiteVor){
+                springeVor();
+            }
+        }
+    }
+
+    /**
+     * Schließt den Leveleditor
+     */
+    private void exitLeveleditor() {
+        System.exit(0);
+    }
+
+    /**
+     * Speichert die aktulle Spielwelt und resettet die Anzeige
+     */
+    private void speichereSpielwelt() {
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.setTilemap(tileMap);
+        pruefeSpeicherkriterien();
+        if (speicherHinweis == 0){
+            levelCount = 1;
+            levelNr = 1;
+            System.out.println("speichern");
+            tileMap = new TileMap();
+            dateiService.speichereSpielwelt(spielwelt,"spielwelt.json");
+            spielwelt.removeSzenen();
+        }
+    }
+
+    /**
+     * Lädt die Spielwelt aus "spielwelt.json" in die Anzeige
+     */
+    private void ladeSpielwelt() {
+        System.out.println("laden");
+        speicherHinweis = 0;
+        levelNr = 1;
+        spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        tileMap = (TileMap) level.getTileMap();
+        levelCount = spielwelt.getSzenenanzahl();
+    }
+
+    /**
+     * Leert das aktuelle Level
+     */
+    private void leereLevel() {
+        System.out.println("leeren");
+        //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
+        tileMap = new TileMap();
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.clearPosition();
+        //Anstatt alle Felder mit Wiese zu nullen wie unten
+        //leereTilemap();
+    }
+
+    /**
+     * Erstellt ein neues Level
+     */
+    private void neuesLevel() {
+        System.out.println("level");
+        ILevel level = new DummyLevel();
+        ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        iLevel1.setTilemap(tileMap);
+        spielwelt.addSzene(level, levelNr);
+
+        ILevel iLevel2 = (ILevel) this.spielwelt.getSzene(levelNr);
+        iLevel2.clearPosition();
+        tileMap = new TileMap();
+        iLevel2.setTilemap(tileMap);
+        levelCount++;
+        levelNr++;
+        anzeigeTitelLevel(levelNr);
+    }
+
+    /**
+     * Erstellt eine neue Siedlung
+     */
+    private void neueSiedlung() {
+        //TODO: Siedlungen müssen noch implementiert werden
+        System.out.println("siedlung");
+    }
+
+    /**
+     * Springt in der Spielwelt ein Level zurück
+     */
+    private void springeZurueck() {
+        if (levelCount >= 2 && levelNr > 1){
+            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level.setTilemap(tileMap);
+
+            levelNr -= 1;
+            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            tileMap = (TileMap) level.getTileMap();
+        }
+        System.out.println("zurück");
+    }
+
+    /**
+     * Springt in der Spielwelt ein Level vor
+     */
+    private void springeVor() {
+        if (levelCount > levelNr){
+            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level.setTilemap(tileMap);
+
+            levelNr++;
+            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            tileMap = (TileMap) level.getTileMap();
+        }
+        System.out.println("vor");
+    }
+
+    /**
+     * Prüft den aktuellen Zustand der Spielwelt, ob jedes Level nur eine Spielfigur und ein/mehrere Levelausgänge besitzt.
+     * Falls eine der Bedingungen nicht erfüllt ist, wird der Fehler mithilfe der speicherHinweis Variablen ausgegeben.
+     */
+    private void pruefeSpeicherkriterien() {
+        int szenenAnzahl = spielwelt.getSzenenanzahl();
+
+        for (int i = 0; i < szenenAnzahl; i++){
+            speicherHinweisLevel = i + 1;
+            ILevel level = (ILevel) this.spielwelt.getSzene(i);
+            ITileMap pruefTilemap = level.getTileMap();
+            int sizeKachelarten = pruefTilemap.getKachelarten().size();
+            int sizeMovables = level.getPositionen().size();
+
+            pruefeLevelausgang(pruefTilemap, sizeKachelarten);
+
+            pruefeLevelende(i, sizeMovables);
+
+            pruefeSpielfigur(i, sizeMovables);
+
+            if (speicherHinweis != 0){
+                i = szenenAnzahl;
+            }
+        }
+    }
+
+    private void pruefeSpielfigur(int szenenNr, int sizeMovables) {
+        int anzahlSpielfiguren = 0;
+
+        if (speicherHinweis == 0) {
+            for (int j = 0; j < sizeMovables; j++) {
+                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                IMovable movable = level.getPositionen().get(j);
+                if (movable instanceof Spielfigur) {
+                    speicherHinweis = 0;
+                    anzahlSpielfiguren++;
+                }
+            }
+            if (anzahlSpielfiguren > 1) {
+                speicherHinweis = 3;
+            } else if (anzahlSpielfiguren == 0){
+                speicherHinweis = 2;
+            }
+        }
+    }
+
+    private void pruefeLevelende(int szenenNr, int sizeMovables) {
+        if (speicherHinweis != 0){
+            for (int j = 0; j < sizeMovables; j++) {
+                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                IMovable movable = level.getPositionen().get(j);
+                if (movable instanceof Levelende) {
+                    speicherHinweis = 0;
+                    j = sizeMovables;
+                } else {
+                    speicherHinweis = 1;
+                }
+            }
+        }
+    }
+
+    private void pruefeLevelausgang(ITileMap pruefTilemap, int sizeKachelarten) {
+        for (int j = 0; j < sizeKachelarten; j++){
+            if (pruefTilemap.getKachelarten().get(j) instanceof Levelausgang){
+                speicherHinweis = 0;
+                j = sizeKachelarten;
+            } else {
+                speicherHinweis = 1;
+            }
+        }
+    }
 }
