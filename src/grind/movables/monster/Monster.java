@@ -15,6 +15,7 @@ public abstract class Monster extends Movable implements IMonster {
     transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
+    int groesse;
 
 
 
@@ -51,6 +52,11 @@ public abstract class Monster extends Movable implements IMonster {
 
         figur.erhalteSchaden(this.schaden);
 
+    }
+
+    @Override
+    public int getGroesse() {
+        return this.groesse;
     }
 
     public void setSchaden(int schaden) {

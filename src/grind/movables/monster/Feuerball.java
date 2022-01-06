@@ -32,7 +32,7 @@ public class Feuerball extends Monster{
      * @param deltaY deltaY
      */
     public Feuerball(float posX, float posY, int deltaX, int deltaY, Spielsteuerung steuerung) {
-        super(posX, posY,Einstellungen.GROESSE_FEUERBALL);
+        super(posX, posY,Einstellungen.LAENGE_KACHELN_X/4);
         float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / GESCHWINDIGKEIT;
         this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
         this.deltaY = deltaY / abstand;
@@ -48,7 +48,7 @@ public class Feuerball extends Monster{
     public void zeichne(PApplet app) {
         app.pushStyle();
         app.fill(255,100,0);
-        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_FEUERBALL , (float)Einstellungen.GROESSE_FEUERBALL);
+        app.ellipse(this.getPosX(), this.getPosY(),(float)groesse , (float)groesse);
         app.popStyle();
     }
 
@@ -77,11 +77,16 @@ public class Feuerball extends Monster{
      * @param figur Spielfigur
      */
     public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
+        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (groesse/2f + 20)){ // 20 = spielerradius
             this.getSpielmodell().removeMovable(this);
             System.out.println("Treffer!");
             figur.erhalteSchaden(this.schaden);
         }
+    }
+
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X/4;
     }
 
     /**

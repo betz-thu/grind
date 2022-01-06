@@ -69,7 +69,7 @@ public class FeuerMonster extends Monster{
      * @param ausrichtung   Laufrichtung
      */
     public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung,int feuerRate,FeuerModus feuerModus) {
-        super(posX, posY,ausrichtung,Einstellungen.GROESSE_FEUERMONSTER);
+        super(posX, posY,ausrichtung,Einstellungen.LAENGE_KACHELN_X/2);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -107,7 +107,12 @@ public class FeuerMonster extends Monster{
     @Override
     public void zeichne(PApplet app) {
         app.fill(255,100,0);
-        app.ellipse(this.getPosX(), this.getPosY(),(float) this.getGroesse(), (float) this.getGroesse());
+        app.ellipse(this.getPosX(), this.getPosY(),(float) groesse, (float) groesse);
+    }
+
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X/2;
     }
 
     /**

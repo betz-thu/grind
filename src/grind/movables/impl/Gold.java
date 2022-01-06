@@ -7,7 +7,7 @@ import processing.core.PApplet;
 public class Gold extends Waehrung {
 
     public Gold(int posX, int posY) {
-        super(posX, posY, Einstellungen.GROESSE_GOLD);
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Gold extends Waehrung {
         app.pushStyle();
         app.stroke(200, 225, 75);
         app.fill(175, 125, 75);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_GOLD, Einstellungen.GROESSE_GOLD);
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
         app.popStyle();
     }
 }

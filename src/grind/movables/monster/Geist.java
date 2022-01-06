@@ -19,7 +19,7 @@ public class Geist extends Monster{
 
     public Geist(float posX, float posY,ITileMap tileMap) {
 
-        super(posX, posY, Einstellungen.GROESSE_GEIST);
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
         setSchaden(schaden);
     }
 
@@ -28,12 +28,10 @@ public class Geist extends Monster{
         app.fill(255, 255, 255);
 //      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
 
-        app.ellipse(this.getPosX(), this.getPosY(), (float) Einstellungen.GROESSE_GEIST, (float) Einstellungen.GROESSE_GEIST);
+        app.ellipse(this.getPosX(), this.getPosY(), (float) groesse, (float) groesse);
     }
     @Override
     public void bewege() {
-
-
 
         int posX = this.getPosX();
         int posY = this.getPosY();
@@ -58,13 +56,16 @@ public class Geist extends Monster{
         this.setPosition(posX, posY);
     }
 
-
-
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X/2;
+    }
 
     @Override
     public void vorBetreten(IKachel kachel) {
         // Ein Geist darf auch durch Wände gehen
 
     }
+
 
 }

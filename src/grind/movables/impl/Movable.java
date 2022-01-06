@@ -37,6 +37,8 @@ public abstract class Movable implements IMovable {
         this.groesse = groesse;
     }
 
+
+
     @Override
     public int getPosX() {
         return (int) posX;
@@ -49,7 +51,7 @@ public abstract class Movable implements IMovable {
 
     @Override
     public int getGroesse() {
-        return groesse;
+        return this.groesse;
     }
 
     @Override

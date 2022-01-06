@@ -11,14 +11,13 @@ public class DornPflanze extends Monster {
     transient private int schaden = 10;
 
 
-
-
     transient private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
-        super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
+        super(posX, posY,Einstellungen.LAENGE_KACHELN_X);
         this.tileMap = tileMap;
         setSchaden(schaden);
+
 
 
     }
@@ -26,7 +25,7 @@ public class DornPflanze extends Monster {
     @Override
     public void zeichne(PApplet app) {
         app.fill(0, 255, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
         IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
         vorBetreten(kachel);
     }
@@ -34,7 +33,11 @@ public class DornPflanze extends Monster {
     @Override
     public void bewege() {
         // stationär
+    }
 
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X;
     }
 
     @Override
@@ -55,5 +58,6 @@ public class DornPflanze extends Monster {
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
+
 }
 

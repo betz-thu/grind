@@ -5,15 +5,15 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Levelende extends Gegenstand{
-    public Levelende(int posX, int posY, int groesse) {
-        super(posX, posY, groesse);
+    public Levelende(int posX, int posY) {
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
     }
 
     public void zeichne(PApplet app){
         app.pushStyle();
         app.stroke(255, 255, 255);
         app.fill(255, 255, 255);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_LEVELENDE, Einstellungen.GROESSE_LEVELENDE);
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
         app.popStyle();
     }
     public void beimAnwenden(ISpielfigur figur){

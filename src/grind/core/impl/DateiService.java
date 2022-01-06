@@ -135,7 +135,7 @@ public class DateiService {
                         iMovable = new Schwert(posX, posY, 1);
                         break;
                     case "class grind.movables.impl.Levelende":
-                        iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+                        iMovable = new Levelende(posX, posY);
                         break;
                     case "class grind.movables.monster.FeuerMonster":
                         iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);

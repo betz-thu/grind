@@ -10,7 +10,7 @@ public interface ISpielfigur extends IMovable {
     void setPosition(int x, int y);
     void erhoeheGold(int betrag);
     int getLebensenergie();
-    void setLebensenergie(int neueLebensenergie);
+    int setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
     void setGeschwindigkeit(float immunGeschwindigkeit);
     float getGeschwindigkeit();
@@ -19,12 +19,13 @@ public interface ISpielfigur extends IMovable {
     void setSternAngewandt(boolean angewandt);
     boolean isSternAngewandt();
 
+
     @Override
     int getGroesse();
-
     List<Gegenstand> getInventar();
     void erhalteSchaden(int schaden);
     Waffe getWaffe();
     void playApfelSound();
     void playSwallowSound();
+
 }

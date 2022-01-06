@@ -1,9 +1,11 @@
 package grind.core.impl;
 
+import grind.StartLeveleditor;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.kacheln.impl.*;
 import grind.movables.IMovable;
+import grind.movables.ISpielfigur;
 import grind.movables.impl.*;
 import grind.movables.monster.*;
 import grind.util.Einstellungen;
@@ -37,7 +39,6 @@ public class Leveleditor extends PApplet {
     private int levelNr = 1;
     private int speicherHinweisLevel;
     private int speicherHinweis = 1;
-
     private DateiService dateiService;
     private ISpielwelt spielwelt;
     private TileMap tileMap;
@@ -54,6 +55,8 @@ public class Leveleditor extends PApplet {
     private final Button bildVor;
     private final Button bildZurueck;
     private PImage spielfigurBild;
+
+
 
 
     /**
@@ -143,7 +146,7 @@ public class Leveleditor extends PApplet {
         this.menuArrayMovables[0][0] = new Spielfigur(0,0, Richtung.N);
         this.menuArrayMovables[1][0] = new Schwert(0,0,1);
         this.menuArrayMovables[2][0] = new Mango(0,0);
-        this.menuArrayMovables[3][0] = new Levelende(0,0,40);
+        this.menuArrayMovables[3][0] = new Levelende(0,0);
         this.menuArrayMovables[4][0] = new Heiltrank(0,0);
         this.menuArrayMovables[5][0] = new Gold(0,0);
         this.menuArrayMovables[6][0] = new Apfel(0,0);
@@ -175,6 +178,7 @@ public class Leveleditor extends PApplet {
         anzeigeTitelLevel(levelNr);
 //        Spieler.ladeIMGSpielfigur(this);
 //        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+
     }
 
     /**
@@ -183,10 +187,12 @@ public class Leveleditor extends PApplet {
      */
     @Override
     public void draw() {
+        clear();
         background(255);
     //    eingabe();
     //    aktualisiere();
         zeichne();
+//        restart();
     }
 
 //    /**
@@ -281,6 +287,7 @@ public class Leveleditor extends PApplet {
         zeichneButtons(this);
         zeichneCounts(this);
         zeichneFehler(this);
+
     }
 
     /**
@@ -333,7 +340,7 @@ public class Leveleditor extends PApplet {
      * Falls ein neues Movable im Spiel implementiert wird, muss dieses hier auch mit implementiert werden.
      * @param movable Das zu speichernde Movable
      */
-    private void addMovablezuLevel(IMovable movable){
+    public void addMovablezuLevel(IMovable movable){
         Movable tempMovable = null;
         int posX = movable.getPosX();
         int posY = movable.getPosY();
@@ -347,7 +354,7 @@ public class Leveleditor extends PApplet {
         } else if (movable instanceof Heiltrank){
             tempMovable = new Heiltrank(posX, posY);
         } else if (movable instanceof Levelende){
-            tempMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+            tempMovable = new Levelende(posX, posY);
         } else if (movable instanceof Mango){
             tempMovable = new Mango(posX, posY);
         } else if (movable instanceof Schwert){
@@ -400,7 +407,7 @@ public class Leveleditor extends PApplet {
      * @param app Applet auf dem gezeichnet werden soll
      * @param menuArray Das Menuarray mit den verschiedenen Movablearten
      */
-    private void zeichneMovableMenu(PApplet app, IMovable[][] menuArray){
+    public void zeichneMovableMenu(PApplet app, IMovable[][] menuArray){
         int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X/2;
         int mapAussenY = Einstellungen.LAENGE_KACHELN_Y/2;
         app.pushStyle();
@@ -500,7 +507,7 @@ public class Leveleditor extends PApplet {
      * Zeichnet die Movalbes, welche auf der Tilemap platziert wurden
      * @param app Applet auf das gezeichnet werden soll
      */
-    private void zeichneMovables(PApplet app){
+    public void zeichneMovables(PApplet app){
         int anzahlPos = spielwelt.getSzene(levelNr-1).getLevel().getPositionen().size();
         IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
@@ -598,6 +605,7 @@ public class Leveleditor extends PApplet {
             }
         }
     }
+
 
     /**
      * Schließt den Leveleditor
@@ -765,4 +773,23 @@ public class Leveleditor extends PApplet {
             }
         }
     }
+//
+//    public void restart (){
+//        if (keyPressed)
+//            if (key == 'R' || key == 'r'){
+//                loop();
+//                levelNr = 1;
+//                neuesLevel();
+//                System.out.println("RRR");
+//                clear();
+//                draw();
+//                setup();
+//
+//                new StartLeveleditor();
+//                new Leveleditor();
+//            }
+//
+//    }
+
+
 }

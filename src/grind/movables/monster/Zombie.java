@@ -19,7 +19,7 @@ public class Zombie extends Monster{
 
 
     public Zombie(float posX, float posY, ITileMap tileMap) {
-        super(posX, posY, Einstellungen.GROESSE_ZOMBIE);
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
@@ -35,7 +35,12 @@ public class Zombie extends Monster{
     @Override
     public void zeichne(PApplet app) {
         app.fill(0, 127, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
+    }
+
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X;
     }
 
     @Override
@@ -65,20 +70,20 @@ public class Zombie extends Monster{
         // Die Hilfvariable dient dazu, dass nur eine Kachel eine Kollision mit dem Zombie hat und nicht mehrere gleichzeitig,
         // da es sonst zur mehrmaligen Umkehrung der Bewegungsrichtung kommt und am Ende der Zombie durch die Kacheln geht.
 
-        IKachel kachel = tileMap.getKachel((posY+Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_Y, (posX+Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_X);
+        IKachel kachel = tileMap.getKachel((posY+groesse/2)/Einstellungen.LAENGE_KACHELN_Y, (posX+groesse/2)/Einstellungen.LAENGE_KACHELN_X);
         vorBetreten(kachel);
 
 
         if(!hilfsVariable){
-            IKachel kachel2 = tileMap.getKachel((posY-Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_Y, (posX+Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_X);
+            IKachel kachel2 = tileMap.getKachel((posY-groesse/2)/Einstellungen.LAENGE_KACHELN_Y, (posX+groesse/2)/Einstellungen.LAENGE_KACHELN_X);
             vorBetreten(kachel2);
         }
         if(!hilfsVariable){
-            IKachel kachel3 = tileMap.getKachel((posY+Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_Y, (posX-Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_X);
+            IKachel kachel3 = tileMap.getKachel((posY+groesse/2)/Einstellungen.LAENGE_KACHELN_Y, (posX-groesse/2)/Einstellungen.LAENGE_KACHELN_X);
             vorBetreten(kachel3);
         }
         if(!hilfsVariable){
-            IKachel kachel4 = tileMap.getKachel((posY-Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_Y, (posX-Einstellungen.GROESSE_ZOMBIE/2)/Einstellungen.LAENGE_KACHELN_X);
+            IKachel kachel4 = tileMap.getKachel((posY-groesse/2)/Einstellungen.LAENGE_KACHELN_Y, (posX-groesse/2)/Einstellungen.LAENGE_KACHELN_X);
             vorBetreten(kachel4);
         }
 
