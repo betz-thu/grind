@@ -477,6 +477,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     public void restart() {
+
         clear();
         background(255, 250, 250);
         Spieler.setLebensenergie(10);
@@ -484,12 +485,18 @@ public class Spielsteuerung extends PApplet {
         time = 20;
         duration = 20;
         Spieler.setGold(5);
-        starty();
+
+        ISpielwelt resetSpielwelt = ladeSpielwelt();
+        this.spielmodell.setSpielwelt(resetSpielwelt);
+        spielmodell.setSzeneNr(0);
+        spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+
 /**Wenn GameOver aufgerufen wird,wird das Inventar gelöscht, damit man nicht Nahrung zu sich nehmen kann und dadurch
  * das Leben auf 0+ aufgefüllt wird. Zeit wird bei Restart zurückgesetzt. Gold wird ausgegeben und zurückgestzt.
  *
- * Problem: Wenn Restart aufgenommene movables werden nicht wieder hergestellt, Rücksetzung der Startposition
- * --> aufrufen aus Editor?, oder gesamtes GameOver mit Countdown in Editor? um die Methoden direkt aufzurufen
+    Anfängliche Spielwelt wird neu aus json datei geladen und in das Spielmodell gesetzt.
+    Erste Szene wird gesetzt und betreten
  *
  */
 
@@ -512,9 +519,5 @@ public class Spielsteuerung extends PApplet {
 
 
 
-    public void starty(){
-//        Leveleditor level = new Leveleditor();
-//        level.addMovablezuLevel(this.Spieler);
-    }
 }
 
