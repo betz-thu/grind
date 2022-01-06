@@ -12,7 +12,7 @@ public class Geist extends Monster{
     private int geschwindigkeit = 5;
     private int deltaX = geschwindigkeit;
     private int deltaY = geschwindigkeit;
-    private int schaden = 5;
+    private int schaden = 25;
 
 
     ITileMap tileMap;
@@ -27,13 +27,11 @@ public class Geist extends Monster{
     @Override
     public void zeichne(PApplet app) {
         app.fill(255, 255, 255);
-//      app.ellipse(deltaX, deltaY,(float)Einstellungen.LAENGE_KACHELN_X/2 , (float)Einstellungen.ANZAHL_KACHELN_Y/2);
-
         app.ellipse(this.getPosX(), this.getPosY(), (float) Einstellungen.GROESSE_GEIST, (float) Einstellungen.GROESSE_GEIST);
     }
     @Override
     public void bewege() {
-
+        super.bewege();
 
 
         int posX = this.getPosX();
@@ -58,9 +56,7 @@ public class Geist extends Monster{
 
         this.setPosition(posX, posY);
 
-        if(inDerNaehe){
-            resetTimerNaehe();
-        }
+
     }
 
 
@@ -82,9 +78,5 @@ public class Geist extends Monster{
         this.spielmodell = spielmodell;
     }
 
-    @Override
-    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
-        super.inDerNaehe(figur,monster);
-
-    }
+    
 }

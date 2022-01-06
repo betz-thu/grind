@@ -4,9 +4,6 @@ import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
-import grind.movables.IMovable;
-import grind.movables.ISpielfigur;
-import grind.movables.impl.Spielfigur;
 import grind.util.Einstellungen;
 import grind.util.LaufModus;
 import grind.util.Richtung;
@@ -29,15 +26,12 @@ public class Zombie extends Monster{
     private int deltaX;
     private int deltaY;
     private ITileMap tileMap;
-    private int schaden = 2;
+    private int schaden = 5;
     private Spielsteuerung steuerung;
     private LaufModus laufModus;
     private Richtung ausrichtung;
-    private boolean hatKollidiert=false;
-    private long startTime;
     private boolean hilfsVariable = false;
-   // private long startTimeNaehe;
-    //private boolean inDerNaehe=false;
+
 
     /**
      * @MEGAtroniker
@@ -64,33 +58,6 @@ public class Zombie extends Monster{
 
 
     /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * bisher bekommt nur der Spieler schaden
-     * Sofern einmal Schaden verursacht muss eine gewisse Zeit gewartet werden,
-     * bis dasselbe Monster der Figur erneut Schaden zufügen kann.
-     * @param figur Spielfigur
-     */
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
-        float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
-        if(aktuelleDistanz < kollisionsDistantz&&!hatKollidiert){
-            figur.playZombieAttacSound();
-            startTime = System.currentTimeMillis();
-            setHatKollidiert(true);
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
-
-    @Override
-    public void inDerNaehe(ISpielfigur figur, IMovable monster){
-        super.inDerNaehe(figur, monster);
-    }
-
-
-
-    /**
      * @MEGAtroniker nicht von uns
      * @param app
      */
@@ -108,6 +75,7 @@ public class Zombie extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         Random random = new Random();
         int posX = this.getPosX();
         int posY = this.getPosY();
@@ -133,12 +101,7 @@ public class Zombie extends Monster{
                 break;
         }
         bewegeMovable(posX, posY);
-        if(hatKollidiert){
-            resetTimer();
-        }
-        if(inDerNaehe){
-            resetTimerNaehe();
-        }
+
     }
 
 
@@ -324,48 +287,6 @@ public class Zombie extends Monster{
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
-
-
-
-    /**
-     * @MEGAtroniker
-     * Methode resetTimer setzt booleand hatKollidiert auf false,
-     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
-     */
-    public void resetTimer(){
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=2000){
-            setHatKollidiert(false);
-        }
-    }
-/*
-    public void resetTimerNaehe(){
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTimeNaehe>=2000){
-            setInDerNaehe(false);
-        }
-    }*/
-
-
-
-
-/*
-    private void setInDerNaehe(boolean inDerNaehe) {
-        this.inDerNaehe = inDerNaehe;
-    }*/
-
-
-    /**
-     * @MEGAtroniker
-     * Setter setHastKollidiert für testing und kapselung
-     * @param hatKollidiert
-     */
-    public void setHatKollidiert(boolean hatKollidiert) {
-        this.hatKollidiert = hatKollidiert;
-    }
-
-
 
 
 }

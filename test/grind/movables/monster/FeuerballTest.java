@@ -41,7 +41,7 @@ public class FeuerballTest {
     @Test
     public void beiKollision() {
         steuerung.getSpielmodell().getFigur().setPosition(100,100);
-        ball.beiKollision(steuerung.getSpielmodell().getFigur());
+        ball.beiKollision(steuerung.getSpielmodell().getFigur(),ball);
         assertFalse(steuerung.getSpielmodell().getMovables().contains(ball));
 
 

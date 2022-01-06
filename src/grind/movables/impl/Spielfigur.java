@@ -362,7 +362,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     /**
      * @MEGAtroniker
      */
-    public void playFeuerBallFlyBy() {
+    public void playFeuerBallAroundSound() {
         File feuerBallAround = new File("Feuerball__flyBy.wav");
         setupSound(feuerBallAround);
     }
@@ -370,10 +370,30 @@ public class Spielfigur extends Movable implements ISpielfigur {
     /**
      * @MEGAtroniker
      */
-    public void playGeistAround() {
+    public void playGeistAroundSound() {
         File gohstAround = new File("Gohst_Around.wav");
         setupSound(gohstAround);
     }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playPflanzeAroundSound() {
+        File pflanzeAround = new File("Pflanze_Around.wav");
+        setupSound(pflanzeAround);
+    }
+
+    /**
+     * @MEGAtroniker
+     */
+    public void playPflanzeAttacSound() {
+        File pflanzeAttac = new File("Pflanze_Around.wav");
+        setupSound(pflanzeAttac);
+    }
+
+
+
+
 
         private void setupSound(File Sound){
         try{

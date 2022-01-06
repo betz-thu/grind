@@ -36,11 +36,8 @@ public class DummyLevel implements ILevel {
         Random random = new Random();
         positionen.add(new Gold(650, 400));
         positionen.add(new Geist(60,200,tileMap));
-        positionen.add(new DornPflanze(200, 50, tileMap));
-        positionen.add(new DornPflanze(600, 500, tileMap));
         positionen.add(new Heiltrank(700, 400));
         positionen.add(new Mango(750, 400));
-
         positionen.add(new Spielfigur(600, 400,Richtung.N));
     }
 

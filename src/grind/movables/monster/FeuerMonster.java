@@ -23,7 +23,7 @@ import java.util.Random;
 public class FeuerMonster extends Monster{
     final int posX;
     final int posY;
-    private final static int GESCHWINDIGKEIT = 2;
+    private final static int GESCHWINDIGKEIT = 0;
     final int deltaX;
     final int deltaY;
     ITileMap tileMap;
@@ -33,29 +33,10 @@ public class FeuerMonster extends Monster{
     private int schussZaehler=0;
     Random rand;
     final int feuerRate;
-    private boolean hatKollidiert=false;
-    private long startTime;
+    //private boolean hatKollidiert=false;
+    //private long startTime;
     FeuerModus feuerModus;
     final int schaden = 20;
-    /**
-     * @MEGAtroniker
-     * Setter setHastKollidiert für testing und kapselung
-     * @param hatKollidiert
-     */
-    public void setHatKollidiert(boolean hatKollidiert) {
-        this.hatKollidiert = hatKollidiert;
-    }
-
-
-    /**
-     * @MEGAtroniker
-     * Getter, notwendig für die tests und kapselung
-     * @return
-     */
-    public boolean isHatKollidiert() {
-        return hatKollidiert;
-    }
-
 
     /**
      * @MEGAtroniker
@@ -83,20 +64,6 @@ public class FeuerMonster extends Monster{
     }
 
 
-    /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * @param figur Spielfigur
-     */
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){
-            startTime = System.currentTimeMillis();
-            setHatKollidiert(true);
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
-
 
     /**
      * @MEGAtroniker
@@ -118,6 +85,7 @@ public class FeuerMonster extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
         switch (ausrichtung) {
@@ -132,12 +100,8 @@ public class FeuerMonster extends Monster{
                 break;
         }
         FeuerModus(this.feuerModus,this.feuerRate);
-        if(hatKollidiert){
-            resetTimer();
-        }
-        if(inDerNaehe){
-            resetTimerNaehe();
-        }
+
+
     }
 
 
@@ -262,26 +226,7 @@ public class FeuerMonster extends Monster{
     }
 
 
-    /**
-     * @MEGAtroniker
-     * Methode resetTimer setzt booleand hatKollidiert auf false,
-     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
-     */
-    public void resetTimer(){
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=2000){
-            hatKollidiert=false;
-        }
-    }
 
-
-    /**
-     * @MEGAtroniker
-     * is never used!!!!!!!!!
-     * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel nope
-     */
     @Override
     public void vorBetreten(IKachel kachel) {
 
@@ -310,8 +255,4 @@ public class FeuerMonster extends Monster{
 
 
 
-    @Override
-    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
-        super.inDerNaehe(figur, monster);
-    }
 }

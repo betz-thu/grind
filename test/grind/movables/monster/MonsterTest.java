@@ -35,7 +35,7 @@ class MonsterTest {
     @Test
     void beiKollision() {
         int spielfigurLebenVorher = spielfigur.getLebensenergie();
-        monster.beiKollision(spielfigur);
+        monster.beiKollision(spielfigur,monster);
         Assert.assertEquals(spielfigurLebenVorher-schaden,  spielfigur.getLebensenergie());
     }
 }

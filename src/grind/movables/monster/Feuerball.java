@@ -22,7 +22,7 @@ public class Feuerball extends Monster{
     float deltaX;
     float deltaY;
     Spielsteuerung steuerung;
-    final int schaden = 5;
+    final int schaden = 2;
 
 
     /**
@@ -61,6 +61,7 @@ public class Feuerball extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
         posX += deltaX;
@@ -70,27 +71,10 @@ public class Feuerball extends Monster{
         } else {
             this.setPosition(posX, posY);
         }
+
+
     }
 
-    /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * @param figur Spielfigur
-     */
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
-            this.getSpielmodell().removeMovable(this);
-            System.out.println("Treffer!");
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
-
-    /**
-     * @MEGAtroniker
-     * Is never used!!!!!!!!!
-     * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel nope
-     */
     @Override
     public void vorBetreten(IKachel kachel) {
 
@@ -106,8 +90,5 @@ public class Feuerball extends Monster{
         this.spielmodell = spielmodell;
     }
 
-    @Override
-    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
-        super.inDerNaehe(figur,monster);
-    }
+
 }

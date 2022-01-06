@@ -49,7 +49,7 @@ public class FeuerMonsterTest {
         int yTest=xTest;
         this.tFigur.setPosition(xTest,yTest);
         tFeuerMonster.setPosition(xTest,yTest);
-        tFeuerMonster.beiKollision(tFigur);
+        tFeuerMonster.beiKollision(tFigur,tFeuerMonster);
         assertTrue(tFeuerMonster.isHatKollidiert());
     }
 

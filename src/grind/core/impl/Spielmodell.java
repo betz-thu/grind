@@ -6,6 +6,7 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.DornPflanze;
 import grind.movables.monster.FeuerMonster;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Zombie;
@@ -110,10 +111,14 @@ public class Spielmodell implements ISpielmodell {
         IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
         IMonster zombie2 = (new Zombie(350, 600, tileMap,Richtung.N,this.steuerung,LaufModus.DEFAULT));
         IMonster zombie3 = (new Zombie(100, 400, tileMap,Richtung.N,this.steuerung,LaufModus.JAGDT));
+        IMonster dornPflanze1 = (new DornPflanze(200, 50, tileMap));
+        IMonster dornPflanze2 = (new DornPflanze(600, 500, tileMap));
         addMonster(feuerMonster);
         addMonster(zombie1);
         addMonster(zombie2);
         addMonster(zombie3);
+        addMonster(dornPflanze1);
+        addMonster(dornPflanze2);
     }
 
     private void kopiereTilemap() {
@@ -140,6 +145,7 @@ public class Spielmodell implements ISpielmodell {
             } else {
                 this.movables.add(movable);
             }
+
         }
     }
 

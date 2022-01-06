@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public class DornPflanze extends Monster {
     private int posX;
     private int posY;
-    private int schaden = 1;
+    private int schaden = 25;
 
 
 
@@ -38,7 +38,7 @@ public class DornPflanze extends Monster {
 
     @Override
     public void bewege() {
-        // stationär
+        super.bewege();
 
     }
 
@@ -66,9 +66,6 @@ public class DornPflanze extends Monster {
         this.spielmodell = spielmodell;
     }
 
-    @Override
-    public void inDerNaehe(ISpielfigur figur, IMovable monster) {
 
-    }
 }
 
