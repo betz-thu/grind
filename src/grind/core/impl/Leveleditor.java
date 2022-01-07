@@ -18,6 +18,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -45,8 +46,8 @@ public class Leveleditor extends Spielsteuerung {
     private DateiService dateiService;
     private ISpielwelt spielwelt;
     private TileMap tileMap;
-    private IKachel[][] menuArrayKacheln;
-    private IMovable[][] menuArrayMovables;
+    private ArrayList<IKachel> menuArrayKacheln;
+    private ArrayList<IMovable> menuArrayMovables;
     private IKachel aktuelleKachel;
     private IMovable aktuellesMovable;
     private final Button exitButton;
@@ -71,8 +72,8 @@ public class Leveleditor extends Spielsteuerung {
     public Leveleditor(){
         Einstellungen.LAENGE_KACHELN_Y = 30;
         Einstellungen.LAENGE_KACHELN_X = 30;
-        this.menuArrayKacheln = new IKachel[menuHoehe][menuBreite];
-        this.menuArrayMovables = new IMovable[11][1];
+        this.menuArrayKacheln = new ArrayList<>();
+        this.menuArrayMovables = new ArrayList<>();
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
@@ -135,28 +136,30 @@ public class Leveleditor extends Spielsteuerung {
 
 
         //Befüllen des Menuarrays mit den Kachelarten
-        this.menuArrayKacheln[0][0] = new Baum();
-        this.menuArrayKacheln[1][0] = new DummyHindernis();
-        this.menuArrayKacheln[2][0] = new Fels();
-        this.menuArrayKacheln[3][0] = new Holzbrücke();
-        this.menuArrayKacheln[4][0] = new Levelausgang();
-        this.menuArrayKacheln[5][0] = new Wasser();
-        this.menuArrayKacheln[6][0] = new Weg();
-        this.menuArrayKacheln[7][0] = new Wiese();
+        this.menuArrayKacheln.add( new Baum());
+        this.menuArrayKacheln.add( new DummyHindernis());
+        this.menuArrayKacheln.add( new Fels());
+        this.menuArrayKacheln.add( new Holzbrücke());
+        this.menuArrayKacheln.add( new Levelausgang());
+        this.menuArrayKacheln.add( new Wasser());
+        this.menuArrayKacheln.add( new Weg());
+        this.menuArrayKacheln.add( new Wiese());
 
         //Befüllen des Menuarrays mit den Movables
-        this.menuArrayMovables[0][0] = new Spielfigur(0,0, Richtung.N);
-        this.menuArrayMovables[1][0] = new Schwert(40,40,1);
-        this.menuArrayMovables[2][0] = new Mango(0,0);
-        this.menuArrayMovables[3][0] = new Levelende(0,0,40);
-        this.menuArrayMovables[4][0] = new Heiltrank(0,0);
-        this.menuArrayMovables[5][0] = new Gold(0,0);
-        this.menuArrayMovables[6][0] = new Apfel(0,0);
-        this.menuArrayMovables[7][0] = new DornPflanze(0,0,this.tileMap);
-        this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
-        this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
-        this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
-
+        this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
+        this.menuArrayMovables.add( new Schwert(40,40,1));
+        this.menuArrayMovables.add( new Mango(0,0));
+        this.menuArrayMovables.add( new Levelende(0,0));
+        this.menuArrayMovables.add( new Heiltrank(0,0));
+        this.menuArrayMovables.add( new Gold(0,0));
+        this.menuArrayMovables.add( new Apfel(0,0));
+        this.menuArrayMovables.add( new DornPflanze(0,0,this.tileMap));
+        this.menuArrayMovables.add( new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM));
+        this.menuArrayMovables.add( new Geist(0,0,this.tileMap));
+        this.menuArrayMovables.add( new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT));
+        this.menuArrayMovables.add( new Bogen(40,40,1));
+        this.menuArrayMovables.add( new Spezialattacke(40,40,1));
+        this.menuArrayMovables.add( new Stern(0,0));
     }
 
     /**
@@ -278,14 +281,20 @@ public class Leveleditor extends Spielsteuerung {
     private void zeichne() {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap();
-        zeichneMovables();
-        zeichneAssetMenu(this.menuArrayKacheln);
-        zeichneMovableMenu(this.menuArrayMovables);
+        if (spielwelt.getSzene(levelNr-1) instanceof ILevel) {
+            zeichneLevel();
+        }
         zeichneMausKachel(aktuelleKachel, mouseX, mouseY);
         zeichneMausMovable(aktuellesMovable,mouseX,mouseY);
         zeichneButtons();
         zeichneCounts();
         zeichneFehler();
+    }
+
+    private void zeichneLevel() {
+        zeichneMovables();
+        zeichneAssetMenu(this.menuArrayKacheln);
+        zeichneMovableMenu(this.menuArrayMovables);
     }
 
     /**
@@ -304,30 +313,61 @@ public class Leveleditor extends Spielsteuerung {
         int mausYmenu = mouseY / Einstellungen.LAENGE_KACHELN_Y;
         int mausXkachel = mouseX / Einstellungen.LAENGE_KACHELN_X;
         int mausYkachel = mouseY / Einstellungen.LAENGE_KACHELN_Y;
+        int mausYmovable = mausYkachel * Einstellungen.LAENGE_KACHELN_Y + Einstellungen.LAENGE_KACHELN_Y/2;
+        int mausXmovable = mausXkachel * Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X/2;
+        int ausenXKoordMovable = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X;
+        int ausenXKoordKachel = SpielfeldBreite + 2 * Einstellungen.LAENGE_KACHELN_X;
 
         if (mouseButton == LEFT) {
-            if (mouseX > SpielfeldBreite && mouseX <= SpielfeldBreite + menuBreite * Einstellungen.LAENGE_KACHELN_X) {
-                if (mouseY < menuHoehe * Einstellungen.LAENGE_KACHELN_Y) {
+            if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordMovable) {
+                if (mouseY < menuArrayKacheln.size() * Einstellungen.LAENGE_KACHELN_Y) {
                     aktuellesMovable = null;
-                    aktuelleKachel = getMenukacheliKachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
+                    aktuelleKachel = getMenukacheliKachel(mausYmenu, mausXmenu, menuArrayKacheln);
                 }
-            } else if (mouseX > SpielfeldBreite + menuBreite && mouseX <= SpielfeldBreite + (2 * menuBreite) * Einstellungen.LAENGE_KACHELN_X){
-                if (mouseY < 11 * Einstellungen.LAENGE_KACHELN_Y){
+            } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel){
+                if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y){
                     aktuelleKachel = null;
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
             }
-            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null || aktuellesMovable != null)) {
+            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
                 if (aktuelleKachel != null){
                     tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
                 } else if (aktuellesMovable != null){
-                    aktuellesMovable.setPosition(mouseX,mouseY);
+                    aktuellesMovable.setPosition(mausXmovable,mausYmovable);
                     addMovablezuLevel(aktuellesMovable);
+                } else if (aktuelleKachel == null && aktuellesMovable == null){
+                    aktuelleKachel = tileMap.getKachel(mausYkachel, mausXkachel);
+                    tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
+//                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
+//                    List<IMovable> movableList = templevel.getPositionen();
+//                    for (IMovable movable : movableList){
+//                        int posX = movable.getPosX();
+//                        int posY = movable.getPosY();
+//
+//                        if (posX == mausXmovable && posY == mausYmovable){
+//                            aktuellesMovable = movable;
+//                            movableList.remove(movable);
+//                        }
+//                    }
                 }
             }
+//            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null || aktuellesMovable != null)) {
+//                if (aktuelleKachel != null){
+//                    tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
+//                } else if (aktuellesMovable != null){
+//                    aktuellesMovable.setPosition(mausXmovable,mausYmovable);
+//                    addMovablezuLevel(aktuellesMovable);
+//                }
+//            }
             buttonAction(mouseY, mouseX);
 
         } else if (mouseButton == RIGHT){
+            if (aktuelleKachel == null && aktuellesMovable == null){
+                tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
+//                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
+//                    templevel.getPositionen().
+            }
             aktuelleKachel = null;
             aktuellesMovable = null;
         }
@@ -338,34 +378,40 @@ public class Leveleditor extends Spielsteuerung {
      * Falls ein neues Movable im Spiel implementiert wird, muss dieses hier auch mit implementiert werden.
      * @param movable Das zu speichernde Movable
      */
-    private void addMovablezuLevel(IMovable movable){
+    private void addMovablezuLevel(IMovable movable) {
         Movable tempMovable = null;
         int posX = movable.getPosX();
         int posY = movable.getPosY();
         Richtung richtung = movable.getAusrichtung();
-        if (movable instanceof Spielfigur){
+        if (movable instanceof Spielfigur) {
             tempMovable = new Spielfigur(posX, posY, richtung);
-        } else if (movable instanceof Apfel){
+        } else if (movable instanceof Apfel) {
             tempMovable = new Apfel(posX, posY);
-        } else if (movable instanceof Gold){
+        } else if (movable instanceof Gold) {
             tempMovable = new Gold(posX, posY);
-        } else if (movable instanceof Heiltrank){
+        } else if (movable instanceof Heiltrank) {
             tempMovable = new Heiltrank(posX, posY);
-        } else if (movable instanceof Levelende){
-            tempMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
-        } else if (movable instanceof Mango){
+        } else if (movable instanceof Levelende) {
+            tempMovable = new Levelende(posX, posY);
+        } else if (movable instanceof Mango) {
             tempMovable = new Mango(posX, posY);
-        } else if (movable instanceof Schwert){
+        } else if (movable instanceof Schwert) {
             tempMovable = new Schwert(posX, posY, 1);
-        } else if (movable instanceof DornPflanze){
+        } else if (movable instanceof DornPflanze) {
             tempMovable = new DornPflanze(posX, posY, this.tileMap);
-        } else if (movable instanceof FeuerMonster){
-            tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,1,FeuerModus.RANDOM);
+        } else if (movable instanceof FeuerMonster) {
+            tempMovable = new FeuerMonster(posX, posY, this.tileMap, this.spielsteuerung, Richtung.N, 1, FeuerModus.RANDOM);
             //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
-        } else if (movable instanceof Geist){
+        } else if (movable instanceof Geist) {
             tempMovable = new Geist(posX, posY, this.tileMap);
-        } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
+        } else if (movable instanceof Zombie) {
+            tempMovable = new Zombie(posX, posY, this.tileMap, Richtung.N, this.spielsteuerung, LaufModus.DEFAULT);
+        } else if (movable instanceof Bogen) {
+            tempMovable = new Bogen(posX, posY, 1);
+        } else if (movable instanceof Spezialattacke) {
+            tempMovable = new Spezialattacke(posX, posY, 1);
+        } else if (movable instanceof Stern) {
+            tempMovable = new Stern(posX, posY);
         }
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
         level.addPosition(tempMovable);
@@ -383,11 +429,11 @@ public class Leveleditor extends Spielsteuerung {
      * Zeichnet das Menü mit den verfügbaren Kacheln am rechten Rand.
      * @param menuArray Das Menuarray mit den verschiedenen Kachelarten
      */
-    private void zeichneAssetMenu(IKachel[][] menuArray){
+    private void zeichneAssetMenu(ArrayList<IKachel> menuArray){
         int mapAussenX = SpielfeldBreite;
         int mapAussenY = 0;
-        for (IKachel[] iKachels : menuArray) {
-            iKachels[0].zeichne(this, mapAussenX, mapAussenY);
+        for (IKachel iKachels : menuArray) {
+            iKachels.zeichne(this, mapAussenX, mapAussenY);
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
             if (mapAussenY >= SpielfeldHoehe) {
@@ -402,19 +448,19 @@ public class Leveleditor extends Spielsteuerung {
      * Die Spielfigur wird als reines Bild dargestellt, da sonst der Lebensbalken mitgezeichnet werden muss.
      * @param menuArray Das Menuarray mit den verschiedenen Movablearten
      */
-    private void zeichneMovableMenu(IMovable[][] menuArray){
+    private void zeichneMovableMenu(ArrayList<IMovable> menuArray){
         int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X/2;
         int mapAussenY = Einstellungen.LAENGE_KACHELN_Y/2;
         this.pushStyle();
         this.imageMode(CENTER);
         this.ellipseMode(CENTER);
         this.rectMode(CENTER);
-        for (IMovable[] iMovables : menuArray) {
-            iMovables[0].setPosition(mapAussenX, mapAussenY);
-            if (iMovables[0] instanceof Spielfigur) {
-                this.image((PImage) getImages().get(iMovables[0].getClass().toString()), mapAussenX, mapAussenY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
+        for (IMovable iMovables : menuArray) {
+            iMovables.setPosition(mapAussenX, mapAussenY);
+            if (iMovables instanceof Spielfigur) {
+                this.image((PImage) getImages().get(iMovables.getClass().toString()), mapAussenX, mapAussenY, Einstellungen.GROESSE_SPIELFIGUR, Einstellungen.GROESSE_SPIELFIGUR);
             } else {
-                iMovables[0].zeichne(this);
+                iMovables.zeichne(this);
             }
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
@@ -433,9 +479,9 @@ public class Leveleditor extends Spielsteuerung {
      * @param iKachel Das Array mit den Kacheln
      * @return Kachel an Stelle [x][y]
      */
-    private IKachel getMenukacheliKachel(int mausY, int mausX, IKachel[][] iKachel){
+    private IKachel getMenukacheliKachel(int mausY, int mausX, ArrayList<IKachel> iKachel){
 
-        return iKachel[mausY][mausX];
+        return iKachel.get(mausY);
     }
 
     /**
@@ -445,9 +491,9 @@ public class Leveleditor extends Spielsteuerung {
      * @param iMovable Das Array mit den Movables
      * @return Movable an Stelle [x][y]
      */
-    private IMovable getMenukacheliMovable (int mausY, int mausX, IMovable[][] iMovable){
+    private IMovable getMenukacheliMovable (int mausY, int mausX, ArrayList<IMovable> iMovable){
 
-        return iMovable[mausY][mausX];
+        return iMovable.get(mausY);
     }
 
     /**

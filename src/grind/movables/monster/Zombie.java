@@ -8,7 +8,6 @@ import grind.util.Einstellungen;
 import grind.util.LaufModus;
 import grind.util.Richtung;
 import processing.core.PApplet;
-
 import java.util.Random;
 
 /**
@@ -22,7 +21,7 @@ import java.util.Random;
 public class Zombie extends Monster{
     transient private int posX;
     transient private int posY;
-    transient private final static int GESCHWINDIGKEIT = 2;
+    transient private static int geschwindigkeit = 2;
     transient private int deltaX;
     transient private int deltaY;
     transient private int schaden = 10;
@@ -42,16 +41,22 @@ public class Zombie extends Monster{
      * @param laufModus DEFAULT:1.Zombie; RANDOM:2.Zombie; JAGT:3.Zombie;
      */
     public Zombie(float posX, float posY, ITileMap tileMap, Richtung ausrichtung, Spielsteuerung steuerung, LaufModus laufModus) {
-        super(posX, posY,ausrichtung, steuerung, Einstellungen.GROESSE_ZOMBIE);
+        super(posX, posY,ausrichtung, steuerung, Einstellungen.LAENGE_KACHELN_X);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -GESCHWINDIGKEIT;
-        this.deltaY = -GESCHWINDIGKEIT;
+        this.deltaX = -geschwindigkeit;
+        this.deltaY = -geschwindigkeit;
         this.laufModus=laufModus;
         setSchaden(schaden);
     }
 
+//    @Override
+//    public void beiKollision(ISpielfigur figur) {
+//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_ZOMBIE/2f + 20)){ // 20 = spielerradius
+//            //System.out.println("Kollision mit Zombie");
+//        }
+//    }
 
     /**
      * @MEGAtroniker nicht von uns
@@ -60,8 +65,8 @@ public class Zombie extends Monster{
     /*@Override
     public void zeichne(PApplet app) {
         app.fill(0, 127, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-    }*/
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
+
 
 
     /**
@@ -98,6 +103,11 @@ public class Zombie extends Monster{
         }
         bewegeMovable(posX, posY);
 
+    }
+
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X;
     }
 
 
@@ -162,11 +172,11 @@ public class Zombie extends Monster{
     private void bewegeMovable(int posX, int posY) {
         switch (getAusrichtung()) {
             case W:
-                if (bewegeWestlich(posY, posX - 2 * GESCHWINDIGKEIT, posX - GESCHWINDIGKEIT, posY)) break;
+                if (bewegeWestlich(posY, posX - 2 * geschwindigkeit, posX - geschwindigkeit, posY)) break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * GESCHWINDIGKEIT, posX, posY - GESCHWINDIGKEIT)) break;
+                if (bewegeNoerdlich(posX, posY - 2 * geschwindigkeit, posX, posY - geschwindigkeit)) break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * GESCHWINDIGKEIT, posX + GESCHWINDIGKEIT, posY)) break;
+                if (bewegeOestlich(posY, posX + 2 * geschwindigkeit, posX + geschwindigkeit, posY)) break;
             case S:
                 bewegeSuedlich(posX, posY);
         }
@@ -178,8 +188,8 @@ public class Zombie extends Monster{
      * @param posY aktuelle Y Position
      */
     private void bewegeSuedlich(int posX, int posY) {
-        if(getSpielsteuerung().isErlaubteKoordinate(posX, posY + 2*GESCHWINDIGKEIT)){
-            this.setPosition(posX, posY +GESCHWINDIGKEIT);
+        if(getSpielsteuerung().isErlaubteKoordinate(posX, posY + 2*geschwindigkeit)){
+            this.setPosition(posX, posY +geschwindigkeit);
             return;
         }else{
             setAusrichtung(Richtung.W);
@@ -278,6 +288,17 @@ public class Zombie extends Monster{
     @Override
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
+    }
+
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+        this.geschwindigkeit = xGeschwindigkeit;
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
     }
 
 

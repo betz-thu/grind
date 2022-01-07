@@ -74,8 +74,8 @@ public class DateiService {
                 Richtung richtung = null;
 
                 klassenname = jsonObject.get("classname").getAsString();
-                posX = jsonObject.get("posX").getAsInt();
-                posY = jsonObject.get("posY").getAsInt();
+                posX = (int) ((float) jsonObject.get("posX").getAsInt() * Einstellungen.LAENGE_KACHELN_X / Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR);
+                posY = (int) ((float) jsonObject.get("posY").getAsInt() * Einstellungen.LAENGE_KACHELN_Y / Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR);
 
                 if (klassenname.equals("class grind.movables.impl.Spielfigur")) {
                     String richtungsString;
@@ -114,6 +114,9 @@ public class DateiService {
                     case "class grind.movables.impl.Spielfigur":
                         iMovable = new Spielfigur(posX, posY, richtung);
                         break;
+                    case "class grind.movables.impl.Stern":
+                        iMovable = new Stern(posX,posY);
+                        break;
                     case "class grind.movables.monster.DornPflanze":
                         iMovable = new DornPflanze(posX, posY, tilemap);
                         break;
@@ -133,10 +136,16 @@ public class DateiService {
                         iMovable = new Schwert(posX, posY, 2);
                         break;
                     case "class grind.movables.impl.Levelende":
-                        iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+                        iMovable = new Levelende(posX, posY);
                         break;
                     case "class grind.movables.monster.FeuerMonster":
                         iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
+                    case "class grind.movables.impl.Bogen":
+                        iMovable = new Bogen(posX, posY, 1);
+                        break;
+                    case "class grind.movables.impl.Spezialattacke":
+                        iMovable = new Spezialattacke(posX, posY, 1);
+                        break;
                     default:
                         break;
                 }
