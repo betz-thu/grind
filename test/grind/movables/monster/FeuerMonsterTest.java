@@ -18,7 +18,6 @@ public class FeuerMonsterTest {
     Spielfigur tFigur;
     FeuerMonster tFeuerMonster;
     FeuerModus feuerModus;
-
     @Before
     public void setUp() throws Exception {
         tileMap = new TileMap();
@@ -47,10 +46,10 @@ public class FeuerMonsterTest {
     @Test
     public void beiKollision() {
         int xTest = 100;
-        int yTest = xTest;
-        this.tFigur.setPosition(xTest, yTest);
-        tFeuerMonster.setPosition(xTest, yTest);
-        tFeuerMonster.beiKollision(tFigur);
+        int yTest=xTest;
+        this.tFigur.setPosition(xTest,yTest);
+        tFeuerMonster.setPosition(xTest,yTest);
+        tFeuerMonster.beiKollision(tFigur,tFeuerMonster);
         assertTrue(tFeuerMonster.isHatKollidiert());
     }
 

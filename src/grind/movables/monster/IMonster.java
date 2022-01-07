@@ -7,11 +7,12 @@ import grind.movables.ISpielfigur;
 
 public interface IMonster extends IMovable {
     int getLebensenergie();
-    void beiKollision(ISpielfigur figur);
+    void beiKollision(ISpielfigur figur, IMovable monster);
     void vorBetreten(IKachel kachel);
     ISpielmodell getSpielmodell();
     void setSpielmodell(ISpielmodell spielmodell);
     void reduziereLebensenergie(int schaden);
+    void inDerNaehe(ISpielfigur figur, IMovable monster);
     void setGeschwindigkeit(int xGeschwindigkeit);
     int getGeschwindigkeit();
 

@@ -1,7 +1,9 @@
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -19,8 +21,8 @@ public class Feuerball extends Monster{
     transient int geschwindigkeit = 5;
     float deltaX;
     float deltaY;
-    transient Spielsteuerung steuerung;
-    final int schaden = 5;
+    Spielsteuerung steuerung;
+    final int schaden = 2;
 
 
     /**
@@ -44,9 +46,10 @@ public class Feuerball extends Monster{
      * @param app  app zur Darstellung
      */
     @Override
-    public void zeichne(PApplet app) {
+    public void zeichne(Spielsteuerung app) {
         app.pushStyle();
-        app.fill(255,100,0);
+        app.noStroke();
+        app.fill(255,100,0,200);
         app.ellipse(this.getPosX(), this.getPosY(),(float)groesse , (float)groesse);
         app.popStyle();
     }
@@ -59,6 +62,7 @@ public class Feuerball extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
         posX += deltaX;
@@ -70,20 +74,18 @@ public class Feuerball extends Monster{
         }
     }
 
-
-
-    /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * @param figur Spielfigur
-     */
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (groesse/2f + 20)){ // 20 = spielerradius
-            this.getSpielmodell().removeMovable(this);
-            System.out.println("Treffer!");
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
+//    /**
+//     * @MEGAtroniker
+//     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
+//     * @param figur Spielfigur
+//     */
+//    public void beiKollision(ISpielfigur figur) {
+//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
+//            this.getSpielmodell().removeMovable(this);
+//            System.out.println("Treffer!");
+//            figur.erhalteSchaden(this.schaden);
+//        }
+//    }
 
     @Override
     public int getGroesse() {
@@ -100,6 +102,17 @@ public class Feuerball extends Monster{
     public void vorBetreten(IKachel kachel) {
 
     }
+
+    @Override
+    public ISpielmodell getSpielmodell() {
+        return spielmodell;
+    }
+
+    @Override
+    public void setSpielmodell(ISpielmodell spielmodell) {
+        this.spielmodell = spielmodell;
+    }
+
 
     @Override
     public void setGeschwindigkeit(int xGeschwindigkeit) {

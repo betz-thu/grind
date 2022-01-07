@@ -22,10 +22,19 @@ public interface ISpielfigur extends IMovable {
 
     @Override
     int getGroesse();
+
     List<Gegenstand> getInventar();
     void erhalteSchaden(int schaden);
     Waffe getWaffe();
+    Waffe getPfeil();
+    void setPfeilAbgeschossen(boolean setzteAuf);
     void playApfelSound();
     void playSwallowSound();
-
+    void playZombieAttacSound();
+    void playZombieAroundSound();
+    void playFeuerMonsterAroundSound();
+    void playFeuerBallAroundSound();
+    void playGeistAroundSound();
+    void playPflanzeAroundSound();
+    void playPflanzeAttacSound();
 }

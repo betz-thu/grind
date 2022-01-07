@@ -50,15 +50,6 @@ public class DummyLevel implements ILevel {
     }
 
     /**
-     * Gibt das aktuelle Level zurück
-     * @return ILevel
-     */
-    @Override
-    public ILevel getLevel() {
-        return this;
-    }
-
-    /**
      * Setzt die übergebene Tilemap im Level
      * @param tileMap Die zu setzende Tilemap
      */

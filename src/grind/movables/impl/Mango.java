@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielsteuerung;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
@@ -16,13 +17,13 @@ public class Mango extends Nahrung{
         return this.punkte;
     }
 
-    public void zeichne(PApplet app){
+    /*public void zeichne(Spielsteuerung app){
         app.pushStyle();
         app.stroke(225, 100, 34);
         app.fill(225, 100, 34);
         app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
         app.popStyle();
-    }
+    }*/
     @Override
     public void beimAnwenden(ISpielfigur figur){
         super.beimAnwenden(figur);

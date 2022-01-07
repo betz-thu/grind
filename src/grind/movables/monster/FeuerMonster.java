@@ -1,9 +1,11 @@
 
 package grind.movables.monster;
 
+import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
@@ -82,32 +84,32 @@ public class FeuerMonster extends Monster{
         setSchaden(schaden);
     }
 
-    /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * @param figur Spielfigur
-     */
-    @Override
-    public void beiKollision(ISpielfigur figur) {
-        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
-            System.out.println("Kollision mit FeuerMonster");
-            startTime = System.currentTimeMillis();
-            //hatKollidiert=true;
-            setHatKollidiert(true);
-            figur.erhalteSchaden(this.schaden);
-        }
-    }
+//    /**
+//     * @MEGAtroniker
+//     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
+//     * @param figur Spielfigur
+//     */
+//    @Override
+//    public void beiKollision(ISpielfigur figur) {
+//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
+//            System.out.println("Kollision mit FeuerMonster");
+//            startTime = System.currentTimeMillis();
+//            //hatKollidiert=true;
+//            setHatKollidiert(true);
+//            figur.erhalteSchaden(this.schaden);
+//        }
+//    }
 
     /**
      * @MEGAtroniker
      * Die Methode zeiche definiert die Darstellung des Feuremonsters
      * @param app  app zur Darstellung
      */
-    @Override
-    public void zeichne(PApplet app) {
-        app.fill(255,100,0);
-        app.ellipse(this.getPosX(), this.getPosY(),(float) groesse, (float) groesse);
-    }
+//    @Override
+//    public void zeichne(PApplet app) {
+//        app.fill(255,100,0);
+//        app.ellipse(this.getPosX(), this.getPosY(),(float) groesse, (float) groesse);
+//    }
 
     @Override
     public int getGroesse() {
@@ -122,43 +124,96 @@ public class FeuerMonster extends Monster{
      */
     @Override
     public void bewege() {
+        super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
-        switch (ausrichtung) {
+        switch (getAusrichtung()) {
             case W:
-                if(steuerung.isErlaubteKoordinate(posX - 2* geschwindigkeit, posY)){
-                    this.setPosition(posX - geschwindigkeit, posY);
-                    break;
-                }else{
-                    ausrichtung=Richtung.N;
-                }
+                if (bewegeWestlich(posX, posY)) break;
             case N:
-                if(steuerung.isErlaubteKoordinate(posX , posY - 2* geschwindigkeit)){
-                    this.setPosition(posX, posY- geschwindigkeit);
-                    break;
-                }else{
-                    ausrichtung=Richtung.O;
-                }
+                if (bewegeNoerdlich(posX, posY - 2 * geschwindigkeit, posX, posY - geschwindigkeit)) break;
             case O:
-                if(steuerung.isErlaubteKoordinate(posX + 2* geschwindigkeit, posY)){
-                    this.setPosition(posX+ geschwindigkeit, posY);
-                    break;
-                }else{
-                    ausrichtung=Richtung.S;
-                }
+                if (bewegeOestlich(posY, posX + 2 * geschwindigkeit, posX + geschwindigkeit, posY)) break;
             case S:
-                if(steuerung.isErlaubteKoordinate(posX , posY + 2* geschwindigkeit)){
-                    this.setPosition(posX, posY+ geschwindigkeit);
-                    break;
-                }else{
-                    ausrichtung=Richtung.W;
-                }
+                bewegeSuedlich(posX, posY + 2 * geschwindigkeit, posX, posY + geschwindigkeit);
+                break;
         }
         FeuerModus(this.feuerModus,this.feuerRate);
-        if(hatKollidiert){
-            resetTimer();
-        }
+
+
     }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param posY
+     * @return
+     */
+    private boolean bewegeWestlich(int posX, int posY) {
+        if(getSpielsteuerung().isErlaubteKoordinate(posX - 2*geschwindigkeit, posY)){
+            this.setPosition(posX - geschwindigkeit, posY);
+            return true;
+        }else{
+            setAusrichtung(Richtung.N);
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param i
+     * @param posX2
+     * @param i2
+     * @return
+     */
+    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
+            this.setPosition(posX2, i2);
+            return true;
+        } else {
+            setAusrichtung(Richtung.O);
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posY
+     * @param i
+     * @param i2
+     * @param posY2
+     * @return
+     */
+    private boolean bewegeOestlich(int posY, int i, int i2, int posY2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
+            this.setPosition(i2, posY2);
+            return true;
+        } else {
+            setAusrichtung(Richtung.S);
+        }
+        return false;
+    }
+
+
+    /**
+     * @MEGAtroniker
+     * @param posX
+     * @param i
+     * @param posX2
+     * @param i2
+     */
+    private void bewegeSuedlich(int posX, int i, int posX2, int i2) {
+        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
+            this.setPosition(posX2, i2);
+            return;
+        } else {
+            setAusrichtung(Richtung.W);
+        }
+//    }
 
     /**
      * @MEGAtroniker
@@ -200,43 +255,62 @@ public class FeuerMonster extends Monster{
     public void shootFeuerball(){
         int abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
         int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
-        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.steuerung);
+        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.getSpielsteuerung());
         this.spielmodell.addMonster(feuerball);
     }
 
-    /**
-     * @MEGAtroniker
-     * Methode resetTimer setzt booleand hatKollidiert auf false,
-     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
-     */
-    public void resetTimer(){
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=2000){
-            hatKollidiert=false;
-        }
-    }
-
-    /**
-     * @MEGAtroniker
-     * is never used!!!!!!!!!
-     * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel nope
-     */
+//    /**
+//     * @MEGAtroniker
+//     * Methode resetTimer setzt booleand hatKollidiert auf false,
+//     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
+//     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
+//     */
+//    public void resetTimer(){
+//        long endTime = System.currentTimeMillis();
+//        if(endTime-startTime>=2000){
+//            hatKollidiert=false;
+//        }
+//    }
+//
+//    /**
+//     * @MEGAtroniker
+//     * is never used!!!!!!!!!
+//     * ersetzt durch assoziation zu Spielsteuerung!!!!
+//     * @param kachel nope
+//     */
     @Override
     public void vorBetreten(IKachel kachel) {
 
     }
+/**
+ * @MEGAtroniker
+ * Getter, notwendig für die tests und kapselung
+ * @return
+ */
+        public ISpielmodell getSpielmodell() {
+            return this.spielmodell;
+        }
 
-    @Override
-    public void setGeschwindigkeit(int xGeschwindigkeit) {
-        this.geschwindigkeit = xGeschwindigkeit;
+
+        /**
+         * @MEGAtroniker
+         * Getter, notwendig für die tests und kapselung
+         * @return
+         */
+        @Override
+        public void setSpielmodell(ISpielmodell spielmodell) {
+            this.spielmodell = spielmodell;
+        }
+
+        @Override
+        public void setGeschwindigkeit(int xGeschwindigkeit) {
+            this.geschwindigkeit = xGeschwindigkeit;
+        }
+
+        @Override
+        public int getGeschwindigkeit() {
+            return this.geschwindigkeit;
+        }
+
+
     }
-
-    @Override
-    public int getGeschwindigkeit() {
-        return this.geschwindigkeit;
-    }
-
-
-}

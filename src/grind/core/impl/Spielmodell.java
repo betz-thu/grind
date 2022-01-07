@@ -6,9 +6,13 @@ import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
 import grind.movables.impl.Spielfigur;
+import grind.movables.monster.DornPflanze;
 import grind.movables.monster.FeuerMonster;
 import grind.movables.monster.IMonster;
+import grind.movables.monster.Zombie;
+import grind.util.Einstellungen;
 import grind.util.FeuerModus;
+import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -17,6 +21,7 @@ import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -54,7 +59,7 @@ public class Spielmodell implements ISpielmodell {
     /**
      * Löscht Movable aus Liste der Positionen und aus Liste der movables
      * z. B. Für das Einsammeln eines Schatzes
-     * @param movable
+     * @param
      */
     /*@Override
     public void removeMovable(IMovable movable){
@@ -84,8 +89,8 @@ public class Spielmodell implements ISpielmodell {
                 break;
             }
         }
-
     */
+
     }
 
     /**
@@ -95,7 +100,6 @@ public class Spielmodell implements ISpielmodell {
     @Override
     public void betreteSzene(int n) {
         ISzene szene = this.spielwelt.getSzene(n);
-
         if (szene instanceof ILevel) {
             ILevel level = (ILevel) szene;
             betreteLevel(level);
@@ -109,11 +113,25 @@ public class Spielmodell implements ISpielmodell {
      * @param level Das zu ladende Level
      */
     private void betreteLevel(ILevel level) {
+        Random random = new Random();
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-//        IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
-//        addMonster(feuerMonster);
+        //muss wo anders sein!!!!
+        /*IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
+        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
+        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
+        IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
+        IMonster zombie2 = (new Zombie(350, 600, tileMap,Richtung.N,this.steuerung,LaufModus.DEFAULT));
+        IMonster zombie3 = (new Zombie(100, 400, tileMap,Richtung.N,this.steuerung,LaufModus.JAGDT));
+        IMonster dornPflanze1 = (new DornPflanze(200, 50, tileMap));
+        IMonster dornPflanze2 = (new DornPflanze(600, 500, tileMap));
+        addMonster(feuerMonster);
+        addMonster(zombie1);
+        addMonster(zombie2);
+        addMonster(zombie3);
+        addMonster(dornPflanze1);
+        addMonster(dornPflanze2);*/
     }
 
     /**
@@ -151,9 +169,6 @@ public class Spielmodell implements ISpielmodell {
         }
     }
 
-    /**
-     *
-     */
     @Override
     public void bewege() {
         // die Spielfigur bewegt sich nicht von selbst
@@ -166,20 +181,21 @@ public class Spielmodell implements ISpielmodell {
 
     /**
      * Zeichnet das Level, Spielfigur und Movables
-     * @param app Das Applet auf das gezeichnet wird
+     * @param spielsteuerung Das Applet auf das gezeichnet wird,
+     * muss Spielsteuerung sein um auf geladene liste der MovableBilder zugreifen zu können.
      */
     @Override
-    public void zeichne(PApplet app) {
+    public void zeichne(Spielsteuerung spielsteuerung) {
 
         if (this.level != null) {
-            this.level.zeichne(app);
+            this.level.zeichne(spielsteuerung);
         }
 
         for (IMovable movable : this.movables) {
-            movable.zeichne(app);
+            movable.zeichne(spielsteuerung);
         }
 
-        this.figur.zeichne(app);
+        this.figur.zeichne(spielsteuerung);
 
     }
 
@@ -227,18 +243,10 @@ public class Spielmodell implements ISpielmodell {
 
     // nicht sicher ob wir das so machen wollen
 
-    /**
-     *
-     * @return
-     */
     public List<ISchatz> getSchaetze() {
         return schaetze;
     }
 
-    /**
-     *
-     * @return
-     */
     public List<IMovable> getMovables() {
         return movables;
     }
@@ -282,5 +290,4 @@ public class Spielmodell implements ISpielmodell {
         } catch (Exception e) {}
 
     }
-
 }
