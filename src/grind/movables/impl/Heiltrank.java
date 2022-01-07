@@ -6,7 +6,7 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Heiltrank extends Nahrung {
-    private int punkte = 20;
+
 
 
     public Heiltrank(int posX, int posY) {
