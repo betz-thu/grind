@@ -148,4 +148,6 @@ public abstract class Movable implements IMovable {
     public Spielsteuerung getSpielsteuerung() {
         return spielsteuerung;
     }
+
+
 }

@@ -25,5 +25,10 @@ public abstract class Waffe extends Gegenstand{
 //
 //        }
 
+    @Override
+    public String toString(){
+        return "Schaden: "+ getSchaden()+"\nStufe: " + getStufe() ;
+    }
+
 
 }

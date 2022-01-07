@@ -114,6 +114,9 @@ public class DateiService {
                     case "class grind.movables.impl.Spielfigur":
                         iMovable = new Spielfigur(posX, posY, richtung);
                         break;
+                    case "class grind.movables.impl.Stern":
+                        iMovable = new Stern(posX,posY);
+                        break;
                     case "class grind.movables.monster.DornPflanze":
                         iMovable = new DornPflanze(posX, posY, tilemap);
                         break;
@@ -133,7 +136,7 @@ public class DateiService {
                         iMovable = new Schwert(posX, posY, 2);
                         break;
                     case "class grind.movables.impl.Levelende":
-                        iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+                        iMovable = new Levelende(posX, posY);
                         break;
                     case "class grind.movables.monster.FeuerMonster":
                         iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
