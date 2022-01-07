@@ -74,8 +74,8 @@ public class DateiService {
                 Richtung richtung = null;
 
                 klassenname = jsonObject.get("classname").getAsString();
-                posX = jsonObject.get("posX").getAsInt();
-                posY = jsonObject.get("posY").getAsInt();
+                posX = (int) ((float) jsonObject.get("posX").getAsInt() * Einstellungen.LAENGE_KACHELN_X / Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR);
+                posY = (int) ((float) jsonObject.get("posY").getAsInt() * Einstellungen.LAENGE_KACHELN_Y / Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR);
 
                 if (klassenname.equals("class grind.movables.impl.Spielfigur")) {
                     String richtungsString;
