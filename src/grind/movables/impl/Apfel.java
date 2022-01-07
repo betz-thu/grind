@@ -6,17 +6,15 @@ import processing.core.PApplet;
 
 public class Apfel extends Nahrung{
 
-    private int punkte=5; // Fehlt in Klassendiagramm?
     private int größe;
 
 
     public Apfel(int posX, int posY) {
         super(posX, posY, Einstellungen.GROESSE_APFEL);
+        this.punkte = 5; //  jeder Apfel startet mit Wert 5 @Team Leveleditor: gerne ändern
+        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
     }
 
-    public int getPunkte(){
-        return this.punkte;
-    }
 
     public void zeichne(PApplet app){
         app.pushStyle();

@@ -6,15 +6,11 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Mango extends Nahrung{
-    private int punkte=10; // Fehlt in Klassendiagramm?
-
 
     public Mango(int posX, int posY) {
         super(posX, posY, Einstellungen.GROESSE_MANGO);
-    }
-
-    public int getPunkte(){
-        return this.punkte;
+        this.punkte = 10; //  Mango startet mit Wert 10 @Team Leveleditor: gerne ändern
+        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
     }
 
     /*public void zeichne(Spielsteuerung app){

@@ -27,6 +27,7 @@ public class Bogen extends Waffe{
         if (getAusrichtung()==null){
             this.setAusrichtung(Richtung.S);
         }
+        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
 
     }
 
