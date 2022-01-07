@@ -20,8 +20,8 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
-    int groesse;
-    int geschwindigkeit = 1;
+    transient int groesse;
+    transient int geschwindigkeit = 1;
 
 
     /**

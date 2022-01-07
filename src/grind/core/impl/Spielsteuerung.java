@@ -119,7 +119,7 @@ public class Spielsteuerung extends PApplet {
         images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
-        images.put("class grind.movables.impl.Stern",(PImage) spielsteuerung.loadImage("Stern.jpg"));
+        images.put("class grind.movables.impl.Stern",(PImage) spielsteuerung.loadImage("Stern.png"));
         spielsteuerung.setImages(images);
     }
 
