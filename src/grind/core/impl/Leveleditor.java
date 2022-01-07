@@ -71,7 +71,7 @@ public class Leveleditor extends Spielsteuerung {
         Einstellungen.LAENGE_KACHELN_Y = 30;
         Einstellungen.LAENGE_KACHELN_X = 30;
         this.menuArrayKacheln = new IKachel[menuHoehe][menuBreite];
-        this.menuArrayMovables = new IMovable[12][1];
+        this.menuArrayMovables = new IMovable[14][1];
         this.tileMap = new TileMap();
         this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
@@ -155,7 +155,9 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayMovables[8][0] = new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM);
         this.menuArrayMovables[9][0] = new Geist(0,0,this.tileMap);
         this.menuArrayMovables[10][0] = new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
-        this.menuArrayMovables[11][0] = new Stern(0,0);
+        this.menuArrayMovables[11][0] = new Bogen(40,40,1);
+        this.menuArrayMovables[12][0] = new Spezialattacke(40,40,1);
+        this.menuArrayMovables[13][0] = new Stern(0,0);
 
     }
 
@@ -312,7 +314,7 @@ public class Leveleditor extends Spielsteuerung {
                     aktuelleKachel = getMenukacheliKachel(mausYmenu, mausXmenu, this.menuArrayKacheln);
                 }
             } else if (mouseX > SpielfeldBreite + menuBreite && mouseX <= SpielfeldBreite + (2 * menuBreite) * Einstellungen.LAENGE_KACHELN_X){
-                if (mouseY < 12 * Einstellungen.LAENGE_KACHELN_Y){
+                if (mouseY < 14 * Einstellungen.LAENGE_KACHELN_Y){
                     aktuelleKachel = null;
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
@@ -365,10 +367,14 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Geist){
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung,LaufModus.DEFAULT);
+            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
+        }else if (movable instanceof Bogen){
+            tempMovable = new Bogen(posX, posY, 1);
+        }else if (movable instanceof Spezialattacke){
+        tempMovable = new Spezialattacke(posX, posY, 1);
         } else if (movable instanceof Stern){
-            tempMovable = new Stern(posX, posY);
-        }
+        tempMovable = new Stern(posX, posY);
+    }
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
         level.addPosition(tempMovable);
     }
@@ -402,7 +408,6 @@ public class Leveleditor extends Spielsteuerung {
     /**
      * Zeichnet das Menü mit den verfügbaren Movables am rechten Rand nach den Kacheln.
      * Die Spielfigur wird als reines Bild dargestellt, da sonst der Lebensbalken mitgezeichnet werden muss.
-     * @param /app Applet auf dem gezeichnet werden soll
      * @param menuArray Das Menuarray mit den verschiedenen Movablearten
      */
     private void zeichneMovableMenu(IMovable[][] menuArray){
@@ -455,7 +460,6 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Falls es sich bei der aktuellen Mausauswahl um eine Kachel handelt, wird diese hier gezeichnet
-     * @param /app Applet auf dem gezeichnet werden soll
      * @param aktuelleKachel Die aktuelle Kachel
      * @param mausX Position der Maus in X-Richtung
      * @param mausY Position der Maus in Y-Richtung
@@ -472,7 +476,6 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Falls es sich bei der aktuellen Mausauswahl um ein Movable handelt, wird dieses hier gezeichnet
-     * @param /app Applet auf dem gezeichnet werden soll
      * @param aktuellesMovable  Das aktuelle Movable
      * @param mausX mausX Position der Maus in X-Richtung
      * @param mausY mausY Position der Maus in Y-Richtung

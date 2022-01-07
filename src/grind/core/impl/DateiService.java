@@ -140,6 +140,12 @@ public class DateiService {
                         break;
                     case "class grind.movables.monster.FeuerMonster":
                         iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
+                    case "class grind.movables.impl.Bogen":
+                        iMovable = new Bogen(posX, posY, 1);
+                        break;
+                    case "class grind.movables.impl.Spezialattacke":
+                        iMovable = new Spezialattacke(posX, posY, 1);
+                        break;
                     default:
                         break;
                 }

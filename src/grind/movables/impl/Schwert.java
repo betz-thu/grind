@@ -31,7 +31,7 @@ public class Schwert extends Waffe{
     }
 
     public int getGroesse(){
-        return 40;
+        return groesse;
     }
 
     @Override

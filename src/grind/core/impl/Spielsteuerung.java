@@ -1,4 +1,5 @@
 package grind.core.impl;
+
 import grind.core.ISpielmodell;
 import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
@@ -17,6 +18,7 @@ import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
+import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -78,7 +80,6 @@ public class Spielsteuerung extends PApplet {
         return SpielfeldHoehe;
     }
 
-
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
@@ -87,7 +88,6 @@ public class Spielsteuerung extends PApplet {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         size(SpielfeldBreite, SpielfeldHoehe);
-
     }
 
     /**
@@ -99,7 +99,6 @@ public class Spielsteuerung extends PApplet {
         //Spieler.ladeIMGSpielfigur(this);
         ladeBilder(this);
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
-        CountStart = millis();
 
     }
 
@@ -116,6 +115,7 @@ public class Spielsteuerung extends PApplet {
         images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
         images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
         images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("Bogen Level 2", (PImage) spielsteuerung.loadImage("Bogen1.png"));
         images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
@@ -134,7 +134,6 @@ public class Spielsteuerung extends PApplet {
         gameover();
         countdown();
     }
-
 
     /**
      * Methode eingabe: richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
@@ -366,9 +365,7 @@ public class Spielsteuerung extends PApplet {
         }
         return levelBeendet;
     }
-
     /**
-     * @return levelBeendet
      * @author LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
      * eine Kachel des Typs: Levelausgang ist.
@@ -409,11 +406,12 @@ public class Spielsteuerung extends PApplet {
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableXp = movable.getPosX()+movable.getGroesse()/2;
-            int MovableXn = movable.getPosX()-movable.getGroesse()/2;
-            int MovableYp = movable.getPosY()+movable.getGroesse()/2;
-            int MovableYn = movable.getPosY()-movable.getGroesse()/2;
-            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
+            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
+            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
+            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
+            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+
+            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
                     ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
@@ -439,14 +437,23 @@ public class Spielsteuerung extends PApplet {
                         // TODO: Nahrung zu Inventar hinzufügen
                     }
                 }
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke) {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
+
                         ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
 
+
                     }
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
+                    if (movable instanceof Monster) {
+                      System.out.println(((Monster) movable).getLebensenergie());
+                      System.out.println("Kollision!!");
+                      ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
                 }
+            }
 
             else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
                     if (movable instanceof Monster) {
