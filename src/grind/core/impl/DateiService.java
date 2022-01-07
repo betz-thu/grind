@@ -14,6 +14,7 @@ import grind.movables.monster.Geist;
 import grind.movables.monster.Zombie;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
+import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
@@ -120,7 +121,7 @@ public class DateiService {
                         iMovable = new Geist(posX, posY, tilemap);
                         break;
                     case "class grind.movables.monster.Zombie":
-                        iMovable = new Zombie(posX, posY, tilemap);
+                        iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, LaufModus.DEFAULT);
                         break;
                     case "class grind.movables.impl.Heiltrank":
                         iMovable = new Heiltrank(posX, posY);
@@ -129,7 +130,7 @@ public class DateiService {
                         iMovable = new Mango(posX, posY);
                         break;
                     case "class grind.movables.impl.Schwert":
-                        iMovable = new Schwert(posX, posY, 1);
+                        iMovable = new Schwert(posX, posY, 2);
                         break;
                     case "class grind.movables.impl.Levelende":
                         iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);

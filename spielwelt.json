@@ -242,98 +242,6 @@
               "classname": "class grind.kacheln.impl.Wiese"
             },
             {
-              "classname": "class grind.kacheln.impl.Baum"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Baum"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            }
-          ],
-          [
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Baum"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Baum"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
-              "classname": "class grind.kacheln.impl.Wiese"
-            },
-            {
               "classname": "class grind.kacheln.impl.Wiese"
             },
             {
@@ -816,6 +724,98 @@
             },
             {
               "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Levelausgang"
             },
             {
               "classname": "class grind.kacheln.impl.Wiese"
@@ -1850,175 +1850,134 @@
       },
       "positionen": [
         {
+          "posX": 575.0,
+          "posY": 135.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 490.0,
+          "posY": 161.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 341.0,
+          "posY": 201.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 227.0,
+          "posY": 232.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 267.0,
+          "posY": 199.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 389.0,
+          "posY": 190.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 361.0,
+          "posY": 251.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 289.0,
+          "posY": 256.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 340.0,
+          "posY": 179.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 381.0,
+          "posY": 199.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 336.0,
+          "posY": 255.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 405.0,
+          "posY": 207.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 309.0,
+          "posY": 264.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 315.0,
+          "posY": 219.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 378.0,
+          "posY": 251.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 284.0,
+          "posY": 285.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 475.0,
+          "posY": 288.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "posX": 207.0,
+          "posY": 281.0,
+          "groesse": 20,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
           "GESCHWINDIGKEIT": 3.0,
           "gold": 5,
+          "abgeschossen": false,
+          "pfeilrichtung": "N",
           "lebensenergie": 100,
           "inventar": [],
-          "inventarGroeße": 10,
+          "inventarGuiGroeße": 10,
           "guiGroeße": 50,
-          "waffeAusgestattet": false,
           "aktiveWaffe": {
-            "posX": 30.0,
-            "posY": 30.0,
-            "groesse": 40
+            "stufe": 1,
+            "posX": 40.0,
+            "posY": 40.0,
+            "groesse": 40,
+            "ausrichtung": "S"
           },
-          "posX": 360.0,
-          "posY": 313.0,
+          "posX": 772.0,
+          "posY": 189.0,
           "groesse": 40,
           "ausrichtung": "N",
           "classname": "class grind.movables.impl.Spielfigur"
-        },
-        {
-          "posX": 531.0,
-          "posY": 346.0,
-          "groesse": 40,
-          "classname": "class grind.movables.impl.Schwert"
-        },
-        {
-          "punkte": 10,
-          "posX": 242.0,
-          "posY": 63.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Mango"
-        },
-        {
-          "punkte": 10,
-          "posX": 317.0,
-          "posY": 50.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Mango"
-        },
-        {
-          "posX": 851.0,
-          "posY": 49.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Levelende"
-        },
-        {
-          "punkte": 20,
-          "posX": 325.0,
-          "posY": 223.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Heiltrank"
-        },
-        {
-          "punkte": 20,
-          "posX": 481.0,
-          "posY": 209.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Heiltrank"
-        },
-        {
-          "posX": 657.0,
-          "posY": 192.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Gold"
-        },
-        {
-          "posX": 787.0,
-          "posY": 187.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Gold"
-        },
-        {
-          "punkte": 5,
-          "größe": 0,
-          "posX": 559.0,
-          "posY": 404.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Apfel"
-        },
-        {
-          "punkte": 5,
-          "größe": 0,
-          "posX": 656.0,
-          "posY": 359.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Apfel"
-        },
-        {
-          "lebensenergie": 100,
-          "schaden": 1,
-          "posX": 731.0,
-          "posY": 296.0,
-          "groesse": 40,
-          "classname": "class grind.movables.monster.DornPflanze"
-        },
-        {
-          "lebensenergie": 100,
-          "schaden": 1,
-          "posX": 827.0,
-          "posY": 262.0,
-          "groesse": 40,
-          "classname": "class grind.movables.monster.DornPflanze"
-        },
-        {
-          "deltaX": -2,
-          "deltaY": -2,
-          "schussZaehler": 0,
-          "feuerRate": 1,
-          "hatKollidiert": false,
-          "startTime": 0,
-          "feuerModus": "RANDOM",
-          "lebensenergie": 100,
-          "schaden": 20,
-          "posX": 539.0,
-          "posY": 538.0,
-          "groesse": 20,
-          "ausrichtung": "N",
-          "classname": "class grind.movables.monster.FeuerMonster"
-        },
-        {
-          "deltaX": -2,
-          "deltaY": -2,
-          "schussZaehler": 0,
-          "feuerRate": 1,
-          "hatKollidiert": false,
-          "startTime": 0,
-          "feuerModus": "RANDOM",
-          "lebensenergie": 100,
-          "schaden": 20,
-          "posX": 705.0,
-          "posY": 527.0,
-          "groesse": 20,
-          "ausrichtung": "N",
-          "classname": "class grind.movables.monster.FeuerMonster"
-        },
-        {
-          "geschwindigkeit": 5,
-          "lebensenergie": 100,
-          "schaden": 5,
-          "posX": 2.0,
-          "posY": 153.0,
-          "groesse": 20,
-          "classname": "class grind.movables.monster.Geist"
-        },
-        {
-          "geschwindigkeit": 5,
-          "lebensenergie": 100,
-          "schaden": 5,
-          "posX": 54.0,
-          "posY": 384.0,
-          "groesse": 20,
-          "classname": "class grind.movables.monster.Geist"
-        },
-        {
-          "hilfsVariable": false,
-          "lebensenergie": 100,
-          "schaden": 1,
-          "posX": 131.0,
-          "posY": 245.0,
-          "groesse": 40,
-          "classname": "class grind.movables.monster.Zombie"
-        },
-        {
-          "hilfsVariable": false,
-          "lebensenergie": 100,
-          "schaden": 1,
-          "posX": 195.0,
-          "posY": 417.0,
-          "groesse": 40,
-          "classname": "class grind.movables.monster.Zombie"
         }
       ],
       "classname": "class grind.welt.impl.DummyLevel"

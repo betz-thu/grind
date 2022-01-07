@@ -11,12 +11,16 @@ import grind.movables.impl.Spielfigur;
 import grind.movables.impl.*;
 import grind.movables.monster.IMonster;
 import grind.movables.monster.Monster;
-import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.util.Einstellungen;
+import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
-import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * @Autor Megatronik
@@ -31,6 +35,8 @@ public class Spielsteuerung extends PApplet {
     private String fTaste;
     private DateiService dateiService;
 
+    Dictionary<String, PImage> images = new Hashtable<String, PImage>();
+
     public ISpielmodell getSpielmodell() {
         return spielmodell;
     }
@@ -42,6 +48,7 @@ public class Spielsteuerung extends PApplet {
     ISpielmodell spielmodell;
     boolean pressed = false;
     boolean levelBeendet = false;
+    boolean klicked;
 
 
 
@@ -57,6 +64,7 @@ public class Spielsteuerung extends PApplet {
 
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
+        this.klicked = false;
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -68,7 +76,6 @@ public class Spielsteuerung extends PApplet {
         return SpielfeldHoehe;
     }
 
-
     /**
      * Methode settings, setzt Spielfeldgröße auf die in den Einstellungen gesetzten Parameter.
      */
@@ -77,7 +84,6 @@ public class Spielsteuerung extends PApplet {
         SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
         SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         size(SpielfeldBreite, SpielfeldHoehe);
-
     }
 
     /**
@@ -86,9 +92,29 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
-        Spieler.ladeIMGSpielfigur(this);
+        //Spieler.ladeIMGSpielfigur(this);
+        ladeBilder(this);
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
 
+    }
+
+    public void ladeBilder(Spielsteuerung spielsteuerung) {
+        Dictionary images = new Hashtable();
+        images.put("class grind.movables.monster.Zombie",(PImage) spielsteuerung.loadImage("Zombie.png"));
+        images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
+        images.put("class grind.movables.impl.Heiltrank",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
+        images.put("class grind.movables.impl.Apfel",(PImage) spielsteuerung.loadImage("Apfel.png"));
+        images.put("class grind.movables.impl.Mango",(PImage) spielsteuerung.loadImage("Mango.png"));
+        images.put("class grind.movables.impl.Gold",(PImage) spielsteuerung.loadImage("Gold.png"));
+        images.put("class grind.movables.monster.FeuerMonster",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
+        images.put("class grind.movables.monster.DornPflanze",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
+        images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
+        images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
+        images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
+        images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        spielsteuerung.setImages(images);
     }
 
     /**
@@ -110,7 +136,7 @@ public class Spielsteuerung extends PApplet {
     private void eingabe() {
         int x = Spieler.getPosX();
         int y = Spieler.getPosY();
-        int Schulterbreite = 15;
+        int Schulterbreite = 10;
         if (keyPressed) {
             if (key == 'a' || keyCode == LEFT) {
                 Spieler.setAusrichtung(Richtung.W);
@@ -136,60 +162,66 @@ public class Spielsteuerung extends PApplet {
                 Tastendruck = 0;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '2') {
+            }
+            else if (key =='2') {
                 Tastendruck = 1;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '3') {
+            }
+            else if (key =='3') {
                 Tastendruck = 2;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '4') {
+            }
+            else if (key =='4') {
                 Tastendruck = 3;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '5') {
+            }
+            else if (key =='5') {
                 Tastendruck = 4;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '6') {
+            }
+            else if (key =='6') {
                 Tastendruck = 5;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '7') {
+            }
+            else if (key =='7') {
                 Tastendruck = 6;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '8') {
+            }
+            else if (key =='8') {
                 Tastendruck = 7;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '9') {
+            }
+            else if (key =='9') {
                 Tastendruck = 8;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            } else if (key == '0') {
+            }
+            else if (key =='0') {
                 Tastendruck = 9;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
 
             }
-
-
             //Inventar öffnen
-            if (keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 10) {
-                    Spieler.setInventarGroeße(30);
+            if(keyPressed) {
+                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                    Spieler.setInventarGuiGroeße(30);
                     Spieler.playBackpackOpenSound();
                     keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGroeße() == 30) {
-                    Spieler.setInventarGroeße(10);
+                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                    Spieler.setInventarGuiGroeße(10);
                     keyPressed = false;
                     Spieler.playBackpackCloseSound();
                 }
             }
         }
-
 
         szeneUeberspringen();
     }
@@ -250,6 +282,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     private void aktualisiere() {
+        pruefeUmgebung();
         pruefeKollisionen();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
@@ -277,6 +310,35 @@ public class Spielsteuerung extends PApplet {
     @Override
     public void mousePressed() {
         // nur notwendig, falls Maus benötigt wird
+
+        //Items mit klick verwenden
+        if(mouseButton==RIGHT) {
+            Spieler.klickItems(mouseX, mouseY);
+        }
+
+        //Items verschieben
+        if(mouseButton==LEFT && klicked==false){
+            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            if(invPos>=0){
+                klicked = true;
+                Spieler.auswahl = Spieler.getInventar().get(invPos);
+                Spieler.getInventar().remove(invPos);
+                Spieler.auswahl.setPosition(mouseX, mouseY);
+                Spieler.auswahl.zeichne(this);
+            }
+        }else if(mouseButton==LEFT && klicked==true){
+            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            if(neuePos>=0) {
+                Spieler.getInventar().add(neuePos,Spieler.auswahl);
+            }else{
+                Spieler.getInventar().add(Spieler.auswahl);
+            }
+            Spieler.auswahl = null;
+            klicked = false;
+
+        }
+
+
     }
 
     public boolean ueberpruefeLevelende() {
@@ -304,10 +366,13 @@ public class Spielsteuerung extends PApplet {
     private boolean pruefeLevelausgang() {
         int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
         int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-        IKachel spielerKachel = spielmodell.getSzene().getLevel().getTileMap().getKachel(spielerPosX,spielerPosY);
-        if (spielerKachel instanceof Levelausgang){
-//            System.out.println(spielerKachel);
-            levelBeendet = true;
+        if (spielmodell.getSzene() instanceof ILevel){
+            ILevel level = (ILevel) spielmodell.getSzene();
+            IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX,spielerPosY);
+            if (spielerKachel instanceof Levelausgang){
+    //            System.out.println(spielerKachel);
+                levelBeendet = true;
+            }
         }
         return levelBeendet;
     }
@@ -316,54 +381,85 @@ public class Spielsteuerung extends PApplet {
  * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
  */
     public void pruefeKollisionen() {
-        int FigurXp = this.spielmodell.getFigur().getPosX()+(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurXn = this.spielmodell.getFigur().getPosX()-(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurYp = this.spielmodell.getFigur().getPosY()+(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int FigurYn = this.spielmodell.getFigur().getPosY()-(Einstellungen.GROESSE_SPIELFIGUR/2);
-        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int FigurXp = this.spielmodell.getFigur().getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurXn = this.spielmodell.getFigur().getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurYp = this.spielmodell.getFigur().getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int FigurYn = this.spielmodell.getFigur().getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX() + (spielmodell.getFigur().getWaffe().getGroesse() / 2);
 
-        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
-        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY()+(spielmodell.getFigur().getWaffe().getGroesse()/2);
-        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY()-(spielmodell.getFigur().getWaffe().getGroesse()/2);
+        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX() - (spielmodell.getFigur().getWaffe().getGroesse() / 2);
+        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY() + (spielmodell.getFigur().getWaffe().getGroesse() / 2);
+        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY() - (spielmodell.getFigur().getWaffe().getGroesse() / 2);
 
-
-
+        int PfeilXp = this.spielmodell.getFigur().getPfeil().getPosX() + (spielmodell.getFigur().getPfeil().getGroesse() / 2);
+        int PfeilXn = this.spielmodell.getFigur().getPfeil().getPosX() - (spielmodell.getFigur().getPfeil().getGroesse() / 2);
+        int PfeilYp = this.spielmodell.getFigur().getPfeil().getPosY() + (spielmodell.getFigur().getPfeil().getGroesse() / 2);
+        int PfeilYn = this.spielmodell.getFigur().getPfeil().getPosY() - (spielmodell.getFigur().getPfeil().getGroesse() / 2);
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableXp = movable.getPosX()+movable.getGroesse()/2;
-            int MovableXn = movable.getPosX()-movable.getGroesse()/2;
-            int MovableYp = movable.getPosY()+movable.getGroesse()/2;
-            int MovableYn = movable.getPosY()-movable.getGroesse()/2;
-            if ((FigurXp > MovableXn) & (FigurXn< MovableXp) & (FigurYp > MovableYn)  & (FigurYn < MovableYp)) {
+            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
+            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
+            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
+            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+
+            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
-
-                    ((IMonster) movable).beiKollision(spielmodell.getFigur());
+                    ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
                 }
                 else if(movable instanceof ISchatz){
                     if (!(movable instanceof Waffe)) {
                         ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
+                        //}
+                        if (!(movable instanceof Waffe)) {
+                            spielmodell.removeMovable(movable);
+                        } // löscht Schatz aus Level
+
+                        return;
                     }
-                    if(!(movable instanceof Waffe)){
-                        spielmodell.removeMovable(movable);
-                    } // löscht Schatz aus Level
-                    if((movable instanceof Waffe) & !(Spieler.waffeAusgestattet)) {
+                    //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
+                    if ((movable instanceof Waffe)) {
                         ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                        System.out.println("Waffe wurde aufgesammelt!");
+                        spielmodell.removeMovable(movable);
+
+                        //Spieler.waffeAusgestattet = true;
+                    } else if (movable instanceof Nahrung) {
+                        // TODO: Nahrung zu Inventar hinzufügen
                     }
-                    return;
                 }
-                else if(movable instanceof Nahrung){
-                    // TODO: Nahrung zu Inventar hinzufügen
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                    if (movable instanceof Monster) {
+                        System.out.println(((Monster) movable).getLebensenergie());
+                        System.out.println("Kollision!!");
+                        ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
+                    }
+                }
+
+            else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
+                    if (movable instanceof Monster) {
+                        System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
+                        ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getPfeil().getSchaden());
+                        spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
+                        spielmodell.getFigur().setPfeilAbgeschossen(false);
+                        spielmodell.getFigur().getPfeil().setPosition(0, 0);
+                    }
+
+            }
+                if (this.isSpielfeldrand(this.spielmodell.getFigur().getPfeil().getPosX(), this.spielmodell.getFigur().getPfeil().getPosY())) {
+                        spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
+                        spielmodell.getFigur().setPfeilAbgeschossen(false);
                 }
 
             }
-            else if((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key==' ')){
-                if (movable instanceof Monster){
-                    System.out.println(((Monster) movable).getLebensenergie());
-                    ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+        }
 
-                }
+    public void pruefeUmgebung(){
+        for (IMovable movable : this.spielmodell.getMovables()) {
+            if(movable instanceof Monster) {
+                ((IMonster) movable).inDerNaehe(spielmodell.getFigur(),movable);
             }
         }
     }
@@ -406,7 +502,7 @@ public class Spielsteuerung extends PApplet {
     }
 
     public void anzeigeTitelLevel(int LevelNr){
-        frame.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
+        surface.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 
     /**
@@ -415,5 +511,13 @@ public class Spielsteuerung extends PApplet {
      */
     public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
+    }
+
+    public Dictionary getImages() {
+        return images;
+    }
+
+    public void setImages(Dictionary images) {
+        this.images = images;
     }
 }
