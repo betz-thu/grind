@@ -19,6 +19,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -436,11 +437,12 @@ public class Spielsteuerung extends PApplet {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
+
                         ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
 
 
                     }
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
                     if (movable instanceof Monster) {
                       System.out.println(((Monster) movable).getLebensenergie());
                       System.out.println("Kollision!!");
