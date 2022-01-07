@@ -1,11 +1,8 @@
 package grind.movables.impl;
 
-import grind.kacheln.impl.TileMap;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
-
-import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,7 +15,7 @@ public class Stern extends Gegenstand{
         super(posX, posY,Einstellungen.LAENGE_KACHELN_X/2);
     }
 
-    @Override
+
     public void zeichne(PApplet app) {
         app.pushStyle();
         app.stroke(255,255,140);

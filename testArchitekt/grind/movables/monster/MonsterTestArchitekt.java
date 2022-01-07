@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.impl.TileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Richtung;
@@ -16,6 +17,7 @@ public class MonsterTestArchitekt {
     private Monster monster;
     private TileMap tileMap;
     private Spielfigur spielfigur;
+    private Spielsteuerung spielsteuerung;
 
     @Before
     public void setUp() {
@@ -29,7 +31,7 @@ public class MonsterTestArchitekt {
     @Test
     public void beiKollision() {
         int spielfigurLebenVorher = spielfigur.getLebensenergie();
-        monster.beiKollision(spielfigur);
+        monster.beiKollision(spielfigur,monster);
         Assert.assertEquals(spielfigurLebenVorher-SCHADEN,  spielfigur.getLebensenergie());
     }
 

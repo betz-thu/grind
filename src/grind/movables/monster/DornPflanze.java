@@ -27,13 +27,13 @@ public class DornPflanze extends Monster {
 
     }
 
-    @Override
-    public void zeichne(PApplet app) {
-        app.fill(0, 255, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-        IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
-        vorBetreten(kachel);
-    }
+//    @Override
+//    public void zeichne(PApplet app) {
+//        app.fill(0, 255, 127);
+//        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+//        IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
+//        vorBetreten(kachel);
+//    }
     @Override
     public void bewege() {
         // stationär

@@ -1,16 +1,13 @@
 
 package grind.movables.monster;
 
-import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
-import grind.movables.IMovable;
-import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
 import grind.util.Richtung;
-import processing.core.PApplet;
+
 import java.util.Random;
 
 /**
@@ -103,7 +100,7 @@ public class FeuerMonster extends Monster{
     /**
      * @MEGAtroniker
      * Die Methode zeiche definiert die Darstellung des Feuremonsters
-     * @param app  app zur Darstellung
+     * @param /app  app zur Darstellung
      */
 //    @Override
 //    public void zeichne(PApplet app) {
@@ -206,57 +203,63 @@ public class FeuerMonster extends Monster{
      * @param posX2
      * @param i2
      */
-    private void bewegeSuedlich(int posX, int i, int posX2, int i2) {
+    private boolean bewegeSuedlich(int posX, int i, int posX2, int i2) {
         if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
             this.setPosition(posX2, i2);
-            return;
+            return true;
         } else {
             setAusrichtung(Richtung.W);
-        }
-//    }
-
-    /**
-     * @MEGAtroniker
-     * Methode FeuerModus ermöglicht dem Feuermonster in 3 verschiedenen Modi Feuerbälle zu schießen.
-     * Modus wird bei Instanziierung des Feuermonsters
-     * durch die Übergabe der feuerRate und des feuerModus im Konstruktor festgelegt.
-     *
-     * 1. Random: Monster schießt in rein zufälligen Abständen.
-     * 2. Semirandom: Die Abstände der Schüsse sind statistisch gleichmäßiger, aber nicht komplett einheitlich.
-     * 3. Konstant: Feuerbälle werden in äquidistanten Zeitabstanden abgefeuert.
-     * @param feuerModus s.o.
-     * @param feuerRate Integer zum Einstellen der Zeitabstände
-     */
-    private void FeuerModus(FeuerModus feuerModus, int feuerRate) {
-        if(rand.nextInt(feuerRate)==1 && feuerModus==FeuerModus.RANDOM){
-            shootFeuerball();
-        }else if(feuerModus==FeuerModus.SEMIRANDOM){
-            if (rand.nextInt(5)==1){
-                schussZaehler+=1;
-            }
-            if(2*schussZaehler >= feuerRate){
-                shootFeuerball();
-                schussZaehler=0;
-            }
-        }else if(feuerModus==FeuerModus.KONSTANT) {
-            schussZaehler+=1;
-            if (schussZaehler >= feuerRate) {
-                shootFeuerball();
-                schussZaehler = 0;
-            }
-        }
+        }return false;
     }
 
-    /**
-     * @MEGAtroniker
-     * Methode schießeFeuerball ermittelt Abstand zur Figur, generiert Feuerball,
-     * der sich in Richtung der Figur bewegt, und fügt diesen dem aktuellen Spielmodell hinzu.
-     */
-    public void shootFeuerball(){
-        int abstandX=this.spielmodell.getFigur().getPosX()-getPosX();
-        int abstandY=this.spielmodell.getFigur().getPosY()-getPosY();
-        feuerball = new Feuerball(getPosX(), getPosY(),abstandX,abstandY,this.getSpielsteuerung());
-        this.spielmodell.addMonster(feuerball);
+
+        /**
+         * @MEGAtroniker
+         * Methode FeuerModus ermöglicht dem Feuermonster in 3 verschiedenen Modi Feuerbälle zu schießen.
+         * Modus wird bei Instanziierung des Feuermonsters
+         * durch die Übergabe der feuerRate und des feuerModus im Konstruktor festgelegt.
+         *
+         * 1. Random: Monster schießt in rein zufälligen Abständen.
+         * 2. Semirandom: Die Abstände der Schüsse sind statistisch gleichmäßiger, aber nicht komplett einheitlich.
+         * 3. Konstant: Feuerbälle werden in äquidistanten Zeitabstanden abgefeuert.
+         * @param feuerModus s.o.
+         * @param feuerRate Integer zum Einstellen der Zeitabstände
+         */
+        private void FeuerModus (FeuerModus feuerModus,int feuerRate){
+            if (rand.nextInt(feuerRate) == 1 && feuerModus == FeuerModus.RANDOM) {
+                shootFeuerball();
+            } else if (feuerModus == FeuerModus.SEMIRANDOM) {
+                if (rand.nextInt(5) == 1) {
+                    schussZaehler += 1;
+                }
+                if (2 * schussZaehler >= feuerRate) {
+                    shootFeuerball();
+                    schussZaehler = 0;
+                }
+            } else if (feuerModus == FeuerModus.KONSTANT) {
+                schussZaehler += 1;
+                if (schussZaehler >= feuerRate) {
+                    shootFeuerball();
+                    schussZaehler = 0;
+                }
+            }
+        }
+
+        /**
+         * @MEGAtroniker
+         * Methode schießeFeuerball ermittelt Abstand zur Figur, generiert Feuerball,
+         * der sich in Richtung der Figur bewegt, und fügt diesen dem aktuellen Spielmodell hinzu.
+         */
+        public void shootFeuerball() {
+            int abstandX = this.spielmodell.getFigur().getPosX() - getPosX();
+            int abstandY = this.spielmodell.getFigur().getPosY() - getPosY();
+            feuerball = new Feuerball(getPosX(), getPosY(), abstandX, abstandY, this.getSpielsteuerung());
+            this.spielmodell.addMonster(feuerball);
+        }
+
+    @Override
+    public void vorBetreten(IKachel kachel) {
+
     }
 
 //    /**
@@ -278,39 +281,16 @@ public class FeuerMonster extends Monster{
 //     * ersetzt durch assoziation zu Spielsteuerung!!!!
 //     * @param kachel nope
 //     */
-    @Override
-    public void vorBetreten(IKachel kachel) {
-
-    }
-/**
- * @MEGAtroniker
- * Getter, notwendig für die tests und kapselung
- * @return
- */
-        public ISpielmodell getSpielmodell() {
-            return this.spielmodell;
-        }
-
-
+        /*
+        * @MEGAtroniker
+        * Getter, notwendig für die tests und kapselung
+        * @return
+        */
         /**
          * @MEGAtroniker
          * Getter, notwendig für die tests und kapselung
          * @return
          */
-        @Override
-        public void setSpielmodell(ISpielmodell spielmodell) {
-            this.spielmodell = spielmodell;
-        }
 
-        @Override
-        public void setGeschwindigkeit(int xGeschwindigkeit) {
-            this.geschwindigkeit = xGeschwindigkeit;
-        }
+}
 
-        @Override
-        public int getGeschwindigkeit() {
-            return this.geschwindigkeit;
-        }
-
-
-    }

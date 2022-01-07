@@ -90,10 +90,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
             auswahl.zeichne(spielsteuerung);
         }
-        gameover(spielsteuerung);
-
-
-        gameover(app);
+        spielsteuerung.gameover();
     }
 
     @Override

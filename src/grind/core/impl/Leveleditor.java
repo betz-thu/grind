@@ -365,7 +365,7 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Geist){
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap);
+            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung,LaufModus.DEFAULT);
         } else if (movable instanceof Stern){
             tempMovable = new Stern(posX, posY);
         }
@@ -402,7 +402,7 @@ public class Leveleditor extends Spielsteuerung {
     /**
      * Zeichnet das Menü mit den verfügbaren Movables am rechten Rand nach den Kacheln.
      * Die Spielfigur wird als reines Bild dargestellt, da sonst der Lebensbalken mitgezeichnet werden muss.
-     * @param app Applet auf dem gezeichnet werden soll
+     * @param /app Applet auf dem gezeichnet werden soll
      * @param menuArray Das Menuarray mit den verschiedenen Movablearten
      */
     private void zeichneMovableMenu(IMovable[][] menuArray){
@@ -455,7 +455,7 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Falls es sich bei der aktuellen Mausauswahl um eine Kachel handelt, wird diese hier gezeichnet
-     * @param app Applet auf dem gezeichnet werden soll
+     * @param /app Applet auf dem gezeichnet werden soll
      * @param aktuelleKachel Die aktuelle Kachel
      * @param mausX Position der Maus in X-Richtung
      * @param mausY Position der Maus in Y-Richtung
@@ -472,7 +472,7 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Falls es sich bei der aktuellen Mausauswahl um ein Movable handelt, wird dieses hier gezeichnet
-     * @param app Applet auf dem gezeichnet werden soll
+     * @param /app Applet auf dem gezeichnet werden soll
      * @param aktuellesMovable  Das aktuelle Movable
      * @param mausX mausX Position der Maus in X-Richtung
      * @param mausY mausY Position der Maus in Y-Richtung
