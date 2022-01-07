@@ -11,11 +11,11 @@ public class Heiltrank extends Nahrung {
 
     public Heiltrank(int posX, int posY) {
         super(posX, posY, Einstellungen.GROESSE_HEILTRANK);
+        this.punkte = 20; //  jeder Heiltrank startet mit Wert 20 @Team Leveleditor: gerne ändern
+        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
     }
 
-    public int getPunkte() {
-        return this.punkte;
-    }
+
 
     @Override
     public void beimAnwenden(ISpielfigur figur){
