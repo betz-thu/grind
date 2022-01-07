@@ -15,7 +15,7 @@ public class DummySpielwelt implements ISpielwelt {
      */
     public DummySpielwelt(){
        this.szenen.add(0,new DummyLevel());
-//        this.szenen.add(1,new DummyLevel());
+//      this.szenen.add(1,new DummyLevel());
 //        this.szenen.add(2,new DummyLevel());
         this.anzahlSzenen = szenen.size();
     }

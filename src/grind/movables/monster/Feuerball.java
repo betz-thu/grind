@@ -18,7 +18,7 @@ import static java.lang.Math.sqrt;
  * so wird diese bei verlassen des Spielfelds gelöscht.
  */
 public class Feuerball extends Monster{
-    transient final int GESCHWINDIGKEIT= 5;
+    transient int geschwindigkeit = 5;
     float deltaX;
     float deltaY;
     Spielsteuerung steuerung;
@@ -33,8 +33,8 @@ public class Feuerball extends Monster{
      * @param deltaY deltaY
      */
     public Feuerball(float posX, float posY, int deltaX, int deltaY, Spielsteuerung steuerung) {
-        super(posX, posY,Einstellungen.GROESSE_FEUERBALL);
-        float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / GESCHWINDIGKEIT;
+        super(posX, posY,Einstellungen.LAENGE_KACHELN_X/4);
+        float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / geschwindigkeit;
         this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
         this.deltaY = deltaY / abstand;
         this.steuerung=steuerung;
@@ -50,7 +50,7 @@ public class Feuerball extends Monster{
         app.pushStyle();
         app.noStroke();
         app.fill(255,100,0,200);
-        app.ellipse(this.getPosX(), this.getPosY(),(float)Einstellungen.GROESSE_FEUERBALL , (float)Einstellungen.GROESSE_FEUERBALL);
+        app.ellipse(this.getPosX(), this.getPosY(),(float)groesse , (float)groesse);
         app.popStyle();
     }
 
@@ -72,10 +72,32 @@ public class Feuerball extends Monster{
         } else {
             this.setPosition(posX, posY);
         }
-
-
     }
 
+//    /**
+//     * @MEGAtroniker
+//     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
+//     * @param figur Spielfigur
+//     */
+//    public void beiKollision(ISpielfigur figur) {
+//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
+//            this.getSpielmodell().removeMovable(this);
+//            System.out.println("Treffer!");
+//            figur.erhalteSchaden(this.schaden);
+//        }
+//    }
+
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X/4;
+    }
+
+    /**
+     * @MEGAtroniker
+     * Is never used!!!!!!!!!
+     * ersetzt durch assoziation zu Spielsteuerung!!!!
+     * @param kachel nope
+     */
     @Override
     public void vorBetreten(IKachel kachel) {
 
@@ -91,5 +113,15 @@ public class Feuerball extends Monster{
         this.spielmodell = spielmodell;
     }
 
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+        this.geschwindigkeit = xGeschwindigkeit;
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
+    }
 
 }

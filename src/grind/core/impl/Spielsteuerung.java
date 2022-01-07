@@ -18,10 +18,10 @@ import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-
 import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * @Autor Megatronik
@@ -51,6 +51,9 @@ public class Spielsteuerung extends PApplet {
     boolean levelBeendet = false;
     boolean klicked;
 
+    int CountStart;
+    int duration = 100;
+    int time = 100;
 
 
     /**
@@ -116,6 +119,7 @@ public class Spielsteuerung extends PApplet {
         images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("class grind.movables.impl.Stern",(PImage) spielsteuerung.loadImage("Stern.png"));
         spielsteuerung.setImages(images);
     }
 
@@ -128,6 +132,8 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+        gameover();
+        countdown();
     }
 
     /**
@@ -401,7 +407,6 @@ public class Spielsteuerung extends PApplet {
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
-
             int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
             int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
             int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
@@ -524,6 +529,80 @@ public class Spielsteuerung extends PApplet {
      */
     public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
+    }
+
+
+    public int countdown() {
+        if (time > 0) {
+            time = duration - (millis() - CountStart) / 1000;
+            fill(0);
+            text(time, 1150, 20);
+        }
+        return time;
+    }
+
+
+    public void gameover() {
+        if (Spieler.getLebensenergie() <= 0 || time <= 0) {
+            pushStyle();
+//            looping = !looping;
+            List<Gegenstand> inhalt = Spieler.getInventar();
+            inhalt.clear();
+            Spieler.setGeschwindigkeit(0);
+            for(IMovable movable: this.spielmodell.getMovables()){
+                if(movable instanceof IMonster){
+                    ((IMonster) movable).setGeschwindigkeit(0);
+                }
+            }
+            fill(0, 0, 0);
+            rect(200, 120, 800, 600);
+            fill(138, 3, 3);
+            textSize(80);
+            text("Game Over", 410, 350);
+            textSize(30);
+            text("Goldbetrag: " + Spieler.getGold(), 410, 400);
+            textSize(45);
+            text("Press 'R' to Restart", 410, 500);
+            text("Press 'Q' to Exit", 410, 550);
+
+            popStyle();
+
+
+            if (keyPressed) {
+                loop();
+                if (key == 'R' || key == 'r') {
+                    loop();
+                    restart();
+                }
+                if (key == 'Q' || key == 'q') {
+                    loop();
+                    System.exit(0);
+                }
+            }
+        }
+    }
+
+    public void restart() {
+
+        Spieler.setLebensenergie(100);
+        Spieler.setGeschwindigkeit(3);
+        for(IMovable movable: this.spielmodell.getMovables()){
+            if(movable instanceof IMonster){
+                ((IMonster) movable).setGeschwindigkeit(1);
+            }
+        }
+
+        setup();
+        time = 100;
+        duration = 100;
+        Spieler.setGold(5);
+
+        ISpielwelt resetSpielwelt = ladeSpielwelt();
+        this.spielmodell.setSpielwelt(resetSpielwelt);
+        spielmodell.setSzeneNr(0);
+        spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+
     }
 
     public Dictionary getImages() {

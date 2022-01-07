@@ -20,22 +20,29 @@ public class DornPflanze extends Monster {
     private ITileMap tileMap;
 
     public DornPflanze(float posX, float posY, ITileMap tileMap) {
-        super(posX, posY,Einstellungen.GROESSE_DORNPFLANZE);
+        super(posX, posY,Einstellungen.LAENGE_KACHELN_X);
         this.tileMap = tileMap;
         setSchaden(schaden);
 
 
     }
 
-    /*@Override
-    public void zeichne(Spielsteuerung app) {
-        app.fill(0, 255, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
-        IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
-        vorBetreten(kachel);
-    }*/
+//    @Override
+//    public void zeichne(PApplet app) {
+//        app.fill(0, 255, 127);
+//        app.ellipse(this.getPosX(), this.getPosY(), this.getGroesse(), this.getGroesse());
+//        IKachel kachel = tileMap.getKachel(this.getPosY() / Einstellungen.LAENGE_KACHELN_Y, this.getPosX() / Einstellungen.LAENGE_KACHELN_X);
+//        vorBetreten(kachel);
+//    }
+    @Override
+    public void bewege() {
+        // stationär
+    }
 
-
+    @Override
+    public int getGroesse() {
+        return groesse = Einstellungen.LAENGE_KACHELN_X;
+    }
 
     @Override
     public void vorBetreten(IKachel kachel) {
@@ -55,5 +62,16 @@ public class DornPflanze extends Monster {
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
+
+    @Override
+    public void setGeschwindigkeit(int xGeschwindigkeit) {
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return 0;
+    }
+
+
 }
 

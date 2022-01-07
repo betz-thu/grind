@@ -5,6 +5,7 @@ import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
+import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -14,6 +15,8 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author MEGAtronik
@@ -21,7 +24,11 @@ import java.util.List;
  */
 public class Spielfigur extends Movable implements ISpielfigur {
 
-    float GESCHWINDIGKEIT = 3f;
+    public static final int IMMUNITÄTSDAUERNACHSCHADEN = 2000; // in [ms]
+    private boolean isImmun = false;
+    private boolean isSternAngewandt = false;
+
+    private float GESCHWINDIGKEIT = 3f;
     int gold = 5;
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
@@ -65,8 +72,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //setAktiveWaffe(testbogen);
         inventarGuiGroeße =10;
         guiGroeße=50;
-
-
 }
 
     /**
@@ -88,8 +93,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
             auswahl.zeichne(spielsteuerung);
         }
-        gameover(spielsteuerung);
-
+        spielsteuerung.gameover();
     }
 
     @Override
@@ -259,7 +263,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     //Methode zum benutzen oder ausrüsten von Gegenständen
     public void benutze(int position){
         if (inventar.size() > position) {
-            if (inventar.get(position) instanceof Nahrung) {
+            if (inventar.get(position) instanceof Nahrung || inventar.get(position) instanceof Stern) {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
             }
@@ -306,39 +310,60 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     @Override
     public void erhalteSchaden(int schaden) {
-        this.lebensenergie -= schaden;
+
+        if(!isImmun && !isSternAngewandt){
+            this.lebensenergie -= schaden;
+            setImmun(true);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    // Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                    if(isSternAngewandt){
+                        setImmun(true);
+                        Timer timer2 = new Timer();
+                        timer2.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                setImmun(false);
+                                timer2.cancel();
+                            }
+                        }, Stern.DAUERSTERNEVENT) ;
+                    }
+
+                    setImmun(false);
+                    timer.cancel();
+                }
+
+            }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+        }
     }
 
-    /**
-     * GameOver
-     * */
-    public void gameover(PApplet app) {
-        if (lebensenergie <= 0) {
-                System.out.println("Game Over");
-                lebensenergie = 0;
-                app.fill(0,0,0);
-                app.rect (200,120,800,600);
-                app.fill(138,3,3);
-                app.textSize(60);
-                app.text("Game Over",410,350 );
-                app.text("Please Restart",410,450);
+    @Override
+    public void setSternAngewandt(boolean angewandt){
+        this.isSternAngewandt = angewandt;
+    }
+    @Override
+    public boolean isSternAngewandt(){
+        return this.isSternAngewandt;
+    }
 
-                if (app.keyPressed){
-                    if (app.key == 'R' || app.key == 'r'){
-                        restart();
-                    }
-                }
-                    if (app.key =='Q' || app.key =='q'){
-                        System.exit(0);
-                }
-            }
-        }
+    @Override
+    public void setImmun(boolean isImmun) {
+        this.isImmun = isImmun;
+    }
+    @Override
+    public boolean isImmun() {
+        return this.isImmun;
+    }
 
-
-    public void restart(){
-        System.out.println("restart");
-
-
+    @Override
+    public void setGeschwindigkeit(float immunGeschwindigkeit) {
+        this.GESCHWINDIGKEIT = immunGeschwindigkeit;
+    }
+    @Override
+    public float getGeschwindigkeit() {
+        return this.GESCHWINDIGKEIT;
     }
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
@@ -392,11 +417,18 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return this.lebensenergie;
     }
 
-    public void setLebensenergie(int neueLebensenergie){
+    public int setLebensenergie(int neueLebensenergie){
         this.lebensenergie = neueLebensenergie;
+        return neueLebensenergie;
     }
 
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
 
+    public int getGold() {
+        return this.gold;
+    }
 
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.

@@ -10,7 +10,7 @@ public class Mango extends Nahrung{
 
 
     public Mango(int posX, int posY) {
-        super(posX, posY, Einstellungen.GROESSE_MANGO);
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
     }
 
     public int getPunkte(){
@@ -21,7 +21,7 @@ public class Mango extends Nahrung{
         app.pushStyle();
         app.stroke(225, 100, 34);
         app.fill(225, 100, 34);
-        app.ellipse(this.getPosX(), this.getPosY(), Einstellungen.GROESSE_MANGO, Einstellungen.GROESSE_MANGO);
+        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
         app.popStyle();
     }*/
     @Override

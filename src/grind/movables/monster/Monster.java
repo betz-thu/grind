@@ -20,6 +20,8 @@ public abstract class Monster extends Movable implements IMonster {
 
 
 
+    transient int groesse;
+    transient int geschwindigkeit = 1;
 
 
     /**
@@ -31,6 +33,16 @@ public abstract class Monster extends Movable implements IMonster {
     public Monster(float posX, float posY, int groesse) {
 
         super(posX, posY, groesse);
+    }
+
+    @Override
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
+    }
+
+    @Override
+    public void setGeschwindigkeit(int geschwindigkeit) {
+        this.geschwindigkeit = geschwindigkeit;
     }
 
     /**
@@ -63,6 +75,17 @@ public abstract class Monster extends Movable implements IMonster {
         return lebensenergie;
     }
 
+//    @Override
+//    public void beiKollision(ISpielfigur figur) {
+//
+//        figur.erhalteSchaden(this.schaden);
+//
+//    }
+
+    @Override
+    public int getGroesse() {
+        return this.groesse;
+    }
 
     public void setSchaden(int schaden) {
         this.schaden = schaden;
@@ -192,5 +215,6 @@ public abstract class Monster extends Movable implements IMonster {
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
+
 }
 

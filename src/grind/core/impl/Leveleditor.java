@@ -28,6 +28,8 @@ public class Leveleditor extends Spielsteuerung {
     private static int SpielfeldHoehe;
     private final Spielsteuerung spielsteuerung;
 
+    private final int menuBreite = 1;
+    private final int menuHoehe = 8;
     private final int breiteExit;
     private final int breiteSpeichern;
     private final int breiteLaden;
@@ -147,7 +149,7 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
         this.menuArrayMovables.add( new Schwert(40,40,1));
         this.menuArrayMovables.add( new Mango(0,0));
-        this.menuArrayMovables.add( new Levelende(0,0,40));
+        this.menuArrayMovables.add( new Levelende(0,0));
         this.menuArrayMovables.add( new Heiltrank(0,0));
         this.menuArrayMovables.add( new Gold(0,0));
         this.menuArrayMovables.add( new Apfel(0,0));
@@ -157,7 +159,7 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayMovables.add( new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT));
         this.menuArrayMovables.add( new Bogen(40,40,1));
         this.menuArrayMovables.add( new Spezialattacke(40,40,1));
-
+        this.menuArrayMovables.add( new Stern(0,0));
     }
 
     /**
@@ -376,38 +378,41 @@ public class Leveleditor extends Spielsteuerung {
      * Falls ein neues Movable im Spiel implementiert wird, muss dieses hier auch mit implementiert werden.
      * @param movable Das zu speichernde Movable
      */
-    private void addMovablezuLevel(IMovable movable){
+    private void addMovablezuLevel(IMovable movable) {
         Movable tempMovable = null;
         int posX = movable.getPosX();
         int posY = movable.getPosY();
         Richtung richtung = movable.getAusrichtung();
-        if (movable instanceof Spielfigur){
+        if (movable instanceof Spielfigur) {
             tempMovable = new Spielfigur(posX, posY, richtung);
-        } else if (movable instanceof Apfel){
+        } else if (movable instanceof Apfel) {
             tempMovable = new Apfel(posX, posY);
-        } else if (movable instanceof Gold){
+        } else if (movable instanceof Gold) {
             tempMovable = new Gold(posX, posY);
-        } else if (movable instanceof Heiltrank){
+        } else if (movable instanceof Heiltrank) {
             tempMovable = new Heiltrank(posX, posY);
-        } else if (movable instanceof Levelende){
-            tempMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
-        } else if (movable instanceof Mango){
+        } else if (movable instanceof Levelende) {
+            tempMovable = new Levelende(posX, posY);
+        } else if (movable instanceof Mango) {
             tempMovable = new Mango(posX, posY);
-        } else if (movable instanceof Schwert){
+        } else if (movable instanceof Schwert) {
             tempMovable = new Schwert(posX, posY, 1);
-        } else if (movable instanceof DornPflanze){
+        } else if (movable instanceof DornPflanze) {
             tempMovable = new DornPflanze(posX, posY, this.tileMap);
-        } else if (movable instanceof FeuerMonster){
-            tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,1,FeuerModus.RANDOM);
+        } else if (movable instanceof FeuerMonster) {
+            tempMovable = new FeuerMonster(posX, posY, this.tileMap, this.spielsteuerung, Richtung.N, 1, FeuerModus.RANDOM);
             //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
-        } else if (movable instanceof Geist){
+        } else if (movable instanceof Geist) {
             tempMovable = new Geist(posX, posY, this.tileMap);
-        } else if (movable instanceof Zombie){
-            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT);
-        }else if (movable instanceof Bogen){
+        } else if (movable instanceof Zombie) {
+            tempMovable = new Zombie(posX, posY, this.tileMap, Richtung.N, this.spielsteuerung, LaufModus.DEFAULT);
+        } else if (movable instanceof Bogen) {
             tempMovable = new Bogen(posX, posY, 1);
-        }else if (movable instanceof Spezialattacke){
-        tempMovable = new Spezialattacke(posX, posY, 1);}
+        } else if (movable instanceof Spezialattacke) {
+            tempMovable = new Spezialattacke(posX, posY, 1);
+        } else if (movable instanceof Stern) {
+            tempMovable = new Stern(posX, posY);
+        }
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
         level.addPosition(tempMovable);
     }
