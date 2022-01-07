@@ -478,7 +478,7 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Bogen){
             tempMovable = new Bogen(posX, posY, stufe);
         } else if (movable instanceof Spezialattacke){
-        tempMovable = new Spezialattacke(posX, posY, stufe);
+            tempMovable = new Spezialattacke(posX, posY, stufe);
         } else if (movable instanceof Stern) {
             tempMovable = new Stern(posX, posY);
         }
