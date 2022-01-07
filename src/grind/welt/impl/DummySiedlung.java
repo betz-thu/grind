@@ -9,12 +9,7 @@ public class DummySiedlung implements ISiedlung {
 
     @Override
     public void zeichne(PApplet app) {
-        app.background(0,0,0);
-        app.
+        app.background(0, 0, 0);
     }
 
-    @Override
-    public ILevel getLevel() {
-        return null;
-    }
 }
