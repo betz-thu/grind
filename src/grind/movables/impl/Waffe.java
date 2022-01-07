@@ -16,6 +16,9 @@ public abstract class Waffe extends Gegenstand{
         //        was passiert beim Anwenden?
         //Position der Waffe ändern
     }
+    public void setGroesse(int neue_groesse){
+        groesse=neue_groesse;
+    }
 
 
 //        if(pruefeKollision){

@@ -138,7 +138,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
         //testattacke.zeichne(app);
-        if (app.key == ' ') { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+        if(app.key == ' '& app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             if (!abgeschossen) {
                 /**
                  * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
@@ -158,13 +158,21 @@ public class Spielfigur extends Movable implements ISpielfigur {
             abgeschossen = true;
 
             if(!(aktiveWaffe instanceof Spezialattacke)) {
+                //aktiveWaffe.setGroesse(40);
                 aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
                 aktiveWaffe.setAusrichtung(this.getAusrichtung());
                 aktiveWaffe.zeichne(app);
+                //countSpezialDauer +=1;
+                //if (countSpezialDauer == 70){
+                 //   aktiveWaffe.setGroesse(1);
+                   // app.
+                    //countSpezialDauer=0;
+                //}
 
             }
 //            testpfeil.zeichne(app);
 //            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
+
         }
         if (abgeschossen && aktiveWaffe instanceof Bogen) {
             /**
@@ -196,6 +204,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             if (countSpezialDauer == 30){
                 spezialAktiviert=false;
                 setAktiveWaffe(testwaffe);
+                countSpezialDauer=0;
             }
         }
     }
