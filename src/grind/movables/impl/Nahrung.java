@@ -14,5 +14,9 @@ public abstract class Nahrung extends Gegenstand{
         figur.setLebensenergie((figur.getLebensenergie()+this.getPunkte()));
 
     }
+    @Override
+    public String toString(){
+        return "Heilung: "+ getPunkte();
+    }
 
 }

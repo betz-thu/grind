@@ -15,6 +15,7 @@ import grind.util.FeuerModus;
 import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
@@ -193,6 +194,14 @@ public class Spielmodell implements ISpielmodell {
 
         for (IMovable movable : this.movables) {
             movable.zeichne(spielsteuerung);
+        }
+
+        if(getSzene() instanceof ISiedlung){
+            for (IMovable movable : this.movables) {
+                spielsteuerung.fill(0,0,0);
+                spielsteuerung.textSize(14);
+                spielsteuerung.text(movable.toString(), movable.getPosX()-movable.getGroesse(), movable.getPosY()+movable.getGroesse());
+            }
         }
 
         this.figur.zeichne(spielsteuerung);
