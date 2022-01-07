@@ -426,9 +426,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         this.gold = gold;
     }
 
-    public int getGold() {
-        return this.gold;
-    }
+
 
     /**
      * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
