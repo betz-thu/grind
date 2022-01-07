@@ -28,8 +28,6 @@ public class Leveleditor extends Spielsteuerung {
     private static int SpielfeldHoehe;
     private final Spielsteuerung spielsteuerung;
 
-    private final int menuBreite = 1;
-    private final int menuHoehe = 8;
     private final int breiteExit;
     private final int breiteSpeichern;
     private final int breiteLaden;
@@ -38,10 +36,18 @@ public class Leveleditor extends Spielsteuerung {
     private final int breiteSiedlung;
     private final int breiteVor;
     private final int breiteZurueck;
+    private final int breiteEinstObenPlus;
+    private final int breiteEinstUntenPlus;
+    private final int breiteEinstObenMinus;
+    private final int breiteEinstUntenMinus;
+
     private int levelCount = 1;
     private int levelNr = 1;
     private int speicherHinweisLevel;
     private int speicherHinweis = 1;
+    private int stringBreite = 90;
+    private int feuerRate = 1;
+    private int stufe = 1;
 
     private DateiService dateiService;
     private ISpielwelt spielwelt;
@@ -50,6 +56,8 @@ public class Leveleditor extends Spielsteuerung {
     private ArrayList<IMovable> menuArrayMovables;
     private IKachel aktuelleKachel;
     private IMovable aktuellesMovable;
+    private FeuerModus feuerModus = FeuerModus.KONSTANT;
+    private LaufModus laufModus = LaufModus.DEFAULT;
     private final Button exitButton;
     private final Button speichernButton;
     private final Button ladeButton;
@@ -58,6 +66,10 @@ public class Leveleditor extends Spielsteuerung {
     private final Button siedlungButton;
     private final Button bildVor;
     private final Button bildZurueck;
+    private final Button einstellungenObenPlus;
+    private final Button einstellungenObenMinus;
+    private final Button einstellungenUntenPlus;
+    private final Button einstellungenUntenMinus;
     //private PImage spielfigurBild;
     Dictionary images = new Hashtable();
 
@@ -88,6 +100,11 @@ public class Leveleditor extends Spielsteuerung {
         this.siedlungButton = new Button(5);
         this.bildZurueck = new Button(6);
         this.bildVor = new Button(7);
+        this.einstellungenObenMinus = new Button(8);
+        this.einstellungenUntenMinus = new Button(8);
+        this.einstellungenObenPlus = new Button(9);
+        this.einstellungenUntenPlus = new Button(9);
+
         //this.spielfigurBild = new PImage();
 
         this.breiteExit = exitButton.getBreite();
@@ -134,6 +151,49 @@ public class Leveleditor extends Spielsteuerung {
                 + bildZurueck.getBreite()
                 + bildVor.getBreite();
 
+        this.breiteEinstObenMinus = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite()
+                + bildVor.getBreite()
+                + einstellungenObenMinus.getBreite();
+
+        this.breiteEinstUntenMinus = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite()
+                + bildVor.getBreite()
+                + einstellungenUntenMinus.getBreite();
+
+        this.breiteEinstObenPlus = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite()
+                + bildVor.getBreite()
+                + einstellungenObenMinus.getBreite()
+                + stringBreite
+                + einstellungenObenPlus.getBreite();
+
+        this.breiteEinstUntenPlus = exitButton.getBreite()
+                + speichernButton.getBreite()
+                + ladeButton.getBreite()
+                + leerenButton.getBreite()
+                + levelButton.getBreite()
+                + siedlungButton.getBreite()
+                + bildZurueck.getBreite()
+                + bildVor.getBreite()
+                + einstellungenUntenMinus.getBreite()
+                + stringBreite
+                + einstellungenUntenPlus.getBreite();
 
         //Befüllen des Menuarrays mit den Kachelarten
         this.menuArrayKacheln.add( new Baum());
@@ -295,7 +355,11 @@ public class Leveleditor extends Spielsteuerung {
         zeichneMovables();
         zeichneAssetMenu(this.menuArrayKacheln);
         zeichneMovableMenu(this.menuArrayMovables);
+        zeichneEinstellungsmenu();
+
     }
+
+
 
     /**
      * Fragt ab welche Maustaste gedrückt wurde.
@@ -326,6 +390,11 @@ public class Leveleditor extends Spielsteuerung {
                 }
             } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel){
                 if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y){
+                    //Die einzelnen Einstellungen der Movables werden hier genullt
+                    feuerRate = 2;
+                    stufe = 1;
+                    feuerModus = FeuerModus.KONSTANT;
+                    laufModus = LaufModus.DEFAULT;
                     aktuelleKachel = null;
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
@@ -396,20 +465,20 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Mango) {
             tempMovable = new Mango(posX, posY);
         } else if (movable instanceof Schwert) {
-            tempMovable = new Schwert(posX, posY, 1);
+            tempMovable = new Schwert(posX, posY, stufe);
         } else if (movable instanceof DornPflanze) {
             tempMovable = new DornPflanze(posX, posY, this.tileMap);
         } else if (movable instanceof FeuerMonster) {
-            tempMovable = new FeuerMonster(posX, posY, this.tileMap, this.spielsteuerung, Richtung.N, 1, FeuerModus.RANDOM);
+            tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,feuerRate,feuerModus);
             //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
         } else if (movable instanceof Geist) {
             tempMovable = new Geist(posX, posY, this.tileMap);
-        } else if (movable instanceof Zombie) {
-            tempMovable = new Zombie(posX, posY, this.tileMap, Richtung.N, this.spielsteuerung, LaufModus.DEFAULT);
-        } else if (movable instanceof Bogen) {
-            tempMovable = new Bogen(posX, posY, 1);
-        } else if (movable instanceof Spezialattacke) {
-            tempMovable = new Spezialattacke(posX, posY, 1);
+        } else if (movable instanceof Zombie){
+            tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung,laufModus);
+        } else if (movable instanceof Bogen){
+            tempMovable = new Bogen(posX, posY, stufe);
+        } else if (movable instanceof Spezialattacke){
+            tempMovable = new Spezialattacke(posX, posY, stufe);
         } else if (movable instanceof Stern) {
             tempMovable = new Stern(posX, posY);
         }
@@ -560,6 +629,26 @@ public class Leveleditor extends Spielsteuerung {
 
     }
 
+    private void zeichneEinstellungsmenu() {
+        this.pushStyle();
+        float textverhaeltnis = ((Einstellungen.LAENGE_KACHELN_X * Einstellungen.LAENGE_KACHELN_Y) / 1600f);
+        this.textSize((int)(16 * textverhaeltnis));
+        this.fill(0, 0, 0);
+        if (aktuellesMovable instanceof FeuerMonster){
+            this.text(feuerRate, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(feuerModus.name(), breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
+        } else if (aktuellesMovable instanceof Zombie){
+            this.text(laufModus.name(), breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
+        } else if (aktuellesMovable instanceof Schwert){
+            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+        } else if (aktuellesMovable instanceof Bogen){
+            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+        }else if (aktuellesMovable instanceof Spezialattacke) {
+            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+        }
+        this.popStyle();
+    }
+
     /**
      * Zeichnet die Buttons/Schaltflächen
      */
@@ -573,6 +662,10 @@ public class Leveleditor extends Spielsteuerung {
         siedlungButton.zeichne(this, breiteLevel, SpielfeldHoehe);
         bildZurueck.zeichne(this, breiteSiedlung, SpielfeldHoehe);
         bildVor.zeichne(this, breiteZurueck, SpielfeldHoehe);
+        einstellungenObenMinus.zeichne(this, breiteVor, SpielfeldHoehe);
+        einstellungenUntenMinus.zeichne(this, breiteVor, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2);
+        einstellungenObenPlus.zeichne(this, breiteEinstObenMinus + stringBreite, SpielfeldHoehe);
+        einstellungenUntenPlus.zeichne(this, breiteEinstUntenMinus + stringBreite, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2);
     }
 
     /**
@@ -639,6 +732,49 @@ public class Leveleditor extends Spielsteuerung {
                 springeVor();
             }
         }
+        if (y > SpielfeldHoehe && y < einstellungenObenMinus.getHoehe() + SpielfeldHoehe){
+            if (x > breiteVor && x < breiteEinstObenMinus){
+                minusobereEinstellung();
+            } else if (x > breiteEinstObenMinus + stringBreite && x < breiteEinstObenPlus){
+                plusobereEinstellung();
+            }
+        }
+        if (y > SpielfeldHoehe + einstellungenObenMinus.getHoehe() && y < einstellungenUntenMinus.getHoehe() + einstellungenObenMinus.getHoehe() + SpielfeldHoehe){
+            if (x > breiteVor && x < breiteEinstUntenMinus){
+                minusuntereEinstellung();
+            } else if (x > breiteEinstUntenMinus + stringBreite && x < breiteEinstUntenPlus){
+                plusuntereEinstellung();
+            }
+        }
+    }
+
+    private void minusuntereEinstellung() {
+        iteriereFeuerModus();
+        iteriereLaufModus();
+        System.out.println("minusunten");
+    }
+
+
+    private void plusuntereEinstellung() {
+        iteriereFeuerModus();
+        iteriereLaufModus();
+        System.out.println("plusunten");
+    }
+
+    private void minusobereEinstellung() {
+        if (feuerRate > 0){
+            feuerRate--;
+        }
+        if (stufe > 1){
+            stufe--;
+        }
+        System.out.println("minusoben");
+    }
+
+    private void plusobereEinstellung() {
+        feuerRate++;
+        stufe++;
+        System.out.println("plusoben");
     }
 
     /**
@@ -646,6 +782,38 @@ public class Leveleditor extends Spielsteuerung {
      */
     private void exitLeveleditor() {
         System.exit(0);
+    }
+
+    private void iteriereFeuerModus() {
+        switch (feuerModus){
+            case RANDOM:
+                feuerModus = FeuerModus.SEMIRANDOM;
+                break;
+            case SEMIRANDOM:
+                feuerModus = FeuerModus.KONSTANT;
+                break;
+            case KONSTANT:
+                feuerModus = FeuerModus.RANDOM;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void iteriereLaufModus(){
+        switch (laufModus){
+            case DEFAULT:
+                laufModus = LaufModus.JAGDT;
+                break;
+            case JAGDT:
+                laufModus = LaufModus.RANDOM;
+                break;
+            case RANDOM:
+                laufModus = LaufModus.DEFAULT;
+                break;
+            default:
+                break;
+        }
     }
 
     /**
