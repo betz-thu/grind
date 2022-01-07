@@ -1,6 +1,7 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
+import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
@@ -27,7 +28,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     transient Waffe testwaffe = new Schwert(35,35,1);
     transient Bogen testbogen = new Bogen(35,35,1);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
-    transient Spezialattacke testattacke = new Spezialattacke(60,60,1);
+    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
 
     int lebensenergie = 100;//Kapselung?
     final List<Gegenstand> inventar;
@@ -37,6 +38,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int guiGroeße;
     //public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
+    private boolean spezialAktiviert = false;
+    private int countSpezialDauer=0;
     //Waffe aktiveWaffe = testbogen;
 
 
@@ -153,9 +156,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 pfeilrichtung = this.getAusrichtung();
             }
             abgeschossen = true;
-            aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
-            aktiveWaffe.setAusrichtung(this.getAusrichtung());
-            aktiveWaffe.zeichne(app);
+
+            if(!(aktiveWaffe instanceof Spezialattacke)) {
+                aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
+                aktiveWaffe.setAusrichtung(this.getAusrichtung());
+                aktiveWaffe.zeichne(app);
+
+            }
 //            testpfeil.zeichne(app);
 //            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
         }
@@ -179,6 +186,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
             }
 
 
+        }
+        if(spezialAktiviert){
+            testattacke.setPosition(this.getPosX(),this.getPosY());
+            testattacke.setGroesse(150);
+            testattacke.zeichne(app);
+            setAktiveWaffe(testattacke);
+            countSpezialDauer +=1;
+            if (countSpezialDauer == 30){
+                spezialAktiviert=false;
+                setAktiveWaffe(testwaffe);
+            }
         }
     }
 
@@ -224,6 +242,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
             if (j < groeße) {
                 inventar.get(j).setPosition(startkoordinateX - 7 * guiGroeße / 2 + j * guiGroeße, startkoordinateY + guiGroeße / 2);
                 inventar.get(j).zeichne(app);
+
             }
         }
 //        app.popStyle();
@@ -235,16 +254,21 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
             }
+            else if(inventar.get(position) instanceof Spezialattacke){
+                //erst groß zeichnen
+                //inventar.get(position).beimAnwenden(this);
+
+                spezialAktiviert=true;
+                inventar.remove(position);
+            }
             else if(inventar.get(position) instanceof Waffe){
                 Waffe waffe =  (Waffe) inventar.get(position);
+
                 inventar.add(aktiveWaffe);
                 this.setAktiveWaffe(waffe);
                 inventar.remove(position);
                 System.out.println("Neue Waffe ausgerüstet");
 
-                //waffeAusgestattet=true;
-                //inventar.get(position).beimAnwenden(this);
-                //Waffe nicht entfernen, soll im Inventar verbleiben?
             }
         }
     }

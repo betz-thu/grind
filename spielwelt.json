@@ -352,7 +352,7 @@
               "classname": "class grind.kacheln.impl.Wiese"
             },
             {
-              "classname": "class grind.kacheln.impl.Levelausgang"
+              "classname": "class grind.kacheln.impl.Wiese"
             },
             {
               "classname": "class grind.kacheln.impl.Wiese"
@@ -408,7 +408,7 @@
               "classname": "class grind.kacheln.impl.Wiese"
             },
             {
-              "classname": "class grind.kacheln.impl.Wiese"
+              "classname": "class grind.kacheln.impl.Levelausgang"
             },
             {
               "classname": "class grind.kacheln.impl.Wiese"
@@ -1850,14 +1850,38 @@
       },
       "positionen": [
         {
+          "stufe": 1,
+          "posX": 753.0,
+          "posY": 304.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Spezialattacke"
+        },
+        {
           "hilfsVariable": false,
           "lebensenergie": 100,
           "schaden": 10,
-          "posX": 616.0,
-          "posY": 222.0,
+          "posX": 763.0,
+          "posY": 165.0,
           "groesse": 40,
           "ausrichtung": "N",
           "classname": "class grind.movables.monster.Zombie"
+        },
+        {
+          "stufe": 1,
+          "posX": 770.0,
+          "posY": 448.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Bogen"
+        },
+        {
+          "stufe": 1,
+          "posX": 695.0,
+          "posY": 70.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Schwert"
         },
         {
           "GESCHWINDIGKEIT": 3.0,
@@ -1875,17 +1899,11 @@
             "groesse": 40,
             "ausrichtung": "S"
           },
-          "posX": 357.0,
-          "posY": 294.0,
+          "posX": 398.0,
+          "posY": 251.0,
           "groesse": 40,
           "ausrichtung": "N",
           "classname": "class grind.movables.impl.Spielfigur"
-        },
-        {
-          "posX": 414.0,
-          "posY": 111.0,
-          "groesse": 20,
-          "classname": "class grind.movables.impl.Gold"
         }
       ],
       "classname": "class grind.welt.impl.DummyLevel"

@@ -432,14 +432,22 @@ public class Spielsteuerung extends PApplet {
                         // TODO: Nahrung zu Inventar hinzufügen
                     }
                 }
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke) {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
                         ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
 
+
                     }
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                    if (movable instanceof Monster) {
+                      System.out.println(((Monster) movable).getLebensenergie());
+                      System.out.println("Kollision!!");
+                      ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
                 }
+            }
 
             else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
                     if (movable instanceof Monster) {

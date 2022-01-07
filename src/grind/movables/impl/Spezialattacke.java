@@ -18,6 +18,7 @@ import processing.core.PImage;
     public class Spezialattacke extends Waffe{
 
         private int stufe;
+        PApplet app;
 
 
 
@@ -36,7 +37,7 @@ import processing.core.PImage;
             /**
              * Berechnet den Schaden, welchen ein Schwert anrichtet.
              */
-            int schaden = 10* this.stufe;
+            int schaden = 60* this.stufe;
             return schaden;
         }
 
@@ -46,13 +47,19 @@ import processing.core.PImage;
         }
 
         public int getGroesse(){
-            return 40;
+            return groesse;
+        }
+
+        public void setGroesse(int neue_groesse){
+            groesse=neue_groesse;
         }
 
         @Override
         public void beimAnwenden(ISpielfigur figur) {
 
+
         }
+
 
     }
 
