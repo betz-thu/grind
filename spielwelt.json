@@ -1989,6 +1989,36 @@
           "posY": 100.0,
           "groesse": 20,
           "classname": "class grind.movables.impl.Heiltrank"
+        },
+        {
+          "hilfsVariable": false,
+          "lebensenergie": 100,
+          "schaden": 10,
+          "posX": 476.0,
+          "posY": 223.0,
+          "groesse": 40,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.monster.Zombie"
+        },
+        {
+          "hilfsVariable": false,
+          "lebensenergie": 100,
+          "schaden": 10,
+          "posX": 184.0,
+          "posY": 229.0,
+          "groesse": 40,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.monster.Zombie"
+        },
+        {
+          "hilfsVariable": false,
+          "lebensenergie": 100,
+          "schaden": 10,
+          "posX": 663.0,
+          "posY": 439.0,
+          "groesse": 40,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.monster.Zombie"
         }
       ],
       "classname": "class grind.welt.impl.DummyLevel"

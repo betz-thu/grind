@@ -5,6 +5,7 @@ import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
+import grind.movables.impl.Gegenstand;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.FeuerMonster;
@@ -200,7 +201,11 @@ public class Spielmodell implements ISpielmodell {
             for (IMovable movable : this.movables) {
                 spielsteuerung.fill(0,0,0);
                 spielsteuerung.textSize(14);
-                spielsteuerung.text(movable.toString(), movable.getPosX()-movable.getGroesse(), movable.getPosY()+movable.getGroesse());
+                if(movable instanceof Gegenstand) {
+                    spielsteuerung.text(movable.toString(), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
+                    spielsteuerung.text(("Wert: " + (Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
+
+                }
             }
         }
 
