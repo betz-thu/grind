@@ -69,6 +69,10 @@ public class DateiService {
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
 
                 String klassenname;
+                int stufe = 1;
+                int feuerrate;
+                FeuerModus feuerModus;
+                LaufModus laufModus;
                 int posX;
                 int posY;
                 Richtung richtung = null;
@@ -76,6 +80,7 @@ public class DateiService {
                 klassenname = jsonObject.get("classname").getAsString();
                 posX = (int) ((float) jsonObject.get("posX").getAsInt() * Einstellungen.LAENGE_KACHELN_X / Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR);
                 posY = (int) ((float) jsonObject.get("posY").getAsInt() * Einstellungen.LAENGE_KACHELN_Y / Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR);
+
 
                 if (klassenname.equals("class grind.movables.impl.Spielfigur")) {
                     String richtungsString;
@@ -124,7 +129,8 @@ public class DateiService {
                         iMovable = new Geist(posX, posY, tilemap);
                         break;
                     case "class grind.movables.monster.Zombie":
-                        iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, LaufModus.DEFAULT);
+                        laufModus = LaufModus.valueOf(jsonObject.get("laufModus").getAsString());
+                        iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, laufModus);
                         break;
                     case "class grind.movables.impl.Heiltrank":
                         iMovable = new Heiltrank(posX, posY);
@@ -133,18 +139,24 @@ public class DateiService {
                         iMovable = new Mango(posX, posY);
                         break;
                     case "class grind.movables.impl.Schwert":
-                        iMovable = new Schwert(posX, posY, 2);
+                        stufe = jsonObject.get("stufe").getAsInt();
+                        iMovable = new Schwert(posX, posY, stufe);
                         break;
                     case "class grind.movables.impl.Levelende":
                         iMovable = new Levelende(posX, posY);
                         break;
                     case "class grind.movables.monster.FeuerMonster":
-                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
+                        feuerrate = jsonObject.get("feuerRate").getAsInt();
+                        feuerModus = FeuerModus.valueOf(jsonObject.get("feuerModus").getAsString());
+                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, feuerrate, feuerModus);
                     case "class grind.movables.impl.Bogen":
-                        iMovable = new Bogen(posX, posY, 1);
+                        stufe = jsonObject.get("stufe").getAsInt();
+
+                        iMovable = new Bogen(posX, posY, stufe);
                         break;
                     case "class grind.movables.impl.Spezialattacke":
-                        iMovable = new Spezialattacke(posX, posY, 1);
+                        stufe = jsonObject.get("stufe").getAsInt();
+                        iMovable = new Spezialattacke(posX, posY, stufe);
                         break;
                     default:
                         break;

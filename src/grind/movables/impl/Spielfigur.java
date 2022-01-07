@@ -38,13 +38,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
     transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
 
     int lebensenergie = 100;//Kapselung?
-    final List<Gegenstand> inventar;
+    transient final List<Gegenstand> inventar;
 
 
     private int inventarGuiGroeße;
     private int guiGroeße;
     //public boolean waffeAusgestattet=false;
-    Waffe aktiveWaffe = testwaffe;
+    transient Waffe aktiveWaffe = testwaffe;
     private boolean spezialAktiviert = false;
     private int countSpezialDauer=0;
     //Waffe aktiveWaffe = testbogen;
