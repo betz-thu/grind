@@ -6,11 +6,14 @@ import processing.core.PApplet;
 public class Button extends PApplet {
 
     private final int typ;
-    private final int breite = Einstellungen.LAENGE_KACHELN_X * 3;
+    private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
     private final int hoehe = Einstellungen.LAENGE_KACHELN_Y;
 
     public Button(int typ){
         this.typ = typ;
+        if(typ == 6 || typ == 7){
+            this.breite = Einstellungen.LAENGE_KACHELN_X;
+        }
     }
 
     /**
@@ -67,13 +70,13 @@ public class Button extends PApplet {
                 app.fill(100, 100, 100);
                 app.rect(x0, y0, breite,hoehe);
                 app.fill(0, 0, 0);
-                app.text("<", x0 + 40, y0 +25*textverhaeltnis);
+                app.text("<", x0 + 15, y0 +25*textverhaeltnis);
                 break;
             case 7:
                 app.fill(100, 100, 100);
                 app.rect(x0, y0, breite,hoehe);
                 app.fill(0, 0, 0);
-                app.text(">", x0 + 40, y0 +25*textverhaeltnis);
+                app.text(">", x0 + 15, y0 +25*textverhaeltnis);
                 break;
             default:
                 System.out.println("Falscher Buttontyp!");
