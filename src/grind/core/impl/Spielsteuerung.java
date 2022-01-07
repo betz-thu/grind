@@ -14,7 +14,6 @@ import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.util.Einstellungen;
 import grind.welt.ILevel;
-import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -434,7 +433,7 @@ public class Spielsteuerung extends PApplet {
                     }
                 }
                 else {
-                    siedlung(movable);
+                    beiKollisionSiedlung(movable);
                 }
 
                 } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
@@ -529,7 +528,7 @@ public class Spielsteuerung extends PApplet {
         this.images = images;
     }
 
-    public void siedlung(IMovable movable){
+    public void beiKollisionSiedlung(IMovable movable){
         if(movable instanceof Gegenstand){
             if(((Gegenstand) movable).getWert() <= spielmodell.getFigur().getGold())
             {

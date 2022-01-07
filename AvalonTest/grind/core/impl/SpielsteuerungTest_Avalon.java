@@ -24,17 +24,17 @@ public class SpielsteuerungTest_Avalon {
     }
 
     @Test
-    public void siedlung() {
+    public void beiKollisionSiedlung() {
         spiel.spielmodell.getMovables().add(heiltrank);
         Assert.assertTrue(spiel.spielmodell.getMovables().contains(heiltrank));
-        spiel.siedlung(heiltrank);
+        spiel.beiKollisionSiedlung(heiltrank);
         Assert.assertTrue(spiel.spielmodell.getFigur().getInventar().contains(heiltrank));
         Assert.assertEquals(2, spiel.spielmodell.getFigur().getGold());
         Assert.assertFalse(spiel.spielmodell.getMovables().contains(heiltrank));
 
         //Spieler versucht erneut zu kaufen ohne genügend Geld
         spiel.spielmodell.getMovables().add(heiltrank2);
-        spiel.siedlung(heiltrank2);
+        spiel.beiKollisionSiedlung(heiltrank2);
         Assert.assertEquals(2, spiel.spielmodell.getFigur().getGold());
         Assert.assertTrue(spiel.spielmodell.getMovables().contains(heiltrank2));
         Assert.assertFalse(spiel.spielmodell.getFigur().getInventar().contains(heiltrank2));
