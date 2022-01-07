@@ -509,4 +509,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
         return -1;
     }
+
+    @Override
+    public int getGold() {
+        return gold;
+    }
+
+    public void verringereGold(int betrag){
+        this.gold = this.gold - betrag;
+    }
+
 }

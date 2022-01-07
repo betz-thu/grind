@@ -8,7 +8,9 @@ import java.util.List;
 public interface ISpielfigur extends IMovable {
 
     void setPosition(int x, int y);
+    int getGold();
     void erhoeheGold(int betrag);
+    void verringereGold(int betrag);
     int getLebensenergie();
     void setLebensenergie(int neueLebensenergie);
     void bewege(Richtung richtung);
@@ -30,4 +32,5 @@ public interface ISpielfigur extends IMovable {
     void playGeistAroundSound();
     void playPflanzeAroundSound();
     void playPflanzeAttacSound();
+
 }

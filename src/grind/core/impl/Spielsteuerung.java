@@ -14,6 +14,7 @@ import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.util.Einstellungen;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -406,29 +407,36 @@ public class Spielsteuerung extends PApplet {
             if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
                 if(movable instanceof IMonster) {
-                    ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
+                        ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
                 }
-                else if(movable instanceof ISchatz){
-                    if (!(movable instanceof Waffe)) {
-                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
-                        //}
+
+                if(spielmodell.getSzene() instanceof ILevel){
+                    if(movable instanceof ISchatz){
                         if (!(movable instanceof Waffe)) {
+                            ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
+                            //}
+                            if (!(movable instanceof Waffe)) {
+                                spielmodell.removeMovable(movable);
+                            } // löscht Schatz aus Level
+
+                            return;
+                        }
+                        //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
+                        if ((movable instanceof Waffe)) {
+                            ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                            System.out.println("Waffe wurde aufgesammelt!");
                             spielmodell.removeMovable(movable);
-                        } // löscht Schatz aus Level
 
-                        return;
-                    }
-                    //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
-                    if ((movable instanceof Waffe)) {
-                        ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
-                        System.out.println("Waffe wurde aufgesammelt!");
-                        spielmodell.removeMovable(movable);
-
-                        //Spieler.waffeAusgestattet = true;
-                    } else if (movable instanceof Nahrung) {
-                        // TODO: Nahrung zu Inventar hinzufügen
+                            //Spieler.waffeAusgestattet = true;
+                        } else if (movable instanceof Nahrung) {
+                            // TODO: Nahrung zu Inventar hinzufügen
+                        }
                     }
                 }
+                else {
+                    siedlung(movable);
+                }
+
                 } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
@@ -520,4 +528,21 @@ public class Spielsteuerung extends PApplet {
     public void setImages(Dictionary images) {
         this.images = images;
     }
+
+    public void siedlung(IMovable movable){
+        if(movable instanceof Gegenstand){
+            if(((Gegenstand) movable).getWert() <= spielmodell.getFigur().getGold())
+            {
+                ((Gegenstand) movable).beimKaufen(spielmodell.getFigur());
+                spielmodell.removeMovable(movable);
+            }
+        }
+        else if(movable instanceof ISchatz){
+            // Wie sammeln die Gegenstände ein?
+            ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+            spielmodell.removeMovable(movable);
+        }
+
+    }
+
 }

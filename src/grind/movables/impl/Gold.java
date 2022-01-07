@@ -12,7 +12,7 @@ public class Gold extends Waehrung {
     }
 
     @Override
-    int getWert() {
+    public int getWert(){
         return 1;
     }
 }

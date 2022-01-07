@@ -15,9 +15,6 @@ public abstract class Waehrung extends Schatz {
     @Override
     public void beimSammeln(ISpielfigur figur) {
         figur.erhoeheGold(this.getWert());
-
     }
 
-
-    abstract int getWert();
 }

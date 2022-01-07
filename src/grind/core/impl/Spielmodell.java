@@ -203,7 +203,7 @@ public class Spielmodell implements ISpielmodell {
                 spielsteuerung.textSize(14);
                 if(movable instanceof Gegenstand) {
                     spielsteuerung.text(movable.toString(), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
-                    spielsteuerung.text(("Wert: " + (Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
+                    spielsteuerung.text(("Wert: " + ((Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
 
                 }
             }
