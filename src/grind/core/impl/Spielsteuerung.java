@@ -111,6 +111,7 @@ public class Spielsteuerung extends PApplet {
         images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
         images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
         images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("Bogen Level 2", (PImage) spielsteuerung.loadImage("Bogen1.png"));
         images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
@@ -399,6 +400,7 @@ public class Spielsteuerung extends PApplet {
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
+
             int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
             int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
             int MovableYp = movable.getPosY() + movable.getGroesse() / 2;

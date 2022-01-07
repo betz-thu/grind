@@ -25,7 +25,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
     transient Waffe testwaffe = new Schwert(35,35,1);
-    transient Bogen testbogen = new Bogen(40,40,1);
+    transient Bogen testbogen = new Bogen(35,35,1);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
     transient Spezialattacke testattacke = new Spezialattacke(60,60,1);
 
@@ -58,8 +58,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
         inventar = new ArrayList<>();
-        //setAktiveWaffe(testwaffe);
-        setAktiveWaffe(testbogen);
+        setAktiveWaffe(testwaffe);
+        //setAktiveWaffe(testbogen);
         inventarGuiGroeße =10;
         guiGroeße=50;
 
