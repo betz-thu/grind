@@ -81,8 +81,8 @@ public abstract class Movable implements IMovable {
         } else if (this.getClass().toString().equals("class grind.movables.impl.Bogen")){
             if (this.getStufe() == 1) {
                 img = (PImage) spielsteuerung.getImages().get("Bogen Level 1");
-            } else {
-                img = (PImage) spielsteuerung.getImages().get("Bogen Level 2");
+            }else {
+               img = (PImage) spielsteuerung.getImages().get("Bogen Level 2");
             }
         } else if (this.getClass().toString().equals("class grind.movables.impl.Spezialattacke")){
             if (this.getStufe() == 1) {
