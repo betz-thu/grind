@@ -432,7 +432,7 @@ public class Leveleditor extends Spielsteuerung {
             buttonAction(mouseY, mouseX);
 
         } else if (mouseButton == RIGHT){
-            if (aktuelleKachel == null && aktuellesMovable == null){
+            if (aktuelleKachel == null && aktuellesMovable == null && mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe ){
                 tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
 //                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
 //                    templevel.getPositionen().
@@ -470,7 +470,6 @@ public class Leveleditor extends Spielsteuerung {
             tempMovable = new DornPflanze(posX, posY, this.tileMap);
         } else if (movable instanceof FeuerMonster) {
             tempMovable = new FeuerMonster(posX, posY, this.tileMap,this.spielsteuerung,Richtung.N,feuerRate,feuerModus);
-            //TODO: Für Feuermonster die Feuerrate und den Feuermodus noch änderbar machen
         } else if (movable instanceof Geist) {
             tempMovable = new Geist(posX, posY, this.tileMap);
         } else if (movable instanceof Zombie){
