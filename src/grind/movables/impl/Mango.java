@@ -6,10 +6,10 @@ import grind.util.Einstellungen;
 
 public class Mango extends Nahrung{
 
-    public Mango(int posX, int posY) {
+    public Mango(int posX, int posY, int punkte, int wert) {
         super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
-        this.punkte = 10; //  Mango startet mit Wert 10 @Team Leveleditor: gerne ändern
-        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
+        this.punkte = punkte;
+        this.wert = wert;
     }
 
 

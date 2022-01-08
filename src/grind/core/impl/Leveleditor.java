@@ -11,8 +11,11 @@ import grind.util.FeuerModus;
 import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
+import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
+import grind.welt.impl.DummySiedlung;
 import grind.welt.impl.DummySpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -48,6 +51,8 @@ public class Leveleditor extends Spielsteuerung {
     private int stringBreite = 90;
     private int feuerRate = 1;
     private int stufe = 1;
+    private int wert = 3;
+    private int punkte = 3;
 
     private DateiService dateiService;
     private ISpielwelt spielwelt;
@@ -206,20 +211,20 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayKacheln.add( new Wiese());
 
         //Befüllen des Menuarrays mit den Movables
-        this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
-        this.menuArrayMovables.add( new Schwert(40,40,1));
-        this.menuArrayMovables.add( new Mango(0,0));
-        this.menuArrayMovables.add( new Levelende(0,0));
-        this.menuArrayMovables.add( new Heiltrank(0,0));
+        this.menuArrayMovables.add( new Schwert(40,40,1,this.wert));
+        this.menuArrayMovables.add( new Mango(0,0,this.punkte,this.wert));
+        this.menuArrayMovables.add( new Heiltrank(0,0,this.punkte,this.wert));
         this.menuArrayMovables.add( new Gold(0,0));
-        this.menuArrayMovables.add( new Apfel(0,0));
+        this.menuArrayMovables.add( new Apfel(0,0,this.punkte,this.wert));
+        this.menuArrayMovables.add( new Bogen(40,40,1,this.wert));
+        this.menuArrayMovables.add( new Stern(0,0));
+        this.menuArrayMovables.add( new Spezialattacke(40,40,1));
+        this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
+        this.menuArrayMovables.add( new Levelende(0,0));
         this.menuArrayMovables.add( new DornPflanze(0,0,this.tileMap));
         this.menuArrayMovables.add( new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM));
         this.menuArrayMovables.add( new Geist(0,0,this.tileMap));
         this.menuArrayMovables.add( new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT));
-        this.menuArrayMovables.add( new Bogen(40,40,1));
-        this.menuArrayMovables.add( new Spezialattacke(40,40,1));
-        this.menuArrayMovables.add( new Stern(0,0));
     }
 
     /**
@@ -341,24 +346,17 @@ public class Leveleditor extends Spielsteuerung {
     private void zeichne() {
         //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap();
-        if (spielwelt.getSzene(levelNr-1) instanceof ILevel) {
-            zeichneLevel();
-        }
+        zeichneMovables();
+        zeichneAssetMenu(this.menuArrayKacheln);
+        zeichneMovableMenu(this.menuArrayMovables);
+        zeichneEinstellungsmenu();
+
         zeichneMausKachel(aktuelleKachel, mouseX, mouseY);
         zeichneMausMovable(aktuellesMovable,mouseX,mouseY);
         zeichneButtons();
         zeichneCounts();
         zeichneFehler();
     }
-
-    private void zeichneLevel() {
-        zeichneMovables();
-        zeichneAssetMenu(this.menuArrayKacheln);
-        zeichneMovableMenu(this.menuArrayMovables);
-        zeichneEinstellungsmenu();
-
-    }
-
 
 
     /**
@@ -391,6 +389,8 @@ public class Leveleditor extends Spielsteuerung {
             } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel){
                 if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y){
                     //Die einzelnen Einstellungen der Movables werden hier genullt
+                    wert = 3;
+                    punkte = 3;
                     feuerRate = 2;
                     stufe = 1;
                     feuerModus = FeuerModus.KONSTANT;
@@ -455,17 +455,17 @@ public class Leveleditor extends Spielsteuerung {
         if (movable instanceof Spielfigur) {
             tempMovable = new Spielfigur(posX, posY, richtung);
         } else if (movable instanceof Apfel) {
-            tempMovable = new Apfel(posX, posY);
+            tempMovable = new Apfel(posX, posY, punkte, wert);
         } else if (movable instanceof Gold) {
             tempMovable = new Gold(posX, posY);
         } else if (movable instanceof Heiltrank) {
-            tempMovable = new Heiltrank(posX, posY);
+            tempMovable = new Heiltrank(posX, posY, punkte, wert);
         } else if (movable instanceof Levelende) {
             tempMovable = new Levelende(posX, posY);
         } else if (movable instanceof Mango) {
-            tempMovable = new Mango(posX, posY);
+            tempMovable = new Mango(posX, posY, punkte, wert);
         } else if (movable instanceof Schwert) {
-            tempMovable = new Schwert(posX, posY, stufe);
+            tempMovable = new Schwert(posX, posY, stufe, wert);
         } else if (movable instanceof DornPflanze) {
             tempMovable = new DornPflanze(posX, posY, this.tileMap);
         } else if (movable instanceof FeuerMonster) {
@@ -475,14 +475,16 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Zombie){
             tempMovable = new Zombie(posX, posY, this.tileMap,Richtung.N,this.spielsteuerung,laufModus);
         } else if (movable instanceof Bogen){
-            tempMovable = new Bogen(posX, posY, stufe);
+            tempMovable = new Bogen(posX, posY, stufe, wert);
         } else if (movable instanceof Spezialattacke){
             tempMovable = new Spezialattacke(posX, posY, stufe);
         } else if (movable instanceof Stern) {
             tempMovable = new Stern(posX, posY);
         }
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-        level.addPosition(tempMovable);
+       if (this.spielwelt.getSzene(this.levelNr-1)instanceof ILevel){
+            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level.addPosition(tempMovable);
+        }
     }
 
     /**
@@ -532,10 +534,10 @@ public class Leveleditor extends Spielsteuerung {
             }
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
 
-            if (mapAussenY >= SpielfeldHoehe) {
-                mapAussenY = 0;
-                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
-            }
+//            if (mapAussenY >= SpielfeldHoehe) {
+//                mapAussenY = 0;
+//                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
+//            }
         }
         this.popStyle();
     }
@@ -560,8 +562,13 @@ public class Leveleditor extends Spielsteuerung {
      * @return Movable an Stelle [x][y]
      */
     private IMovable getMenukacheliMovable (int mausY, int mausX, ArrayList<IMovable> iMovable){
-
-        return iMovable.get(mausY);
+        IMovable tempMovable = iMovable.get(mausY);
+        if (spielwelt.getSzene(levelNr-1) instanceof ISiedlung) {
+            if (tempMovable instanceof IMonster) {
+                tempMovable = null;
+            }
+        }
+        return tempMovable;
     }
 
     /**
@@ -642,8 +649,11 @@ public class Leveleditor extends Spielsteuerung {
             this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Bogen){
             this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
-        }else if (aktuellesMovable instanceof Spezialattacke) {
+        } else if (aktuellesMovable instanceof Spezialattacke){
             this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+        } else if (aktuellesMovable instanceof Apfel || aktuellesMovable instanceof Heiltrank || aktuellesMovable instanceof Mango){
+            this.text(wert, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(punkte, breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
         }
         this.popStyle();
     }
@@ -748,6 +758,9 @@ public class Leveleditor extends Spielsteuerung {
     }
 
     private void minusuntereEinstellung() {
+        if (punkte > 1){
+            punkte--;
+        }
         iteriereFeuerModus();
         iteriereLaufModus();
         System.out.println("minusunten");
@@ -755,6 +768,7 @@ public class Leveleditor extends Spielsteuerung {
 
 
     private void plusuntereEinstellung() {
+        punkte++;
         iteriereFeuerModus();
         iteriereLaufModus();
         System.out.println("plusunten");
@@ -767,12 +781,16 @@ public class Leveleditor extends Spielsteuerung {
         if (stufe > 1){
             stufe--;
         }
+        if (wert > 2){
+            wert--;
+        }
         System.out.println("minusoben");
     }
 
     private void plusobereEinstellung() {
         feuerRate++;
         stufe++;
+        wert++;
         System.out.println("plusoben");
     }
 
@@ -881,8 +899,19 @@ public class Leveleditor extends Spielsteuerung {
      * Erstellt eine neue Siedlung
      */
     private void neueSiedlung() {
-        //TODO: Siedlungen müssen noch implementiert werden
-        System.out.println("siedlung");
+        System.out.println("Siedlung");
+        ISiedlung siedlung = new DummySiedlung();
+        ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        iLevel1.setTilemap(tileMap);
+        spielwelt.addSzene(siedlung, levelNr);
+
+        ISiedlung iSiedlung2 = (ISiedlung) this.spielwelt.getSzene(levelNr);
+        iSiedlung2.clearPosition();
+        tileMap = new TileMap();
+        iSiedlung2.setTilemap(tileMap);
+        levelCount++;
+        levelNr++;
+        anzeigeTitelLevel(levelNr);
     }
 
     /**
