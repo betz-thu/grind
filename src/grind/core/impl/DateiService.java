@@ -20,6 +20,7 @@ import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
+import grind.welt.impl.DummySiedlung;
 import grind.welt.impl.DummySpielwelt;
 
 import java.io.Reader;
@@ -211,9 +212,10 @@ public class DateiService {
                         iSzene = jsonDeserializationContext.deserialize(jsonElement,
                                 new TypeToken<DummyLevel>(){}.getType());
                         break;
-//                    case "class grind.welt.impl.DummySiedlung":
-//                        iSzene = new DummySiedlung();
-//                        break;
+                    case "class grind.welt.impl.DummySiedlung":
+                        iSzene = jsonDeserializationContext.deserialize(jsonElement,
+                                new TypeToken<DummySiedlung>(){}.getType());
+                        break;
                     default:
                         break;
                 }
