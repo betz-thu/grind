@@ -14,6 +14,7 @@ import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.util.Einstellungen;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -417,7 +418,7 @@ public class Spielsteuerung extends PApplet {
                         ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
                 }
 
-                if(spielmodell.getSzene() instanceof ILevel){
+                if(!(spielmodell.getSzene() instanceof ISiedlung)){
                     if(movable instanceof ISchatz){
                         if (!(movable instanceof Waffe)) {
                             ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
