@@ -1,18 +1,22 @@
-package grind.movables.monster;
+package grind.movables;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ZombieTest {
+public class IMovableMEGAtronikerTest {
 
     @Before
     public void setUp() throws Exception {
     }
 
     @Test
-    public void bewege() {
+    public void getPosX() {
+    }
+
+    @Test
+    public void getPosY() {
     }
 
     @Test
@@ -20,22 +24,22 @@ public class ZombieTest {
     }
 
     @Test
-    public void vorBetreten() {
+    public void setPosition() {
     }
 
     @Test
-    public void getSpielmodell() {
+    public void zeichne() {
     }
 
     @Test
-    public void setSpielmodell() {
+    public void bewege() {
     }
 
     @Test
-    public void setGeschwindigkeit() {
+    public void getAusrichtung() {
     }
 
     @Test
-    public void getGeschwindigkeit() {
+    public void setAusrichtung() {
     }
 }

@@ -119,21 +119,6 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-        //muss wo anders sein!!!!
-        /*IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
-        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
-        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
-        IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
-        IMonster zombie2 = (new Zombie(350, 600, tileMap,Richtung.N,this.steuerung,LaufModus.DEFAULT));
-        IMonster zombie3 = (new Zombie(100, 400, tileMap,Richtung.N,this.steuerung,LaufModus.JAGDT));
-        IMonster dornPflanze1 = (new DornPflanze(200, 50, tileMap));
-        IMonster dornPflanze2 = (new DornPflanze(600, 500, tileMap));
-        addMonster(feuerMonster);
-        addMonster(zombie1);
-        addMonster(zombie2);
-        addMonster(zombie3);
-        addMonster(dornPflanze1);
-        addMonster(dornPflanze2);*/
     }
 
     /**

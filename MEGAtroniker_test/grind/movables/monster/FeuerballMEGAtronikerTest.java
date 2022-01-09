@@ -8,7 +8,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.Assert.*;
 
-public class FeuerballTest {
+public class FeuerballMEGAtronikerTest {
     Spielsteuerung steuerung = new Spielsteuerung();
     Feuerball ball = new Feuerball(100,100,1,1,steuerung);
 

@@ -11,7 +11,7 @@ import processing.core.PApplet;
 
 import static org.junit.Assert.*;
 
-public class FeuerMonsterTest {
+public class FeuerMonsterMEGAtronikerTest {
 
     TileMap tileMap;
     Spielsteuerung steuerung;

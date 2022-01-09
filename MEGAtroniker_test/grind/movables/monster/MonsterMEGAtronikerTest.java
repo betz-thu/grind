@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MonsterTest {
+public class MonsterMEGAtronikerTest {
 
     public static final int SCHADEN = 12;
     public static final int LEBENSENERGIE = 90;

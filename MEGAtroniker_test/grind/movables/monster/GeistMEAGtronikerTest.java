@@ -5,10 +5,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class DornPflanzeTest {
+public class GeistMEAGtronikerTest {
 
     @Before
     public void setUp() throws Exception {
+    }
+
+    @Test
+    public void zeichne() {
     }
 
     @Test
@@ -29,13 +33,5 @@ public class DornPflanzeTest {
 
     @Test
     public void setSpielmodell() {
-    }
-
-    @Test
-    public void setGeschwindigkeit() {
-    }
-
-    @Test
-    public void getGeschwindigkeit() {
     }
 }
