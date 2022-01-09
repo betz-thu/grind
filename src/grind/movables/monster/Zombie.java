@@ -51,21 +51,6 @@ public class Zombie extends Monster{
         setSchaden(schaden);
     }
 
-//    @Override
-//    public void beiKollision(ISpielfigur figur) {
-//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_ZOMBIE/2f + 20)){ // 20 = spielerradius
-//            //System.out.println("Kollision mit Zombie");
-//        }
-//    }
-
-    /**
-     * @MEGAtroniker nicht von uns
-     * @param app
-     */
-    /*@Override
-    public void zeichne(PApplet app) {
-        app.fill(0, 127, 127);
-        app.ellipse(this.getPosX(), this.getPosY(), groesse, groesse);
 
 
 

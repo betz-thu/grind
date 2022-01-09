@@ -7,13 +7,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class MonsterTest {
+
     public static final int SCHADEN = 12;
     public static final int LEBENSENERGIE = 90;
 
     private Monster monster;
     private TileMap tileMap;
     private Spielfigur spielfigur;
+
 
     @Before
     public void setUp() {
@@ -24,6 +28,34 @@ public class MonsterTest {
     }
 
     @Test
+    public void getGeschwindigkeit() {
+    }
+
+    @Test
+    public void setGeschwindigkeit() {
+    }
+
+    @Test
+    public void bewege() {
+    }
+
+    @Test
+    public void getLebensenergie() {
+    }
+
+    @Test
+    public void getGroesse() {
+    }
+
+    @Test
+    public void setSchaden() {
+    }
+
+    @Test
+    public void isInDerNaehe() {
+    }
+
+    @Test
     public void reduziereLebensenergie() {
         int anfangswert = monster.getLebensenergie();
         monster.reduziereLebensenergie(SCHADEN);
@@ -31,9 +63,35 @@ public class MonsterTest {
     }
 
     @Test
-    public void beiKollision() {
-        int spielfigurLebenVorher = spielfigur.getLebensenergie();
-        monster.beiKollision(spielfigur,monster);
-       // Assert.assertEquals(spielfigurLebenVorher-schaden,  spielfigur.getLebensenergie());
+    public void inDerNaehe() {
     }
+
+    @Test
+    public void resetTimerNaehe() {
+    }
+
+    @Test
+    public void beiKollision() {
+    }
+
+    @Test
+    public void setHatKollidiert() {
+    }
+
+    @Test
+    public void isHatKollidiert() {
+    }
+
+    @Test
+    public void resetTimerAttac() {
+    }
+
+    @Test
+    public void getSpielmodell() {
+    }
+
+    @Test
+    public void setSpielmodell() {
+    }
+
 }
