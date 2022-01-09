@@ -262,84 +262,6 @@ public class Leveleditor extends Spielsteuerung {
         zeichne();
     }
 
-//    /**
-//     * @MEGAtroniker
-//     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
-//     */
-//    private void szeneUeberspringen() {
-//        abfrageFTasten();
-//    }
-//
-//    /**
-//     * @author LuHe20
-//     * Cheat für das Überspringen einer Szene mit F12.
-//     * Speichern der Spielwelt mit F11
-//     * Laden der Spielwelt mit F10
-//     */
-//    private void abfrageFTasten() {
-//        //F12 neue Szene
-//        if (keyPressed && !pressed) {
-//            if (keyCode == 123) {
-//                pressed = true;
-//                fTaste = "F12";
-//            } else if(keyCode == 122){
-//                pressed = true;
-//                fTaste = "F11";
-//            } else if(keyCode == 121){
-//                pressed = true;
-//                fTaste = "F10";
-//            }
-//        } else if(!keyPressed && pressed){
-//            switch (fTaste) {
-//                case "F12":
-//
-//                    levelBeendet = true;
-//
-//                    break;
-//                case "F11":
-//
-//                    speichereSpielwelt();
-//
-//                    System.out.println("F11");
-//
-//                    break;
-//                case "F10":
-//
-//                    ISpielwelt welt;
-//                    welt = ladeSpielwelt();
-//                    this.spielmodell.setSpielwelt(welt);
-//                    spielmodell.setSzeneNr(0);
-//                    spielmodell.betreteSzene(spielmodell.getSzeneNr());
-//
-//                    System.out.println("F10");
-//
-//                    break;
-//            }
-//
-//            pressed = false;
-//        }
-//    }
-//
-//    private void aktualisiere() {
-//        spielmodell.entferneToteMonster();
-//        spielmodell.bewege();
-//        //levelBeendet = ueberpruefeLevelende();
-//        starteNeueSzene();
-//    }
-//
-//    /**
-//     * @author LuHe20
-//     * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
-//     */
-//    private void starteNeueSzene() {
-//        if(levelBeendet){
-//            levelBeendet = false;
-//            spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
-//            spielmodell.betreteSzene(spielmodell.getSzeneNr());
-//            anzeigeTitelLevel(spielmodell.getSzeneNr() + 1);
-//        }
-//    }
-
     /**
      * Ruft alle einzelnen zeichne Methoden auf.
      */
@@ -481,10 +403,8 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Stern) {
             tempMovable = new Stern(posX, posY);
         }
-       if (this.spielwelt.getSzene(this.levelNr-1)instanceof ILevel){
-            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
-            level.addPosition(tempMovable);
-        }
+        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        level.addPosition(tempMovable);
     }
 
     /**
