@@ -213,6 +213,7 @@ public class Leveleditor extends Spielsteuerung {
         //Befüllen des Menuarrays mit den Movables
         //WICHTIG: Wenn neue Movables hinzugefügt werden, muss das und auch im DateiService geschehen.
         // @see Leveleditor --> Methode addMovablezuLevel
+        // @see Leveleditor --> Methode zeichneEinstellungsmenu
         // @see DateiService --> Methode IMovable deserialize
         this.menuArrayMovables.add( new Schwert(40,40,1,this.wert));
         this.menuArrayMovables.add( new Mango(0,0,this.punkte,this.wert));
