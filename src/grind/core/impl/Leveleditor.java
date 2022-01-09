@@ -211,6 +211,9 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayKacheln.add( new Wiese());
 
         //Befüllen des Menuarrays mit den Movables
+        //WICHTIG: Wenn neue Movables hinzugefügt werden, muss das und auch im DateiService geschehen.
+        // @see Leveleditor --> Methode addMovablezuLevel
+        // @see DateiService --> Methode IMovable deserialize
         this.menuArrayMovables.add( new Schwert(40,40,1,this.wert));
         this.menuArrayMovables.add( new Mango(0,0,this.punkte,this.wert));
         this.menuArrayMovables.add( new Heiltrank(0,0,this.punkte,this.wert));
@@ -359,6 +362,8 @@ public class Leveleditor extends Spielsteuerung {
     /**
      * Fügt das übergebene Movable im aktuellen Level in die Instanz von Spielwelt hinzu.
      * Falls ein neues Movable im Spiel implementiert wird, muss dieses hier auch mit implementiert werden.
+     * WICHTIG: Wenn neue Movables hinzugefügt werden, muss das auch im DateiService geschehen.
+     * @see DateiService --> Methode IMovable deserialize
      * @param movable Das zu speichernde Movable
      */
     private void addMovablezuLevel(IMovable movable) {
