@@ -14,7 +14,7 @@ public class ApfelTest_Avalon {
 
     @Before
     public void setUp() throws Exception {
-        apfel = new Apfel(100, 100);
+        apfel = new Apfel(100, 100, 3, 3);
         figur = new Spielfigur( 200, 200, Richtung.N);
         figur.gold = 5;
     }

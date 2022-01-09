@@ -15,7 +15,7 @@ public class SchwertTest_Avalon {
     @Before
     public void setUp() throws Exception {
         figur = new Spielfigur(200, 200, Richtung.randomRichtung());
-        schwert = new Schwert(100, 100, 2);
+        schwert = new Schwert(100, 100, 2, 3);
         figur.gold = 5;
     }
     @Test

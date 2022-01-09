@@ -20,6 +20,7 @@ import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
+import grind.welt.impl.DummySiedlung;
 import grind.welt.impl.DummySpielwelt;
 
 import java.io.Reader;
@@ -71,6 +72,8 @@ public class DateiService {
                 String klassenname;
                 int stufe = 1;
                 int feuerrate;
+                int wert;
+                int punkte;
                 FeuerModus feuerModus;
                 LaufModus laufModus;
                 int posX;
@@ -111,7 +114,9 @@ public class DateiService {
                 switch (klassenname) {
 
                     case "class grind.movables.impl.Apfel":
-                        iMovable = new Apfel(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Apfel(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Gold":
                         iMovable = new Gold(posX, posY);
@@ -133,14 +138,19 @@ public class DateiService {
                         iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, laufModus);
                         break;
                     case "class grind.movables.impl.Heiltrank":
-                        iMovable = new Heiltrank(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Heiltrank(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Mango":
-                        iMovable = new Mango(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Mango(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Schwert":
+                        wert = jsonObject.get("wert").getAsInt();
                         stufe = jsonObject.get("stufe").getAsInt();
-                        iMovable = new Schwert(posX, posY, stufe);
+                        iMovable = new Schwert(posX, posY, stufe, wert);
                         break;
                     case "class grind.movables.impl.Levelende":
                         iMovable = new Levelende(posX, posY);
@@ -148,11 +158,12 @@ public class DateiService {
                     case "class grind.movables.monster.FeuerMonster":
                         feuerrate = jsonObject.get("feuerRate").getAsInt();
                         feuerModus = FeuerModus.valueOf(jsonObject.get("feuerModus").getAsString());
-                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, feuerrate, feuerModus);
+                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung,  Richtung.N, feuerrate, feuerModus);
+                        break;
                     case "class grind.movables.impl.Bogen":
                         stufe = jsonObject.get("stufe").getAsInt();
-
-                        iMovable = new Bogen(posX, posY, stufe);
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Bogen(posX, posY, stufe, wert);
                         break;
                     case "class grind.movables.impl.Spezialattacke":
                         stufe = jsonObject.get("stufe").getAsInt();
@@ -201,9 +212,10 @@ public class DateiService {
                         iSzene = jsonDeserializationContext.deserialize(jsonElement,
                                 new TypeToken<DummyLevel>(){}.getType());
                         break;
-//                    case "class grind.welt.impl.DummySiedlung":
-//                        iSzene = new DummySiedlung();
-//                        break;
+                    case "class grind.welt.impl.DummySiedlung":
+                        iSzene = jsonDeserializationContext.deserialize(jsonElement,
+                                new TypeToken<DummySiedlung>(){}.getType());
+                        break;
                     default:
                         break;
                 }

@@ -14,8 +14,8 @@ public class SpielfigurTest_Avalon {
     @Before
     public void setUp() throws Exception {
         figur = new Spielfigur(200,200, Richtung.N);
-        apfel = new Apfel(200,200);
-        schwert = new Schwert(10, 50, 50);
+        apfel = new Apfel(200,200, 3, 3);
+        schwert = new Schwert(10, 50, 50, 3);
         figur.getInventar().add(apfel);
         figur.getInventar().add(schwert);
     }

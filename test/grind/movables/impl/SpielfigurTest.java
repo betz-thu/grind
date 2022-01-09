@@ -12,8 +12,8 @@ class SpielfigurTest {
 
     @Before
     void setUp() {
-        schwert1 = new Schwert(100, 100, 1);
-        schwert2 = new Schwert(200, 200, 2);
+        schwert1 = new Schwert(100, 100, 1, 3);
+        schwert2 = new Schwert(200, 200, 2, 3);
         figur = new Spielfigur((float)100, (float)100, Richtung.S);
     }
 

@@ -32,8 +32,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
-    transient Waffe testwaffe = new Schwert(35,35,1);
-    transient Bogen testbogen = new Bogen(35,35,1);
+    transient Waffe testwaffe = new Schwert(35,35,1,3);
+    transient Bogen testbogen = new Bogen(35,35,1,3);
     transient Pfeil testpfeil = new Pfeil(35,35,1);
     transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
 

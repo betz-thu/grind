@@ -31,7 +31,7 @@ public class DummySiedlung implements ISiedlung {
 
     @Override
     public void addPosition(IMovable movable) {
-        this.positionen = positionen;
+        this.positionen.add(movable);
     }
 
     @Override

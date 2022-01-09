@@ -21,13 +21,13 @@ public class Bogen extends Waffe{
 
 
 
-    public Bogen(int x, int y, int stufe) {
+    public Bogen(int x, int y, int stufe, int wert) {
         super(x, y, 40);
         this.stufe=stufe;
         if (getAusrichtung()==null){
             this.setAusrichtung(Richtung.S);
         }
-        this.wert = 3;  // jeder Gegenstand startet mit Wert 3 @Team Leveleditor: gerne ändern
+        this.wert = wert;
 
     }
 

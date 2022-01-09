@@ -11,7 +11,7 @@ public class HeiltrankTest {
 
     @Before
     public void setUp() throws Exception {
-        heiltrank = new Heiltrank(100, 100);
+        heiltrank = new Heiltrank(100, 100, 3, 3);
         figur = new Spielfigur(200, 200, Richtung.S);
     }
     @Test
