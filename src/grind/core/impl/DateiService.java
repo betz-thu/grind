@@ -158,7 +158,7 @@ public class DateiService {
                     case "class grind.movables.monster.FeuerMonster":
                         feuerrate = jsonObject.get("feuerRate").getAsInt();
                         feuerModus = FeuerModus.valueOf(jsonObject.get("feuerModus").getAsString());
-                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, feuerrate, feuerModus);
+                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung,  Richtung.N, feuerrate, feuerModus);
                         break;
                     case "class grind.movables.impl.Bogen":
                         stufe = jsonObject.get("stufe").getAsInt();

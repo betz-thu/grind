@@ -222,7 +222,7 @@ public class Leveleditor extends Spielsteuerung {
         this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
         this.menuArrayMovables.add( new Levelende(0,0));
         this.menuArrayMovables.add( new DornPflanze(0,0,this.tileMap));
-        this.menuArrayMovables.add( new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,1, FeuerModus.RANDOM));
+        this.menuArrayMovables.add( new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,feuerRate, FeuerModus.RANDOM));
         this.menuArrayMovables.add( new Geist(0,0,this.tileMap));
         this.menuArrayMovables.add( new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT));
     }

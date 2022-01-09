@@ -24,7 +24,6 @@ public class FeuerMonster extends Monster{
     final int deltaX;
     final int deltaY;
     transient ITileMap tileMap;
-    transient Spielsteuerung steuerung;
     transient Richtung ausrichtung;
     transient Feuerball feuerball;
     private int schussZaehler=0;
@@ -66,14 +65,13 @@ public class FeuerMonster extends Monster{
      * @param steuerung bewegungs Methoden
      * @param ausrichtung   Laufrichtung
      */
-    public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung,int feuerRate,FeuerModus feuerModus) {
-        super(posX, posY,ausrichtung,Einstellungen.LAENGE_KACHELN_X/2);
+    public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung, int feuerRate,FeuerModus feuerModus) {
+        super(posX, posY,ausrichtung, steuerung,Einstellungen.LAENGE_KACHELN_X/2);
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
         this.deltaX = -geschwindigkeit; // gibt dem FeuerMonster eine Anfangsrichtung und geschwindigkeit
         this.deltaY = -geschwindigkeit;
-        this.steuerung=steuerung;
         this.ausrichtung=ausrichtung;
         rand = new Random();
         this.feuerRate=feuerRate;
