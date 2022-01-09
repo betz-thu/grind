@@ -328,19 +328,22 @@ public class Leveleditor extends Spielsteuerung {
                     aktuellesMovable.setPosition(mausXmovable,mausYmovable);
                     addMovablezuLevel(aktuellesMovable);
                 } else if (aktuelleKachel == null && aktuellesMovable == null){
-                    aktuelleKachel = tileMap.getKachel(mausYkachel, mausXkachel);
-                    tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
-//                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
-//                    List<IMovable> movableList = templevel.getPositionen();
-//                    for (IMovable movable : movableList){
-//                        int posX = movable.getPosX();
-//                        int posY = movable.getPosY();
-//
-//                        if (posX == mausXmovable && posY == mausYmovable){
-//                            aktuellesMovable = movable;
-//                            movableList.remove(movable);
-//                        }
-//                    }
+                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
+                    ArrayList<IMovable> movableList = (ArrayList<IMovable>) templevel.getPositionen();
+
+                    for (int i = 0; i < movableList.size(); i++){
+                        int posX = movableList.get(i).getPosX();
+                        int posY = movableList.get(i).getPosY();
+
+                        if (posX == mausXmovable && posY == mausYmovable){
+                            aktuellesMovable = movableList.get(i);
+                            movableList.remove(i);
+                        }
+                    }
+                    if (aktuellesMovable == null) {
+                        aktuelleKachel = tileMap.getKachel(mausYkachel, mausXkachel);
+                        tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
+                    }
                 }
             }
 //            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null || aktuellesMovable != null)) {
