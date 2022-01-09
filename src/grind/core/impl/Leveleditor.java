@@ -13,11 +13,9 @@ import grind.util.Richtung;
 import grind.welt.ILevel;
 import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
-import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
 import grind.welt.impl.DummySiedlung;
 import grind.welt.impl.DummySpielwelt;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
@@ -48,6 +46,8 @@ public class Leveleditor extends Spielsteuerung {
     private int levelNr = 1;
     private int speicherHinweisLevel;
     private int speicherHinweis = 1;
+    //Die Stringbreite legt den Abstand zwischen den beiden Auswahlpfeilen (Einstellungen der Movables) fest
+    //Falls die ENUM Namen zu groß werden, muss das hier angepasst werden.
     private int stringBreite = 90;
     private int feuerRate = 1;
     private int stufe = 1;
@@ -75,16 +75,16 @@ public class Leveleditor extends Spielsteuerung {
     private final Button einstellungenObenMinus;
     private final Button einstellungenUntenPlus;
     private final Button einstellungenUntenMinus;
-    //private PImage spielfigurBild;
     Dictionary images = new Hashtable();
 
 
     /**
      * Konstruktor des Leveleditors
-     * Erstellt von den benötigten Klassen Instanzen um die Darstellung der einzelnen Spielobjekte zu ermöglichen
-     * Befüllt die Menüs mit den entsprechenden Instanzen der Klassen
-     * Ändert die Kachelgräße um den Leveleditor auch auf kleineren Bildschirmen vollständig anzuzeigen
-     * Legt die Größe der Buttons anhand der Kachelgrößen fest
+     * Erstellt von den benötigten Klassen Instanzen um die Darstellung der einzelnen Spielobjekte zu ermöglichen.
+     * Befüllt die Menüs mit den entsprechenden Instanzen der Klassen.
+     * Ändert die Kachelgräße um den Leveleditor auch auf kleineren Bildschirmen vollständig anzuzeigen.
+     * Gibt den einzelnen Buttons ihre Funktionsbeschriftung.
+     * Legt die Größe der Buttons anhand der Kachelgrößen fest.
      */
     public Leveleditor(){
         Einstellungen.LAENGE_KACHELN_Y = 30;
@@ -238,16 +238,13 @@ public class Leveleditor extends Spielsteuerung {
     }
 
     /**
-     * Methode setup, lädt Darstellung der Spielfigur und zeigt den Titel des Programms an
+     * Methode setup, lädt Darstellungen  und zeigt den Titel des Programms an
      */
     @Override
     public void setup() {
         imageMode(PConstants.CORNER);
         ladeBilder(this);
-        //spielfigurBild = loadImage("SpielfigurOhneWaffe.jpg");
         anzeigeTitelLevel(levelNr);
-//        Spieler.ladeIMGSpielfigur(this);
-//        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
     }
 
     /**
@@ -257,8 +254,6 @@ public class Leveleditor extends Spielsteuerung {
     @Override
     public void draw() {
         background(255);
-    //    eingabe();
-    //    aktualisiere();
         zeichne();
     }
 
@@ -266,13 +261,11 @@ public class Leveleditor extends Spielsteuerung {
      * Ruft alle einzelnen zeichne Methoden auf.
      */
     private void zeichne() {
-        //this.spielmodell.getTileMap().zeichne(this);
         zeichneTileMap();
         zeichneMovables();
         zeichneAssetMenu(this.menuArrayKacheln);
         zeichneMovableMenu(this.menuArrayMovables);
         zeichneEinstellungsmenu();
-
         zeichneMausKachel(aktuelleKachel, mouseX, mouseY);
         zeichneMausMovable(aktuellesMovable,mouseX,mouseY);
         zeichneButtons();
@@ -286,8 +279,14 @@ public class Leveleditor extends Spielsteuerung {
      * Bei einem Linksklick wird überprüft, ob man sich auf einem Menupunkt (Kachel/Movable), Button oder auf
      * der Tilemap befindet.
      * Befindet man sich auf der Tilemap, wird das aktuell ausgewählte Objekt platziert.
+     * Die Platzierung erfolgt nur in Kachelfeldern und ist nicht frei auf der Map platzierfähig.
+     *
      * Befindet man sich auf einem Menupunkt, wird dieser als akutelle Mauskachel gewählt.
      * Befindet man sich auf einem Button, wird dieser aufgerufen.
+     * Ist aktuell keine Kachel oder Movable ausgewählt, kann auf dem Spielfeld ein Movable oder eine Kachel
+     * aufgenommen und verschoben/gelöscht werden.
+     *
+     * Die Einstellungen der Movables werden hier beim auswählen auf ihre Standartwerte gesetzt.
      *
      * Bei einem Rechtsklick wird die aktuelle Mauskachel auf null gesetzt.
      */
@@ -346,21 +345,11 @@ public class Leveleditor extends Spielsteuerung {
                     }
                 }
             }
-//            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe && (aktuelleKachel != null || aktuellesMovable != null)) {
-//                if (aktuelleKachel != null){
-//                    tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
-//                } else if (aktuellesMovable != null){
-//                    aktuellesMovable.setPosition(mausXmovable,mausYmovable);
-//                    addMovablezuLevel(aktuellesMovable);
-//                }
-//            }
             buttonAction(mouseY, mouseX);
 
         } else if (mouseButton == RIGHT){
             if (aktuelleKachel == null && aktuellesMovable == null && mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe ){
                 tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
-//                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
-//                    templevel.getPositionen().
             }
             aktuelleKachel = null;
             aktuellesMovable = null;
@@ -420,7 +409,7 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Zeichnet das Menü mit den verfügbaren Kacheln am rechten Rand.
-     * @param menuArray Das Menuarray mit den verschiedenen Kachelarten
+     * @param menuArray Die Menuarraylist mit den verschiedenen Kachelarten
      */
     private void zeichneAssetMenu(ArrayList<IKachel> menuArray){
         int mapAussenX = SpielfeldBreite;
@@ -439,7 +428,7 @@ public class Leveleditor extends Spielsteuerung {
     /**
      * Zeichnet das Menü mit den verfügbaren Movables am rechten Rand nach den Kacheln.
      * Die Spielfigur wird als reines Bild dargestellt, da sonst der Lebensbalken mitgezeichnet werden muss.
-     * @param menuArray Das Menuarray mit den verschiedenen Movablearten
+     * @param menuArray Die Menuarraylist mit den verschiedenen Movablearten
      */
     private void zeichneMovableMenu(ArrayList<IMovable> menuArray){
         int mapAussenX = SpielfeldBreite + Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X/2;
@@ -456,11 +445,6 @@ public class Leveleditor extends Spielsteuerung {
                 iMovables.zeichne(this);
             }
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
-
-//            if (mapAussenY >= SpielfeldHoehe) {
-//                mapAussenY = 0;
-//                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
-//            }
         }
         this.popStyle();
     }
@@ -479,6 +463,7 @@ public class Leveleditor extends Spielsteuerung {
 
     /**
      * Gibt das Movable an der übergebenen Position im Array zurück
+     * Wenn das aktuelle Level eine Siedlung ist, können keine Monster platziert und aufgenommen werden.
      * @param mausY Position in Y Richtung
      * @param mausX Position in X Richtung
      * @param iMovable Das Array mit den Movables
@@ -558,6 +543,10 @@ public class Leveleditor extends Spielsteuerung {
 
     }
 
+    /**
+     * Zeichnet neben den Buttons die aktuellen Einstellungen der Mauskachel/movable nieder.
+     * Jedes Objekt hat neben der Position noch weitere Eigenschaften wie den Wert, Punkte und die Stufe.
+     */
     private void zeichneEinstellungsmenu() {
         this.pushStyle();
         float textverhaeltnis = ((Einstellungen.LAENGE_KACHELN_X * Einstellungen.LAENGE_KACHELN_Y) / 1600f);
@@ -680,6 +669,9 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Verringert die Punkte, den FeuerModus und den LaufModus.
+     */
     private void minusuntereEinstellung() {
         if (punkte > 1){
             punkte--;
@@ -689,7 +681,9 @@ public class Leveleditor extends Spielsteuerung {
         System.out.println("minusunten");
     }
 
-
+    /**
+     * Erhöht die Punkte, den FeuerModus und den LaufModus.
+     */
     private void plusuntereEinstellung() {
         punkte++;
         iteriereFeuerModus();
@@ -697,6 +691,9 @@ public class Leveleditor extends Spielsteuerung {
         System.out.println("plusunten");
     }
 
+    /**
+     * Verringert die FeuerRate, die Stufe und den Wert.
+     */
     private void minusobereEinstellung() {
         if (feuerRate > 0){
             feuerRate--;
@@ -710,6 +707,9 @@ public class Leveleditor extends Spielsteuerung {
         System.out.println("minusoben");
     }
 
+    /**
+     * Erhöht die FeuerRate, die Stufe und den Wert.
+     */
     private void plusobereEinstellung() {
         feuerRate++;
         stufe++;
@@ -724,6 +724,10 @@ public class Leveleditor extends Spielsteuerung {
         System.exit(0);
     }
 
+    /**
+     * Schaltet bei jedem Aufruf den FeuerModus in den nächsten Modus.
+     * Bei neuen Modis müssen diese hier als neue case hinzugefügt werden
+     */
     private void iteriereFeuerModus() {
         switch (feuerModus){
             case RANDOM:
@@ -740,6 +744,10 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Schaltet bei jedem Aufruf den LaufModus in den nächsten Modus.
+     * Bei neuen Modis müssen diese hier als neue case hinzugefügt werden
+     */
     private void iteriereLaufModus(){
         switch (laufModus){
             case DEFAULT:
@@ -893,6 +901,11 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Prüft, ob sich mehr als eine Spielfigur in der Szene befindet
+     * @param szenenNr Die aktuelle Szenennummer
+     * @param sizeMovables Die Größe der Movableliste
+     */
     private void pruefeSpielfigur(int szenenNr, int sizeMovables) {
         int anzahlSpielfiguren = 0;
 
@@ -913,6 +926,11 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Prüft, ob sich in der Szene ein Levelende befindet
+     * @param szenenNr Die aktuelle Szenennummer
+     * @param sizeMovables Die Größe der Movableliste
+     */
     private void pruefeLevelende(int szenenNr, int sizeMovables) {
         if (speicherHinweis != 0){
             for (int j = 0; j < sizeMovables; j++) {
@@ -928,6 +946,11 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Prüft, ob sich in der Szene ein Levelausgang befindet
+     * @param pruefTilemap Die zu prüfende Tilemap.
+     * @param sizeKachelarten Die Anzahl der Verschiedenen Kachelarten.
+     */
     private void pruefeLevelausgang(ITileMap pruefTilemap, int sizeKachelarten) {
         for (int j = 0; j < sizeKachelarten; j++){
             if (pruefTilemap.getKachelarten().get(j) instanceof Levelausgang){
@@ -939,11 +962,19 @@ public class Leveleditor extends Spielsteuerung {
         }
     }
 
+    /**
+     * Gibt das Verzeichnis mit den Bildern zurück
+     * @return Dictionary mit allen Movable Bildern
+     */
     @Override
     public Dictionary getImages() {
         return images;
     }
 
+    /**
+     * Setzt ein Verzeichnis in das aktuelle image Verzeichnis
+     * @param images Dictionary welches gesettet werden soll
+     */
     @Override
     public void setImages(Dictionary images) {
         this.images = images;
