@@ -14,7 +14,7 @@ public class MangoTest {
 
     @Before
     public void setUp() throws Exception {
-        mango = new Mango(100, 100);
+        mango = new Mango(100, 100, 3, 3);
         figur = new Spielfigur(200, 200, Richtung.N);
         figur.gold = 5;
     }

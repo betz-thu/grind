@@ -8,10 +8,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Team3Test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/AvalonTest" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/testArchitekt" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/testArchitekt" />
-      <excludeFolder url="file://$MODULE_DIR$/test" />
-      <excludeFolder url="file://$MODULE_DIR$/Team3Test" />
-      <excludeFolder url="file://$MODULE_DIR$/AvalonTest" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

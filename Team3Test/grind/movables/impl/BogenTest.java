@@ -13,7 +13,7 @@ public class BogenTest {
 
     @Before
     public void setUp() throws Exception {
-        bogen = new Bogen(20, 20, STUFE);
+        bogen = new Bogen(20, 20, STUFE, 3);
     }
 
     @Test

@@ -17,8 +17,8 @@ public class SpielsteuerungTest_Avalon {
     @Before
     public void setUp() throws Exception {
 
-        heiltrank = new Heiltrank( 100, 100);
-        heiltrank2 = new Heiltrank( 100, 100);
+        heiltrank = new Heiltrank( 100, 100, 3, 3);
+        heiltrank2 = new Heiltrank( 100, 100, 3,3);
         spiel = new Spielsteuerung();
 
     }
