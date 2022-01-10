@@ -216,5 +216,16 @@ public abstract class Monster extends Movable implements IMonster {
         this.spielmodell = spielmodell;
     }
 
+    public int getSchaden() {
+        return schaden;
+    }
+
+    public long getStartTimeNaehe() {
+        return startTimeNaehe;
+    }
+
+    public long getStartTimeAttac() {
+        return startTimeAttac;
+    }
 }
 

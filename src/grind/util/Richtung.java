@@ -27,5 +27,8 @@ public enum Richtung {
     public static Richtung randomRichtung()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
+
+
+
 }
 

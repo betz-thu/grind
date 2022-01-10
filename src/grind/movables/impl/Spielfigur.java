@@ -428,14 +428,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
-    /**
-     * Methode ladeIMGSpielfigur, lädt Darstellung der Spielfigur.
-     * (zukünftig: lädt spielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen,...)
-     */
-    /*public void ladeIMGSpielfigur(PApplet app) {
-        spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
-    }*/
-
     public void setAktiveWaffe(Waffe waffe){
         //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.
         //inventar.add(aktiveWaffe);

@@ -69,12 +69,6 @@ public class Geist extends Monster {
     }
 
     @Override
-    public void vorBetreten(IKachel kachel) {
-        // Ein Geist darf auch durch Wände gehen
-
-    }
-
-    @Override
     public ISpielmodell getSpielmodell() {
         return this.spielmodell;
     }
@@ -84,5 +78,8 @@ public class Geist extends Monster {
         this.spielmodell = spielmodell;
     }
 
+    @Override
+    public void vorBetreten(IKachel kachel) {
 
+    }
 }
