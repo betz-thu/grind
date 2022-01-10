@@ -165,6 +165,10 @@ public class LeveleditorTest {
                     assertNotNull(spielwelt.getSzene(levelNr-1));
                     ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
 
+                    //TODO: An der Stelle würde ich eher abfragen ob die Spielwelt erst einmal nicht null ist
+                    //laut der Fehlermeldung erwartet er das Dummylevel mit der speicheradresse x in templevel.
+                    //das geht aber nicht weil beide keinerlei kontakt miteinander hatten
+
 
 //                    assertEquals(templevel.getPositionen(), movableList);
 
