@@ -62,6 +62,8 @@ public class DateiService {
 /**
  * Custom DeSerializer für die Deserialisierung von einem IMovable.
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
+ * WICHTIG: Wenn neue Movables hinzugefügt werden, muss das auch im Leveleditor geschehen.
+ * @see Leveleditor --> Methode addMovablezuLevel und Konstruktor this.menuArrayMovables.add
  */
         JsonDeserializer<IMovable> iMovableJsonDeserializer = new JsonDeserializer<IMovable>() {
             @Override
@@ -287,6 +289,8 @@ public class DateiService {
 /**
  * Custom DeSerializer für die Deserialisierung von einer IKachel.
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
+ * WICHTIG: Wenn neue Kacheln hinzugefügt werden, muss das auch im Leveleditor geschehen.
+ * @see Leveleditor --> Konstruktor this.menuArrayKacheln.add
  */
         JsonDeserializer<IKachel> iKachelJsonDeserializer = new JsonDeserializer<IKachel>() {
             @Override
