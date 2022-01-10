@@ -58,40 +58,12 @@ public class Spielmodell implements ISpielmodell {
         this.steuerung=steuerung;
     }
 
-    /**
-     * Löscht Movable aus Liste der Positionen und aus Liste der movables
-     * z. B. Für das Einsammeln eines Schatzes
-     * @param
-     */
-    /*@Override
-    public void removeMovable(IMovable movable){
 
-        if(level == null){
-            return;
-        }
-       List<IMovable> positionen = level.getPositionen();
-
-       positionen.remove(movable);
-       movables.remove(movable);
-
-    }*/
 
     /**
-     *
+     *Why??
      */
     public void entferneToteMonster(){
-    /*
-        for (int i=0; i<monster.size();i++){
-            if (monster.get(i).getLebensenergie()<=0){
-                System.out.println(monster.size());
-                System.out.println(monster.get(i));
-                IMonster geloeschtesMonster = monster.remove(i);
-                System.out.println(geloeschtesMonster);
-                System.out.println(monster.size());
-                break;
-            }
-        }
-    */
 
     }
 
