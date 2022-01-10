@@ -192,9 +192,6 @@ public class LeveleditorTest {
             }
         }
     }
-        @Test
-        public void anzeigeTitelLevel () {
 
-        }
 
     }
