@@ -259,36 +259,5 @@ public class FeuerMonster extends Monster{
     public void vorBetreten(IKachel kachel) {
 
     }
-
-//    /**
-//     * @MEGAtroniker
-//     * Methode resetTimer setzt booleand hatKollidiert auf false,
-//     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-//     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
-//     */
-//    public void resetTimer(){
-//        long endTime = System.currentTimeMillis();
-//        if(endTime-startTime>=2000){
-//            hatKollidiert=false;
-//        }
-//    }
-//
-//    /**
-//     * @MEGAtroniker
-//     * is never used!!!!!!!!!
-//     * ersetzt durch assoziation zu Spielsteuerung!!!!
-//     * @param kachel nope
-//     */
-        /*
-        * @MEGAtroniker
-        * Getter, notwendig für die tests und kapselung
-        * @return
-        */
-        /**
-         * @MEGAtroniker
-         * Getter, notwendig für die tests und kapselung
-         * @return
-         */
-
 }
 

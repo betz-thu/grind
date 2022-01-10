@@ -2,12 +2,16 @@ package grind.movables.monster;
 
 import grind.core.impl.Spielsteuerung;
 import grind.kacheln.impl.TileMap;
+import grind.movables.IMovable;
 import grind.movables.impl.Spielfigur;
 import grind.util.FeuerModus;
 import grind.util.Richtung;
 import org.junit.Before;
 import org.junit.Test;
 import processing.core.PApplet;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.junit.Assert.*;
 
@@ -24,6 +28,7 @@ public class FeuerMonsterMEGAtronikerTest {
         steuerung = new Spielsteuerung();
         tFigur = new Spielfigur(0, 0, Richtung.N);
         tFeuerMonster = new FeuerMonster(200, 200, this.tileMap, this.steuerung, Richtung.N, 100, FeuerModus.KONSTANT);
+        steuerung.getSpielmodell().addMonster(tFeuerMonster);
 
     }
 
@@ -88,13 +93,11 @@ public class FeuerMonsterMEGAtronikerTest {
 
     @Test
     public void shootFeuerball() {
-    }
-
-    @Test
-    public void resetTimer() {
-    }
-
-    @Test
-    public void vorBetreten() {
+        List<IMovable> movableList = steuerung.getSpielmodell().getMovables();
+        int movableListsize = movableList.size();
+        tFeuerMonster.getSpielmodell();
+        tFeuerMonster.getSpielsteuerung();
+        tFeuerMonster.shootFeuerball();
+        assertEquals(steuerung.getSpielmodell().getMovables().size(),movableListsize+1);
     }
 }

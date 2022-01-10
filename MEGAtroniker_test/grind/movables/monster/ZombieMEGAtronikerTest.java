@@ -15,6 +15,8 @@ import static org.junit.Assert.*;
 
 public class ZombieMEGAtronikerTest {
 
+    //die meisten Methoden werden schon in MonsterMEGAtronikerTest getestet.
+
     private Monster zombie;
     private ITileMap tileMap;
     private Spielsteuerung steuerung;

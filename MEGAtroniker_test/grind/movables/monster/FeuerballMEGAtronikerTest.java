@@ -36,19 +36,17 @@ public class FeuerballMEGAtronikerTest {
         ball.bewege();
         assertEquals((int) (posXdavor+ball.deltaX), ball.getPosX());
         assertEquals((int) (posYdavor+ball.deltaY), ball.getPosY());
+
+        ball.setPosition(1000,5000);
+        ball.bewege();
+        assertFalse(steuerung.getSpielmodell().getMovables().contains(ball));
     }
 
     @Test
     public void beiKollision() {
         steuerung.getSpielmodell().getFigur().setPosition(100,100);
         ball.beiKollision(steuerung.getSpielmodell().getFigur(),ball);
+        ball.bewege();
         assertFalse(steuerung.getSpielmodell().getMovables().contains(ball));
-
-
-
-    }
-
-    @Test
-    public void vorBetreten() {
     }
 }
