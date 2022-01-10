@@ -458,6 +458,7 @@ public class Spielsteuerung extends PApplet {
      */
     private void anzeigeZeit(int mSek){
         fill(30,30,180);  // Blau
-        text(String.format("%.2f [sec]",mSek/1000.0), SpielfeldBreite-60,15);
+        textSize(30);
+        text(String.format("%.2f [sec]",mSek/1000.0), SpielfeldBreite-80,40);
     }
 }
