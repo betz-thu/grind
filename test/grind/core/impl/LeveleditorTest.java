@@ -85,6 +85,7 @@ public class LeveleditorTest {
         this.menuArrayKacheln = new ArrayList<>();
         this.menuArrayMovables = new ArrayList<>();
         this.tileMap = new TileMap();
+        this.spielwelt = new DummySpielwelt();
         this.spielsteuerung = new Spielsteuerung();
         this.dateiService = new DateiService(this.spielsteuerung);
         this.aktuelleKachel = null;
