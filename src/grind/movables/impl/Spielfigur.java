@@ -318,7 +318,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    // Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                    /**
+                     * Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                     * */
                     if(isSternAngewandt){
                         setImmun(true);
                         Timer timer2 = new Timer();
@@ -335,7 +337,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
                     timer.cancel();
                 }
 
-            }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+            }, IMMUNITÄTSDAUERNACHSCHADEN);
+            /**
+             * nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+             * */
         }
     }
 
