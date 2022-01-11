@@ -54,8 +54,8 @@ public class Spielsteuerung extends PApplet {
     boolean gameOver = false;
 
     int CountStart;
-    int duration = 100;
-    int time = 100;
+    int duration = 150;
+    int time = 150;
 
 
     /**
