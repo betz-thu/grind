@@ -621,6 +621,13 @@ public class Spielsteuerung extends PApplet {
         this.images = images;
     }
 
+    /**
+     * Die Methode beiKollisionSiedlung wird bei Kollisionen in der Siedlung aufgerufen.
+     * Beim Aufheben von Gegenständen wird der Kontostand der Spielfigur verringert
+     * und der Gegenstand in das Inventar aufgenommen.
+     * Schätze werden normal aufgehoben und erhöhten den Kontostand der Spielfigur
+     * @param movable Movable mit dem kollidiert wird
+     */
     public void beiKollisionSiedlung(IMovable movable){
         if(movable instanceof Gegenstand){
             if(((Gegenstand) movable).getWert() <= spielmodell.getFigur().getGold())
