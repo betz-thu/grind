@@ -155,19 +155,28 @@ public class Spielmodell implements ISpielmodell {
         }
 
         if(getSzene() instanceof ISiedlung){
-            for (IMovable movable : this.movables) {
-                spielsteuerung.fill(0,0,0);
-                spielsteuerung.textSize(14);
-                if(movable instanceof Gegenstand) {
-                    spielsteuerung.text(movable.toString(), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
-                    spielsteuerung.text(("Wert: " + ((Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY()-movable.getGroesse());
-
-                }
-            }
+            eigenschaftenInSiedlungen(spielsteuerung);
         }
 
         this.figur.zeichne(spielsteuerung);
 
+    }
+
+
+    /**
+     * Zeichnet in Siedlungen den Wert und Eigenschaften von Gegenständen die erworben werden können
+     * @param spielsteuerung
+     */
+    private void eigenschaftenInSiedlungen(Spielsteuerung spielsteuerung) {
+        for (IMovable movable : this.movables) {
+            spielsteuerung.fill(0,0,0);
+            spielsteuerung.textSize(14);
+            if(movable instanceof Gegenstand) {
+                spielsteuerung.text(movable.toString(), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
+                spielsteuerung.text(("Wert: " + ((Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY()-movable.getGroesse());
+
+            }
+        }
     }
 
     /**

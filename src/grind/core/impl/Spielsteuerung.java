@@ -219,20 +219,28 @@ public class Spielsteuerung extends PApplet {
 
             }
             //Inventar öffnen
-            if(keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
-                    Spieler.setInventarGuiGroeße(30);
-                    Spieler.playBackpackOpenSound();
-                    keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
-                    Spieler.setInventarGuiGroeße(10);
-                    keyPressed = false;
-                    Spieler.playBackpackCloseSound();
-                }
-            }
+            inventarOeffen();
         }
 
         szeneUeberspringen();
+    }
+
+
+    /**
+     * Öffnet erweitertes Inventar, indem es die gezeichnete Inventar größe auf 30 erhöht
+     */
+    private void inventarOeffen() {
+        if(keyPressed) {
+            if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                Spieler.setInventarGuiGroeße(30);
+                Spieler.playBackpackOpenSound();
+                keyPressed = false;
+            } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                Spieler.setInventarGuiGroeße(10);
+                keyPressed = false;
+                Spieler.playBackpackCloseSound();
+            }
+        }
     }
 
     /**
@@ -326,6 +334,16 @@ public class Spielsteuerung extends PApplet {
         }
 
         //Items verschieben
+        dragAndDrop();
+
+
+    }
+
+    /**
+     * Items lassen sich mit erstem Mausklick (Linke Maustaste) aufheben und mit zweitem Klick an Mausposition wieder ablegen
+     * Wenn bei zweitem Klick nicht Gegenstand aus Inventar ausgewählt wird, wird der Gegenstand am Ende des Inventars eingefügt
+     */
+    private void dragAndDrop() {
         if(mouseButton==LEFT && klicked==false){
             int invPos = Spieler.getInventarPosition(mouseX, mouseY);
             if(invPos>=0){
@@ -346,8 +364,6 @@ public class Spielsteuerung extends PApplet {
             klicked = false;
 
         }
-
-
     }
 
     public boolean ueberpruefeLevelende() {
