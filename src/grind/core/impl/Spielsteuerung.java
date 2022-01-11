@@ -19,7 +19,7 @@ import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-import java.io.File;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -327,7 +327,7 @@ public class Spielsteuerung extends PApplet {
 
         //Items verschieben
         if(mouseButton==LEFT && klicked==false){
-            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            int invPos = Spieler.getInventarPosition(mouseX, mouseY);
             if(invPos>=0){
                 klicked = true;
                 Spieler.auswahl = Spieler.getInventar().get(invPos);
@@ -336,7 +336,7 @@ public class Spielsteuerung extends PApplet {
                 Spieler.auswahl.zeichne(this);
             }
         }else if(mouseButton==LEFT && klicked==true){
-            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            int neuePos = Spieler.getInventarPosition(mouseX, mouseY);
             if(neuePos>=0) {
                 Spieler.getInventar().add(neuePos,Spieler.auswahl);
             }else{

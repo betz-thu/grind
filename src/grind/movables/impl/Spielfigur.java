@@ -1,11 +1,9 @@
 package grind.movables.impl;
 
 import grind.core.impl.Spielsteuerung;
-import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -216,6 +214,17 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+    /**
+     * Zeichnet Quadrate,ausgehend von den x-y Startkoordinaten (von rechts nach links), mit Seitenlängen der guiGröße
+     * Bei jedem 10. Quadrat wird ein Zeilenumbruch nach oben (-y Richtung) gezeichnet
+     *
+     * @param app Main PApplet von Processing
+     * @param groeße Inventargröße die gezeichnet werden soll
+     * @param startkoordinateX x-Startposition von der aus das Inventar gezeichnet wird
+     * @param startkoordinateY y-Startposition von der aus das Inventar gezeichnet wird
+     * @param guiGroeße Größe des grafischen Overlays
+     */
+
     public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         // Zeichne Inventar
         int zaehler = 0;
@@ -248,6 +257,18 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
         app.popStyle();
     }
+
+    /**
+     * Methode verschiebt Gegenstände aus dem Inventar an x-y-Koordinaten
+     * Gegenstände werden mit Abstand der guiGröße gezeichnet
+     * Bei jedem 10. Gegenstand wird ein Zeilenumbruch nach oben (-y Richtung) gezeichnet
+     *
+     * @param app Main PApplet von Processing
+     * @param groeße Inventargröße die ausgefüllt werden soll
+     * @param startkoordinateX x-Startposition von der aus das Inventar gezeichnet wird
+     * @param startkoordinateY y-Startposition von der aus das Inventar gezeichnet wird
+     * @param guiGroeße Größe des grafischen Overlays
+     */
 
     public void zeichneInventarInhalt(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         for (int j = 0; j < inventar.size(); j++) {
@@ -549,8 +570,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+    /**
+     * Verwendet Gegenstände aus dem Inventar, wenn Koordinaten des Gegenstands mit übergebenen Parametern (+gui Größe) übereinstimmt
+     * (z.B. Mausposition)
+     *
+     * @param x x-K
+     * @param y y-Wert der Mausposition
+     */
+
     public void klickItems(int x, int y) {
-        int invPos = getInvPos(x, y);
+        int invPos = getInventarPosition(x, y);
         if (invPos >= 0) {
             benutze(invPos);
         }
@@ -564,7 +593,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * @param y y-Wert der Mausposition
      * @return der Index der zugehörigen Inventarposition; -1 falls nicht der Mauszeiger nicht über dem Inventar steht
      */
-    public int getInvPos(int x, int y) {
+    public int getInventarPosition(int x, int y) {
         boolean xBereich;
         boolean yBereich;
         for (int i = 0; i < inventar.size(); i++) {
@@ -583,6 +612,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return gold;
     }
 
+    /**
+     * Zieht übergebenen Betrag vom Kontostand (Spieler Gold) ab
+     * @param betrag
+     */
     public void verringereGold(int betrag) {
         this.gold = this.gold - betrag;
     }
