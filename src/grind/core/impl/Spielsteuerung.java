@@ -106,7 +106,7 @@ public class Spielsteuerung extends PApplet {
     public void ladeBilder(Spielsteuerung spielsteuerung) {
         Dictionary images = new Hashtable();
         images.put("class grind.movables.monster.Zombie0",(PImage) spielsteuerung.loadImage("Zombie.png"));
-        images.put("class grind.movables.impl.Spielfigur0",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
+        images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
         images.put("class grind.movables.impl.Heiltrank0",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
         images.put("class grind.movables.impl.Apfel0",(PImage) spielsteuerung.loadImage("Apfel.png"));
         images.put("class grind.movables.impl.Mango0",(PImage) spielsteuerung.loadImage("Mango.png"));
