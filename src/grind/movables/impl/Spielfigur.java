@@ -32,10 +32,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
-    transient Waffe testwaffe = new Schwert(35,35,1,3);
-    transient Bogen testbogen = new Bogen(35,35,1,3);
-    transient Pfeil testpfeil = new Pfeil(35,35,1);
-    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
+    transient Waffe testwaffe = new Schwert(35, 35, 1, 3);
+    transient Bogen testbogen = new Bogen(35, 35, 1, 3);
+    transient Pfeil testpfeil = new Pfeil(35, 35, 1);
+    transient Spezialattacke testattacke = new Spezialattacke(200, 200, 1);
 
     int lebensenergie = 100;//Kapselung?
     transient final List<Gegenstand> inventar;
@@ -46,15 +46,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
     //public boolean waffeAusgestattet=false;
     transient Waffe aktiveWaffe = testwaffe;
     private boolean spezialAktiviert = false;
-    private int countSpezialDauer=0;
+    private int countSpezialDauer = 0;
     //Waffe aktiveWaffe = testbogen;
 
 
     public Gegenstand auswahl;
+
     /**
-     * @MEGAtroniker
-     * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
+     * @MEGAtroniker Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      */
     public float getGESCHWINDIGKEIT() {
         return GESCHWINDIGKEIT;
@@ -62,6 +62,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     /**
      * Konstruktor Spielfigur
+     *
      * @param posX gibt X-Position der Spielfigur an.
      * @param posY gibt Y-Position der Spielfigur an.
      */
@@ -70,14 +71,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
         inventar = new ArrayList<>();
         setAktiveWaffe(testwaffe);
         //setAktiveWaffe(testbogen);
-        inventarGuiGroeße =10;
-        guiGroeße=50;
-}
+        inventarGuiGroeße = 10;
+        guiGroeße = 50;
+    }
 
     /**
      * Methode zeichne: zeichnet Bild der Spielfigur, abhängig von Ausrichtung und Position.
      * Dadurch schaut die Spielfigur immer in Laufrichtung.
      * Bild: "SpielfigurOhneWaffe.jpg"
+     *
      * @param spielsteuerung Spielsteuerung, für Darstellung in Processing.
      */
     @Override
@@ -89,7 +91,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //Zeichne kleines Inventar
         zeichneInventar(spielsteuerung, inventarGuiGroeße, 850, 720, guiGroeße);
         zeichneInventarInhalt(spielsteuerung, inventarGuiGroeße, 550, 720, guiGroeße);
-        if(auswahl!=null) {
+        if (auswahl != null) {
             auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
             auswahl.zeichne(spielsteuerung);
         }
@@ -104,6 +106,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     /**
      * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
+     *
      * @param app
      */
     public void zeichneSpielfigur(Spielsteuerung app) {
@@ -142,7 +145,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
         //testattacke.zeichne(app);
-        if(app.key == ' '& app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+        if (app.key == ' ' & app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
             if (!abgeschossen) {
                 /**
                  * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
@@ -161,16 +164,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
             }
             abgeschossen = true;
 
-            if(!(aktiveWaffe instanceof Spezialattacke)) {
+            if (!(aktiveWaffe instanceof Spezialattacke)) {
                 //aktiveWaffe.setGroesse(40);
                 aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
                 aktiveWaffe.setAusrichtung(this.getAusrichtung());
                 aktiveWaffe.zeichne(app);
                 //countSpezialDauer +=1;
                 //if (countSpezialDauer == 70){
-                 //   aktiveWaffe.setGroesse(1);
-                   // app.
-                    //countSpezialDauer=0;
+                //   aktiveWaffe.setGroesse(1);
+                // app.
+                //countSpezialDauer=0;
                 //}
 
             }
@@ -199,47 +202,47 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
         }
-        if(spezialAktiviert){
-            testattacke.setPosition(this.getPosX(),this.getPosY());
+        if (spezialAktiviert) {
+            testattacke.setPosition(this.getPosX(), this.getPosY());
             testattacke.setGroesse(150);
             testattacke.zeichne(app);
             setAktiveWaffe(testattacke);
-            countSpezialDauer +=1;
-            if (countSpezialDauer == 30){
-                spezialAktiviert=false;
+            countSpezialDauer += 1;
+            if (countSpezialDauer == 30) {
+                spezialAktiviert = false;
                 setAktiveWaffe(testwaffe);
-                countSpezialDauer=0;
+                countSpezialDauer = 0;
             }
         }
     }
 
-    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
+    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         // Zeichne Inventar
         int zaehler = 0;
 
         app.pushStyle();
-        app.fill(255,255,255);
-        app.stroke(255,255,255);
+        app.fill(255, 255, 255);
+        app.stroke(255, 255, 255);
         app.strokeWeight(2f);
         app.textSize(24);
         //app.fill(204, 102, 0);
         for (int i = 1; i <= groeße; i++) {
-            app.fill(211,211,211,200);
-            app.rect(startkoordinateX-i*guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
+            app.fill(211, 211, 211, 200);
+            app.rect(startkoordinateX - i * guiGroeße, startkoordinateY, guiGroeße, guiGroeße);
 
 
-            if(i<=10){
-                app.fill(0,0,0);
-                app.text(zaehler,startkoordinateX-i*guiGroeße,startkoordinateY+20);
-                if(zaehler==0){
-                    zaehler=10;
+            if (i <= 10) {
+                app.fill(0, 0, 0);
+                app.text(zaehler, startkoordinateX - i * guiGroeße, startkoordinateY + 20);
+                if (zaehler == 0) {
+                    zaehler = 10;
                 }
                 zaehler--;
 
             }
-            if(i%10==0 && i>0){
-                startkoordinateY-=guiGroeße;
-                startkoordinateX+=guiGroeße*10;
+            if (i % 10 == 0 && i > 0) {
+                startkoordinateY -= guiGroeße;
+                startkoordinateX += guiGroeße * 10;
             }
 
         }
@@ -260,22 +263,21 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
 //        app.popStyle();
     }
+
     //Methode zum benutzen oder ausrüsten von Gegenständen
-    public void benutze(int position){
+    public void benutze(int position) {
         if (inventar.size() > position) {
             if (inventar.get(position) instanceof Nahrung || inventar.get(position) instanceof Stern) {
                 inventar.get(position).beimAnwenden(this);
                 inventar.remove(position);
-            }
-            else if(inventar.get(position) instanceof Spezialattacke){
+            } else if (inventar.get(position) instanceof Spezialattacke) {
                 //erst groß zeichnen
                 //inventar.get(position).beimAnwenden(this);
 
-                spezialAktiviert=true;
+                spezialAktiviert = true;
                 inventar.remove(position);
-            }
-            else if(inventar.get(position) instanceof Waffe){
-                Waffe waffe =  (Waffe) inventar.get(position);
+            } else if (inventar.get(position) instanceof Waffe) {
+                Waffe waffe = (Waffe) inventar.get(position);
 
                 inventar.add(aktiveWaffe);
                 this.setAktiveWaffe(waffe);
@@ -288,30 +290,32 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     /**
      * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
+     *
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
     private void zeichneKontostand(Spielsteuerung app) {
-        app.fill(255,215,0);
-        app.rect(10,5,gold*5,10);
-        app.text(Integer.toString(gold),20+gold*5,15);
+        app.fill(255, 215, 0);
+        app.rect(10, 5, gold * 5, 10);
+        app.text(Integer.toString(gold), 20 + gold * 5, 15);
     }
 
 
     /**
      * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
+     *
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
     private void zeichneLebensbalken(PApplet app) {
         app.fill(150);
-        app.rect(10,20,100,10);
-        app.fill(0,150,0);
-        app.rect(10,20,lebensenergie,10);
+        app.rect(10, 20, 100, 10);
+        app.fill(0, 150, 0);
+        app.rect(10, 20, lebensenergie, 10);
     }
 
     @Override
     public void erhalteSchaden(int schaden) {
 
-        if(!isImmun && !isSternAngewandt){
+        if (!isImmun && !isSternAngewandt) {
             this.lebensenergie -= schaden;
             setImmun(true);
             Timer timer = new Timer();
@@ -319,7 +323,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 @Override
                 public void run() {
                     // Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
-                    if(isSternAngewandt){
+                    if (isSternAngewandt) {
                         setImmun(true);
                         Timer timer2 = new Timer();
                         timer2.schedule(new TimerTask() {
@@ -328,7 +332,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
                                 setImmun(false);
                                 timer2.cancel();
                             }
-                        }, Stern.DAUERSTERNEVENT) ;
+                        }, Stern.DAUERSTERNEVENT);
                     }
 
                     setImmun(false);
@@ -340,11 +344,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     @Override
-    public void setSternAngewandt(boolean angewandt){
+    public void setSternAngewandt(boolean angewandt) {
         this.isSternAngewandt = angewandt;
     }
+
     @Override
-    public boolean isSternAngewandt(){
+    public boolean isSternAngewandt() {
         return this.isSternAngewandt;
     }
 
@@ -352,6 +357,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void setImmun(boolean isImmun) {
         this.isImmun = isImmun;
     }
+
     @Override
     public boolean isImmun() {
         return this.isImmun;
@@ -361,12 +367,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public void setGeschwindigkeit(float immunGeschwindigkeit) {
         this.GESCHWINDIGKEIT = immunGeschwindigkeit;
     }
+
     @Override
     public float getGeschwindigkeit() {
         return this.GESCHWINDIGKEIT;
     }
+
     /**
      * Methode bewege, setzt neue Koordinaten der Figur.
+     *
      * @param richtung enum für die Richtungsangabe.
      */
 
@@ -395,11 +404,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
 
-
     /**
-     * @MEGAtroniker
-     * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
      * @param betrag erhöhung des Goldwerts
+     * @MEGAtroniker Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
      */
     @Override
     public void erhoeheGold(int betrag) {
@@ -408,16 +415,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     @Override
-    public List<Gegenstand> getInventar(){
+    public List<Gegenstand> getInventar() {
         return this.inventar;
     }
 
     @Override
-    public int getLebensenergie(){
+    public int getLebensenergie() {
         return this.lebensenergie;
     }
 
-    public int setLebensenergie(int neueLebensenergie){
+    public int setLebensenergie(int neueLebensenergie) {
         this.lebensenergie = neueLebensenergie;
         return neueLebensenergie;
     }
@@ -427,23 +434,22 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
 
-
-    public void setAktiveWaffe(Waffe waffe){
+    public void setAktiveWaffe(Waffe waffe) {
         //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.
         //inventar.add(aktiveWaffe);
         //neue Waffe ausrüsten
         aktiveWaffe = waffe;
     }
 
-    public Waffe getWaffe(){
+    public Waffe getWaffe() {
         return aktiveWaffe;
     }
 
-    public Waffe getPfeil(){
+    public Waffe getPfeil() {
         return this.testpfeil;
     }
 
-    public void setPfeilAbgeschossen(boolean setzteAuf){
+    public void setPfeilAbgeschossen(boolean setzteAuf) {
         this.abgeschossen = setzteAuf;
     }
 
@@ -455,19 +461,22 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return inventarGuiGroeße;
     }
 
-    public void playApfelSound(){
+    public void playApfelSound() {
         File apfelSound = new File("apple_bite.wav");
         setupSound(apfelSound);
     }
-    public void playSwallowSound(){
+
+    public void playSwallowSound() {
         File swallowSound = new File("swallow.wav");
         setupSound(swallowSound);
     }
-    public void playBackpackOpenSound(){
+
+    public void playBackpackOpenSound() {
         File backpackSound = new File("backpack.wav");
         setupSound(backpackSound);
     }
-    public void playBackpackCloseSound(){
+
+    public void playBackpackCloseSound() {
         File backpackSound = new File("backpack_reverse.wav");
         setupSound(backpackSound);
     }
@@ -530,34 +539,38 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
 
-
-
-
-        private void setupSound(File Sound){
-        try{
+    private void setupSound(File Sound) {
+        try {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(Sound));
             clip.start();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void klickItems(int x, int y){
-        int invPos = getInvPos(x,y);
-        if(invPos>=0) {
+    public void klickItems(int x, int y) {
+        int invPos = getInvPos(x, y);
+        if (invPos >= 0) {
             benutze(invPos);
         }
     }
 
-
-    public int getInvPos(int x, int y){
+    /**
+     * Ermittelt die Inventarposition, die zur übergebenen Mausposition gehört. Der Rückgabewert ist der Index der
+     * zugehörigen Inventarposition, falls der Mauszeiger über dem Inventar steht, andernfalls -1.
+     *
+     * @param x x-Wert der Mausposition
+     * @param y y-Wert der Mausposition
+     * @return der Index der zugehörigen Inventarposition; -1 falls nicht der Mauszeiger nicht über dem Inventar steht
+     */
+    public int getInvPos(int x, int y) {
         boolean xBereich;
         boolean yBereich;
-        for(int i=0; i<inventar.size(); i++){
-            xBereich = (x<=inventar.get(i).getPosX()+guiGroeße/2 && x>inventar.get(i).getPosX()-guiGroeße/2);
-            yBereich = (y<=inventar.get(i).getPosY()+guiGroeße/2 && y>inventar.get(i).getPosY()-guiGroeße/2);
-            if(xBereich && yBereich){
+        for (int i = 0; i < inventar.size(); i++) {
+            xBereich = (x <= inventar.get(i).getPosX() + guiGroeße / 2 && x > inventar.get(i).getPosX() - guiGroeße / 2);
+            yBereich = (y <= inventar.get(i).getPosY() + guiGroeße / 2 && y > inventar.get(i).getPosY() - guiGroeße / 2);
+            if (xBereich && yBereich) {
                 System.out.println("clicked");
                 return i;
             }
@@ -570,7 +583,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return gold;
     }
 
-    public void verringereGold(int betrag){
+    public void verringereGold(int betrag) {
         this.gold = this.gold - betrag;
     }
 
