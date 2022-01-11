@@ -138,7 +138,7 @@ public class LeveleditorTest {
             if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordMovable) {
                 if (mouseY < menuArrayKacheln.size() * Einstellungen.LAENGE_KACHELN_Y) {
                     assertEquals(null, aktuellesMovable);
-                    // assertEquals(iKachel.(mausYmenu, mausXmenu, menuArrayKacheln);
+                    assertEquals(iKachel.get(mausY), aktuelleKachel);
                 }
             } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel) {
                 if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y) {
@@ -150,10 +150,11 @@ public class LeveleditorTest {
                     assertEquals(FeuerModus.KONSTANT, feuerModus);
                     assertEquals(LaufModus.DEFAULT, laufModus);
                     assertEquals(null, aktuelleKachel);
-                    // aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
+
+
                 }
             }
-            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
+            /*if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
                 if (aktuelleKachel != null) {
                     tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
                 } else if (aktuellesMovable != null) {
@@ -189,7 +190,7 @@ public class LeveleditorTest {
                     assertEquals(null, aktuellesMovable);
                 }
 
-            }
+            }*/
         }
     }
 
