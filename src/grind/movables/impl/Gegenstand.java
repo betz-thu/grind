@@ -16,6 +16,11 @@ public abstract class Gegenstand extends Schatz{
 
     public abstract void beimAnwenden(ISpielfigur figur);
 
+    /**
+     * Die Methode beimKaufen fügt dem Inventar des übergebenen Spielers einen Gegenstand hinzu
+     * und verringert das Gold des Spielers um den Wert des Gegenstands.
+     * @param figur Spielfigur
+     */
     public void beimKaufen(ISpielfigur figur){
         figur.getInventar().add(this);
         figur.verringereGold(wert);

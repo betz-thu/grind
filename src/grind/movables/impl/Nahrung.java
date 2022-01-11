@@ -13,6 +13,11 @@ public abstract class Nahrung extends Gegenstand{
         return this.punkte;
     }
 
+    /**
+     * Die Methode beimAnwenden erhöht die Lebensenergie des übergebenen Spielfigur um
+     * den Punkte Wert der Nahrung.
+     * @param figur Spielfigur
+     */
     public void beimAnwenden(ISpielfigur figur){
         figur.setLebensenergie((figur.getLebensenergie()+this.getPunkte()));
     }

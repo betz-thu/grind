@@ -482,21 +482,33 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return inventarGuiGroeße;
     }
 
+    /**
+     * Die Methode playApfelSound definiert den Dateipfad zum abzuspielenden Ton und ruft setupSound zum Abspielen auf
+     */
     public void playApfelSound() {
         File apfelSound = new File("apple_bite.wav");
         setupSound(apfelSound);
     }
 
+    /**
+     * Die Methode playSwallow definiert den Dateipfad zum abzuspielenden Ton und ruft setupSound zum Abspielen auf
+     */
     public void playSwallowSound() {
         File swallowSound = new File("swallow.wav");
         setupSound(swallowSound);
     }
 
+    /**
+     * Die Methode playBackpackOpenSound definiert den Dateipfad zum abzuspielenden Ton und ruft setupSound zum Abspielen auf
+     */
     public void playBackpackOpenSound() {
         File backpackSound = new File("backpack.wav");
         setupSound(backpackSound);
     }
 
+    /**
+     * Die Methode playBackpackCloseSound definiert den Dateipfad zum abzuspielenden Ton und ruft setupSound zum Abspielen auf
+     */
     public void playBackpackCloseSound() {
         File backpackSound = new File("backpack_reverse.wav");
         setupSound(backpackSound);
@@ -559,7 +571,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setupSound(pflanzeAttac);
     }
 
-
+    /**
+     * Die Methode setupSound dient zum inititalisieren aller benötigten Komponenten zur Tonwiedergabe.
+     * Als Parameter wird eine File Variable mit dem pathname zur abzuspielenden Tondatei übergeben.
+     * Die Tonwiedergabe wird ebenfalls in dieser Funktion gestartet
+     * @param Sound Dateipfad zur .wav Datei
+     */
     private void setupSound(File Sound) {
         try {
             Clip clip = AudioSystem.getClip();
