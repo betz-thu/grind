@@ -1,13 +1,16 @@
 package grind.core.impl;
 
 import grind.kacheln.IKachel;
-import grind.kacheln.impl.TileMap;
-import grind.kacheln.impl.Wiese;
+import grind.kacheln.impl.*;
 import grind.movables.IMovable;
+import grind.movables.impl.*;
+import grind.movables.monster.*;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
 import grind.util.LaufModus;
+import grind.util.Richtung;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummySpielwelt;
@@ -27,9 +30,6 @@ public class LeveleditorTest {
     int SpielfeldBreite;
     int SpielfeldHoehe;
     Spielsteuerung spielsteuerung;
-
-
-
 
     int levelNr = 1;
     int speicherHinweisLevel;
@@ -75,8 +75,8 @@ public class LeveleditorTest {
     int posY;
     int LevelNr;
     ArrayList<IKachel> iKachel;
-    ILevel templevel;
-    ArrayList<IMovable> movableList;
+    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
+    ArrayList<IMovable> movableList = (ArrayList<IMovable>) templevel.getPositionen();
 
     @Before
     public void setUp() throws Exception {
@@ -104,10 +104,35 @@ public class LeveleditorTest {
         this.einstellungenObenPlus = new Button(9);
         this.einstellungenUntenPlus = new Button(9);
 
+        this.menuArrayKacheln.add( new Baum());
+        this.menuArrayKacheln.add( new DummyHindernis());
+        this.menuArrayKacheln.add( new Fels());
+        this.menuArrayKacheln.add( new Holzbrücke());
+        this.menuArrayKacheln.add( new Levelausgang());
+        this.menuArrayKacheln.add( new Wasser());
+        this.menuArrayKacheln.add( new Weg());
+        this.menuArrayKacheln.add( new Wiese());
+
+        this.menuArrayMovables.add( new Schwert(40,40,1,this.wert));
+        this.menuArrayMovables.add( new Mango(0,0,this.punkte,this.wert));
+        this.menuArrayMovables.add( new Heiltrank(0,0,this.punkte,this.wert));
+        this.menuArrayMovables.add( new Gold(0,0));
+        this.menuArrayMovables.add( new Apfel(0,0,this.punkte,this.wert));
+        this.menuArrayMovables.add( new Bogen(40,40,1,this.wert));
+        this.menuArrayMovables.add( new Stern(0,0));
+        this.menuArrayMovables.add( new Spezialattacke(40,40,1));
+        this.menuArrayMovables.add( new Spielfigur(0,0, Richtung.N));
+        this.menuArrayMovables.add( new Levelende(0,0));
+        this.menuArrayMovables.add( new DornPflanze(0,0,this.tileMap));
+        this.menuArrayMovables.add( new FeuerMonster(0,0,this.tileMap,this.spielsteuerung,Richtung.N,feuerRate, FeuerModus.RANDOM));
+        this.menuArrayMovables.add( new Geist(0,0,this.tileMap));
+        this.menuArrayMovables.add( new Zombie(0,0,this.tileMap,Richtung.N,this.spielsteuerung, LaufModus.DEFAULT));
+
+
         try {
             spielsteuerung.settings();
-         } catch (Exception e) {
-             System.out.println("fehlermeldung size");
+        } catch (Exception e) {
+            System.out.println("fehlermeldung size");
         }
     }
 
@@ -139,7 +164,7 @@ public class LeveleditorTest {
             if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordMovable) {
                 if (mouseY < menuArrayKacheln.size() * Einstellungen.LAENGE_KACHELN_Y) {
                     assertEquals(null, aktuellesMovable);
-                    // assertEquals(iKachel.(mausYmenu, mausXmenu, menuArrayKacheln);
+                    assertEquals(iKachel.get(mausY),aktuelleKachel);
                 }
             } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel) {
                 if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y) {
@@ -151,7 +176,12 @@ public class LeveleditorTest {
                     assertEquals(FeuerModus.KONSTANT, feuerModus);
                     assertEquals(LaufModus.DEFAULT, laufModus);
                     assertEquals(null, aktuelleKachel);
-                    // aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
+
+                    //assertNotNull(aktuellesMovable);
+                    if (spielwelt.getSzene(levelNr-1) instanceof ISiedlung) {
+                        assertTrue(true);
+                        }
+                    }
                 }
             }
             if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
@@ -163,14 +193,13 @@ public class LeveleditorTest {
                 } else if (aktuelleKachel == null && aktuellesMovable == null) {
 
                     assertNotNull(spielwelt.getSzene(levelNr-1));
-                    ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
+                    //ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
 
                     //TODO: An der Stelle würde ich eher abfragen ob die Spielwelt erst einmal nicht null ist
                     //laut der Fehlermeldung erwartet er das Dummylevel mit der speicheradresse x in templevel.
                     //das geht aber nicht weil beide keinerlei kontakt miteinander hatten
 
-
-//                    assertEquals(templevel.getPositionen(), movableList);
+                    //assertEquals(templevel.getPositionen(), movableList);
 
                     for (int i = 0; i < movableList.size(); i++) {
                         int posX = movableList.get(i).getPosX();
@@ -202,4 +231,4 @@ public class LeveleditorTest {
     }
 
 
-    }
+
