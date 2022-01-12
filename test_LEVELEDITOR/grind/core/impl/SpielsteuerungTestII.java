@@ -1,4 +1,4 @@
-package grind.kacheln.impl;
+package grind.core.impl;
 
 import grind.core.impl.Spielmodell;
 import grind.kacheln.IKachel;

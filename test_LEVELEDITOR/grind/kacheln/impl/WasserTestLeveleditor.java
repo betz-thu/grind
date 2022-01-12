@@ -16,7 +16,7 @@ public class WasserTestLeveleditor {
 
     @Test
     public void istBetretbar() {
-        Assert.assertTrue(wasser.istBetretbar());
+        Assert.assertFalse(wasser.istBetretbar());
     }
 
     @Test
