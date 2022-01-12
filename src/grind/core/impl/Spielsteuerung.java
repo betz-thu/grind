@@ -51,10 +51,11 @@ public class Spielsteuerung extends PApplet {
     boolean pressed = false;
     boolean levelBeendet = false;
     boolean klicked;
+    boolean gameOver = false;
 
     int CountStart;
-    int duration = 100;
-    int time = 100;
+    int duration = 150;
+    int time = 150;
 
 
     /**
@@ -100,6 +101,7 @@ public class Spielsteuerung extends PApplet {
         //Spieler.ladeIMGSpielfigur(this);
         ladeBilder(this);
         anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+        CountStart = millis();
 
     }
 
@@ -133,7 +135,6 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
-        gameover();
         countdown();
     }
 
@@ -297,6 +298,8 @@ public class Spielsteuerung extends PApplet {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
+        pruefeGameOver();
+        countdown();
     }
 
     /**
@@ -549,33 +552,37 @@ public class Spielsteuerung extends PApplet {
         return time;
     }
 
+/**
+ * Wenn Lebensenergie oder Countdown == 0 --> GameOver
+ * Inhalt aus Inventar wird gelöscht, damit nicht Lebensbalken aufgefüllt werden kann
+ * Spieler Geschwindigkeit auf 0, damit keine Bewegung im Hintergrund
+ * Monster Geschwindigkeit auch auf 0
+ *
+ * Gameove Screen
+ * */
+
+    public boolean pruefeGameOver(){
+        if (Spieler.getLebensenergie() <= 0 ||time <= 0) {
+           return gameOver = true;
+        }
+        else{
+            return gameOver = false;
+        }
+    }
+
+
 
     public void gameover() {
-        if (Spieler.getLebensenergie() <= 0 || time <= 0) {
-            pushStyle();
-//            looping = !looping;
+        if (gameOver) {
+            drawGameOver();
             List<Gegenstand> inhalt = Spieler.getInventar();
             inhalt.clear();
             Spieler.setGeschwindigkeit(0);
-            for(IMovable movable: this.spielmodell.getMovables()){
-                if(movable instanceof IMonster){
+            for (IMovable movable : this.spielmodell.getMovables()) {
+                if (movable instanceof IMonster) {
                     ((IMonster) movable).setGeschwindigkeit(0);
                 }
             }
-            fill(0, 0, 0);
-            rect(200, 120, 800, 600);
-            fill(138, 3, 3);
-            textSize(80);
-            text("Game Over", 410, 350);
-            textSize(30);
-            text("Goldbetrag: " + Spieler.getGold(), 410, 400);
-            textSize(45);
-            text("Press 'R' to Restart", 410, 500);
-            text("Press 'Q' to Exit", 410, 550);
-
-            popStyle();
-
-
             if (keyPressed) {
                 loop();
                 if (key == 'R' || key == 'r') {
@@ -589,9 +596,26 @@ public class Spielsteuerung extends PApplet {
             }
         }
     }
+/**
+ * MAP wird resetet, Lebensenergie Spielerfigur ird wieder aufgefüllt, Geschwindigkeit in AAnfangsgeschwindigkeit,
+ * Monster Gescwhindigkeit wird zurückgestzt, Zeit des Countdowns und Gold zurücksetzen
+ * */
+    public void drawGameOver(){
+        pushStyle();
+        fill(0, 0, 0);
+        rect(200, 120, 800, 600);
+        fill(138, 3, 3);
+        textSize(80);
+        text("Game Over", 410, 350);
+        textSize(30);
+        text("Goldbetrag: " + Spieler.getGold(), 410, 400);
+        textSize(45);
+        text("Press 'R' to Restart", 410, 500);
+        text("Press 'Q' to Exit", 410, 550);
+        popStyle();
+    }
 
     public void restart() {
-
         Spieler.setLebensenergie(100);
         Spieler.setGeschwindigkeit(3);
         for(IMovable movable: this.spielmodell.getMovables()){
@@ -599,7 +623,6 @@ public class Spielsteuerung extends PApplet {
                 ((IMonster) movable).setGeschwindigkeit(1);
             }
         }
-
         setup();
         time = 100;
         duration = 100;

@@ -21,7 +21,7 @@ import java.util.Random;
 public class Zombie extends Monster{
     transient private int posX;
     transient private int posY;
-    transient private static int geschwindigkeit = 2;
+    transient private int geschwindigkeit = 2;
     transient private int deltaX;
     transient private int deltaY;
     transient private int schaden = 10;
@@ -45,8 +45,8 @@ public class Zombie extends Monster{
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -geschwindigkeit;
-        this.deltaY = -geschwindigkeit;
+        this.deltaX = -getGeschwindigkeit();
+        this.deltaY = -getGeschwindigkeit();
         this.laufModus=laufModus;
         setSchaden(schaden);
     }
@@ -157,11 +157,11 @@ public class Zombie extends Monster{
     private void bewegeMovable(int posX, int posY) {
         switch (getAusrichtung()) {
             case W:
-                if (bewegeWestlich(posY, posX - 2 * geschwindigkeit, posX - geschwindigkeit, posY)) break;
+                if (bewegeWestlich(posY, posX - 2 * getGeschwindigkeit(), posX - getGeschwindigkeit(), posY)) break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * geschwindigkeit, posX, posY - geschwindigkeit)) break;
+                if (bewegeNoerdlich(posX, posY - 2 * getGeschwindigkeit(), posX, posY - getGeschwindigkeit())) break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * geschwindigkeit, posX + geschwindigkeit, posY)) break;
+                if (bewegeOestlich(posY, posX + 2 * getGeschwindigkeit(), posX + getGeschwindigkeit(), posY)) break;
             case S:
                 bewegeSuedlich(posX, posY);
         }
