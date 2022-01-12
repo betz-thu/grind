@@ -162,16 +162,8 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
                 aktiveWaffe.setAusrichtung(this.getAusrichtung());
                 aktiveWaffe.zeichne(app);
-                //countSpezialDauer +=1;
-                //if (countSpezialDauer == 70){
-                 //   aktiveWaffe.setGroesse(1);
-                   // app.
-                    //countSpezialDauer=0;
-                //}
 
             }
-//            testpfeil.zeichne(app);
-//            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
 
         }
         if (abgeschossen && aktiveWaffe instanceof Bogen) {
