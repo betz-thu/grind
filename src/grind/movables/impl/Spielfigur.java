@@ -38,6 +38,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int guiGroeße;
     //public boolean waffeAusgestattet=false;
     Waffe aktiveWaffe = testwaffe;
+    Waffe alteWaffe = testwaffe;
     private boolean spezialAktiviert = false;
     private int countSpezialDauer=0;
     //Waffe aktiveWaffe = testbogen;
@@ -139,6 +140,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
         //testattacke.zeichne(app);
         if(app.key == ' '& app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+
             if (!abgeschossen) {
                 /**
                  * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
@@ -191,11 +193,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
             testattacke.setPosition(this.getPosX(),this.getPosY());
             testattacke.setGroesse(150);
             testattacke.zeichne(app);
+
+            if(!(aktiveWaffe instanceof Spezialattacke)){
+                alteWaffe = this.getWaffe();}
             setAktiveWaffe(testattacke);
             countSpezialDauer +=1;
             if (countSpezialDauer == 30){
                 spezialAktiviert=false;
-                setAktiveWaffe(testwaffe);
+                setAktiveWaffe(alteWaffe);
                 countSpezialDauer=0;
             }
         }
@@ -256,13 +261,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 inventar.remove(position);
             }
             else if(inventar.get(position) instanceof Spezialattacke){
-                //erst groß zeichnen
-                //inventar.get(position).beimAnwenden(this);
 
                 spezialAktiviert=true;
                 inventar.remove(position);
+
             }
-            else if(inventar.get(position) instanceof Waffe){
+            else if(inventar.get(position) instanceof Waffe & !(inventar.get(position) instanceof Spezialattacke)){
                 Waffe waffe =  (Waffe) inventar.get(position);
 
                 inventar.add(aktiveWaffe);
@@ -399,9 +403,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }*/
 
     public void setAktiveWaffe(Waffe waffe){
-        //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.
-        //inventar.add(aktiveWaffe);
-        //neue Waffe ausrüsten
+
         aktiveWaffe = waffe;
     }
 
