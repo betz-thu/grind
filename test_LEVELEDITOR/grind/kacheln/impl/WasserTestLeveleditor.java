@@ -1,6 +1,6 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
-import grind.kacheln.impl.Baum;
+import grind.kacheln.impl.Wasser;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,19 +10,18 @@ import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class BaumTest {
+public class WasserTestLeveleditor {
 
-    Baum baum = new Baum();
+    Wasser wasser = new Wasser();
 
     @Test
     public void istBetretbar() {
-        Assert.assertFalse(baum.istBetretbar());
+        Assert.assertTrue(wasser.istBetretbar());
     }
 
     @Test
     public void istHindernis() {
-        Assert.assertTrue(baum.istHindernis());
+        Assert.assertFalse(wasser.istHindernis());
     }
-
 
 }

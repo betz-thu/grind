@@ -1,4 +1,4 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
 import grind.kacheln.impl.Wiese;
 import org.junit.Assert;
@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class WieseTest {
+public class WieseTestLeveleditor {
 
 
 

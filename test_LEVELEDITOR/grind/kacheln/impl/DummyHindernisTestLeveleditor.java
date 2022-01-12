@@ -1,4 +1,4 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
 import grind.kacheln.impl.DummyHindernis;
 import grind.movables.impl.Spielfigur;
@@ -9,7 +9,7 @@ import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class DummyHindernisTest {
+public class DummyHindernisTestLeveleditor {
 
     DummyHindernis dummyHindernis = new DummyHindernis();
 

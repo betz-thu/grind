@@ -1,4 +1,4 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
 import grind.kacheln.impl.Fels;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class FelsTest {
+public class FelsTestLeveleditor {
 
     Fels fels = new Fels();
 

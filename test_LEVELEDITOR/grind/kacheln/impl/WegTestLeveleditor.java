@@ -1,6 +1,6 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
-import grind.kacheln.impl.Holzbrücke;
+import grind.kacheln.impl.Weg;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,18 +9,18 @@ import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class HolzbrückeTest {
+public class WegTestLeveleditor {
 
-    Holzbrücke holzbrücke = new Holzbrücke();
+    Weg weg = new Weg();
 
     @Test
     public void istBetretbar() {
-        Assert.assertTrue(holzbrücke.istBetretbar());
+        Assert.assertTrue(weg.istBetretbar());
     }
 
     @Test
     public void istHindernis() {
-        Assert.assertFalse(holzbrücke.istHindernis());
+        Assert.assertFalse(weg.istHindernis());
     }
 
 }

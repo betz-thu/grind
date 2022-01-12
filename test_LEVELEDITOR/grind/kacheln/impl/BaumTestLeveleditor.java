@@ -1,26 +1,27 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
-import grind.kacheln.impl.Weg;
+import grind.kacheln.impl.Baum;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class WegTest {
+public class BaumTestLeveleditor {
 
-    Weg weg = new Weg();
+    Baum baum = new Baum();
 
     @Test
     public void istBetretbar() {
-        Assert.assertTrue(weg.istBetretbar());
+        Assert.assertFalse(baum.istBetretbar());
     }
 
     @Test
     public void istHindernis() {
-        Assert.assertFalse(weg.istHindernis());
+        Assert.assertTrue(baum.istHindernis());
     }
 
 }

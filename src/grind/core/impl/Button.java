@@ -8,6 +8,8 @@ public class Button extends PApplet {
     private final int typ;
     private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
     private int hoehe = Einstellungen.LAENGE_KACHELN_Y;
+    private int x0 =0;
+    private int y0 = 0;
 
     public Button(int typ){
         this.typ = typ;
@@ -16,6 +18,12 @@ public class Button extends PApplet {
         } else if(typ == 8 || typ == 9){
             this.breite = Einstellungen.LAENGE_KACHELN_X/2;
             this.hoehe = Einstellungen.LAENGE_KACHELN_Y/2;
+        }
+    }
+
+    public void mausklick(int mausX, int mausY) {
+        if (mausX >= x0 && mausX <= x0+breite /* usw */ ) {
+
         }
     }
 

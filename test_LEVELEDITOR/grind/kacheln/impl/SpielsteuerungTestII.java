@@ -1,4 +1,4 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
 import grind.core.impl.Spielmodell;
 import grind.kacheln.IKachel;

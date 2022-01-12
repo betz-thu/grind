@@ -1,27 +1,26 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
-import grind.kacheln.impl.Wasser;
+import grind.kacheln.impl.LeereKachel;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class WasserTest {
+public class LeereKachelTestLeveleditor {
 
-    Wasser wasser = new Wasser();
+    LeereKachel leereKachel = new LeereKachel();
 
     @Test
     public void istBetretbar() {
-        Assert.assertTrue(wasser.istBetretbar());
+        Assert.assertTrue(leereKachel.istBetretbar());
     }
 
     @Test
     public void istHindernis() {
-        Assert.assertFalse(wasser.istHindernis());
+        Assert.assertFalse(leereKachel.istHindernis());
     }
 
 }

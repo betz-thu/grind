@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 
 
-public class LeveleditorTest {
+public class LeveleditorTestLeveleditor {
     int SpielfeldBreite;
     int SpielfeldHoehe;
     Spielsteuerung spielsteuerung;
