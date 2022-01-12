@@ -376,31 +376,30 @@ public class Spielsteuerung extends PApplet {
      */
     public void pruefeKollisionen() {
         ISpielfigur figur = this.spielmodell.getFigur();
-
-
         Waffe waffe = figur.getWaffe();
-        int WaffeXp = waffe.getPosX() + (waffe.getGroesse() / 2);
-        int WaffeXn = waffe.getPosX() - (waffe.getGroesse() / 2);
-        int WaffeYp = waffe.getPosY() + (waffe.getGroesse() / 2);
-        int WaffeYn = waffe.getPosY() - (waffe.getGroesse() / 2);
+        Waffe pfeil = figur.getPfeil();
+        //int WaffeXp = waffe.getPosX() + (waffe.getGroesse() / 2);
+        //int WaffeXn = waffe.getPosX() - (waffe.getGroesse() / 2);
+        //int WaffeYp = waffe.getPosY() + (waffe.getGroesse() / 2);
+        //int WaffeYn = waffe.getPosY() - (waffe.getGroesse() / 2);
 
-        int PfeilXp = figur.getPfeil().getPosX() + (figur.getPfeil().getGroesse() / 2);
-        int PfeilXn = figur.getPfeil().getPosX() - (figur.getPfeil().getGroesse() / 2);
-        int PfeilYp = figur.getPfeil().getPosY() + (figur.getPfeil().getGroesse() / 2);
-        int PfeilYn = figur.getPfeil().getPosY() - (figur.getPfeil().getGroesse() / 2);
+        //int PfeilXp = figur.getPfeil().getPosX() + (figur.getPfeil().getGroesse() / 2);
+        //int PfeilXn = figur.getPfeil().getPosX() - (figur.getPfeil().getGroesse() / 2);
+        //int PfeilYp = figur.getPfeil().getPosY() + (figur.getPfeil().getGroesse() / 2);
+        //int PfeilYn = figur.getPfeil().getPosY() - (figur.getPfeil().getGroesse() / 2);
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
 
-            int FigurXp = figur.getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            int FigurXn = figur.getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            int FigurYp = figur.getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            int FigurYn = figur.getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+            //int FigurXp = figur.getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+            //int FigurXn = figur.getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
+            //int FigurYp = figur.getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
+            //int FigurYn = figur.getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
 
-            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
-            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
-            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
-            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+            //int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
+            //int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
+            //int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
+            //int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
 
             if (pruefeKollision(figur, movable)) {
                 if (movable instanceof IMonster) {
@@ -426,7 +425,7 @@ public class Spielsteuerung extends PApplet {
                         // TODO: Nahrung zu Inventar hinzufügen
                     }
                 }
-            } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
+            } else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
@@ -435,14 +434,14 @@ public class Spielsteuerung extends PApplet {
 
 
                 }
-            } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
+            } else if (pruefeKollision(waffe, movable) & (key == ' ') & keyPressed){//((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
                     ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
 
                 }
-            } else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
+            } else if (pruefeKollision(pfeil,movable)){//((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
                 if (movable instanceof Monster) {
                     System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
                     ((Monster) movable).reduziereLebensenergie(figur.getPfeil().getSchaden());
