@@ -36,13 +36,16 @@ public class Spielsteuerung extends PApplet {
     int Tastendruck;
     private String fTaste;
     private DateiService dateiService;
-
+    private boolean abgeschossen = false;
+    transient Pfeil testpfeil = new Pfeil(35,35,1);
+    transient Waffe testwaffe = new Schwert(35,35,1);
+    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
     Dictionary<String, PImage> images = new Hashtable<String, PImage>();
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
     }
-
+    PApplet app;
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
@@ -51,13 +54,16 @@ public class Spielsteuerung extends PApplet {
     boolean pressed = false;
     boolean levelBeendet = false;
     boolean klicked;
+    private int countSpezialDauer=0;
+    Waffe alteWaffe = testwaffe;
 
-
+    Richtung pfeilrichtung = Richtung.N;
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
     public Spielsteuerung() {
+
         this.dateiService = new DateiService(this);
         this.spielmodell = new Spielmodell(ladeSpielwelt(), this);
         // this.spielmodell.betreteSzene(1);
@@ -66,6 +72,7 @@ public class Spielsteuerung extends PApplet {
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         this.klicked = false;
+
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -276,11 +283,112 @@ public class Spielsteuerung extends PApplet {
     private void aktualisiere() {
         pruefeUmgebung();
         pruefeKollisionen();
+        pruefeWaffenzustand();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
     }
+
+    /**
+     * @author Team3
+     * Überprüfe aktuelle Waffenpositionen und ausgewählte Waffen
+     */
+    private void pruefeWaffenzustand(){
+        if(key==' '& keyPressed) {
+            if (!abgeschossen) {
+
+                //Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
+
+                if (Spieler.getAusrichtung() == Richtung.N) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX(), Spieler.getPosY() - Spieler.getGroesse());
+                } else if (Spieler.getAusrichtung() == Richtung.O) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX() + Spieler.getGroesse(), Spieler.getPosY());
+                } else if (Spieler.getAusrichtung() == Richtung.S) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX(), Spieler.getPosY() + Spieler.getGroesse());
+                } else {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX() - Spieler.getGroesse(), Spieler.getPosY());
+                }
+
+                pfeilrichtung = Spieler.getAusrichtung();
+            }
+            abgeschossen = true;
+        }
+            if (abgeschossen && Spieler.getWaffe() instanceof Bogen) {
+
+                // Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
+
+                //testpfeil.zeichne(app);
+                if (pfeilrichtung == Richtung.N) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + 0, Spieler.getPfeil().getPosY() - testpfeil.getGeschwindigkeit());
+                    Spieler.getPfeil().setAusrichtung(Richtung.N);
+                } else if (pfeilrichtung == Richtung.O) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + testpfeil.getGeschwindigkeit(), Spieler.getPfeil().getPosY() + 0);
+                    Spieler.getPfeil().setAusrichtung(Richtung.O);
+                } else if (pfeilrichtung == Richtung.S) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + 0, Spieler.getPfeil().getPosY() + testpfeil.getGeschwindigkeit());
+                    Spieler.getPfeil().setAusrichtung(Richtung.S);
+                } else if (pfeilrichtung == Richtung.W) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() - testpfeil.getGeschwindigkeit(), Spieler.getPfeil().getPosY() + 0);
+                    Spieler.getPfeil().setAusrichtung(Richtung.W);
+                }
+
+
+            }
+
+        if(!(Spieler.getWaffe() instanceof Spezialattacke)) {
+                int schwertPositionX = 1;
+                int schwertPositionY = 1;
+                switch (spielmodell.getFigur().getAusrichtung()) {
+                    case N:
+                        schwertPositionX = 0;
+                        schwertPositionY = -1;
+                        break;
+                    case O:
+
+                        schwertPositionX = 1;
+                        schwertPositionY = 0;
+                        break;
+                    case S:
+
+                        schwertPositionX = 0;
+                        schwertPositionY = 1;
+                        break;
+                    case W:
+
+                        schwertPositionX = -1;
+                        schwertPositionY = 0;
+                }
+                Spieler.getWaffe().setPosition(spielmodell.getFigur().getPosX() + Spieler.getWaffe().getGroesse() * schwertPositionX, spielmodell.getFigur().getPosY() + Spieler.getWaffe().getGroesse() * schwertPositionY);
+                Spieler.getWaffe().setAusrichtung(spielmodell.getFigur().getAusrichtung());
+            }
+
+        if(Spieler.spezialAktiviert){
+            testattacke.setPosition(Spieler.getPosX(),Spieler.getPosY());
+            testattacke.setGroesse(150);
+
+
+            if(!(Spieler.getWaffe() instanceof Spezialattacke)){
+                alteWaffe = Spieler.getWaffe();}
+            Spieler.setAktiveWaffe(testattacke);
+            countSpezialDauer +=1;
+            if (countSpezialDauer == 30){
+                Spieler.spezialAktiviert=false;
+                Spieler.setAktiveWaffe(alteWaffe);
+                countSpezialDauer=0;
+            }
+        }
+
+    }
+    //}
+
+
+    //public void setAktiveWaffe_(Waffe waffe){
+    //    aktiveWaffe_ = waffe;
+    //}
+
+
+
 
     /**
      * @author LuHe20
@@ -377,6 +485,7 @@ public class Spielsteuerung extends PApplet {
     public void pruefeKollisionen() {
         ISpielfigur figur = this.spielmodell.getFigur();
         Waffe waffe = figur.getWaffe();
+        //Waffe waffe = getWaffe();
         Waffe pfeil = figur.getPfeil();
         //int WaffeXp = waffe.getPosX() + (waffe.getGroesse() / 2);
         //int WaffeXn = waffe.getPosX() - (waffe.getGroesse() / 2);
@@ -446,14 +555,19 @@ public class Spielsteuerung extends PApplet {
                     System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
                     ((Monster) movable).reduziereLebensenergie(figur.getPfeil().getSchaden());
                     spielmodell.removeMovable(figur.getPfeil());
-                    figur.setPfeilAbgeschossen(false);
-                    figur.getPfeil().setPosition(0, 0);
+                    abgeschossen=false;
+                    //figur.setPfeilAbgeschossen(false);
+                    figur.getPfeil().setPosition(1000, 1000);
                 }
 
             }
             if (this.isSpielfeldrand(figur.getPfeil().getPosX(), figur.getPfeil().getPosY())) {
-                spielmodell.removeMovable(figur.getPfeil());
-                figur.setPfeilAbgeschossen(false);
+                //spielmodell.removeMovable(figur.getPfeil());
+                spielmodell.removeMovable(Spieler.getPfeil());
+                //figur.setPfeilAbgeschossen(false);
+                abgeschossen=false;
+                Spieler.getPfeil().setPosition(1000, 1000);
+                //Spieler.getPfeil()
             }
 
         }
