@@ -15,14 +15,15 @@ import grind.movables.monster.Monster;
 import grind.util.Richtung;
 import grind.util.Einstellungen;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-
 import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * @Autor Megatronik
@@ -54,6 +55,11 @@ public class Spielsteuerung extends PApplet {
     boolean pressed = false;
     boolean levelBeendet = false;
     boolean klicked;
+    boolean gameOver = false;
+
+    int CountStart;
+    int duration = 150;
+    int time = 150;
     private int countSpezialDauer=0;
     Waffe alteWaffe = testwaffe;
 
@@ -63,7 +69,6 @@ public class Spielsteuerung extends PApplet {
      * und Tilemap.
      */
     public Spielsteuerung() {
-
         this.dateiService = new DateiService(this);
         this.spielmodell = new Spielmodell(ladeSpielwelt(), this);
         // this.spielmodell.betreteSzene(1);
@@ -72,7 +77,6 @@ public class Spielsteuerung extends PApplet {
         this.Spieler = (Spielfigur) spielmodell.getFigur();
         this.SpielerGeschwindigkeit = (int) Spieler.getGESCHWINDIGKEIT();
         this.klicked = false;
-
         // this.tileMap = (ITileMap) spielmodell.getTileMap();
     }
 
@@ -102,20 +106,21 @@ public class Spielsteuerung extends PApplet {
         imageMode(PConstants.CORNER);
         //Spieler.ladeIMGSpielfigur(this);
         ladeBilder(this);
-        anzeigeTitelLevel(this.spielmodell.getSzeneNr() + 1);
+        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+        CountStart = millis();
 
     }
 
     public void ladeBilder(Spielsteuerung spielsteuerung) {
         Dictionary images = new Hashtable();
-        images.put("class grind.movables.monster.Zombie", (PImage) spielsteuerung.loadImage("Zombie.png"));
-        images.put("class grind.movables.impl.Spielfigur", (PImage) spielsteuerung.loadImage("Spielfigur.png"));
-        images.put("class grind.movables.impl.Heiltrank", (PImage) spielsteuerung.loadImage("Heiltrank.png"));
-        images.put("class grind.movables.impl.Apfel", (PImage) spielsteuerung.loadImage("Apfel.png"));
-        images.put("class grind.movables.impl.Mango", (PImage) spielsteuerung.loadImage("Mango.png"));
-        images.put("class grind.movables.impl.Gold", (PImage) spielsteuerung.loadImage("Gold.png"));
-        images.put("class grind.movables.monster.FeuerMonster", (PImage) spielsteuerung.loadImage("Feuermonster.png"));
-        images.put("class grind.movables.monster.DornPflanze", (PImage) spielsteuerung.loadImage("Dornpflanze.png"));
+        images.put("class grind.movables.monster.Zombie",(PImage) spielsteuerung.loadImage("Zombie.png"));
+        images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
+        images.put("class grind.movables.impl.Heiltrank",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
+        images.put("class grind.movables.impl.Apfel",(PImage) spielsteuerung.loadImage("Apfel.png"));
+        images.put("class grind.movables.impl.Mango",(PImage) spielsteuerung.loadImage("Mango.png"));
+        images.put("class grind.movables.impl.Gold",(PImage) spielsteuerung.loadImage("Gold.png"));
+        images.put("class grind.movables.monster.FeuerMonster",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
+        images.put("class grind.movables.monster.DornPflanze",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
         images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
         images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
         images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
@@ -123,6 +128,7 @@ public class Spielsteuerung extends PApplet {
         images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("class grind.movables.impl.Stern",(PImage) spielsteuerung.loadImage("Stern.png"));
         spielsteuerung.setImages(images);
     }
 
@@ -135,6 +141,7 @@ public class Spielsteuerung extends PApplet {
         eingabe();
         aktualisiere();
         zeichne();
+        countdown();
     }
 
     /**
@@ -210,7 +217,7 @@ public class Spielsteuerung extends PApplet {
 
             }
             //Inventar öffnen
-            if (keyPressed) {
+            if(keyPressed) {
                 if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
                     Spieler.setInventarGuiGroeße(30);
                     Spieler.playBackpackOpenSound();
@@ -227,7 +234,8 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * @MEGAtroniker Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+     * @MEGAtroniker
+     * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
      */
     private void szeneUeberspringen() {
         abfrageFTasten();
@@ -245,14 +253,14 @@ public class Spielsteuerung extends PApplet {
             if (keyCode == 123) {
                 pressed = true;
                 fTaste = "F12";
-            } else if (keyCode == 122) {
+            } else if(keyCode == 122){
                 pressed = true;
                 fTaste = "F11";
-            } else if (keyCode == 121) {
+            } else if(keyCode == 121){
                 pressed = true;
                 fTaste = "F10";
             }
-        } else if (!keyPressed && pressed) {
+        } else if(!keyPressed && pressed){
             switch (fTaste) {
                 case "F12":
 
@@ -288,6 +296,8 @@ public class Spielsteuerung extends PApplet {
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
         starteNeueSzene();
+        pruefeGameOver();
+        countdown();
     }
 
     /**
@@ -396,7 +406,7 @@ public class Spielsteuerung extends PApplet {
      * Startet, wenn levelBeendet Bedingung wahr ist, die nächste Szene.
      */
     private void starteNeueSzene() {
-        if (levelBeendet) {
+        if(levelBeendet){
             levelBeendet = false;
             spielmodell.setSzeneNr(spielmodell.getSzeneNr() + 1);
             spielmodell.betreteSzene(spielmodell.getSzeneNr());
@@ -413,25 +423,25 @@ public class Spielsteuerung extends PApplet {
         // nur notwendig, falls Maus benötigt wird
 
         //Items mit klick verwenden
-        if (mouseButton == RIGHT) {
+        if(mouseButton==RIGHT) {
             Spieler.klickItems(mouseX, mouseY);
         }
 
         //Items verschieben
-        if (mouseButton == LEFT && klicked == false) {
+        if(mouseButton==LEFT && klicked==false){
             int invPos = Spieler.getInvPos(mouseX, mouseY);
-            if (invPos >= 0) {
+            if(invPos>=0){
                 klicked = true;
                 Spieler.auswahl = Spieler.getInventar().get(invPos);
                 Spieler.getInventar().remove(invPos);
                 Spieler.auswahl.setPosition(mouseX, mouseY);
                 Spieler.auswahl.zeichne(this);
             }
-        } else if (mouseButton == LEFT && klicked == true) {
+        }else if(mouseButton==LEFT && klicked==true){
             int neuePos = Spieler.getInvPos(mouseX, mouseY);
-            if (neuePos >= 0) {
-                Spieler.getInventar().add(neuePos, Spieler.auswahl);
-            } else {
+            if(neuePos>=0) {
+                Spieler.getInventar().add(neuePos,Spieler.auswahl);
+            }else{
                 Spieler.getInventar().add(Spieler.auswahl);
             }
             Spieler.auswahl = null;
@@ -450,8 +460,8 @@ public class Spielsteuerung extends PApplet {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         pruefeLevelausgang();
 
-        for (int i = 0; i < spielmodell.getFigur().getInventar().size(); i++) {
-            if (spielmodell.getFigur().getInventar().size() >= i + 1) {
+        for (int i=0; i<spielmodell.getFigur().getInventar().size();i++){
+            if (spielmodell.getFigur().getInventar().size()>=i+1) {
                 if (spielmodell.getFigur().getInventar().get(i) instanceof Levelende) {
                     System.out.println("Levelende Bedingung wurde gefunden");
                     levelBeendet = true;
@@ -464,19 +474,19 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * @return levelBeendet
      * @author LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
      * eine Kachel des Typs: Levelausgang ist.
+     * @return levelBeendet
      */
     private boolean pruefeLevelausgang() {
         int spielerPosX = spielmodell.getFigur().getPosY() / Einstellungen.LAENGE_KACHELN_Y;
         int spielerPosY = spielmodell.getFigur().getPosX() / Einstellungen.LAENGE_KACHELN_X;
         if (spielmodell.getSzene() instanceof ILevel) {
             ILevel level = (ILevel) spielmodell.getSzene();
-            IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX, spielerPosY);
-            if (spielerKachel instanceof Levelausgang) {
-                //            System.out.println(spielerKachel);
+            IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX,spielerPosY);
+            if (spielerKachel instanceof Levelausgang){
+    //            System.out.println(spielerKachel);
                 levelBeendet = true;
             }
         }
@@ -519,15 +529,25 @@ public class Spielsteuerung extends PApplet {
                         System.out.println("Waffe wurde aufgesammelt!");
                         spielmodell.removeMovable(movable);
 
-                        //Spieler.waffeAusgestattet = true;
-                    } else if (movable instanceof Nahrung) {
-                        // TODO: Nahrung zu Inventar hinzufügen
+                            //Spieler.waffeAusgestattet = true;
+                        } else if (movable instanceof Nahrung) {
+                            // TODO: Nahrung zu Inventar hinzufügen
+                        }
                     }
                 }
             } else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
+                else {
+                    beiKollisionSiedlung(movable);
+                }
+
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
+                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke) {
+                    if (movable instanceof Monster) {
+                        System.out.println(((Monster) movable).getLebensenergie());
+                        System.out.println("Kollision!!");
 
                     ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
 
@@ -578,7 +598,7 @@ public class Spielsteuerung extends PApplet {
         return (WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp);
     }
 
-    public void pruefeUmgebung() {
+    public void pruefeUmgebung(){
         for (IMovable movable : this.spielmodell.getMovables()) {
             if (movable instanceof Monster) {
                 ((IMonster) movable).inDerNaehe(spielmodell.getFigur(), movable);
@@ -589,7 +609,6 @@ public class Spielsteuerung extends PApplet {
 
     /**
      * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
-     *
      * @param x X-Koordinate
      * @param y Y-Koordinate
      * @return IKachel
@@ -603,40 +622,131 @@ public class Spielsteuerung extends PApplet {
     /**
      * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
      * außerhalb des Spielfelds liegen.
-     *
      * @param x X-Koordinate
      * @param y Y-Koordinate
      * @return boolean
      */
-    public boolean isSpielfeldrand(int x, int y) {
+    public boolean isSpielfeldrand(int x, int y){
         return x <= 0 || x >= SpielfeldBreite || y <= 0 || y >= SpielfeldHoehe;
     }
 
     /**
      * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
      * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
-     *
      * @param x X-Koordinate
      * @param y Y-Koordinate
      * @return boolean
      */
     public boolean isErlaubteKoordinate(int x, int y) {
-        if (!isSpielfeldrand(x, y)) {
-            return getKachelByCoordinates(x, y).istBetretbar();
+        if(!isSpielfeldrand(x,y)){
+            return getKachelByCoordinates(x,y).istBetretbar();
         } else return false;
     }
 
-    public void anzeigeTitelLevel(int LevelNr) {
+    public void anzeigeTitelLevel(int LevelNr){
         surface.setTitle(Einstellungen.TITLE + "   Level: " + Integer.toString(LevelNr));
     }
 
     /**
      * Lädt mithilfe des DateiService eine JSON Datei
-     *
      * @return die geladene Spielwelt vom Typ ISpielwelt
      */
-    public ISpielwelt ladeSpielwelt() {
+    public ISpielwelt ladeSpielwelt(){
         return dateiService.ladeSpielwelt("spielwelt.json");
+    }
+
+
+    public int countdown() {
+        if (time > 0) {
+            time = duration - (millis() - CountStart) / 1000;
+            fill(0);
+            text(time, 1150, 20);
+        }
+        return time;
+    }
+
+/**
+ * Wenn Lebensenergie oder Countdown == 0 --> GameOver
+ * Inhalt aus Inventar wird gelöscht, damit nicht Lebensbalken aufgefüllt werden kann
+ * Spieler Geschwindigkeit auf 0, damit keine Bewegung im Hintergrund
+ * Monster Geschwindigkeit auch auf 0
+ *
+ * Gameove Screen
+ * */
+
+    public boolean pruefeGameOver(){
+        if (Spieler.getLebensenergie() <= 0 ||time <= 0) {
+           return gameOver = true;
+        }
+        else{
+            return gameOver = false;
+        }
+    }
+
+
+
+    public void gameover() {
+        if (gameOver) {
+            drawGameOver();
+            List<Gegenstand> inhalt = Spieler.getInventar();
+            inhalt.clear();
+            Spieler.setGeschwindigkeit(0);
+            for (IMovable movable : this.spielmodell.getMovables()) {
+                if (movable instanceof IMonster) {
+                    ((IMonster) movable).setGeschwindigkeit(0);
+                }
+            }
+            if (keyPressed) {
+                loop();
+                if (key == 'R' || key == 'r') {
+                    loop();
+                    restart();
+                }
+                if (key == 'Q' || key == 'q') {
+                    loop();
+                    System.exit(0);
+                }
+            }
+        }
+    }
+/**
+ * MAP wird resetet, Lebensenergie Spielerfigur ird wieder aufgefüllt, Geschwindigkeit in AAnfangsgeschwindigkeit,
+ * Monster Gescwhindigkeit wird zurückgestzt, Zeit des Countdowns und Gold zurücksetzen
+ * */
+    public void drawGameOver(){
+        pushStyle();
+        fill(0, 0, 0);
+        rect(200, 120, 800, 600);
+        fill(138, 3, 3);
+        textSize(80);
+        text("Game Over", 410, 350);
+        textSize(30);
+        text("Goldbetrag: " + Spieler.getGold(), 410, 400);
+        textSize(45);
+        text("Press 'R' to Restart", 410, 500);
+        text("Press 'Q' to Exit", 410, 550);
+        popStyle();
+    }
+
+    public void restart() {
+        Spieler.setLebensenergie(100);
+        Spieler.setGeschwindigkeit(3);
+        for(IMovable movable: this.spielmodell.getMovables()){
+            if(movable instanceof IMonster){
+                ((IMonster) movable).setGeschwindigkeit(1);
+            }
+        }
+        setup();
+        time = 100;
+        duration = 100;
+        Spieler.setGold(5);
+
+        ISpielwelt resetSpielwelt = ladeSpielwelt();
+        this.spielmodell.setSpielwelt(resetSpielwelt);
+        spielmodell.setSzeneNr(0);
+        spielmodell.betreteSzene(spielmodell.getSzeneNr());
+
+
     }
 
     public Dictionary getImages() {
@@ -646,4 +756,21 @@ public class Spielsteuerung extends PApplet {
     public void setImages(Dictionary images) {
         this.images = images;
     }
+
+    public void beiKollisionSiedlung(IMovable movable){
+        if(movable instanceof Gegenstand){
+            if(((Gegenstand) movable).getWert() <= spielmodell.getFigur().getGold())
+            {
+                ((Gegenstand) movable).beimKaufen(spielmodell.getFigur());
+                spielmodell.removeMovable(movable);
+            }
+        }
+        else if(movable instanceof ISchatz){
+            // Wie sammeln die Gegenstände ein?
+            ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+            spielmodell.removeMovable(movable);
+        }
+
+    }
+
 }

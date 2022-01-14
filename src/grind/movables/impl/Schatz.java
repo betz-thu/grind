@@ -11,6 +11,7 @@ public abstract class Schatz extends Movable implements ISchatz {
         int posX;
         int posY;
  */
+    protected int wert;
 
     public Schatz(int posX, int posY, int groesse) {
         super(posX, posY, groesse);
@@ -22,4 +23,12 @@ public abstract class Schatz extends Movable implements ISchatz {
     }
 
     public abstract void beimSammeln(ISpielfigur figur); // nicht im Klassendiagramm...
+
+    public int getWert() {
+        return this.wert;
+    }
+    public void setWert(int wert){
+        this.wert = wert;
+    }
+
 }

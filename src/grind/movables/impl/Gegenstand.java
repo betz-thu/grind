@@ -11,8 +11,14 @@ public abstract class Gegenstand extends Schatz{
     @Override
     public void beimSammeln(ISpielfigur figur){
         figur.getInventar().add(this);
-
     }
 
+
     public abstract void beimAnwenden(ISpielfigur figur);
+
+    public void beimKaufen(ISpielfigur figur){
+        figur.getInventar().add(this);
+        figur.verringereGold(wert);
+
+    }
 }

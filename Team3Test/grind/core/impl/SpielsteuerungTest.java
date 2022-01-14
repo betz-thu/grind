@@ -29,7 +29,7 @@ public class SpielsteuerungTest {
         figur = new Spielfigur(100f, 100f, Richtung.S);
         monster = new DornPflanze(120f, 100f, tileMap);
         app = new PApplet();
-        schwert = new Schwert(100, 100, 1);
+        schwert = new Schwert(100, 100, 1, 3);
     }
 
     @Test

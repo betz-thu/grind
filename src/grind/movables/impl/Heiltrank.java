@@ -6,16 +6,16 @@ import grind.util.Einstellungen;
 import processing.core.PApplet;
 
 public class Heiltrank extends Nahrung {
-    private int punkte = 20;
 
 
-    public Heiltrank(int posX, int posY) {
-        super(posX, posY, Einstellungen.GROESSE_HEILTRANK);
+
+    public Heiltrank(int posX, int posY, int punkte, int wert) {
+        super(posX, posY, Einstellungen.LAENGE_KACHELN_X/2);
+        this.punkte = punkte;
+        this.wert = wert;
     }
 
-    public int getPunkte() {
-        return this.punkte;
-    }
+
 
     @Override
     public void beimAnwenden(ISpielfigur figur){

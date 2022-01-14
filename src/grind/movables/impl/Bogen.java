@@ -25,12 +25,13 @@ public class Bogen extends Waffe{
      * @param y Gibt an, an welcher y-Position sich der Bogen befindet.
      * @param stufe Gibt an, welche Stufe der Bogen hat.
      */
-    public Bogen(int x, int y, int stufe) {
+    public Bogen(int x, int y, int stufe, int wert) {
         super(x, y, 40);
         this.stufe=stufe;
         if (getAusrichtung()==null){
             this.setAusrichtung(Richtung.S);
         }
+        this.wert = wert;
 
     }
 

@@ -18,7 +18,7 @@ import processing.core.PImage;
     public class Spezialattacke extends Waffe{
 
         private int stufe;
-        PApplet app;
+        transient PApplet app;
 
 
         /**

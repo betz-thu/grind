@@ -12,12 +12,13 @@ public class Schwert extends Waffe{
      * @param y Gibt an an welcher y-Position sich das Schwert befindet.
      * @param stufe Gibt an welche Stufe das Schwert hat. (Daraus wird später der Schaden berechnet.
      */
-    public Schwert(int x, int y, int stufe) {
+    public Schwert(int x, int y, int stufe, int wert) {
         super(x, y, 40);
         this.stufe=stufe;
         if (getAusrichtung()==null){
             this.setAusrichtung(Richtung.S);
         }
+        this.wert = wert;
 
     }
 

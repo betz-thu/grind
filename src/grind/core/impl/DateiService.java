@@ -20,6 +20,7 @@ import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
+import grind.welt.impl.DummySiedlung;
 import grind.welt.impl.DummySpielwelt;
 
 import java.io.Reader;
@@ -61,6 +62,8 @@ public class DateiService {
 /**
  * Custom DeSerializer für die Deserialisierung von einem IMovable.
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
+ * WICHTIG: Wenn neue Movables hinzugefügt werden, muss das auch im Leveleditor geschehen.
+ * @see Leveleditor --> Methode addMovablezuLevel und Konstruktor this.menuArrayMovables.add
  */
         JsonDeserializer<IMovable> iMovableJsonDeserializer = new JsonDeserializer<IMovable>() {
             @Override
@@ -69,13 +72,20 @@ public class DateiService {
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
 
                 String klassenname;
+                int stufe = 1;
+                int feuerrate;
+                int wert;
+                int punkte;
+                FeuerModus feuerModus;
+                LaufModus laufModus;
                 int posX;
                 int posY;
                 Richtung richtung = null;
 
                 klassenname = jsonObject.get("classname").getAsString();
-                posX = jsonObject.get("posX").getAsInt();
-                posY = jsonObject.get("posY").getAsInt();
+                posX = (int) ((float) jsonObject.get("posX").getAsInt() * Einstellungen.LAENGE_KACHELN_X / Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR);
+                posY = (int) ((float) jsonObject.get("posY").getAsInt() * Einstellungen.LAENGE_KACHELN_Y / Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR);
+
 
                 if (klassenname.equals("class grind.movables.impl.Spielfigur")) {
                     String richtungsString;
@@ -106,13 +116,18 @@ public class DateiService {
                 switch (klassenname) {
 
                     case "class grind.movables.impl.Apfel":
-                        iMovable = new Apfel(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Apfel(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Gold":
                         iMovable = new Gold(posX, posY);
                         break;
                     case "class grind.movables.impl.Spielfigur":
                         iMovable = new Spielfigur(posX, posY, richtung);
+                        break;
+                    case "class grind.movables.impl.Stern":
+                        iMovable = new Stern(posX,posY);
                         break;
                     case "class grind.movables.monster.DornPflanze":
                         iMovable = new DornPflanze(posX, posY, tilemap);
@@ -121,27 +136,40 @@ public class DateiService {
                         iMovable = new Geist(posX, posY, tilemap);
                         break;
                     case "class grind.movables.monster.Zombie":
-                        iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, LaufModus.DEFAULT);
+                        laufModus = LaufModus.valueOf(jsonObject.get("laufModus").getAsString());
+                        iMovable = new Zombie(posX, posY, tilemap,Richtung.N,spielsteuerung, laufModus);
                         break;
                     case "class grind.movables.impl.Heiltrank":
-                        iMovable = new Heiltrank(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Heiltrank(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Mango":
-                        iMovable = new Mango(posX, posY);
+                        punkte = jsonObject.get("punkte").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Mango(posX, posY, punkte, wert);
                         break;
                     case "class grind.movables.impl.Schwert":
-                        iMovable = new Schwert(posX, posY, 2);
+                        wert = jsonObject.get("wert").getAsInt();
+                        stufe = jsonObject.get("stufe").getAsInt();
+                        iMovable = new Schwert(posX, posY, stufe, wert);
                         break;
                     case "class grind.movables.impl.Levelende":
-                        iMovable = new Levelende(posX, posY, Einstellungen.GROESSE_LEVELENDE);
+                        iMovable = new Levelende(posX, posY);
                         break;
                     case "class grind.movables.monster.FeuerMonster":
-                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung, Richtung.N, 100, FeuerModus.RANDOM);
+                        feuerrate = jsonObject.get("feuerRate").getAsInt();
+                        feuerModus = FeuerModus.valueOf(jsonObject.get("feuerModus").getAsString());
+                        iMovable = new FeuerMonster(posX, posY, tilemap, spielsteuerung,  Richtung.N, feuerrate, feuerModus);
+                        break;
                     case "class grind.movables.impl.Bogen":
-                        iMovable = new Bogen(posX, posY, 1);
+                        stufe = jsonObject.get("stufe").getAsInt();
+                        wert = jsonObject.get("wert").getAsInt();
+                        iMovable = new Bogen(posX, posY, stufe, wert);
                         break;
                     case "class grind.movables.impl.Spezialattacke":
-                        iMovable = new Spezialattacke(posX, posY, 1);
+                        stufe = jsonObject.get("stufe").getAsInt();
+                        iMovable = new Spezialattacke(posX, posY, stufe);
                         break;
                     default:
                         break;
@@ -186,9 +214,10 @@ public class DateiService {
                         iSzene = jsonDeserializationContext.deserialize(jsonElement,
                                 new TypeToken<DummyLevel>(){}.getType());
                         break;
-//                    case "class grind.welt.impl.DummySiedlung":
-//                        iSzene = new DummySiedlung();
-//                        break;
+                    case "class grind.welt.impl.DummySiedlung":
+                        iSzene = jsonDeserializationContext.deserialize(jsonElement,
+                                new TypeToken<DummySiedlung>(){}.getType());
+                        break;
                     default:
                         break;
                 }
@@ -260,6 +289,8 @@ public class DateiService {
 /**
  * Custom DeSerializer für die Deserialisierung von einer IKachel.
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
+ * WICHTIG: Wenn neue Kacheln hinzugefügt werden, muss das auch im Leveleditor geschehen.
+ * @see Leveleditor --> Konstruktor this.menuArrayKacheln.add
  */
         JsonDeserializer<IKachel> iKachelJsonDeserializer = new JsonDeserializer<IKachel>() {
             @Override

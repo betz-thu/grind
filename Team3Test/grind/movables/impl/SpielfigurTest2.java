@@ -14,8 +14,8 @@ public class SpielfigurTest2 {
 
     @Before
     public void setUp() throws Exception {
-        schwert1 = new Schwert(100, 100, 1);
-        schwert2 = new Schwert(200, 200, 2);
+        schwert1 = new Schwert(100, 100, 1, 3);
+        schwert2 = new Schwert(200, 200, 2, 3);
         figur = new Spielfigur(100f, 100f, Richtung.S);
 
     }

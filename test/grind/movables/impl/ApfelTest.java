@@ -1,6 +1,5 @@
 package grind.movables.impl;
 
-import grind.util.Einstellungen;
 import grind.util.Richtung;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,8 +13,8 @@ public class ApfelTest {
 
     @Before
     public void setUp() throws Exception {
-        apfel = new Apfel(100, 100);
-        apfel2 = new Apfel(100, 120);
+        apfel = new Apfel(100, 100 , 3, 3);
+        apfel2 = new Apfel(100, 120, 3, 3);
         figur = new Spielfigur(200, 200, Richtung.S);
     }
 
@@ -23,7 +22,7 @@ public class ApfelTest {
     public void beimAnwenden() {
         figur.setLebensenergie(50);
         apfel.beimAnwenden(figur);
-        Assert.assertEquals(55, figur.getLebensenergie());
+        Assert.assertEquals(50 + apfel.getPunkte(), figur.getLebensenergie());
     }
 
     @Test
@@ -31,4 +30,5 @@ public class ApfelTest {
         apfel.beimSammeln(figur);
         Assert.assertTrue(figur.getInventar().contains(apfel));
     }
+
 }

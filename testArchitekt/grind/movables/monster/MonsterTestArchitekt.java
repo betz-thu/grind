@@ -1,5 +1,6 @@
 package grind.movables.monster;
 
+import grind.core.impl.Spielsteuerung;
 import grind.kacheln.impl.TileMap;
 import grind.movables.impl.Spielfigur;
 import grind.util.Richtung;
@@ -7,13 +8,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MonsterTest {
+import static org.junit.Assert.*;
+
+public class MonsterTestArchitekt {
     public static final int SCHADEN = 12;
     public static final int LEBENSENERGIE = 90;
 
     private Monster monster;
     private TileMap tileMap;
     private Spielfigur spielfigur;
+    private Spielsteuerung spielsteuerung;
 
     @Before
     public void setUp() {
@@ -23,17 +27,12 @@ public class MonsterTest {
         spielfigur.setLebensenergie(LEBENSENERGIE);
     }
 
-    @Test
-    public void reduziereLebensenergie() {
-        int anfangswert = monster.getLebensenergie();
-        monster.reduziereLebensenergie(SCHADEN);
-        Assert.assertEquals(anfangswert-SCHADEN, monster.getLebensenergie());
-    }
 
     @Test
     public void beiKollision() {
         int spielfigurLebenVorher = spielfigur.getLebensenergie();
         monster.beiKollision(spielfigur,monster);
-       // Assert.assertEquals(spielfigurLebenVorher-schaden,  spielfigur.getLebensenergie());
+        Assert.assertEquals(spielfigurLebenVorher-SCHADEN,  spielfigur.getLebensenergie());
     }
+
 }

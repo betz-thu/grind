@@ -5,6 +5,7 @@ import grind.kacheln.ITileMap;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
 import grind.movables.ISpielfigur;
+import grind.movables.impl.Gegenstand;
 import grind.movables.impl.Spielfigur;
 import grind.movables.monster.DornPflanze;
 import grind.movables.monster.FeuerMonster;
@@ -15,6 +16,7 @@ import grind.util.FeuerModus;
 import grind.util.LaufModus;
 import grind.util.Richtung;
 import grind.welt.ILevel;
+import grind.welt.ISiedlung;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
@@ -56,40 +58,12 @@ public class Spielmodell implements ISpielmodell {
         this.steuerung=steuerung;
     }
 
-    /**
-     * Löscht Movable aus Liste der Positionen und aus Liste der movables
-     * z. B. Für das Einsammeln eines Schatzes
-     * @param
-     */
-    /*@Override
-    public void removeMovable(IMovable movable){
 
-        if(level == null){
-            return;
-        }
-       List<IMovable> positionen = level.getPositionen();
-
-       positionen.remove(movable);
-       movables.remove(movable);
-
-    }*/
 
     /**
-     *
+     *Why??
      */
     public void entferneToteMonster(){
-    /*
-        for (int i=0; i<monster.size();i++){
-            if (monster.get(i).getLebensenergie()<=0){
-                System.out.println(monster.size());
-                System.out.println(monster.get(i));
-                IMonster geloeschtesMonster = monster.remove(i);
-                System.out.println(geloeschtesMonster);
-                System.out.println(monster.size());
-                break;
-            }
-        }
-    */
 
     }
 
@@ -117,21 +91,6 @@ public class Spielmodell implements ISpielmodell {
         this.level = level;
         kopiereTilemap();
         kopiereMovables();
-        //muss wo anders sein!!!!
-        /*IMonster feuerMonster = new FeuerMonster(300,300,this.tileMap,this.steuerung,Richtung.N,100, FeuerModus.KONSTANT);
-        float ZombiePosX = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_X)+1) * Einstellungen.LAENGE_KACHELN_X);
-        float ZombiPosY = (float)((random.nextInt(Einstellungen.ANZAHL_KACHELN_Y)+1) * Einstellungen.LAENGE_KACHELN_Y);
-        IMonster zombie1 = (new Zombie(ZombiePosX,ZombiPosY,tileMap,Richtung.N,this.steuerung, LaufModus.RANDOM));
-        IMonster zombie2 = (new Zombie(350, 600, tileMap,Richtung.N,this.steuerung,LaufModus.DEFAULT));
-        IMonster zombie3 = (new Zombie(100, 400, tileMap,Richtung.N,this.steuerung,LaufModus.JAGDT));
-        IMonster dornPflanze1 = (new DornPflanze(200, 50, tileMap));
-        IMonster dornPflanze2 = (new DornPflanze(600, 500, tileMap));
-        addMonster(feuerMonster);
-        addMonster(zombie1);
-        addMonster(zombie2);
-        addMonster(zombie3);
-        addMonster(dornPflanze1);
-        addMonster(dornPflanze2);*/
     }
 
     /**
@@ -193,6 +152,18 @@ public class Spielmodell implements ISpielmodell {
 
         for (IMovable movable : this.movables) {
             movable.zeichne(spielsteuerung);
+        }
+
+        if(getSzene() instanceof ISiedlung){
+            for (IMovable movable : this.movables) {
+                spielsteuerung.fill(0,0,0);
+                spielsteuerung.textSize(14);
+                if(movable instanceof Gegenstand) {
+                    spielsteuerung.text(movable.toString(), movable.getPosX() - movable.getGroesse(), movable.getPosY() + movable.getGroesse());
+                    spielsteuerung.text(("Wert: " + ((Gegenstand) movable).getWert()), movable.getPosX() - movable.getGroesse(), movable.getPosY()-movable.getGroesse());
+
+                }
+            }
         }
 
         this.figur.zeichne(spielsteuerung);

@@ -13,7 +13,7 @@ public class SchwertTest2 {
 
     @Before
     public void setUp() throws Exception {
-        schwert = new Schwert(10, 10, STUFE);
+        schwert = new Schwert(10, 10, STUFE, 3);
     }
 
     @Test
