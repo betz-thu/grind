@@ -16,7 +16,6 @@ import grind.util.Einstellungen;
 import grind.util.FeuerModus;
 import grind.util.LaufModus;
 import grind.util.Richtung;
-import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
@@ -48,6 +47,13 @@ public class DateiService {
  * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<IMovable> iMovableJsonSerializer = new JsonSerializer<IMovable>() {
+            /**
+             *
+             * @param iMovable
+             * @param type
+             * @param jsonSerializationContext
+             * @return
+             */
             @Override
             public JsonElement serialize(IMovable iMovable, Type type, JsonSerializationContext jsonSerializationContext) {
                 JsonElement jsonElement = jsonSerializationContext.serialize(iMovable);
@@ -64,6 +70,14 @@ public class DateiService {
  * @see Leveleditor --> Methode addMovablezuLevel und Konstruktor this.menuArrayMovables.add
  */
         JsonDeserializer<IMovable> iMovableJsonDeserializer = new JsonDeserializer<IMovable>() {
+            /**
+             *
+             * @param jsonElement
+             * @param type
+             * @param jsonDeserializationContext
+             * @return
+             * @throws JsonParseException
+             */
             @Override
             public IMovable deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -183,6 +197,13 @@ public class DateiService {
  * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<ISzene> iSzeneJsonSerializer = new JsonSerializer<ISzene>() {
+            /**
+             *
+             * @param iSzene
+             * @param type
+             * @param jsonSerializationContext
+             * @return
+             */
             @Override
             public JsonElement serialize(ISzene iSzene, Type type, JsonSerializationContext jsonSerializationContext) {
 
@@ -198,6 +219,14 @@ public class DateiService {
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<ISzene> iSzeneJsonDeserializer = new JsonDeserializer<ISzene>() {
+            /**
+             *
+             * @param jsonElement
+             * @param type
+             * @param jsonDeserializationContext
+             * @return
+             * @throws JsonParseException
+             */
             @Override
             public ISzene deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -230,6 +259,13 @@ public class DateiService {
  * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<ITileMap> iTileMapJsonSerializer = new JsonSerializer<ITileMap>() {
+            /**
+             *
+             * @param iTileMap
+             * @param type
+             * @param jsonSerializationContext
+             * @return
+             */
             @Override
             public JsonElement serialize(ITileMap iTileMap, Type type, JsonSerializationContext jsonSerializationContext) {
 
@@ -245,6 +281,14 @@ public class DateiService {
  * Anhand des Klassennamens wird eine Instanz der Klasse erzeugt und zurückgegeben
  */
         JsonDeserializer<ITileMap> iTileMapJsonDeserializer = new JsonDeserializer<ITileMap>() {
+            /**
+             *
+             * @param jsonElement
+             * @param type
+             * @param jsonDeserializationContext
+             * @return
+             * @throws JsonParseException
+             */
             @Override
             public ITileMap deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -276,6 +320,13 @@ public class DateiService {
  * 2. Namen der Klasse als Property hinzufügen -> wichtig bei Deserialisierung
  */
         JsonSerializer<IKachel> iKachelJsonSerializer = new JsonSerializer<IKachel>() {
+            /**
+             *
+             * @param iKachel
+             * @param type
+             * @param jsonSerializationContext
+             * @return
+             */
             @Override
             public JsonElement serialize(IKachel iKachel, Type type, JsonSerializationContext jsonSerializationContext) {
                 JsonObject jsonObject = new JsonObject();
@@ -291,6 +342,14 @@ public class DateiService {
  * @see Leveleditor --> Konstruktor this.menuArrayKacheln.add
  */
         JsonDeserializer<IKachel> iKachelJsonDeserializer = new JsonDeserializer<IKachel>() {
+            /**
+             *
+             * @param jsonElement
+             * @param type
+             * @param jsonDeserializationContext
+             * @return
+             * @throws JsonParseException
+             */
             @Override
             public IKachel deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
