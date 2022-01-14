@@ -513,30 +513,34 @@ public class Spielsteuerung extends PApplet {
             if (pruefeKollision(figur, movable)) {
                 if (movable instanceof IMonster) {
                     ((IMonster) movable).beiKollision(figur, movable);
-                } else if (!(spielmodell.getSzene() instanceof ISiedlung)){
+                } /*else*/
+                if (!(spielmodell.getSzene() instanceof ISiedlung)) {
                     if (movable instanceof ISchatz) {
-                    if (!(movable instanceof Waffe)) {
-                        ((ISchatz) movable).beimSammeln(figur); // zB. erhöht Gold
-                        //}
                         if (!(movable instanceof Waffe)) {
-                            spielmodell.removeMovable(movable);
-                        } // löscht Schatz aus Level
+                            ((ISchatz) movable).beimSammeln(figur); // zB. erhöht Gold
+                            //}
+                            if (!(movable instanceof Waffe)) {
+                                spielmodell.removeMovable(movable);
+                            } // löscht Schatz aus Level
 
-                        return;
-                    }
-                    //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
-                    if ((movable instanceof Waffe)) {
-                        ((ISchatz) movable).beimSammeln(figur);
-                        System.out.println("Waffe wurde aufgesammelt!");
-                        spielmodell.removeMovable(movable);
+                            return;
+                        }
+                        //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
+                        if ((movable instanceof Waffe)) {
+                            ((ISchatz) movable).beimSammeln(figur);
+                            System.out.println("Waffe wurde aufgesammelt!");
+                            spielmodell.removeMovable(movable);
 
                             //Spieler.waffeAusgestattet = true;
                         } else if (movable instanceof Nahrung) {
                             // TODO: Nahrung zu Inventar hinzufügen
                         }
                     }
+                } else {
+                    beiKollisionSiedlung(movable);
                 }
-            } else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
+            }
+                else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
