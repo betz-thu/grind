@@ -28,10 +28,7 @@ public class DornPflanze extends Monster {
     }
 
 
-    @Override
-    public void bewege() {
-        // stationär
-    }
+
 
     @Override
     public int getGroesse() {

@@ -9,55 +9,86 @@ import grind.util.Richtung;
 import grind.util.Einstellungen;
 import processing.core.PApplet;
 
+/**
+ * @author MEGAtroniker
+ * Die abstrakt Klasse Monster dient als Grundlage für alle Monstervarianten.
+ *
+ */
 public abstract class Monster extends Movable implements IMonster {
     transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
     transient private long startTimeNaehe;
-    transient private boolean inDerNaehe=false;            //kaplselung
-    transient private boolean hatKollidiert=false;         //kaplselung
+    transient private boolean inDerNaehe=false;
+    transient private boolean hatKollidiert=false;
     transient private long startTimeAttac;
-
-
-
     transient int groesse;
     transient int geschwindigkeit = 1;
 
 
     /**
+     * @MEGAtroniker
      * Konstruktor 1
-     * @param posX
-     * @param posY
+     * Dieser Konstruktor kann für nichtbewegliche Monstervarianten verwendet werden
+     * Zudem weden er für Geister verwendet
+     * und besitz dementsprechend ein Minimum an Parametern
+     * @param posX initiale X Position auf dem Spielfeld
+     * @param posY initiale Y Position auf dem Spielfeld
      */
-
     public Monster(float posX, float posY, int groesse) {
-
         super(posX, posY, groesse);
     }
 
+
+    /**
+     * @MEGAtroniker
+     * Konstruktor
+     * Dieser Konstruktor soll für alle beweglichen Monstervarianten verwendet werden,
+     * da für deren Funktionstüchtigkeit die Ausrichtung relativ zum Spielfeld wichtig ist
+     * @param posX initiale X Position auf dem Spielfeld
+     * @param posY initiale Y Position auf dem Spielfeld
+     * @param ausrichtung Ausrichting der Instanz entsprechen der Enum Richtung
+
+    public Monster(float posX, float posY, Richtung ausrichtung,int groesse) {
+        super(posX,posY,ausrichtung,groesse);
+    }*/
+
+
+    /**
+     *
+     * @param posX
+     * @param posY
+     * @param ausrichtung
+     * @param spielsteuerung
+     * @param groesse
+     */
+    public Monster(float posX, float posY, Richtung ausrichtung, Spielsteuerung spielsteuerung, int groesse) {
+        super(posX,posY,ausrichtung, spielsteuerung,groesse);
+    }
+
+
+
+    /**
+     * @MEGAtroniker
+     * @return
+     */
     @Override
     public int getGeschwindigkeit() {
         return this.geschwindigkeit;
     }
 
+
+    /**
+     * @MEGAtroniker
+     * @param geschwindigkeit
+     */
     @Override
     public void setGeschwindigkeit(int geschwindigkeit) {
         this.geschwindigkeit = geschwindigkeit;
     }
 
-    /**
-     * Konstruktor 2 wenn die Ausrichtung(N,S,W,O) für die Fortbewegung relevant ist
-     * @param posX
-     * @param posY
-     * @param ausrichtung
-     */
-    public Monster(float posX, float posY, Richtung ausrichtung,int groesse) {
-        super(posX,posY,ausrichtung,groesse);
-    }
 
-    public Monster(float posX, float posY, Richtung ausrichtung, Spielsteuerung spielsteuerung, int groesse) {
-        super(posX,posY,ausrichtung, spielsteuerung,groesse);
-    }
+
 
 
     @Override

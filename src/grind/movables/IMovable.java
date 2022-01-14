@@ -17,9 +17,6 @@ public interface IMovable {
     void zeichne(Spielsteuerung spielsteuerung);
     void bewege();
     Richtung getAusrichtung();
-
-
-
     void setAusrichtung(Richtung richtung);
 }
 
