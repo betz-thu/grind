@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 import processing.core.PApplet;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -127,19 +128,22 @@ public class LeveleditorTest {
         this.menuArrayMovables.add(new FeuerMonster(0, 0, this.tileMap, this.spielsteuerung, Richtung.N, feuerRate, FeuerModus.RANDOM));
         this.menuArrayMovables.add(new Geist(0, 0, this.tileMap));
         this.menuArrayMovables.add(new Zombie(0, 0, this.tileMap, Richtung.N, this.spielsteuerung, LaufModus.DEFAULT));
-        ILevel templevel = (ILevel) spielwelt.getSzene(levelNr - 1);
-        ArrayList<IMovable> movableList = (ArrayList<IMovable>) templevel.getPositionen();
+        templevel = (ILevel) spielwelt.getSzene(levelNr - 1);
+        movableList = new ArrayList<>();
+        //ArrayList<IMovable> movableList = (ArrayList<IMovable>) templevel.getPositionen();
 
-        try {
+
+        /*try {
             spielsteuerung.settings();
         } catch (Exception e) {
             System.out.println("fehlermeldung size");
-        }
+        }*/
     }
+
 
     @Test
     public void settings() {
-
+        //spielsteuerung.setSize(900,600);
         System.out.println("X:Y  " + Einstellungen.ANZAHL_KACHELN_X * Einstellungen.LAENGE_KACHELN_X + Einstellungen.LAENGE_KACHELN_X * 2 + ":" + Einstellungen.ANZAHL_KACHELN_Y * Einstellungen.LAENGE_KACHELN_Y + Einstellungen.LAENGE_KACHELN_Y);
         assertEquals(Einstellungen.ANZAHL_KACHELN_X * Einstellungen.LAENGE_KACHELN_X, spielsteuerung.getSpielfeldBreite());
         assertEquals(Einstellungen.ANZAHL_KACHELN_Y * Einstellungen.LAENGE_KACHELN_Y, spielsteuerung.getSpielfeldHoehe());
@@ -178,7 +182,7 @@ public class LeveleditorTest {
                     assertEquals(LaufModus.DEFAULT, laufModus);
                     assertEquals(null, aktuelleKachel);
 
-                    //assertNotNull(aktuellesMovable);
+                    assertNotNull(aktuellesMovable);
                     if (spielwelt.getSzene(levelNr - 1) instanceof ISiedlung) {
                         assertTrue(true);
                     }
@@ -186,24 +190,25 @@ public class LeveleditorTest {
                 }
             }
         }
-            /*if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
+            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
                 if (aktuelleKachel != null) {
                     tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
                 } else if (aktuellesMovable != null) {
                     aktuellesMovable.setPosition(mausXmovable, mausYmovable);
                     //addMovablezuLevel(aktuellesMovable);
                 } else if (aktuelleKachel == null && aktuellesMovable == null) {
+                    ArrayList<IMovable> movableList = (ArrayList<IMovable>) templevel.getPositionen();
 
                     assertNotNull(spielwelt.getSzene(levelNr-1));
                     //ILevel templevel = (ILevel) spielwelt.getSzene(levelNr-1);
 
                     //TODO: An der Stelle würde ich eher abfragen ob die Spielwelt erst einmal nicht null ist
-                    //laut der Fehlermeldung erwartet er das Dummylevel mit der speicheradresse x in templevel.
+                    //laut der Fehlermeldu ng erwartet er das Dummylevel mit der speicheradresse x in templevel.
                     //das geht aber nicht weil beide keinerlei kontakt miteinander hatten
 
                     //assertEquals(templevel.getPositionen(), movableList);
 
-                    for (int i = 0; i < movableList.size(); i++) {
+                    for (int i = 0; i <  movableList.size(); i++) {
                         int posX = movableList.get(i).getPosX();
                         int posY = movableList.get(i).getPosY();
 
@@ -215,7 +220,7 @@ public class LeveleditorTest {
                     }
                     if (aktuellesMovable == null) {
 
-                        assertEquals(tileMap.getKachel(mausYkachel, mausXkachel), aktuelleKachel);
+                        //assertEquals(tileMap.getKachel(mausYkachel, mausXkachel), aktuelleKachel);
                         tileMap.setKachel(new Wiese(), mausYkachel, mausXkachel);
                     }
                     //buttonAction(mouseY, mouseX);
@@ -228,8 +233,8 @@ public class LeveleditorTest {
                     assertEquals(null, aktuellesMovable);
                 }
             }
-        }*/
-    }
+        }
+
 }
 
 
