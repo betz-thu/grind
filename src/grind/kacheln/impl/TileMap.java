@@ -23,7 +23,6 @@ public class TileMap implements ITileMap {
     transient IKachel holzbrücke;
     transient IKachel levelausgang;
     transient IKachel dummyHindernis;
-    transient List<IKachel> kachelarten = new ArrayList<>();
     transient Random rand = new Random();
 
     /**
@@ -108,17 +107,6 @@ public class TileMap implements ITileMap {
         }
         return this.dummyHindernis;
     }
-
-//    /**
-//     * Gibt eine Liste aller Kachelarten der aktuellen Tilemap zurück.
-//     *
-//     * @return ArrayList mit Kacheln aus aktueller Tilemap
-//     */
-//    @Override
-//    public List<IKachel> getKachelarten() {
-//        erstelleListeKachelarten();
-//        return this.kachelarten;
-//    }
 
     /**
      * Setzt die übergebene Kachel an die Stelle [i][j] im kachelArray
