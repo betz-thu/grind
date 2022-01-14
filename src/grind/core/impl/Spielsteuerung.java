@@ -293,6 +293,7 @@ public class Spielsteuerung extends PApplet {
     /**
      * @author Team3
      * Überprüfe aktuelle Waffenpositionen und ausgewählte Waffen
+     * Die Abflugrichtung des Pfeils wird festgelegt.
      */
     private void pruefeWaffenzustand(){
         if(key==' '& keyPressed) {
@@ -441,6 +442,10 @@ public class Spielsteuerung extends PApplet {
 
     }
 
+    /**
+     * Prüft ob das Levelende erreicht wurde
+     * @return True wenn das Levelende erreicht wurde / False wenn das Levlende noch nicht erreicht ist.
+     */
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         pruefeLevelausgang();
@@ -481,34 +486,19 @@ public class Spielsteuerung extends PApplet {
     /**
      * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
      * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
+     *
+     * Außerdem wird überprüft, ob ein Monster von einer Waffe getroffen wurde, wenn ja aufrufen weiterer notwendiger Methoden
+     * (z.B. reduziere Lebensenergie).
      */
     public void pruefeKollisionen() {
         ISpielfigur figur = this.spielmodell.getFigur();
         Waffe waffe = figur.getWaffe();
-        //Waffe waffe = getWaffe();
         Waffe pfeil = figur.getPfeil();
-        //int WaffeXp = waffe.getPosX() + (waffe.getGroesse() / 2);
-        //int WaffeXn = waffe.getPosX() - (waffe.getGroesse() / 2);
-        //int WaffeYp = waffe.getPosY() + (waffe.getGroesse() / 2);
-        //int WaffeYn = waffe.getPosY() - (waffe.getGroesse() / 2);
 
-        //int PfeilXp = figur.getPfeil().getPosX() + (figur.getPfeil().getGroesse() / 2);
-        //int PfeilXn = figur.getPfeil().getPosX() - (figur.getPfeil().getGroesse() / 2);
-        //int PfeilYp = figur.getPfeil().getPosY() + (figur.getPfeil().getGroesse() / 2);
-        //int PfeilYn = figur.getPfeil().getPosY() - (figur.getPfeil().getGroesse() / 2);
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
 
-            //int FigurXp = figur.getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            //int FigurXn = figur.getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            //int FigurYp = figur.getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-            //int FigurYn = figur.getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-
-            //int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
-            //int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
-            //int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
-            //int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
 
             if (pruefeKollision(figur, movable)) {
                 if (movable instanceof IMonster) {

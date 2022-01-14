@@ -109,7 +109,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         if (aktiveWaffe instanceof Spezialattacke){
             getWaffe().zeichne(app);
         }
-        System.out.println(abgeschossen);
+//        System.out.println(abgeschossen);
         if (app.key == ' ' & app.keyPressed & getWaffe() instanceof Bogen & !abgeschossen) {
             abgeschossen=true;
         }
@@ -427,20 +427,36 @@ public class Spielfigur extends Movable implements ISpielfigur {
         spielfigurOhneWaffe = app.loadImage("SpielfigurOhneWaffe.jpg");
     }*/
 
+    /**
+     * Die übergebene Waffe wird nun für die Spielfigur zur aktiven Waffe. Das heißt die Waffe kann nun verwendet werden.
+     * @param waffe die zu aktivierende Waffe
+     */
     public void setAktiveWaffe(Waffe waffe){
 
         aktiveWaffe = waffe;
     }
 
+    /**
+     * Gibt die momentan von der Spielfigur verwendete Waffe zurück.
+     * @return aktuell von der Spielfigur verwendete Waffe
+     */
     public Waffe getWaffe(){
         return aktiveWaffe;
     }
 
+    /**
+     * Gibt den momentan von der SPielfigur verwendeten Pfeil zurück.
+     * @return der aktive Pfeil der Spielfigur
+     */
     public Waffe getPfeil(){
         //return this.testpfeil;
         return aktiverPfeil;
     }
 
+    /**
+     * Setzt einen boolean auf wahr, sobald ein Pfeil abgeschossen worden ist.
+     * @param setzteAuf True wenn der Pfeil abgeschossen wurde/ False wenn kein Pfeil abgeschossen wurde.
+     */
     public void setPfeilAbgeschossen(boolean setzteAuf){
         this.abgeschossen = setzteAuf;
     }

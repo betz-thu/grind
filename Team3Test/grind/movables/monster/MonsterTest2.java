@@ -19,7 +19,7 @@ public class MonsterTest2 {
 
     @Before
     public void setUp() throws Exception {
-        monster = new Geist(100, 100, tileMap);
+        monster = new Geist(200, 300, tileMap);
         spielfigur = new Spielfigur(200, 300, Richtung.N);
         monster.setSchaden(SCHADEN);
         spielfigur.setLebensenergie(LEBENSENERGIE);
@@ -28,6 +28,7 @@ public class MonsterTest2 {
     @Test
     public void beiKollision() {
         int spielfigurLebenVorher = spielfigur.getLebensenergie();
+        monster.setHatKollidiert(false);
         monster.beiKollision(spielfigur,monster);
         Assert.assertEquals(spielfigurLebenVorher - SCHADEN, spielfigur.getLebensenergie());
     }
