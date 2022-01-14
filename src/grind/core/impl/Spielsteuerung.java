@@ -39,7 +39,7 @@ public class Spielsteuerung extends PApplet {
     private DateiService dateiService;
     private boolean abgeschossen = false;
     transient Pfeil testpfeil = new Pfeil(35,35,1);
-    transient Waffe testwaffe = new Schwert(35,35,1);
+    transient Waffe testwaffe = new Schwert(35,35,1, 3);
     transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
     Dictionary<String, PImage> images = new Hashtable<String, PImage>();
 
@@ -534,22 +534,23 @@ public class Spielsteuerung extends PApplet {
                             // TODO: Nahrung zu Inventar hinzufügen
                         }
                     }
-                }
+//                }
             } else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
-                else {
-                    beiKollisionSiedlung(movable);
-                }
+//                else {
+//                    beiKollisionSiedlung(movable);
+//                }
 
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke) {
+                } else if (pruefeKollision(waffe, movable) & (key == ' '))/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' '))*/ {
+                } else if (pruefeKollision(waffe, movable) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)*/ {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
 
-                    ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
+                        ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
+                    }
 
 
                 }
