@@ -513,7 +513,8 @@ public class Spielsteuerung extends PApplet {
             if (pruefeKollision(figur, movable)) {
                 if (movable instanceof IMonster) {
                     ((IMonster) movable).beiKollision(figur, movable);
-                } else if (movable instanceof ISchatz) {
+                } else if (!(spielmodell.getSzene() instanceof ISiedlung)){
+                    if (movable instanceof ISchatz) {
                     if (!(movable instanceof Waffe)) {
                         ((ISchatz) movable).beimSammeln(figur); // zB. erhöht Gold
                         //}
@@ -534,7 +535,7 @@ public class Spielsteuerung extends PApplet {
                             // TODO: Nahrung zu Inventar hinzufügen
                         }
                     }
-//                }
+                }
             } else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
