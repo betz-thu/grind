@@ -307,7 +307,7 @@ public class Spielsteuerung extends PApplet {
      */
     private void pruefeWaffenzustand(){
         if(key==' '& keyPressed) {
-            if (!abgeschossen) {
+            if (!abgeschossen && Spieler.getWaffe() instanceof Bogen) {
 
                 //Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
 
