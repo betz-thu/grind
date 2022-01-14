@@ -5,6 +5,7 @@ import grind.kacheln.IKachel;
 import grind.kacheln.impl.Levelausgang;
 import grind.movables.IMovable;
 import grind.movables.ISchatz;
+import grind.movables.ISpielfigur;
 import grind.movables.impl.Levelende;
 import grind.movables.impl.Nahrung;
 import grind.movables.impl.Spielfigur;
@@ -36,13 +37,16 @@ public class Spielsteuerung extends PApplet {
     int Tastendruck;
     private String fTaste;
     private DateiService dateiService;
-
+    private boolean abgeschossen = false;
+    transient Pfeil testpfeil = new Pfeil(35,35,1);
+    transient Waffe testwaffe = new Schwert(35,35,1, 3);
+    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
     Dictionary<String, PImage> images = new Hashtable<String, PImage>();
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
     }
-
+    PApplet app;
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
@@ -56,15 +60,17 @@ public class Spielsteuerung extends PApplet {
     int CountStart;
     int duration = 150;
     int time = 150;
+    private int countSpezialDauer=0;
+    Waffe alteWaffe = testwaffe;
 
-
+    Richtung pfeilrichtung = Richtung.N;
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
      */
     public Spielsteuerung() {
         this.dateiService = new DateiService(this);
-        this.spielmodell = new Spielmodell(ladeSpielwelt(),this);
+        this.spielmodell = new Spielmodell(ladeSpielwelt(), this);
         // this.spielmodell.betreteSzene(1);
         this.spielmodell.betreteSzene(this.spielmodell.getSzeneNr());
 
@@ -172,48 +178,39 @@ public class Spielsteuerung extends PApplet {
                 Tastendruck = 0;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='2') {
+            } else if (key == '2') {
                 Tastendruck = 1;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='3') {
+            } else if (key == '3') {
                 Tastendruck = 2;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='4') {
+            } else if (key == '4') {
                 Tastendruck = 3;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='5') {
+            } else if (key == '5') {
                 Tastendruck = 4;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='6') {
+            } else if (key == '6') {
                 Tastendruck = 5;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='7') {
+            } else if (key == '7') {
                 Tastendruck = 6;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='8') {
+            } else if (key == '8') {
                 Tastendruck = 7;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='9') {
+            } else if (key == '9') {
                 Tastendruck = 8;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
-            }
-            else if (key =='0') {
+            } else if (key == '0') {
                 Tastendruck = 9;
                 Spieler.benutze(Tastendruck);
                 keyPressed = false;
@@ -294,6 +291,7 @@ public class Spielsteuerung extends PApplet {
     private void aktualisiere() {
         pruefeUmgebung();
         pruefeKollisionen();
+        pruefeWaffenzustand();
         spielmodell.entferneToteMonster();
         spielmodell.bewege();
         levelBeendet = ueberpruefeLevelende();
@@ -301,6 +299,107 @@ public class Spielsteuerung extends PApplet {
         pruefeGameOver();
         countdown();
     }
+
+    /**
+     * @author Team3
+     * Überprüfe aktuelle Waffenpositionen und ausgewählte Waffen
+     * Die Abflugrichtung des Pfeils wird festgelegt.
+     */
+    private void pruefeWaffenzustand(){
+        if(key==' '& keyPressed) {
+            if (!abgeschossen && Spieler.getWaffe() instanceof Bogen) {
+
+                //Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
+
+                if (Spieler.getAusrichtung() == Richtung.N) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX(), Spieler.getPosY() - Spieler.getGroesse());
+                } else if (Spieler.getAusrichtung() == Richtung.O) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX() + Spieler.getGroesse(), Spieler.getPosY());
+                } else if (Spieler.getAusrichtung() == Richtung.S) {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX(), Spieler.getPosY() + Spieler.getGroesse());
+                } else {
+                    Spieler.getPfeil().setPosition(Spieler.getPosX() - Spieler.getGroesse(), Spieler.getPosY());
+                }
+
+                pfeilrichtung = Spieler.getAusrichtung();
+            }
+            abgeschossen = true;
+        }
+            if (abgeschossen && Spieler.getWaffe() instanceof Bogen) {
+
+                // Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
+
+                //testpfeil.zeichne(app);
+                if (pfeilrichtung == Richtung.N) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + 0, Spieler.getPfeil().getPosY() - testpfeil.getGeschwindigkeit());
+                    Spieler.getPfeil().setAusrichtung(Richtung.N);
+                } else if (pfeilrichtung == Richtung.O) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + testpfeil.getGeschwindigkeit(), Spieler.getPfeil().getPosY() + 0);
+                    Spieler.getPfeil().setAusrichtung(Richtung.O);
+                } else if (pfeilrichtung == Richtung.S) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() + 0, Spieler.getPfeil().getPosY() + testpfeil.getGeschwindigkeit());
+                    Spieler.getPfeil().setAusrichtung(Richtung.S);
+                } else if (pfeilrichtung == Richtung.W) {
+                    Spieler.getPfeil().setPosition(Spieler.getPfeil().getPosX() - testpfeil.getGeschwindigkeit(), Spieler.getPfeil().getPosY() + 0);
+                    Spieler.getPfeil().setAusrichtung(Richtung.W);
+                }
+
+
+            }
+
+        if(!(Spieler.getWaffe() instanceof Spezialattacke)) {
+                int schwertPositionX = 1;
+                int schwertPositionY = 1;
+                switch (spielmodell.getFigur().getAusrichtung()) {
+                    case N:
+                        schwertPositionX = 0;
+                        schwertPositionY = -1;
+                        break;
+                    case O:
+
+                        schwertPositionX = 1;
+                        schwertPositionY = 0;
+                        break;
+                    case S:
+
+                        schwertPositionX = 0;
+                        schwertPositionY = 1;
+                        break;
+                    case W:
+
+                        schwertPositionX = -1;
+                        schwertPositionY = 0;
+                }
+                Spieler.getWaffe().setPosition(spielmodell.getFigur().getPosX() + Spieler.getWaffe().getGroesse() * schwertPositionX, spielmodell.getFigur().getPosY() + Spieler.getWaffe().getGroesse() * schwertPositionY);
+                Spieler.getWaffe().setAusrichtung(spielmodell.getFigur().getAusrichtung());
+            }
+
+        if(Spieler.spezialAktiviert){
+            testattacke.setPosition(Spieler.getPosX(),Spieler.getPosY());
+            testattacke.setGroesse(150);
+
+
+            if(!(Spieler.getWaffe() instanceof Spezialattacke)){
+                alteWaffe = Spieler.getWaffe();}
+            Spieler.setAktiveWaffe(testattacke);
+            countSpezialDauer +=1;
+            if (countSpezialDauer == 30){
+                Spieler.spezialAktiviert=false;
+                Spieler.setAktiveWaffe(alteWaffe);
+                countSpezialDauer=0;
+            }
+        }
+
+    }
+    //}
+
+
+    //public void setAktiveWaffe_(Waffe waffe){
+    //    aktiveWaffe_ = waffe;
+    //}
+
+
+
 
     /**
      * @author LuHe20
@@ -353,6 +452,10 @@ public class Spielsteuerung extends PApplet {
 
     }
 
+    /**
+     * Prüft ob das Levelende erreicht wurde
+     * @return True wenn das Levelende erreicht wurde / False wenn das Levlende noch nicht erreicht ist.
+     */
     public boolean ueberpruefeLevelende() {
         //Abfrage ob der aktuelle Standpunkt der Spielfigur eine Kachel vom Typ Levelausgang ist.
         pruefeLevelausgang();
@@ -369,6 +472,7 @@ public class Spielsteuerung extends PApplet {
         }
         return levelBeendet;
     }
+
     /**
      * @author LuHe20
      * Prüft, ob die aktuelle Kachel auf der sich der Spieler befindet,
@@ -376,9 +480,9 @@ public class Spielsteuerung extends PApplet {
      * @return levelBeendet
      */
     private boolean pruefeLevelausgang() {
-        int spielerPosX = spielmodell.getFigur().getPosY()/Einstellungen.LAENGE_KACHELN_Y;
-        int spielerPosY = spielmodell.getFigur().getPosX()/Einstellungen.LAENGE_KACHELN_X;
-        if (spielmodell.getSzene() instanceof ILevel){
+        int spielerPosX = spielmodell.getFigur().getPosY() / Einstellungen.LAENGE_KACHELN_Y;
+        int spielerPosY = spielmodell.getFigur().getPosX() / Einstellungen.LAENGE_KACHELN_X;
+        if (spielmodell.getSzene() instanceof ILevel) {
             ILevel level = (ILevel) spielmodell.getSzene();
             IKachel spielerKachel = level.getTileMap().getKachel(spielerPosX,spielerPosY);
             if (spielerKachel instanceof Levelausgang){
@@ -388,43 +492,32 @@ public class Spielsteuerung extends PApplet {
         }
         return levelBeendet;
     }
-/**
- * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
- * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
- */
+
+    /**
+     * Kollisionsabfrage: prüft Kollision zwischen Spieler und Movable und löst entsprechende Methode aus.
+     * z.B. Spieler hat Kollision mit Gold --> beimSammeln() --> löscht Gold aus dem Level
+     *
+     * Außerdem wird überprüft, ob ein Monster von einer Waffe getroffen wurde, wenn ja aufrufen weiterer notwendiger Methoden
+     * (z.B. reduziere Lebensenergie).
+     */
     public void pruefeKollisionen() {
-        int FigurXp = this.spielmodell.getFigur().getPosX() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurXn = this.spielmodell.getFigur().getPosX() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurYp = this.spielmodell.getFigur().getPosY() + (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int FigurYn = this.spielmodell.getFigur().getPosY() - (Einstellungen.GROESSE_SPIELFIGUR / 2);
-        int WaffeXp = this.spielmodell.getFigur().getWaffe().getPosX() + (spielmodell.getFigur().getWaffe().getGroesse() / 2);
+        ISpielfigur figur = this.spielmodell.getFigur();
+        Waffe waffe = figur.getWaffe();
+        Waffe pfeil = figur.getPfeil();
 
-        int WaffeXn = this.spielmodell.getFigur().getWaffe().getPosX() - (spielmodell.getFigur().getWaffe().getGroesse() / 2);
-        int WaffeYp = this.spielmodell.getFigur().getWaffe().getPosY() + (spielmodell.getFigur().getWaffe().getGroesse() / 2);
-        int WaffeYn = this.spielmodell.getFigur().getWaffe().getPosY() - (spielmodell.getFigur().getWaffe().getGroesse() / 2);
-
-        int PfeilXp = this.spielmodell.getFigur().getPfeil().getPosX() + (spielmodell.getFigur().getPfeil().getGroesse() / 2);
-        int PfeilXn = this.spielmodell.getFigur().getPfeil().getPosX() - (spielmodell.getFigur().getPfeil().getGroesse() / 2);
-        int PfeilYp = this.spielmodell.getFigur().getPfeil().getPosY() + (spielmodell.getFigur().getPfeil().getGroesse() / 2);
-        int PfeilYn = this.spielmodell.getFigur().getPfeil().getPosY() - (spielmodell.getFigur().getPfeil().getGroesse() / 2);
 
 
         for (IMovable movable : this.spielmodell.getMovables()) {
-            int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
-            int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
-            int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
-            int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
 
-            if ((FigurXp > MovableXn) & (FigurXn < MovableXp) & (FigurYp > MovableYn) & (FigurYn < MovableYp)) {
 
-                if(movable instanceof IMonster) {
-                        ((IMonster) movable).beiKollision(spielmodell.getFigur(),movable);
-                }
-
-                if(!(spielmodell.getSzene() instanceof ISiedlung)){
-                    if(movable instanceof ISchatz){
+            if (pruefeKollision(figur, movable)) {
+                if (movable instanceof IMonster) {
+                    ((IMonster) movable).beiKollision(figur, movable);
+                } /*else*/
+                if (!(spielmodell.getSzene() instanceof ISiedlung)) {
+                    if (movable instanceof ISchatz) {
                         if (!(movable instanceof Waffe)) {
-                            ((ISchatz) movable).beimSammeln(spielmodell.getFigur()); // zB. erhöht Gold
+                            ((ISchatz) movable).beimSammeln(figur); // zB. erhöht Gold
                             //}
                             if (!(movable instanceof Waffe)) {
                                 spielmodell.removeMovable(movable);
@@ -434,7 +527,7 @@ public class Spielsteuerung extends PApplet {
                         }
                         //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
                         if ((movable instanceof Waffe)) {
-                            ((ISchatz) movable).beimSammeln(spielmodell.getFigur());
+                            ((ISchatz) movable).beimSammeln(figur);
                             System.out.println("Waffe wurde aufgesammelt!");
                             spielmodell.removeMovable(movable);
 
@@ -443,52 +536,78 @@ public class Spielsteuerung extends PApplet {
                             // TODO: Nahrung zu Inventar hinzufügen
                         }
                     }
-                }
-                else {
+                } else {
                     beiKollisionSiedlung(movable);
                 }
+            }
+                else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
+                if (movable instanceof Monster) {
+                    System.out.println(((Monster) movable).getLebensenergie());
+                    System.out.println("Kollision!!");
+//                else {
+//                    beiKollisionSiedlung(movable);
+//                }
 
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ')) {
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke) {
+                } else if (pruefeKollision(waffe, movable) & (key == ' '))/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' '))*/ {
+                } else if (pruefeKollision(waffe, movable) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)*/ {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
 
-                        ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
-
-
+                        ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
                     }
-                } else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
-                    if (movable instanceof Monster) {
-                      System.out.println(((Monster) movable).getLebensenergie());
-                      System.out.println("Kollision!!");
-                      ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getWaffe().getSchaden());
+
 
                 }
-            }
+            } else if (pruefeKollision(waffe, movable) & (key == ' ') & keyPressed){//((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
+                if (movable instanceof Monster) {
+                    System.out.println(((Monster) movable).getLebensenergie());
+                    System.out.println("Kollision!!");
+                    ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
 
-            else if ((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
-                    if (movable instanceof Monster) {
-                        System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
-                        ((Monster) movable).reduziereLebensenergie(spielmodell.getFigur().getPfeil().getSchaden());
-                        spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
-                        spielmodell.getFigur().setPfeilAbgeschossen(false);
-                        spielmodell.getFigur().getPfeil().setPosition(0, 0);
-                    }
-
-            }
-                if (this.isSpielfeldrand(this.spielmodell.getFigur().getPfeil().getPosX(), this.spielmodell.getFigur().getPfeil().getPosY())) {
-                        spielmodell.removeMovable(this.spielmodell.getFigur().getPfeil());
-                        spielmodell.getFigur().setPfeilAbgeschossen(false);
+                }
+            } else if (pruefeKollision(pfeil,movable)){//((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
+                if (movable instanceof Monster) {
+                    System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
+                    ((Monster) movable).reduziereLebensenergie(figur.getPfeil().getSchaden());
+                    spielmodell.removeMovable(figur.getPfeil());
+                    abgeschossen=false;
+                    //figur.setPfeilAbgeschossen(false);
+                    figur.getPfeil().setPosition(1000, 1000);
                 }
 
             }
+            if (this.isSpielfeldrand(figur.getPfeil().getPosX(), figur.getPfeil().getPosY())) {
+                //spielmodell.removeMovable(figur.getPfeil());
+                spielmodell.removeMovable(Spieler.getPfeil());
+                //figur.setPfeilAbgeschossen(false);
+                abgeschossen=false;
+                Spieler.getPfeil().setPosition(1000, 1000);
+                //Spieler.getPfeil()
+            }
+
         }
+    }
+
+    private boolean pruefeKollision(IMovable eins, IMovable movable) {
+        int WaffeXp = eins.getPosX() + (eins.getGroesse() / 2);
+        int WaffeXn = eins.getPosX() - (eins.getGroesse() / 2);
+        int WaffeYp = eins.getPosY() + (eins.getGroesse() / 2);
+        int WaffeYn = eins.getPosY() - (eins.getGroesse() / 2);
+
+
+        int MovableXp = movable.getPosX() + movable.getGroesse() / 2;
+        int MovableXn = movable.getPosX() - movable.getGroesse() / 2;
+        int MovableYp = movable.getPosY() + movable.getGroesse() / 2;
+        int MovableYn = movable.getPosY() - movable.getGroesse() / 2;
+
+        return (WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp);
+    }
 
     public void pruefeUmgebung(){
         for (IMovable movable : this.spielmodell.getMovables()) {
-            if(movable instanceof Monster) {
-                ((IMonster) movable).inDerNaehe(spielmodell.getFigur(),movable);
+            if (movable instanceof Monster) {
+                ((IMonster) movable).inDerNaehe(spielmodell.getFigur(), movable);
             }
         }
     }
@@ -501,9 +620,9 @@ public class Spielsteuerung extends PApplet {
      * @return IKachel
      */
     public IKachel getKachelByCoordinates(int x, int y) {
-        int j =  x/Einstellungen.LAENGE_KACHELN_X;
-        int i =  y/Einstellungen.LAENGE_KACHELN_Y;
-        return spielmodell.getTileMap().getKachel(i,j);
+        int j = x / Einstellungen.LAENGE_KACHELN_X;
+        int i = y / Einstellungen.LAENGE_KACHELN_Y;
+        return spielmodell.getTileMap().getKachel(i, j);
     }
 
     /**

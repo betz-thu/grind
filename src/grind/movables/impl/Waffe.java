@@ -21,6 +21,7 @@ public abstract class Waffe extends Gegenstand{
     }
 
 
+
 //        if(pruefeKollision){
 //
 //        }
