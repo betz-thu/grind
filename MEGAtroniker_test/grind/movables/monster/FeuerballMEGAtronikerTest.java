@@ -34,8 +34,8 @@ public class FeuerballMEGAtronikerTest {
         int posXdavor = ball.getPosX();
         int posYdavor = ball.getPosY();
         ball.bewege();
-        assertEquals((int) (posXdavor+ball.deltaX), ball.getPosX());
-        assertEquals((int) (posYdavor+ball.deltaY), ball.getPosY());
+        assertEquals((int) (posXdavor+ball.getDeltaX()), ball.getPosX());
+        assertEquals((int) (posYdavor+ball.getDeltaY()), ball.getPosY());
 
         ball.setPosition(1000,5000);
         ball.bewege();

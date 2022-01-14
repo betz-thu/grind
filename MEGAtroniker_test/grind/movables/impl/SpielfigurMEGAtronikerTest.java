@@ -54,36 +54,36 @@ public class SpielfigurMEGAtronikerTest {
 
     @Test
     public void playZombieAttacSound() {
-        tFigur.playZombieAttacSound();
+        tFigur.playSound("class grind.movables.monster.Zombie"+"Attack");
     }
 
     @Test
     public void playZombieAroundSound() {
-        tFigur.playZombieAttacSound();
+        tFigur.playSound("class grind.movables.monster.Zombie"+"Around");
     }
 
     @Test
     public void playFeuerMonsterAroundSound() {
-        tFigur.playFeuerMonsterAroundSound();
+        tFigur.playSound("class grind.movables.monster.FeuerMonster"+"Around");
     }
 
     @Test
     public void playFeuerBallAroundSound() {
-        tFigur.playFeuerBallAroundSound();
+        tFigur.playSound("class grind.movables.monster.Feuerball"+"Around");
     }
 
     @Test
     public void playGeistAroundSound() {
-        tFigur.playGeistAroundSound();
+        tFigur.playSound("class grind.movables.monster.Geist"+"Around");
     }
 
     @Test
     public void playPflanzeAroundSound() {
-        tFigur.playPflanzeAroundSound();
+        tFigur.playSound("class grind.movables.monster.DornPflanze"+"Around");
     }
 
     @Test
     public void playPflanzeAttacSound() {
-        tFigur.playPflanzeAttacSound();
+        tFigur.playSound("class grind.movables.monster.Dornpflanze"+"Attack");
     }
 }

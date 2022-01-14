@@ -1,12 +1,9 @@
 package grind.movables.impl;
 
-import grind.core.impl.Spielmodell;
 import grind.core.impl.Spielsteuerung;
-import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
 import grind.util.Richtung;
-import grind.welt.impl.DummyLevel;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -14,13 +11,10 @@ import processing.core.PImage;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
- * @author MEGAtronik
+ * @author MEGAtroniker
  * Konstruktor angepasst, erbt nun von überladenem Movable-Konstruktor.
  */
 public class Spielfigur extends Movable implements ISpielfigur {
@@ -52,10 +46,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
     private int countSpezialDauer=0;
     //Waffe aktiveWaffe = testbogen;
 
+    Dictionary<String, File> Sounds = new Hashtable<String, File>();
 
     public Gegenstand auswahl;
     /**
-     * @MEGAtroniker
+     * @Autor MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
      * @return GESCHWINDIGKEIT
      */
@@ -64,9 +59,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @Autor MEGAtroniker
      * Konstruktor Spielfigur
-     * @param posX gibt X-Position der Spielfigur an.
-     * @param posY gibt Y-Position der Spielfigur an.
+     * Spielfigur besitzt Ausrichtung.
+     * @param posX X-Position
+     * @param posY Y-Position
+     * @param richtung Ausrichtung
      */
     public Spielfigur(float posX, float posY, Richtung richtung) {
         super(posX, posY, richtung, Einstellungen.GROESSE_SPIELFIGUR);
@@ -75,6 +73,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         //setAktiveWaffe(testbogen);
         inventarGuiGroeße =10;
         guiGroeße=50;
+        setSounds();
 }
 
     /**
@@ -123,7 +122,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
     /**
      * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
-     * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
      * @param app
      */
     public void zeichneSpielfigur(Spielsteuerung app) {
@@ -305,7 +303,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
-     * Methode zeichneKontostand, stellt Kontostand als Balken oben links an.
+     * @Autor MEGAtroniker
+     * Methode zeichneKontostand
+     * Stellt Kontostand als Balken oben links an.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
     private void zeichneKontostand(Spielsteuerung app) {
@@ -316,7 +316,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
     /**
-     * Methode zeichneLebensbalken, stellt Lebensbalken links oben dar.
+     * @Autor MEGAtroniker
+     * Methode zeichneLebensbalken
+     * Stellt Lebensbalken links oben dar.
      * @param app Spielsteuerung, als Instanz von PApplet.
      */
     private void zeichneLebensbalken(PApplet app) {
@@ -388,11 +390,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
     public float getGeschwindigkeit() {
         return this.GESCHWINDIGKEIT;
     }
+
     /**
-     * Methode bewege, setzt neue Koordinaten der Figur.
+     * @Autor MEGAtroniker
+     * Methode bewege
+     * Setzt neue Koordinaten der Figur.
+     * Ob die Koordinaten auf belaufbarem Feld liegen, wird schon vor Aufruf in der Spielsteuerung getestet.
      * @param richtung enum für die Richtungsangabe.
      */
-
     @Override
     public void bewege(Richtung richtung) {
         switch (richtung) {
@@ -420,14 +425,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
     /**
-     * @MEGAtroniker
-     * Die Methode erhoeheGold erhöht den wert der Variable gold um den betrag
-     * @param betrag erhöhung des Goldwerts
+     * @Autor MEGAtroniker
+     * Methode erhoeheGold
+     * Erhöht den Wert der Variable gold um betrag.
+     * @param betrag Erhöhung des Goldwerts
      */
     @Override
     public void erhoeheGold(int betrag) {
         this.gold += betrag;
-        //System.out.printf("TODO: Erhöhe Gold um %d.", betrag);
     }
 
     @Override
@@ -493,83 +498,38 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return inventarGuiGroeße;
     }
 
-    public void playApfelSound(){
-        File apfelSound = new File("apple_bite.wav");
-        setupSound(apfelSound);
-    }
-    public void playSwallowSound(){
-        File swallowSound = new File("swallow.wav");
-        setupSound(swallowSound);
-    }
-    public void playBackpackOpenSound(){
-        File backpackSound = new File("backpack.wav");
-        setupSound(backpackSound);
-    }
-    public void playBackpackCloseSound(){
-        File backpackSound = new File("backpack_reverse.wav");
-        setupSound(backpackSound);
+    /**
+     * @Autor MEGAtroniker
+     * Methode setSounds
+     * Lädt die Sounds in das Dictionary Sounds.
+     * Der Key ist bei Monstern ein String aus Klassenname mit Around bzw Attack,
+     * und bei den anderen Sounds ein gewählter String.
+     */
+    private void setSounds(){
+        this.Sounds.put("class grind.movables.monster.ZombieAround",new File("Zombie_in_der_Naehe.wav"));
+        this.Sounds.put("class grind.movables.monster.ZombieAttack",new File("Zombie_attac.wav"));
+        this.Sounds.put("class grind.movables.monster.FeuerMonsterAround",new File("Feuermonster_Around.wav"));
+        this.Sounds.put("class grind.movables.monster.FeuerballAround",new File("Feuerball__flyBy.wav"));
+        this.Sounds.put("class grind.movables.monster.GeistAround",new File("Gohst_Around.wav"));
+        this.Sounds.put("class grind.movables.monster.DornPflanzeAround",new File("Pflanze_Around.wav"));
+        this.Sounds.put("class grind.movables.monster.DornPflanzeAttack",new File("Pflanze_Around.wav"));
+        this.Sounds.put("openBackPack",new File("backpack.wav"));
+        this.Sounds.put("closeBackPack",new File("backpack_reverse.wav"));
+        this.Sounds.put("swallow",new File("swallow.wav"));
+        this.Sounds.put("Apfel",new File("apple_bite.wav"));
     }
 
     /**
-     * @MEGAtroniker
+     * @Autor MEGAtroniker
+     * Methode playSound
+     * Falls das Dictionary Sounds einen Sound zum übergebenen Key hat, wird dieser abgespielt.
+     * @param nameKey String, fungiert als Key für das Dictionary Sounds.
      */
-    public void playZombieAttacSound() {
-        File zombieAttac = new File("Zombie_attac.wav");
-        setupSound(zombieAttac);
+    public void playSound(String nameKey){
+        if (Sounds.get(nameKey) != null ){
+            setupSound(Sounds.get(nameKey));
+        }
     }
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playZombieAroundSound() {
-        File zombieAround = new File("Zombie_in_der_Naehe.wav");
-        setupSound(zombieAround);
-    }
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playFeuerMonsterAroundSound() {
-        File feuerMonsterAround = new File("Feuermonster_Around.wav");
-        setupSound(feuerMonsterAround);
-    }
-
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playFeuerBallAroundSound() {
-        File feuerBallAround = new File("Feuerball__flyBy.wav");
-        setupSound(feuerBallAround);
-    }
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playGeistAroundSound() {
-        File gohstAround = new File("Gohst_Around.wav");
-        setupSound(gohstAround);
-    }
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playPflanzeAroundSound() {
-        File pflanzeAround = new File("Pflanze_Around.wav");
-        setupSound(pflanzeAround);
-    }
-
-    /**
-     * @MEGAtroniker
-     */
-    public void playPflanzeAttacSound() {
-        File pflanzeAttac = new File("Pflanze_Around.wav");
-        setupSound(pflanzeAttac);
-    }
-
-
-
-
 
         private void setupSound(File Sound){
         try{

@@ -10,17 +10,13 @@ import processing.core.PApplet;
 import grind.util.Einstellungen;
 
 public class Geist extends Monster {
-
     transient private float deltaX = getGeschwindigkeit()*5;
     transient private float deltaY = getGeschwindigkeit()*5;
     transient private int schaden = 15;
-
-
     transient ITileMap tileMap;
 
 
     public Geist(float posX, float posY, ITileMap tileMap) {
-
         super(posX, posY, Einstellungen.LAENGE_KACHELN_X / 2);
         setSchaden(schaden);
     }
@@ -36,28 +32,20 @@ public class Geist extends Monster {
     @Override
     public void bewege() {
         super.bewege();
-
-
         int posX = this.getPosX();
         int posY = this.getPosY();
-
         if (posX < 0) {
             deltaX = getGeschwindigkeit()*5;
         } else if (posX > Einstellungen.ANZAHL_KACHELN_X * Einstellungen.LAENGE_KACHELN_X) {
             deltaX = -getGeschwindigkeit()*5;
         }
-
         if (posY < 0) {
             deltaY = getGeschwindigkeit()*5;
         } else if (posY > Einstellungen.ANZAHL_KACHELN_Y * Einstellungen.LAENGE_KACHELN_Y) {
             deltaY = -getGeschwindigkeit()*5;
         }
-
-
         posX += deltaX;
         posY += deltaY;
-
-
         this.setPosition(posX, posY);
     }
 
@@ -78,8 +66,5 @@ public class Geist extends Monster {
         this.spielmodell = spielmodell;
     }
 
-    @Override
-    public void vorBetreten(IKachel kachel) {
 
-    }
 }

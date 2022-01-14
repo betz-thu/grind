@@ -2,25 +2,29 @@
 package grind.movables.monster;
 
 import grind.core.impl.Spielsteuerung;
-import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.util.Einstellungen;
 import grind.util.FeuerModus;
 import grind.util.Richtung;
-
 import java.util.Random;
 
 /**
  * @author MEGAtroniker
  * Die Klasse FeuerMonster definiert ein Monster welches das Monster Feuerball als Geschoss verwendt und
  * in regelmäßigen Abständen in Richtung der Spielfigur schießt. Zusätzlich bewegt es sich dur das Spielfeld.
- * Bein Auftreffen auf ein hinderniss wird die Laufrichtung im Uhrzeigersinn angepasst.
+ * Beim Auftreffen auf ein hinderniss wird die Laufrichtung im Uhrzeigersinn angepasst.
+ * Mithilfe der Konstruktorparameter können drei verschiedene Arten von Feuermonster erstellt werden,
+ * diese unterscheiden sich in dem Feuermodus
+ *  1. konstante Feurrate
+ *  2. SemiRandom eine quasi vorhersehbare Feuerrate mit wenigen zufälligen extra schüssen
+ *  3. Random, zufällige Feuerrate
+ *
  * Treffen Spielfigur und Feuermonster aufeinander so erleidet die Spielfugur alle 2 Sekunden Schaden
  */
 public class FeuerMonster extends Monster{
     transient final int posX;
     transient final int posY;
-    private static int geschwindigkeit = 2;
+    private static final int geschwindigkeit = 2;
     final int deltaX;
     final int deltaY;
     transient ITileMap tileMap;
@@ -30,39 +34,18 @@ public class FeuerMonster extends Monster{
     transient Random rand;
     final int feuerRate;
     private boolean hatKollidiert=false;
-
-    /**
-     * @MEGAtroniker
-     * Setter setHastKollidiert für testing und kapselung
-     * @param hatKollidiert
-     */
-    public void setHatKollidiert(boolean hatKollidiert) {
-        this.hatKollidiert = hatKollidiert;
-    }
-
-
-
-    /**
-     * @MEGAtroniker
-     * Getter, notwendig für die tests und kapselung
-     * @return
-     */
-    public boolean isHatKollidiert() {
-        return hatKollidiert;
-    }
-
     private long startTime;
     FeuerModus feuerModus;
     transient final int schaden = 20;
 
     /**
      * @MEGAtroniker
-     * Konstruktor enthält nun eine ausrichtung für die implementierung des bewegungsalgorthmus.
-     * Aus Spielsteuerung erhält man Methoden zur einfachen Implementierung der Bewege Methode
-     * @param posX aktuelle X-Position
-     * @param posY aktuelle Y-Position
+     * Der Feuermonster Konstruktor ermöglicht die Erstellung der oben gennaten Feuermonstervarianten
+     * Aus der Spielsteuerung erhält man Methoden zur einfachen Implementierung der Bewege Methode
+     * @param posX initiale X-Position
+     * @param posY initiale Y-Position
      * @param tileMap  aktuelle TileMap auf der sich das Monster befindet
-     * @param steuerung bewegungs Methoden
+     * @param steuerung aktuelle Spielsteuerung
      * @param ausrichtung   Laufrichtung
      */
     public FeuerMonster(float posX, float posY, ITileMap tileMap,Spielsteuerung steuerung, Richtung ausrichtung, int feuerRate,FeuerModus feuerModus) {
@@ -70,7 +53,7 @@ public class FeuerMonster extends Monster{
         this.tileMap = tileMap;
         this.posX = (int)posX;
         this.posY = (int)posY;
-        this.deltaX = -geschwindigkeit; // gibt dem FeuerMonster eine Anfangsrichtung und geschwindigkeit
+        this.deltaX = -geschwindigkeit;
         this.deltaY = -geschwindigkeit;
         this.ausrichtung=ausrichtung;
         rand = new Random();
@@ -79,33 +62,12 @@ public class FeuerMonster extends Monster{
         setSchaden(schaden);
     }
 
-//    /**
-//     * @MEGAtroniker
-//     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-//     * @param figur Spielfigur
-//     */
-//    @Override
-//    public void beiKollision(ISpielfigur figur) {
-//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f)&&!hatKollidiert){ // 20 = spielerradius
-//            System.out.println("Kollision mit FeuerMonster");
-//            startTime = System.currentTimeMillis();
-//            //hatKollidiert=true;
-//            setHatKollidiert(true);
-//            figur.erhalteSchaden(this.schaden);
-//        }
-//    }
 
     /**
-     * @MEGAtroniker
-     * Die Methode zeiche definiert die Darstellung des Feuremonsters
-     * @param /app  app zur Darstellung
+     * @author MEGAtroniker
+     * Getter gerGroesse gibt die Größe des Feuermonsters zurück, diese entspricht der halben Kachelgröße.
+     * @return Größe des Feuermonsters
      */
-//    @Override
-//    public void zeichne(PApplet app) {
-//        app.fill(255,100,0);
-//        app.ellipse(this.getPosX(), this.getPosY(),(float) groesse, (float) groesse);
-//    }
-
     @Override
     public int getGroesse() {
         return groesse = Einstellungen.LAENGE_KACHELN_X/2;
@@ -122,70 +84,67 @@ public class FeuerMonster extends Monster{
         super.bewege();
         int posX = this.getPosX();
         int posY = this.getPosY();
+        bewegeMovable(posX, posY);
+        FeuerModus(this.feuerModus,this.feuerRate);
+    }
+
+
+    /**
+     * @author MEGAtroniker
+     * Die Methode bewegeMovable bewegt das Monster vorhersehbar, bei einem Hindernis wird immer nach rechts Abgebogen.
+     * Damit Kann man mithilfe von Hindernissen auch ein Patrouillieren ermöglichen.
+     * @param posX aktuelle X Position
+     * @param posY aktuelle Y Position
+     */
+    private void bewegeMovable(int posX, int posY) {
         switch (getAusrichtung()) {
             case W:
-                if (bewegeWestlich(posX, posY)) break;
+                if (bewegeWestlich(posY, posX - 2 * getGeschwindigkeit(), posX - getGeschwindigkeit(), posY))
+                    break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * geschwindigkeit, posX, posY - geschwindigkeit)) break;
+                if (bewegeNoerdlich(posX, posY - 2 * getGeschwindigkeit(), posX, posY - getGeschwindigkeit()))
+                    break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * geschwindigkeit, posX + geschwindigkeit, posY)) break;
+                if (bewegeOestlich(posY, posX + 2 * getGeschwindigkeit(), posX + getGeschwindigkeit(), posY))
+                    break;
             case S:
-                bewegeSuedlich(posX, posY + 2 * geschwindigkeit, posX, posY + geschwindigkeit);
-                break;
+                bewegeSuedlich(posX, posY);
         }
-        FeuerModus(this.feuerModus,this.feuerRate);
-
-
     }
 
 
     /**
-     * @MEGAtroniker
-     * @param posX
-     * @param posY
-     * @return
+     * @author MEGAtroniker
+     * Die Methode bewegeSuedlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in südliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Westen ausgerichtet.
+     * @param posX aktuelle X Position
+     * @param posY aktuelle Y Position
      */
-    private boolean bewegeWestlich(int posX, int posY) {
-        if(getSpielsteuerung().isErlaubteKoordinate(posX - 2*geschwindigkeit, posY)){
-            this.setPosition(posX - geschwindigkeit, posY);
-            return true;
+    private void bewegeSuedlich(int posX, int posY) {
+        if(getSpielsteuerung().isErlaubteKoordinate(posX, posY + 2*geschwindigkeit)){
+            this.setPosition(posX, posY +geschwindigkeit);
+            return;
         }else{
-            setAusrichtung(Richtung.N);
+            setAusrichtung(Richtung.W);
         }
-        return false;
     }
 
 
     /**
-     * @MEGAtroniker
-     * @param posX
-     * @param i
-     * @param posX2
-     * @param i2
-     * @return
+     * @author MEGAtroniker
+     * Die Methode bewegeOestlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in östliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Süden ausgerichtet.
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere östliche Bewegung ist nicht möglich
      */
-    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
-            this.setPosition(posX2, i2);
-            return true;
-        } else {
-            setAusrichtung(Richtung.O);
-        }
-        return false;
-    }
-
-
-    /**
-     * @MEGAtroniker
-     * @param posY
-     * @param i
-     * @param i2
-     * @param posY2
-     * @return
-     */
-    private boolean bewegeOestlich(int posY, int i, int i2, int posY2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
-            this.setPosition(i2, posY2);
+    private boolean bewegeOestlich(int nextPosY, int nextPosX, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
             return true;
         } else {
             setAusrichtung(Richtung.S);
@@ -195,19 +154,46 @@ public class FeuerMonster extends Monster{
 
 
     /**
-     * @MEGAtroniker
-     * @param posX
-     * @param i
-     * @param posX2
-     * @param i2
+     * @author MEGAtroniker
+     * Die Methode bewegeNoerdlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in nördliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Osten ausgerichtet.
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere nördliche Bewegung ist nicht möglich
      */
-    private boolean bewegeSuedlich(int posX, int i, int posX2, int i2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
-            this.setPosition(posX2, i2);
+    private boolean bewegeNoerdlich(int nextPosX, int nextPosY, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
             return true;
         } else {
-            setAusrichtung(Richtung.W);
-        }return false;
+            setAusrichtung(Richtung.O);
+        }
+        return false;
+    }
+
+
+    /**
+     * @author MEGAtroniker
+     * Die Methode bewegeWestlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in westliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Norden ausgerichtet.
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere westliche Bewegung ist nicht möglich
+     */
+    private boolean bewegeWestlich(int nextPosY, int nextPosX, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
+            return true;
+        } else {
+            setAusrichtung(Richtung.N);
+        }
+        return false;
     }
 
 
@@ -255,9 +241,29 @@ public class FeuerMonster extends Monster{
             this.spielmodell.addMonster(feuerball);
         }
 
-    @Override
-    public void vorBetreten(IKachel kachel) {
-
+    /**
+     * @MEGAtroniker
+     * Setter setHastKollidiert für testing und kapselung
+     * @param hatKollidiert
+     */
+    public void setHatKollidiert(boolean hatKollidiert) {
+        this.hatKollidiert = hatKollidiert;
     }
+
+
+
+    /**
+     * @MEGAtroniker
+     * Getter, notwendig für die tests und kapselung
+     * @return
+     */
+    public boolean isHatKollidiert() {
+        return hatKollidiert;
+    }
+
+
+
+
+
 }
 
