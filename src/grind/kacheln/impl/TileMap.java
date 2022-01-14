@@ -3,6 +3,7 @@ package grind.kacheln.impl;
 import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.util.Einstellungen;
+import grind.util.FeuerModus;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -41,15 +42,13 @@ public class TileMap implements ITileMap {
         this.dummyHindernis = new DummyHindernis();
         this.levelausgang = new Levelausgang();
         zufaelligeTileMap();
-        erstelleListeKachelarten();
+//        erstelleListeKachelarten();
     }
 
     /**
      * Erstellt eine zufällige Tilemap zu Testzwecken
      */
-    private void zufaelligeTileMap() {
-        int levelausgangI = rand.nextInt(Einstellungen.ANZAHL_KACHELN_Y);
-        int levelausgangJ = rand.nextInt(Einstellungen.ANZAHL_KACHELN_X);
+    public void zufaelligeTileMap() {
         int zufall = 0;
 
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
@@ -70,21 +69,6 @@ public class TileMap implements ITileMap {
                     this.kacheln[i][j] = this.wiese;
                 } else if (zufall == 5) {
                     this.kacheln[i][j] = this.holzbrücke;
-                }
-            }
-        }
-
-        //this.kacheln[levelausgangI][levelausgangJ] = this.levelausgang;
-    }
-
-    /**
-     * Fügt der Liste Kachelarten alle Kachelarten der akutellen Tilemap hinzu.
-     */
-    private void erstelleListeKachelarten() {
-        for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
-            for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
-                if (!kachelarten.contains(kacheln[i][j])) {
-                    kachelarten.add(kacheln[i][j]);
                 }
             }
         }
@@ -125,16 +109,16 @@ public class TileMap implements ITileMap {
         return this.dummyHindernis;
     }
 
-    /**
-     * Gibt eine Liste aller Kachelarten der aktuellen Tilemap zurück.
-     *
-     * @return ArrayList mit Kacheln aus aktueller Tilemap
-     */
-    @Override
-    public List<IKachel> getKachelarten() {
-        erstelleListeKachelarten();
-        return this.kachelarten;
-    }
+//    /**
+//     * Gibt eine Liste aller Kachelarten der aktuellen Tilemap zurück.
+//     *
+//     * @return ArrayList mit Kacheln aus aktueller Tilemap
+//     */
+//    @Override
+//    public List<IKachel> getKachelarten() {
+//        erstelleListeKachelarten();
+//        return this.kachelarten;
+//    }
 
     /**
      * Setzt die übergebene Kachel an die Stelle [i][j] im kachelArray
