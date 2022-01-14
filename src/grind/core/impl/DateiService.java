@@ -37,8 +37,6 @@ public class DateiService {
     private ITileMap tilemap;
     private Spielsteuerung spielsteuerung;
 
-    //TODO: Spielsteuerung braucht malerweise nicht übergeben werden.
-    // --> Workaround für das FeuerMonster, da dieses die Spielsteuerung braucht.
     public DateiService(Spielsteuerung spielsteuerung) {
         this.spielsteuerung = spielsteuerung;
         this.gsonbuilder = new GsonBuilder();
@@ -366,13 +364,36 @@ public class DateiService {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(dateiname));
 
-                spielwelt = gson.fromJson(reader, DummySpielwelt.class);
+            spielwelt = gson.fromJson(reader, DummySpielwelt.class);
 
             reader.close();
 
+            if (spielwelt.getSzenenanzahl() == 0){
+                spielwelt = erstelleErrorSpielwelt();
+            }
+
         } catch (Exception e) {
-            e.printStackTrace();
+            spielwelt = erstelleErrorSpielwelt();
         }
+        return spielwelt;
+    }
+
+    /**
+     * Erstellt im Falle einer fehlerhaften JSON Datei eine neutrale Spielwelt und gibt per Konsole eine Fehlermeldung aus.
+     * @return Gibt die Spielwelt mit einer Spielfigur, Tilemap zurück
+     */
+    private DummySpielwelt erstelleErrorSpielwelt() {
+        DummySpielwelt spielwelt = new DummySpielwelt();
+        Spielfigur tempspielfigur = new Spielfigur(50,50, Richtung.N);
+        ITileMap temptileMap = new TileMap();
+        ILevel templevel = new DummyLevel();
+
+        templevel.setTilemap(temptileMap);
+        templevel.addPosition(tempspielfigur);
+        spielwelt.addSzene(templevel,0);
+        System.out.println("Fehler beim laden der JSON Spielwelt!");
+        System.out.println("spielwelt.json überprüfen!");
+
         return spielwelt;
     }
 
