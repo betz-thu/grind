@@ -72,11 +72,11 @@ public abstract class Movable implements IMovable {
             spielsteuerung.rotate(PConstants.HALF_PI*n);
         }
         PImage img;
-        if(spielsteuerung.getImages().get(this.getClass().toString()+this.getStufe())==null) {
+        String a = this.getClass().toString()+this.getStufe();
+        if(spielsteuerung.getImages().get(a)==null) {
             img = (PImage) spielsteuerung.getImages().get("class grind.movables.monster.Zombie0");
             System.out.println("Bild für "+this.getClass().toString()+this.getStufe()+" fehlt noch.");
         } else {
-            String a = this.getClass().toString()+this.getStufe();
             img = (PImage) spielsteuerung.getImages().get(a);
         }
         spielsteuerung.image(img, 0, 0, this.getGroesse(), this.getGroesse());
