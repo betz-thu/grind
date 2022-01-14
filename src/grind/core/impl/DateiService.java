@@ -16,6 +16,7 @@ import grind.util.Einstellungen;
 import grind.util.FeuerModus;
 import grind.util.LaufModus;
 import grind.util.Richtung;
+import grind.welt.ILevel;
 import grind.welt.ISpielwelt;
 import grind.welt.ISzene;
 import grind.welt.impl.DummyLevel;
