@@ -151,24 +151,10 @@ public abstract class Monster extends Movable implements IMonster {
         float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz>kollisionsDistantz&&aktuelleDistanz<120&&!inDerNaehe){
-            playMonsterAroundSound(figur, monster);
+            figur.playSound(this.getClass().toString()+"Around");
             startTimeNaehe = System.currentTimeMillis();
             setInDerNaehe(true);
         }
-    }
-
-    private void playMonsterAroundSound(ISpielfigur figur, IMovable monster) {
-        if(monster instanceof Zombie){
-            figur.playZombieAroundSound();
-        }if(monster instanceof FeuerMonster){
-            figur.playFeuerMonsterAroundSound();
-        }if(monster instanceof Feuerball){
-             figur.playFeuerBallAroundSound();
-        }if(monster instanceof Geist) {
-             figur.playGeistAroundSound();
-        }if(monster instanceof DornPflanze) {
-        figur.playPflanzeAroundSound();
-    }
     }
 
     private void setInDerNaehe(boolean inDerNaehe) {
@@ -196,26 +182,11 @@ public abstract class Monster extends Movable implements IMonster {
         float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz < kollisionsDistantz&&!hatKollidiert){
-            playMonsterAttacSound(figur, monster);
+            figur.playSound(this.getClass().toString()+"Attack");
             startTimeAttac = System.currentTimeMillis();
             setHatKollidiert(true);
 
         }
-    }
-
-    private void playMonsterAttacSound(ISpielfigur figur,IMovable monster) {
-        if(monster instanceof Zombie){
-            figur.playZombieAttacSound();
-        }if(monster instanceof FeuerMonster){
-            figur.playFeuerMonsterAroundSound();
-        }if(monster instanceof Feuerball){
-            figur.playFeuerBallAroundSound();
-        }if(monster instanceof Geist) {
-            figur.playGeistAroundSound();
-        }if(monster instanceof DornPflanze) {
-            figur.playPflanzeAttacSound();
-        }
-        figur.erhalteSchaden(this.schaden);
     }
 
     public void setHatKollidiert(boolean hatKollidiert) {

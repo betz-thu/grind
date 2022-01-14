@@ -20,6 +20,6 @@ public class Heiltrank extends Nahrung {
     @Override
     public void beimAnwenden(ISpielfigur figur){
         super.beimAnwenden(figur);
-        figur.playSwallowSound();
+        figur.playSound("swallow");
     }
 }

@@ -19,8 +19,6 @@ import java.util.Random;
  *  3. Der Zombi läuft mit hoher Wahrscheinlichkeit in Spielerrichtung, sehr selten läuft er vohersebar
  */
 public class Zombie extends Monster{
-    transient private int posX;
-    transient private int posY;
     transient private int geschwindigkeit = 2;
     transient private int deltaX;
     transient private int deltaY;
@@ -43,8 +41,6 @@ public class Zombie extends Monster{
     public Zombie(float posX, float posY, ITileMap tileMap, Richtung ausrichtung, Spielsteuerung steuerung, LaufModus laufModus) {
         super(posX, posY,ausrichtung, steuerung, Einstellungen.LAENGE_KACHELN_X);
         this.tileMap = tileMap;
-        this.posX = (int)posX;
-        this.posY = (int)posY;
         this.deltaX = -getGeschwindigkeit();
         this.deltaY = -getGeschwindigkeit();
         this.laufModus=laufModus;
@@ -248,8 +244,6 @@ public class Zombie extends Monster{
         if(!kachel.istBetretbar()){
             deltaX = -deltaX;
             deltaY = -deltaY;
-            posX += deltaX ;
-            posY += deltaY ;
             hilfsVariable = true; // Eine Kachel wurde getroffen und Richtung umgekehrt.
 
         }

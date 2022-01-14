@@ -26,7 +26,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * @Autor Megatronik
+ * @Autor MEGAtroniker
  * steuert Spielfigur, zeigt sichtbare Objekte an.
  */
 public class Spielsteuerung extends PApplet {
@@ -111,6 +111,15 @@ public class Spielsteuerung extends PApplet {
 
     }
 
+    /**
+     * @Autor MEGAtroniker
+     * Methode ladeBilder
+     * Lädt alle Bilder der Movables, und speichert diese in das Dictionary images.
+     * Jeweiliger Key ist die Klasse und Stufe des Movables.
+     * @param spielsteuerung Spielsteuerung, in welcher das Dictionary gesetzt werden soll.
+     *                       (wichtig für den Leveleditor, dass dieser seine images auch
+     *                       durch diese Methode laden lassen kann.)
+     */
     public void ladeBilder(Spielsteuerung spielsteuerung) {
         Dictionary images = new Hashtable();
         images.put("class grind.movables.monster.Zombie0",(PImage) spielsteuerung.loadImage("Zombie.png"));
@@ -145,9 +154,12 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * Methode eingabe: richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
-     * Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
-     * damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
+     * @Autor MEGAtroniker
+     * Methode eingabe
+     * bei Eingabe der Tasten w, a, s, d:
+     *  -Richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
+     *  -Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
+     *  damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
      */
     private void eingabe() {
         int x = Spieler.getPosX();
@@ -220,12 +232,12 @@ public class Spielsteuerung extends PApplet {
             if(keyPressed) {
                 if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
                     Spieler.setInventarGuiGroeße(30);
-                    Spieler.playBackpackOpenSound();
+                    Spieler.playSound("openBackPack");
                     keyPressed = false;
                 } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
                     Spieler.setInventarGuiGroeße(10);
                     keyPressed = false;
-                    Spieler.playBackpackCloseSound();
+                    Spieler.playSound("closeBackPack");
                 }
             }
         }
@@ -234,8 +246,9 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * @MEGAtroniker
+     * @Autor MEGAtroniker
      * Die Methode springt zur nächsten Szene durch das Betätigen der Taste "F12"
+     * (refactored)
      */
     private void szeneUeberspringen() {
         abfrageFTasten();
@@ -604,6 +617,12 @@ public class Spielsteuerung extends PApplet {
         return (WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp);
     }
 
+    /**
+     * @Autor MEGAtroniker
+     * Methode pruefeUmgebung
+     * Holt sich die Movables, und testet für jedes Monster, ob es in der Nähe der Spielfigur ist.
+     */
+
     public void pruefeUmgebung(){
         for (IMovable movable : this.spielmodell.getMovables()) {
             if (movable instanceof Monster) {
@@ -614,7 +633,9 @@ public class Spielsteuerung extends PApplet {
 
 
     /**
-     * Methode getKachelByCoordinates, gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
+     * @Autor MEGAtroniker
+     * Methode getKachelByCoordinates
+     * Gibt IKachel zurück, auf der die gegebenen Koordinaten liegen.
      * @param x X-Koordinate
      * @param y Y-Koordinate
      * @return IKachel
@@ -626,7 +647,9 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * Methode isSpielfeldrand, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
+     * @Autor MEGAtroniker
+     * Methode isSpielfeldrand
+     * Gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten
      * außerhalb des Spielfelds liegen.
      * @param x X-Koordinate
      * @param y Y-Koordinate
@@ -637,7 +660,9 @@ public class Spielsteuerung extends PApplet {
     }
 
     /**
-     * Methode isErlaubteKoordinate, gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
+     * @Autor MEGAtroniker
+     * Methode isErlaubteKoordinate
+     * Gibt boolean zurück, der wahr ist, wenn die gegebenen Koordinaten weder
      * außerhalb des Spielfelds, noch auf einer unbetretbaren Kachel liegen.
      * @param x X-Koordinate
      * @param y Y-Koordinate
@@ -755,10 +780,22 @@ public class Spielsteuerung extends PApplet {
 
     }
 
+    /**
+     * @Autor MEGAtroniker
+     * Methode getImages
+     * Gibt das Dictionary images der geladenen Bilder der Movables zurück.
+     * @return images
+     */
     public Dictionary getImages() {
         return images;
     }
 
+    /**
+     * @Autor MEGAtroniker
+     * Methode setImages
+     * Setzt das Dictionary images auf das übergebene Dictionary.
+     * @param images Dictionary der geladenen Bilder.
+     */
     public void setImages(Dictionary images) {
         this.images = images;
     }

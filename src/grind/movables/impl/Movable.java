@@ -8,6 +8,7 @@ import grind.util.Richtung;
  * @Autor Megatroniker
  * Überladener Konstruktor, um Spielfigur und anderer Movables eine Ausrichtung zu geben.
  * getAusrichtung und setAusrichtung, um Ausrichtung zu setzen oder zu übergeben.
+ * zeichne ist einheitliche Funktion, um movables zu zeichnen, die per Bild dargestellt werden.
  */
 import grind.movables.ISpielfigur;
 import processing.core.PConstants;
@@ -28,7 +29,8 @@ public abstract class Movable implements IMovable {
     }
 
     /**
-     * Methode Movable
+     * @MEGAtroniker
+     * Konstruktor Movable
      * Überladener Konstruktor, um Spielfigur und anderer Movables eine Ausrichtung zu geben.
      * @param posX gibt X-Position des Movables an.
      * @param posY gibt Y-Position des Movables an.
@@ -49,6 +51,15 @@ public abstract class Movable implements IMovable {
         this.spielsteuerung = spielsteuerung;
     }
 
+    /**
+     * @Autor MEGAtroniker
+     * zeichne
+     * Holt aus den im Dictionary images der Klasse Spielsteuerung geladenen Bildern das passende Bild, und zeigt dieses
+     * in der passenden Ausrichtung an der Position des Movables an.
+     * Der jeweilige Key des passenden Bildes ist der String aus Klasse und Stufe des Movables.
+      * @param spielsteuerung Spielsteuerung (extends PApplet): hiervon werden die Bilder geholt,
+     *                       und hier werden sie auch angezeigt.
+     */
     public void zeichne(Spielsteuerung spielsteuerung) {
         spielsteuerung.pushStyle();
         spielsteuerung.imageMode(PConstants.CENTER);
@@ -111,7 +122,9 @@ public abstract class Movable implements IMovable {
 
 
     /**
-     * Methode getAusrichtung gibt die aktuelle Ausrichtung des Movables zurück.
+     * @MEGAtroniker
+     * Methode getAusrichtung
+     * Gibt die aktuelle Ausrichtung des Movables zurück.
      * @return Richtung in Form der enum
      */
     @Override
@@ -120,7 +133,9 @@ public abstract class Movable implements IMovable {
     }
 
     /**
-     * Methode setAusrichtung setzt die aktuelle Ausrichtung auf den Übergabewert.
+     * @MEGAtroniker
+     * Methode setAusrichtung
+     * Setzt die aktuelle Ausrichtung auf den Übergabewert.
      * @param ausrichtung ist die neue Ausrichtung.
      */
     @Override

@@ -23,7 +23,7 @@ public class Mango extends Nahrung{
     @Override
     public void beimAnwenden(ISpielfigur figur){
         super.beimAnwenden(figur);
-        figur.playApfelSound();
+        figur.playSound("Apfel");
     }
 
 }
