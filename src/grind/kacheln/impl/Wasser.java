@@ -21,7 +21,7 @@ public class Wasser implements IKachel {
      */
     @Override
     public boolean istBetretbar() {
-        return true;
+        return false;
     }
 
     /**

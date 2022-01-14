@@ -1,6 +1,6 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
-import grind.kacheln.impl.LeereKachel;
+import grind.kacheln.impl.Weg;
 import grind.movables.impl.Spielfigur;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,18 +9,18 @@ import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class LeereKachelTest {
+public class WegTestLeveleditor {
 
-    LeereKachel leereKachel = new LeereKachel();
+    Weg weg = new Weg();
 
     @Test
     public void istBetretbar() {
-        Assert.assertTrue(leereKachel.istBetretbar());
+        Assert.assertTrue(weg.istBetretbar());
     }
 
     @Test
     public void istHindernis() {
-        Assert.assertFalse(leereKachel.istHindernis());
+        Assert.assertFalse(weg.istHindernis());
     }
 
 }
