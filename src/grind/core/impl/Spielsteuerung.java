@@ -113,22 +113,22 @@ public class Spielsteuerung extends PApplet {
 
     public void ladeBilder(Spielsteuerung spielsteuerung) {
         Dictionary images = new Hashtable();
-        images.put("class grind.movables.monster.Zombie",(PImage) spielsteuerung.loadImage("Zombie.png"));
+        images.put("class grind.movables.monster.Zombie0",(PImage) spielsteuerung.loadImage("Zombie.png"));
         images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
-        images.put("class grind.movables.impl.Heiltrank",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
-        images.put("class grind.movables.impl.Apfel",(PImage) spielsteuerung.loadImage("Apfel.png"));
-        images.put("class grind.movables.impl.Mango",(PImage) spielsteuerung.loadImage("Mango.png"));
-        images.put("class grind.movables.impl.Gold",(PImage) spielsteuerung.loadImage("Gold.png"));
-        images.put("class grind.movables.monster.FeuerMonster",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
-        images.put("class grind.movables.monster.DornPflanze",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
-        images.put("Schwert Level 1", (PImage) spielsteuerung.loadImage("newSword1.png"));
-        images.put("Schwert Level 2", (PImage) spielsteuerung.loadImage("newSword2.png"));
-        images.put("Bogen Level 1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
-        images.put("Bogen Level 2", (PImage) spielsteuerung.loadImage("Bogen1.png"));
-        images.put("class grind.movables.impl.Pfeil", (PImage) spielsteuerung.loadImage("pfeil.png"));
-        images.put("Spezialattacke Level 1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
-        images.put("Spezialattacke Level 2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
-        images.put("class grind.movables.impl.Stern",(PImage) spielsteuerung.loadImage("Stern.png"));
+        images.put("class grind.movables.impl.Heiltrank0",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
+        images.put("class grind.movables.impl.Apfel0",(PImage) spielsteuerung.loadImage("Apfel.png"));
+        images.put("class grind.movables.impl.Mango0",(PImage) spielsteuerung.loadImage("Mango.png"));
+        images.put("class grind.movables.impl.Gold0",(PImage) spielsteuerung.loadImage("Gold.png"));
+        images.put("class grind.movables.monster.FeuerMonster0",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
+        images.put("class grind.movables.monster.DornPflanze0",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
+        images.put("class grind.movables.impl.Schwert1", (PImage) spielsteuerung.loadImage("newSword1.png"));
+        images.put("class grind.movables.impl.Schwert2", (PImage) spielsteuerung.loadImage("newSword2.png"));
+        images.put("class grind.movables.impl.Bogen1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("class grind.movables.impl.Bogen2", (PImage) spielsteuerung.loadImage("Bogen1.png"));
+        images.put("class grind.movables.impl.Pfeil0", (PImage) spielsteuerung.loadImage("pfeil.png"));
+        images.put("class grind.movables.impl.Spezialattacke1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("class grind.movables.impl.Spezialattacke2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
+        images.put("class grind.movables.impl.Stern0",(PImage) spielsteuerung.loadImage("Stern.png"));
         spielsteuerung.setImages(images);
     }
 
