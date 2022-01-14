@@ -2,17 +2,16 @@ package grind.movables.monster;
 
 import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
-import grind.kacheln.IKachel;
 import grind.kacheln.ITileMap;
 import grind.util.Einstellungen;
 import grind.util.LaufModus;
 import grind.util.Richtung;
-import processing.core.PApplet;
 import java.util.Random;
+
 
 /**
  * @author MEGAtroniker
- * Klasse wurde am 04.01.2022 großteils Überarbeitet
+ * Die Klasse Zombie ermöglicht es Moster dieser Art zu erstellen.
  * Mithilfe der Konstruktorparameter können drei verschiedene Arten von Zombies erstellt werden
  *  1. Der Zombie läuft vorhersehbar
  *  2. Der Zombie macht ab und zu eine zusätliche, zufällige Bewegung
@@ -29,7 +28,7 @@ public class Zombie extends Monster{
 
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
      * Der Zombie Konstruktor ermöglicht die Erstellung der oben gennaten Zobievarianten
      * @param posX initiale X Position
      * @param posY initiale X Position
@@ -48,12 +47,10 @@ public class Zombie extends Monster{
     }
 
 
-
-
     /**
-     * @MEGAtroniker
-     * Die Methode Bewege fürd die Bewegungen der Instanzen je nach Konfiguratin des Konstruktors aus
-     * und übergint ständig diie aktuelle Instanzposition
+     * @author MEGAtroniker
+     * Die Methode bewege, führt die Bewegungen der Instanzen je nach Konfiguration des Konstruktors aus
+     * und übergibt ständig die aktuelle Instanzposition.
      */
     @Override
     public void bewege() {
@@ -66,9 +63,10 @@ public class Zombie extends Monster{
 
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
      * Die Methode wieWirdBewegt erkennt die Zombivariante und ruft die entsprechende Laufzykluskombination auf.
-     * Zusätlich wird nach einer Kollision der resetTimer gestartet
+     * Der DEFAULT Laufmodus entspricht der bewege Movable Methode und enthält keinen Zusatz,
+     * welcher in einem case verarbeitet werden würde.
      * @param random benötigt für den Random und Jagdt Laufzyklus
      * @param posX aktuelle X Position
      * @param posY aktuelle Y Position
@@ -86,6 +84,12 @@ public class Zombie extends Monster{
 
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter gerGroesse gibt die Größe des Zombies zurück, diese entspricht der Kachelgröße.
+     * @return Größe des Zombies
+     */
     @Override
     public int getGroesse() {
         return groesse = Einstellungen.LAENGE_KACHELN_X;
@@ -93,7 +97,7 @@ public class Zombie extends Monster{
 
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
      * Die Methode jageSpielfigur bestimmt den Abstand zur Spielfigur jeweils in X und Y- Richtung.
      * Für den betragsmäßig größeren Abstand wir die Richtung bestimmt und mit einer hohen Wahrscheinlichkeit,
      * wird in diese Richtung bewegt.
@@ -127,44 +131,50 @@ public class Zombie extends Monster{
 
 
     /**
-     * @MEGAtroniker
-     * Die Methode bewege Random basiert auf dem vorhersehbaren Bewegen.
+     * @author MEGAtroniker
+     * Die Methode bewege Random basiert auf dem vorhersehbaren Bewegen der Methode bewegeMovable.
      * Zusätzlich wird mit einer geringen Wahrscheinlichkeit die Richtung zufällig geändert.
-     * @param random unvorhersehbar machen des normalen Bewegungszyklusses
+     * @param random unvorhersehbar machen des normalen Bewegungszyklus
      * @param posX aktuelle X Position
      * @param posY aktuelle Y Position
      */
     private void bewegeRandom(Random random,  int posX, int posY) {
-            int zufall= random.nextInt(50);
-            if(zufall==0){
-                setAusrichtung(Richtung.randomRichtung());
-                bewegeMovable(posX, posY);
-                }
+        int zufall= random.nextInt(50);
+        if(zufall==0){
+            setAusrichtung(Richtung.randomRichtung());
+            bewegeMovable(posX, posY);
+        }
     }
 
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
      * Die Methode bewegeMovable bewegt das Monster vorhersehbar, bei einem Hindernis wird immer nach rechts Abgebogen.
-     * Damit Kann man mithilfe von Hindernissen auch ein Patrouillieren ermöglichen
+     * Damit Kann man mithilfe von Hindernissen auch ein Patrouillieren ermöglichen.
      * @param posX aktuelle X Position
      * @param posY aktuelle Y Position
      */
     private void bewegeMovable(int posX, int posY) {
         switch (getAusrichtung()) {
             case W:
-                if (bewegeWestlich(posY, posX - 2 * getGeschwindigkeit(), posX - getGeschwindigkeit(), posY)) break;
+                if (bewegeWestlich(posY, posX - 2 * getGeschwindigkeit(), posX - getGeschwindigkeit(), posY))
+                    break;
             case N:
-                if (bewegeNoerdlich(posX, posY - 2 * getGeschwindigkeit(), posX, posY - getGeschwindigkeit())) break;
+                if (bewegeNoerdlich(posX, posY - 2 * getGeschwindigkeit(), posX, posY - getGeschwindigkeit()))
+                    break;
             case O:
-                if (bewegeOestlich(posY, posX + 2 * getGeschwindigkeit(), posX + getGeschwindigkeit(), posY)) break;
+                if (bewegeOestlich(posY, posX + 2 * getGeschwindigkeit(), posX + getGeschwindigkeit(), posY))
+                    break;
             case S:
                 bewegeSuedlich(posX, posY);
         }
     }
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
+     * Die Methode bewegeSuedlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in südliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Westen ausgerichtet.
      * @param posX aktuelle X Position
      * @param posY aktuelle Y Position
      */
@@ -179,16 +189,19 @@ public class Zombie extends Monster{
 
 
     /**
-     *
-     * @param posY
-     * @param i
-     * @param i2
-     * @param posY2
-     * @return
+     * @author MEGAtroniker
+     * Die Methode bewegeWestlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in westliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Norden ausgerichtet.
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere westliche Bewegung ist nicht möglich
      */
-    private boolean bewegeOestlich(int posY, int i, int i2, int posY2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
-            this.setPosition(i2, posY2);
+    private boolean bewegeOestlich(int nextPosY, int nextPosX, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
             return true;
         } else {
             setAusrichtung(Richtung.S);
@@ -198,16 +211,19 @@ public class Zombie extends Monster{
 
 
     /**
-     *
-     * @param posX
-     * @param i
-     * @param posX2
-     * @param i2
-     * @return
+     * @author MEGAtroniker
+     * Die Methode bewegeNoerdlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in nördliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Osten ausgerichtet.
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere nördliche Bewegung ist nicht möglich
      */
-    private boolean bewegeNoerdlich(int posX, int i, int posX2, int i2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(posX, i)) {
-            this.setPosition(posX2, i2);
+    private boolean bewegeNoerdlich(int nextPosX, int nextPosY, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
             return true;
         } else {
             setAusrichtung(Richtung.O);
@@ -217,36 +233,24 @@ public class Zombie extends Monster{
 
 
     /**
-     *
-     * @param posY
-     * @param i
-     * @param i2
-     * @param posY2
-     * @return
+     * @author MEGAtroniker
+     * Die Methode bewegeOestlich ist ein Teil der bewegeMovable Methode.
+     * Hier wird die Bewegung in östliche Richtung realisiert. Ist dies wegen eines Hindernisses nicht möglich,
+     * wird das Monster nach Süden ausgerichtet.
+     * @param nextPosY nächste Y Koordinate in Laufrichtung
+     * @param nextPosX nächste X Koordinate in Laufrichtung
+     * @param newPosX neue X Koordinate
+     * @param newPosY neue Y Koordinate
+     * @return eine witere östliche Bewegung ist nicht möglich
      */
-    private boolean bewegeWestlich(int posY, int i, int i2, int posY2) {
-        if (getSpielsteuerung().isErlaubteKoordinate(i, posY)) {
-            this.setPosition(i2, posY2);
+    private boolean bewegeWestlich(int nextPosY, int nextPosX, int newPosX, int newPosY) {
+        if (getSpielsteuerung().isErlaubteKoordinate(nextPosX, nextPosY)) {
+            this.setPosition(newPosX, newPosY);
             return true;
         } else {
             setAusrichtung(Richtung.N);
         }
         return false;
-    }
-
-
-    /**
-     * @MEGAtroniker nicht von uns||wird nur bei DornPflanze Aufgerufen???
-     * @param kachel
-     */
-    @Override
-    public void vorBetreten(IKachel kachel) {
-        if(!kachel.istBetretbar()){
-            deltaX = -deltaX;
-            deltaY = -deltaY;
-            hilfsVariable = true; // Eine Kachel wurde getroffen und Richtung umgekehrt.
-
-        }
     }
 
 

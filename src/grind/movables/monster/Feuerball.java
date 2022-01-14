@@ -1,32 +1,28 @@
 package grind.movables.monster;
 
-import grind.core.ISpielmodell;
 import grind.core.impl.Spielsteuerung;
-import grind.kacheln.IKachel;
-import grind.movables.IMovable;
-import grind.movables.ISpielfigur;
 import grind.util.Einstellungen;
-import processing.core.PApplet;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 /**
  * @author MEGAtroniker
  * Die Klasse Feuerbell beschreibt ein Monster welches asl geschoss des Monsters "Feuermonster" verwendet wird.
- * es entsteht im Feuermonster und wird in richtung der Spielfugur geschossen, trifft es die Spielfigur,
- * so erleidet diese schaden, der Feuerball wird gelöscht. Trifft der Feuerball die Spielfigur nicht,
- * so wird diese bei verlassen des Spielfelds gelöscht.
+ * Es wird ausschießlich im Feuermonster instanziiert und wird in richtung der Spielfugur geschossen.
+ * Trifft es die Spielfigur, so erleidet diese schaden, der Feuerball wird gelöscht.
+ * Trifft der Feuerball die Spielfigur nicht, so wird diese bei Verlassen des Spielfelds gelöscht.
  */
 public class Feuerball extends Monster{
     transient int geschwindigkeit = 5;
-    float deltaX;
-    float deltaY;
-    Spielsteuerung steuerung;
+    private float deltaX;
+    private float deltaY;
+    private Spielsteuerung steuerung;
     final int schaden = 2;
 
 
     /**
-     * Konstruktor
+     * @author MEGAtroniker
+     * Der Konstruktor die Erstellung der Instanzen des Feuerballs
      * @param posX aktuelle X-Position des zugehörigen Feuermonsters
      * @param posY aktuelle Y-Position des zugehörigen Feuermonsters
      * @param deltaX deltaX
@@ -35,13 +31,15 @@ public class Feuerball extends Monster{
     public Feuerball(float posX, float posY, int deltaX, int deltaY, Spielsteuerung steuerung) {
         super(posX, posY,Einstellungen.LAENGE_KACHELN_X/4);
         float abstand = (float) sqrt(pow(deltaX, 2) + pow(deltaY, 2)) / geschwindigkeit;
-        this.deltaX = deltaX / abstand;// geschwindigkeit*deltaX/abstand;
+        this.deltaX = deltaX / abstand;
         this.deltaY = deltaY / abstand;
         this.steuerung=steuerung;
         setSchaden(schaden);
     }
 
+
     /**
+     * @author MEGAtroniker
      * Die Methode zeiche definiert die Darstellung des Feuremonsters
      * @param app  app zur Darstellung
      */
@@ -54,11 +52,12 @@ public class Feuerball extends Monster{
         app.popStyle();
     }
 
+
     /**
-     * @MEGAtroniker
-     * Die Methode bewege bewegt den Feuerball in richtung des Spielers.
-     * Wir dieser getroffen greift die Methode beiKollision
-     * Sonst verlässt der Fuerball das Spielfeld und  wird aus der liste der movables gelöscht
+     * @author MEGAtroniker
+     * Die Methode bewege bewegt den Feuerball in die richtung des Spielers (zum zeitbunkt des Abschusses).
+     * Wir dieser getroffen greift die Methode beiKollision, ggf. auch die Methode inDerNaehe.
+     * Sonst verlässt der Fuerball das Spielfeld, und wird aus der liste der movables gelöscht.
      */
     @Override
     public void bewege() {
@@ -74,54 +73,35 @@ public class Feuerball extends Monster{
         }
     }
 
-//    /**
-//     * @MEGAtroniker
-//     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-//     * @param figur Spielfigur
-//     */
-//    public void beiKollision(ISpielfigur figur) {
-//        if(PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY()) < (Einstellungen.GROESSE_FEUERBALL/2f + 20)){ // 20 = spielerradius
-//            this.getSpielmodell().removeMovable(this);
-//            System.out.println("Treffer!");
-//            figur.erhalteSchaden(this.schaden);
-//        }
-//    }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter getGroesse gibt die Größe des Feuerballs zurück, diese entspricht eienm Viertel der Kachelgröße.
+     * @return Größe des Feuerballs
+     */
     @Override
     public int getGroesse() {
         return groesse = Einstellungen.LAENGE_KACHELN_X/4;
     }
 
+
     /**
-     * @MEGAtroniker
-     * Is never used!!!!!!!!!
-     * ersetzt durch assoziation zu Spielsteuerung!!!!
-     * @param kachel nope
+     * @author MEGAtroniker
+     * Getter getDeltaX gibt die Schrittweite des Feuerballs in X-Richtung zurück.
+     * @return Schrittweite des Feuerballs in X-Richtung
      */
-    @Override
-    public void vorBetreten(IKachel kachel) {
-
-    }
-
-    @Override
-    public ISpielmodell getSpielmodell() {
-        return spielmodell;
-    }
-
-    @Override
-    public void setSpielmodell(ISpielmodell spielmodell) {
-        this.spielmodell = spielmodell;
+    public float getDeltaX() {
+        return deltaX;
     }
 
 
-    @Override
-    public void setGeschwindigkeit(int xGeschwindigkeit) {
-        this.geschwindigkeit = xGeschwindigkeit;
+    /**
+     * @author MEGAtroniker
+     * Getter getDeltaY gibt die Schrittweite des Feuerballs in Y-Richtung zurück.
+     * @return Schrittweite des Feuerballs in Y-Richtung
+     */
+    public float getDeltaY() {
+        return deltaY;
     }
-
-    @Override
-    public int getGeschwindigkeit() {
-        return this.geschwindigkeit;
-    }
-
 }

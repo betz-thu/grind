@@ -12,12 +12,14 @@ import processing.core.PApplet;
 /**
  * @author MEGAtroniker
  * Die abstrakt Klasse Monster dient als Grundlage für alle Monstervarianten.
- *
+ * In dieser Klasse sind die für alle Monster gleichen Methoden in Bezug auf
+ * Kollisonsabfrage und Umgebungsabfrage in Bezug auf die Spielfigur implementieret.
  */
 public abstract class Monster extends Movable implements IMonster {
     transient ISpielmodell spielmodell;
     private int lebensenergie = 100;
     private int schaden;
+    private int warteZeitMS =2000;
     transient private long startTimeNaehe;
     transient private boolean inDerNaehe=false;
     transient private boolean hatKollidiert=false;
@@ -27,13 +29,14 @@ public abstract class Monster extends Movable implements IMonster {
 
 
     /**
-     * @MEGAtroniker
+     * @author MEGAtroniker
      * Konstruktor 1
-     * Dieser Konstruktor kann für nichtbewegliche Monstervarianten verwendet werden
-     * Zudem weden er für Geister verwendet
+     * Dieser Konstruktor kann für weniger aufwändige Monstervarianten verwendet werden
+     * bei denen eine initiale Position ausreicht. (Dornpflanze,Geist)
      * und besitz dementsprechend ein Minimum an Parametern
      * @param posX initiale X Position auf dem Spielfeld
      * @param posY initiale Y Position auf dem Spielfeld
+     * @param groesse größe des Monsters
      */
     public Monster(float posX, float posY, int groesse) {
         super(posX, posY, groesse);
@@ -41,36 +44,25 @@ public abstract class Monster extends Movable implements IMonster {
 
 
     /**
-     * @MEGAtroniker
-     * Konstruktor
-     * Dieser Konstruktor soll für alle beweglichen Monstervarianten verwendet werden,
-     * da für deren Funktionstüchtigkeit die Ausrichtung relativ zum Spielfeld wichtig ist
+     * @author MEGAtroniker
+     * Konstroktor 2
+     * Dieser Konstruktor soll verwendet werden, wenn die Monstervarianten auf die Spielwelt
+     * richtungsabhängig reagieren soll. Z.B. bei den Laufzyklen und der Darstellung.
      * @param posX initiale X Position auf dem Spielfeld
      * @param posY initiale Y Position auf dem Spielfeld
-     * @param ausrichtung Ausrichting der Instanz entsprechen der Enum Richtung
-
-    public Monster(float posX, float posY, Richtung ausrichtung,int groesse) {
-        super(posX,posY,ausrichtung,groesse);
-    }*/
-
-
-    /**
-     *
-     * @param posX
-     * @param posY
-     * @param ausrichtung
-     * @param spielsteuerung
-     * @param groesse
+     * @param ausrichtung initiale Aurichtung des Monsters im Spielfeld
+     * @param spielsteuerung aktuelle Spielsteuerung
+     * @param groesse größe des Monsters
      */
     public Monster(float posX, float posY, Richtung ausrichtung, Spielsteuerung spielsteuerung, int groesse) {
         super(posX,posY,ausrichtung, spielsteuerung,groesse);
     }
 
 
-
     /**
-     * @MEGAtroniker
-     * @return
+     * @author MEGAtroniker
+     * Getter getGeschwindigkeit gibt die Bewegungsgeschwindigkeit des Monsters zurück
+     * @return Bewegungsgeschwindigkeit des Monsters
      */
     @Override
     public int getGeschwindigkeit() {
@@ -79,8 +71,9 @@ public abstract class Monster extends Movable implements IMonster {
 
 
     /**
-     * @MEGAtroniker
-     * @param geschwindigkeit
+     * @author MEGAtroniker
+     * Setter setGeschwindigkeit setzt die neue Bewegungsgeschwindigkeit des Monsters
+     * @param geschwindigkeit neue Bewegungsgeschwindigkeit des Monsters
      */
     @Override
     public void setGeschwindigkeit(int geschwindigkeit) {
@@ -88,9 +81,11 @@ public abstract class Monster extends Movable implements IMonster {
     }
 
 
-
-
-
+    /**
+     * @author MEGAtroniker
+     * Die Methode bewege, enthält die für alle Monster relevanten Abläufe für die Kollision
+     * und die Umgebung der Spielfigur
+     */
     @Override
     public void bewege() {
         if(isHatKollidiert()){
@@ -101,36 +96,60 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
+
     /**
-     * Getter für die Lebensenergie eines Monsters
-     * @return Gibt die aktuelle Lebensenergie eines Monsters zurück.
+     * @author MEGAtroniker
+     * Getter getLebensenergie gibt die Lebensenergie des Monsters zurück
+     * @return aktuelle Lebensenergie des Monsters
      */
     @Override
     public int getLebensenergie() {
         return lebensenergie;
     }
 
-//    @Override
-//    public void beiKollision(ISpielfigur figur) {
-//
-//        figur.erhalteSchaden(this.schaden);
-//
-//    }
 
+    /**
+     * @author MEGAtroniker
+     * Getter getGroesse gibt die Größe des Monsters zurück
+     * @return Größe des Monsters
+     */
     @Override
     public int getGroesse() {
         return this.groesse;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Setter setSchaden setzt den neuen Schaden des Monsters entsprechend dem übergebenen Wert
+     * @param schaden neuer Schadenswert
+     */
     public void setSchaden(int schaden) {
         this.schaden = schaden;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter isInDerNaehe gibt den Wahrheitswert zurück, ob sich die Spielfigur in der Nähe befindet
+     * @return Wahrheitswert, ob die Spielfigur in der Nähe ist
+     */
     public boolean isInDerNaehe() {
         return inDerNaehe;
     }
 
     /**
+     * @author MEGAtroniker
+     * Setter setInDerNaehe setzt den Wahrheitswert, ob sich die Spielfigur in der Nähe befindet
+     * @param inDerNaehe  Wahrheitswert, ob sich die Spielfigur in der Nähe befindet
+     */
+    private void setInDerNaehe(boolean inDerNaehe) {
+        this.inDerNaehe = inDerNaehe;
+    }
+
+
+    /**
+     * @author MEGAtroniker
      * Reduziert die Lebensenergie des Monsters um den übergebenen Schaden und löscht
      * das Monster aus dem Spiel, wenn keine Lebensenergie mehr vorhanden ist.
      * @param schaden Schaden welcher dem Monster von einer Waffe zugeführt wird.
@@ -145,8 +164,16 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
-//----------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * @author MEGAtroniker
+     * Die Methode inDerNaehe prüft, ob Sich die Spielfigur innerhalb eines bestimmten Radius
+     * und außerhalb des Kollisionsradius aufhält. Ist dies der Fall wir die Methode playMonsterAroundSound ausgeführt
+     * und für eine bestimmte Zeit wird eine erneute positive Abfrage der Methode unterbunden.
+     * Ohne Unterbindung würde die enthaltene Methode sonst zu oft bzw. zu schnell hintereinander ausgeführt werden.
+     * @param figur aktuelle Spielfigur
+     * @param monster aktuelles Monster
+     */
     public void inDerNaehe(ISpielfigur figur, IMovable monster){
         float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
@@ -157,51 +184,67 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
-    private void setInDerNaehe(boolean inDerNaehe) {
-        this.inDerNaehe = inDerNaehe;
-    }
 
-
+    /**
+     * @author MEGAtroniker
+     * Die Methode resetTimerNaehe unterbindet entsprechend der Variable warteZeitMS ein erneutes Ausführen
+     * der "inDerNaehe" entahltenen Methode.
+     */
     public void resetTimerNaehe(){
         long endTime = System.currentTimeMillis();
-        if(endTime-startTimeNaehe>=2000){
+        if(endTime-startTimeNaehe>= warteZeitMS){
             setInDerNaehe(false);
         }
     }
-//----------------------------------------------------------------------------------------------------------------------
+
 
     /**
-     * @MEGAtroniker
-     * Die Metode beiKollision, soll änderungen am Monster bzw. der Spielfigur vornehmen
-     * bisher bekommt nur der Spieler schaden
+     * @author MEGAtroniker
+     * Die Metode beiKollision, prüft ob sich die Spielfigut in einem bestimmten Radius
+     * mit dem aktuellen Monster als Zentrum aufhält. Ist die der Fall wir der Anfgriffsound des Monsters abgespielt
+     * und die Spielfigur erleidet Schaden.
      * Sofern einmal Schaden verursacht muss eine gewisse Zeit gewartet werden,
      * bis dasselbe Monster der Figur erneut Schaden zufügen kann.
-     * @param figur Spielfigur
+     * @param figur aktuelle Spielfigur
+     * @param monster aktuelles Monster
      */
     public void beiKollision(ISpielfigur figur,IMovable monster) {
         float kollisionsDistantz=(this.getGroesse()/2f + Einstellungen.GROESSE_SPIELFIGUR/2f);
         float aktuelleDistanz=PApplet.dist(figur.getPosX(), figur.getPosY(), this.getPosX(), this.getPosY());
         if(aktuelleDistanz < kollisionsDistantz&&!hatKollidiert){
             figur.playSound(this.getClass().toString()+"Attack");
+            figur.erhalteSchaden(this.schaden);
             startTimeAttac = System.currentTimeMillis();
             setHatKollidiert(true);
 
         }
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Setter hatKollidiert setzt den Wahrheitswert, ob sich die Spielfigur im Kollisionsradius befindet
+     * @param hatKollidiert Wahrheitswert, ob sich die Spielfigur im Kollisionsradius befindet
+     */
     public void setHatKollidiert(boolean hatKollidiert) {
         this.hatKollidiert = hatKollidiert;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter isHatKollidiert gibt den Wahrheitswert zurück, ob sich die Spielfigur im Kollisionsradius befindet
+     * @return Wahrheitswert, ob sich die Spielfigur im Kollisionsradius befindet
+     */
     public boolean isHatKollidiert() {
         return hatKollidiert;
     }
 
+
     /**
-     * @MEGAtroniker
-     * Methode resetTimer setzt booleand hatKollidiert auf false,
-     * wenn in den letzten 2000ms keine Kollision stattgefunden hat.
-     * Monster macht bei Kontakt nur alle 2s Schaden, nicht ständig.
+     * @author MEGAtroniker
+     * Die Methode resetTimerAttac unterbindet entsprechend der Variable warteZeitMS ein erneutes Ausführen
+     * der "beiKollision" entahltenen Methode.
      */
     public void resetTimerAttac(){
         long endTime = System.currentTimeMillis();
@@ -210,26 +253,56 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
-//----------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * @author MEGAtroniker
+     * Getter getSpielmodell gibt das aktuelle Spielmodell zurück
+     * @return aktuelles Spielmodell
+     */
     @Override
     public ISpielmodell getSpielmodell() {
         return this.spielmodell;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Setter getSpielmodell setzt das aktuelle Spielmodell
+     * @param spielmodell aktuelles Spielmodell
+     */
     @Override
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter getSchaden gibt den aktuellen Schadenswert des aktuellen Monsters zurück
+     * @return aktueller Schadenswert des aktuellen Monsters
+     */
     public int getSchaden() {
         return schaden;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter getStartTimeNaehe gibt die aktuellen Timerzeit der inDerNaehe Methode zurück.
+     * Dieser Getter dient bisher nur für Tests.
+     * @return aktuellen Timerzeit der inDerNaehe Methode
+     */
     public long getStartTimeNaehe() {
         return startTimeNaehe;
     }
 
+
+    /**
+     * @author MEGAtroniker
+     * Getter getStartTimeAttac gibt die aktuellen Timerzeit der beiKollision Methode zurück.
+     * Dieser Getter dient bisher nur für Tests.
+     * @return aktuellen Timerzeit der inDerNaehe Methode
+     */
     public long getStartTimeAttac() {
         return startTimeAttac;
     }
