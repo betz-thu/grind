@@ -8,6 +8,8 @@ public class Button extends PApplet {
     private final int typ;
     private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
     private int hoehe = Einstellungen.LAENGE_KACHELN_Y;
+    private int x0 = 0;
+    private int y0 = 0;
 
     public Button(int typ){
         this.typ = typ;
@@ -17,6 +19,20 @@ public class Button extends PApplet {
             this.breite = Einstellungen.LAENGE_KACHELN_X/2;
             this.hoehe = Einstellungen.LAENGE_KACHELN_Y/2;
         }
+    }
+
+    /**
+     * Gibt zurück, ob die Maus sich auf dem Button befindet oder nicht.
+     * @param mausX Maus Koordinate X
+     * @param mausY Maus Koordinate Y
+     * @return Boolean, ob die Maus auf dem Button liegt oder nicht
+     */
+    public boolean mausklick(int mausX, int mausY){
+        boolean mausKlicked = false;
+        if (mausX >= x0 && mausX <= x0 + breite && mausY >= y0 && mausY <= y0 + hoehe){
+            mausKlicked = true;
+        }
+        return mausKlicked;
     }
 
     /**

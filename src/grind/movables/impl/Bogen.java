@@ -19,8 +19,12 @@ public class Bogen extends Waffe{
 
     private int stufe;
 
-
-
+    /**
+     * Konstruktor des Bogens. Legt die Anfangsbedingungen fest.
+     * @param x Gibt an, an welcher y-Position sich der Bogen befindet.
+     * @param y Gibt an, an welcher y-Position sich der Bogen befindet.
+     * @param stufe Gibt an, welche Stufe der Bogen hat.
+     */
     public Bogen(int x, int y, int stufe, int wert) {
         super(x, y, 40);
         this.stufe=stufe;
@@ -31,24 +35,37 @@ public class Bogen extends Waffe{
 
     }
 
+    /**
+     * Getter für den Schaden des Bogens. Der Schaden ist immer 0, da ein Bogen allein (ohne Pfeil) keinen Schaden anrichten kann.
+     * @return Gibt den SChaden des Bogens zurück (0).
+     */
     @Override
     public int getSchaden() {
-        /**
-         * Berechnet den Schaden, welchen ein Bogen anrichtet.
-         */
         int schaden = 0* this.stufe;
         return schaden;
     }
 
+    /**
+     * Getter für die Stufe des Bogens.
+     * @return Gibt die Stufe des Bogens zurück.
+     */
     @Override
     public int getStufe() {
         return stufe;
     }
 
+    /**
+     * Getter für die Größe des Bogens.
+     * @return Gibt die Größe des Bogens zurück.
+     */
     public int getGroesse(){
         return 40;
     }
 
+    /**
+     * Die Methode beim Anwenden wir in der Klasse Bogen nicht verwendet.
+     * @param figur
+     */
     @Override
     public void beimAnwenden(ISpielfigur figur) {
 

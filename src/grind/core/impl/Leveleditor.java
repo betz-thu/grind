@@ -49,10 +49,10 @@ public class Leveleditor extends Spielsteuerung {
     //Die Stringbreite legt den Abstand zwischen den beiden Auswahlpfeilen (Einstellungen der Movables) fest
     //Falls die ENUM Namen zu groß werden, muss das hier angepasst werden.
     private int stringBreite = 90;
-    private int feuerRate = 1;
-    private int stufe = 1;
-    private int wert = 3;
-    private int punkte = 3;
+    private int feuerRate = 0;
+    private int stufe = 0;
+    private int wert = 0;
+    private int punkte = 0;
 
     private DateiService dateiService;
     private ISpielwelt spielwelt;
@@ -76,6 +76,7 @@ public class Leveleditor extends Spielsteuerung {
     private final Button einstellungenUntenPlus;
     private final Button einstellungenUntenMinus;
     Dictionary images = new Hashtable();
+    private String spielweltJson = "spielwelt.json";
 
 
     /**
@@ -314,12 +315,7 @@ public class Leveleditor extends Spielsteuerung {
             } else if (mouseX > SpielfeldBreite && mouseX <= ausenXKoordKachel){
                 if (mouseY < menuArrayMovables.size() * Einstellungen.LAENGE_KACHELN_Y){
                     //Die einzelnen Einstellungen der Movables werden hier genullt
-                    wert = 3;
-                    punkte = 3;
-                    feuerRate = 2;
-                    stufe = 1;
-                    feuerModus = FeuerModus.KONSTANT;
-                    laufModus = LaufModus.DEFAULT;
+                    resetteMovableParameter();
                     aktuelleKachel = null;
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
@@ -358,6 +354,18 @@ public class Leveleditor extends Spielsteuerung {
             aktuelleKachel = null;
             aktuellesMovable = null;
         }
+    }
+
+    /**
+     * Setzt alle Parameter, die ein Movable haben kann auf die Standardwerte zurück
+     */
+    private void resetteMovableParameter() {
+        wert = 3;
+        punkte = 3;
+        feuerRate = 20;
+        stufe = 1;
+        feuerModus = FeuerModus.KONSTANT;
+        laufModus = LaufModus.DEFAULT;
     }
 
     /**
@@ -423,11 +431,6 @@ public class Leveleditor extends Spielsteuerung {
         for (IKachel iKachels : menuArray) {
             iKachels.zeichne(this, mapAussenX, mapAussenY);
             mapAussenY += Einstellungen.LAENGE_KACHELN_Y;
-
-            if (mapAussenY >= SpielfeldHoehe) {
-                mapAussenY = 0;
-                mapAussenX += Einstellungen.LAENGE_KACHELN_X;
-            }
         }
     }
 
@@ -794,7 +797,7 @@ public class Leveleditor extends Spielsteuerung {
         System.out.println("laden");
         speicherHinweis = 0;
         levelNr = 1;
-        spielwelt = dateiService.ladeSpielwelt("spielwelt.json");
+        spielwelt = dateiService.ladeSpielwelt(spielweltJson);
         ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
         tileMap = (TileMap) level.getTileMap();
         levelCount = spielwelt.getSzenenanzahl();
@@ -829,7 +832,7 @@ public class Leveleditor extends Spielsteuerung {
         iLevel2.setTilemap(tileMap);
         levelCount++;
         levelNr++;
-        anzeigeTitelLevel(levelNr);
+//        anzeigeTitelLevel(levelNr);
     }
 
     /**
@@ -848,7 +851,7 @@ public class Leveleditor extends Spielsteuerung {
         iSiedlung2.setTilemap(tileMap);
         levelCount++;
         levelNr++;
-        anzeigeTitelLevel(levelNr);
+//        anzeigeTitelLevel(levelNr);
     }
 
     /**
@@ -892,10 +895,10 @@ public class Leveleditor extends Spielsteuerung {
             speicherHinweisLevel = i + 1;
             ILevel level = (ILevel) this.spielwelt.getSzene(i);
             ITileMap pruefTilemap = level.getTileMap();
-            int sizeKachelarten = pruefTilemap.getKachelarten().size();
+//            int sizeKachelarten = pruefTilemap.getKachelarten().size();
             int sizeMovables = level.getPositionen().size();
 
-            pruefeLevelausgang(pruefTilemap, sizeKachelarten);
+            pruefeLevelausgang(pruefTilemap);
 
             pruefeLevelende(i, sizeMovables);
 
@@ -955,15 +958,17 @@ public class Leveleditor extends Spielsteuerung {
     /**
      * Prüft, ob sich in der Szene ein Levelausgang befindet
      * @param pruefTilemap Die zu prüfende Tilemap.
-     * @param sizeKachelarten Die Anzahl der Verschiedenen Kachelarten.
      */
-    private void pruefeLevelausgang(ITileMap pruefTilemap, int sizeKachelarten) {
-        for (int j = 0; j < sizeKachelarten; j++){
-            if (pruefTilemap.getKachelarten().get(j) instanceof Levelausgang){
-                speicherHinweis = 0;
-                j = sizeKachelarten;
-            } else {
-                speicherHinweis = 1;
+    private void pruefeLevelausgang(ITileMap pruefTilemap) {
+        for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
+            for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
+                if (pruefTilemap.getKachel(j,i) instanceof Levelausgang){
+                    speicherHinweis = 0;
+                    j = Einstellungen.ANZAHL_KACHELN_X;
+                    i = Einstellungen.ANZAHL_KACHELN_Y;
+                } else {
+                    speicherHinweis = 1;
+                }
             }
         }
     }
@@ -985,4 +990,77 @@ public class Leveleditor extends Spielsteuerung {
     public void setImages(Dictionary images) {
         this.images = images;
     }
+
+    public IKachel getAktuelleKachel() {
+        return aktuelleKachel;
+    }
+
+    public IMovable getAktuellesMovable() {
+        return aktuellesMovable;
+    }
+
+    public int getLevelCount() {
+        return levelCount;
+    }
+
+    public int getLevelNr() {
+        return levelNr;
+    }
+
+    public int getFeuerRate() {
+        return feuerRate;
+    }
+
+    public int getStufe() {
+        return stufe;
+    }
+
+    public int getWert() {
+        return wert;
+    }
+
+    public int getPunkte() {
+        return punkte;
+    }
+
+    public FeuerModus getFeuerModus() {
+        return feuerModus;
+    }
+
+    public LaufModus getLaufModus() {
+        return laufModus;
+    }
+
+    public ArrayList<IKachel> getMenuArrayKacheln() {
+        return menuArrayKacheln;
+    }
+
+    public ArrayList<IMovable> getMenuArrayMovables() {
+        return menuArrayMovables;
+    }
+
+    public ISpielwelt getSpielwelt() {
+        return spielwelt;
+    }
+
+    public void setSpielfeldBreite(int spielfeldBreite) {
+        SpielfeldBreite = spielfeldBreite;
+    }
+
+    public void setSpielfeldHoehe(int spielfeldHoehe) {
+        SpielfeldHoehe = spielfeldHoehe;
+    }
+
+    public ITileMap getTilemap() {
+        return tileMap;
+    }
+
+    public int getSpeicherHinweis() {
+        return speicherHinweis;
+    }
+
+    public void setSpielweltJson(String dateiname) {
+        spielweltJson = dateiname;
+    }
+
 }

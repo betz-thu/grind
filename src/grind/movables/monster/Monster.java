@@ -70,6 +70,10 @@ public abstract class Monster extends Movable implements IMonster {
         }
     }
 
+    /**
+     * Getter für die Lebensenergie eines Monsters
+     * @return Gibt die aktuelle Lebensenergie eines Monsters zurück.
+     */
     @Override
     public int getLebensenergie() {
         return lebensenergie;
@@ -95,13 +99,13 @@ public abstract class Monster extends Movable implements IMonster {
         return inDerNaehe;
     }
 
-
+    /**
+     * Reduziert die Lebensenergie des Monsters um den übergebenen Schaden und löscht
+     * das Monster aus dem Spiel, wenn keine Lebensenergie mehr vorhanden ist.
+     * @param schaden Schaden welcher dem Monster von einer Waffe zugeführt wird.
+     */
     @Override
     public void reduziereLebensenergie(int schaden) {
-        /**
-         * Reduziert die Lebensenergie des Monsters um den übergebenen Schaden und setzt
-         * monsterGestorben auf true, wenn das Monster keine Lebensenergie mehr hat.
-         */
         if (lebensenergie>0){
             lebensenergie-= schaden;
         }

@@ -128,6 +128,8 @@ public abstract class Movable implements IMovable {
         this.ausrichtung = ausrichtung;
     }
 
+
+
     public Spielsteuerung getSpielsteuerung() {
         return spielsteuerung;
     }

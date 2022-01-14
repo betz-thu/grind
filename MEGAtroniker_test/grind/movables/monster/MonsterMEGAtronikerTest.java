@@ -14,8 +14,6 @@ import grind.welt.impl.DummyLevel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.RepetitionInfo;
-
 import javax.swing.*;
 
 import static org.junit.Assert.*;

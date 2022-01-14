@@ -1,5 +1,6 @@
 package grind.movables.impl;
 
+import grind.core.impl.Spielmodell;
 import grind.core.impl.Spielsteuerung;
 import grind.movables.IMovable;
 import grind.movables.ISpielfigur;
@@ -39,13 +40,15 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     int lebensenergie = 100;//Kapselung?
     transient final List<Gegenstand> inventar;
-
+    Waffe ausgerüsteteeWaffe =testwaffe;
 
     private int inventarGuiGroeße;
     private int guiGroeße;
     //public boolean waffeAusgestattet=false;
     transient Waffe aktiveWaffe = testwaffe;
-    private boolean spezialAktiviert = false;
+    transient Waffe alteWaffe = testwaffe;
+    transient Waffe aktiverPfeil = testpfeil;
+    public boolean spezialAktiviert = false;
     private int countSpezialDauer=0;
     //Waffe aktiveWaffe = testbogen;
 
@@ -85,6 +88,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneSpielfigur(spielsteuerung);
         zeichneLebensbalken(spielsteuerung);
         zeichneKontostand(spielsteuerung);
+        zeichneWaffe(spielsteuerung);
 
         //Zeichne kleines Inventar
         zeichneInventar(spielsteuerung, inventarGuiGroeße, 850, 720, guiGroeße);
@@ -101,6 +105,22 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return this.groesse = Einstellungen.GROESSE_SPIELFIGUR;
     }
 
+
+    public void zeichneWaffe(Spielsteuerung app) {
+        if (app.key == ' ' & app.keyPressed) {
+            getWaffe().zeichne(app);
+        }
+        if (aktiveWaffe instanceof Spezialattacke){
+            getWaffe().zeichne(app);
+        }
+//        System.out.println(abgeschossen);
+        if (app.key == ' ' & app.keyPressed & getWaffe() instanceof Bogen & !abgeschossen) {
+            abgeschossen=true;
+        }
+        if (abgeschossen){
+           getPfeil().zeichne(app);
+        }
+    }
     /**
      * Methode zeichneSpielfigur, stellt SpielfigurOhneWaffe dar.
      * (zukünftig: stellt SpielfigurOhneWaffe, SpielfigurMitSchwert, SpielfigurMitBogen usw dar.)
@@ -112,41 +132,42 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.pushMatrix();
         app.translate(this.posX, this.posY);
         int n = 1;
-        int schwertPositionX = 1;
-        int schwertPositionY = 1;
+        //int schwertPositionX = 1;
+        //int schwertPositionY = 1;
         switch (this.ausrichtung) {
             case N:
                 n = 0;
-                schwertPositionX = 0;
-                schwertPositionY = -1;
+               // schwertPositionX = 0;
+                //schwertPositionY = -1;
                 break;
             case O:
                 n = 1;
-                schwertPositionX = 1;
-                schwertPositionY = 0;
+                //schwertPositionX = 1;
+                //schwertPositionY = 0;
                 break;
             case S:
                 n = 2;
-                schwertPositionX = 0;
-                schwertPositionY = 1;
+                //schwertPositionX = 0;
+                //schwertPositionY = 1;
                 break;
             case W:
                 n = 3;
-                schwertPositionX = -1;
-                schwertPositionY = 0;
+                //schwertPositionX = -1;
+                //schwertPositionY = 0;
         }
         app.rotate(PConstants.HALF_PI * n);
         app.image((PImage) app.getImages().get(this.getClass().toString()), 0, 0, groesse, groesse);
         app.popMatrix();
         app.popStyle();
 
-
+        /*
         //testattacke.zeichne(app);
         if(app.key == ' '& app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
+
             if (!abgeschossen) {
-                /**
-                 * Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
-                 */
+
+                 //Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
+
                 if (this.getAusrichtung() == Richtung.N) {
                     testpfeil.setPosition(this.getPosX(), this.getPosY() - this.getGroesse());
                 } else if (this.getAusrichtung() == Richtung.O) {
@@ -166,22 +187,14 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 aktiveWaffe.setPosition(this.getPosX() + aktiveWaffe.getGroesse() * schwertPositionX, this.getPosY() + aktiveWaffe.getGroesse() * schwertPositionY);
                 aktiveWaffe.setAusrichtung(this.getAusrichtung());
                 aktiveWaffe.zeichne(app);
-                //countSpezialDauer +=1;
-                //if (countSpezialDauer == 70){
-                 //   aktiveWaffe.setGroesse(1);
-                   // app.
-                    //countSpezialDauer=0;
-                //}
 
             }
-//            testpfeil.zeichne(app);
-//            testpfeil.setPosition(testpfeil.getPosX()+1, testpfeil.getPosY() + 1);
 
         }
         if (abgeschossen && aktiveWaffe instanceof Bogen) {
-            /**
-             * Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
-             */
+
+             // Der Pfeil fliegt in Blichrichtung der Spielfigur mit in der Klasse Pfeil definierter Geschwindigkeit los.
+
             testpfeil.zeichne(app);
             if (pfeilrichtung == Richtung.N) {
                 testpfeil.setPosition(testpfeil.getPosX() + 0, testpfeil.getPosY() - testpfeil.getGeschwindigkeit());
@@ -203,20 +216,25 @@ public class Spielfigur extends Movable implements ISpielfigur {
             testattacke.setPosition(this.getPosX(),this.getPosY());
             testattacke.setGroesse(150);
             testattacke.zeichne(app);
+
+            if(!(aktiveWaffe instanceof Spezialattacke)){
+                alteWaffe = this.getWaffe();}
             setAktiveWaffe(testattacke);
             countSpezialDauer +=1;
             if (countSpezialDauer == 30){
                 spezialAktiviert=false;
-                setAktiveWaffe(testwaffe);
+                setAktiveWaffe(alteWaffe);
                 countSpezialDauer=0;
             }
         }
+
+         */
+
     }
 
     public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
         // Zeichne Inventar
         int zaehler = 0;
-
         app.pushStyle();
         app.fill(255,255,255);
         app.stroke(255,255,255);
@@ -268,16 +286,16 @@ public class Spielfigur extends Movable implements ISpielfigur {
                 inventar.remove(position);
             }
             else if(inventar.get(position) instanceof Spezialattacke){
-                //erst groß zeichnen
-                //inventar.get(position).beimAnwenden(this);
 
                 spezialAktiviert=true;
                 inventar.remove(position);
             }
-            else if(inventar.get(position) instanceof Waffe){
+            else if(inventar.get(position) instanceof Waffe & !(inventar.get(position) instanceof Spezialattacke)){
                 Waffe waffe =  (Waffe) inventar.get(position);
-
                 inventar.add(aktiveWaffe);
+
+                //app.setAktiveWaffe_(waffe);
+
                 this.setAktiveWaffe(waffe);
                 inventar.remove(position);
                 System.out.println("Neue Waffe ausgerüstet");
@@ -318,7 +336,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    // Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                    /**
+                     * Dient dazu, dass Spieler Immunität beibehält, wenn er in der Immunität ein Stern benutzt
+                     * */
                     if(isSternAngewandt){
                         setImmun(true);
                         Timer timer2 = new Timer();
@@ -335,7 +355,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
                     timer.cancel();
                 }
 
-            }, IMMUNITÄTSDAUERNACHSCHADEN); // nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+            }, IMMUNITÄTSDAUERNACHSCHADEN);
+            /**
+             * nach 2 Sekunden setzt er Immunität wieder auf falsch --> Spielfigur ist nicht mehr immun
+             * */
         }
     }
 
@@ -428,21 +451,36 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
 
 
+    /**
+     * Die übergebene Waffe wird nun für die Spielfigur zur aktiven Waffe. Das heißt die Waffe kann nun verwendet werden.
+     * @param waffe die zu aktivierende Waffe
+     */
     public void setAktiveWaffe(Waffe waffe){
-        //erst aktuelle Waffe dem Inventar hinzufügen,  damit sie nicht verloren geht.
-        //inventar.add(aktiveWaffe);
-        //neue Waffe ausrüsten
+
         aktiveWaffe = waffe;
     }
 
+    /**
+     * Gibt die momentan von der Spielfigur verwendete Waffe zurück.
+     * @return aktuell von der Spielfigur verwendete Waffe
+     */
     public Waffe getWaffe(){
         return aktiveWaffe;
     }
 
+    /**
+     * Gibt den momentan von der SPielfigur verwendeten Pfeil zurück.
+     * @return der aktive Pfeil der Spielfigur
+     */
     public Waffe getPfeil(){
-        return this.testpfeil;
+        //return this.testpfeil;
+        return aktiverPfeil;
     }
 
+    /**
+     * Setzt einen boolean auf wahr, sobald ein Pfeil abgeschossen worden ist.
+     * @param setzteAuf True wenn der Pfeil abgeschossen wurde/ False wenn kein Pfeil abgeschossen wurde.
+     */
     public void setPfeilAbgeschossen(boolean setzteAuf){
         this.abgeschossen = setzteAuf;
     }

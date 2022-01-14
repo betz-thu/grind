@@ -1,0 +1,5772 @@
+{
+  "szenen": [
+    {
+      "tileMap": {
+        "hoehe": 20,
+        "breite": 30,
+        "kacheln": [
+          [
+            {
+              "classname": "class grind.kacheln.impl.Baum"
+            },
+            {
+              "classname": "class grind.kacheln.impl.DummyHindernis"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Fels"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Holzbrücke"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Levelausgang"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wasser"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Weg"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ]
+        ],
+        "classname": "class grind.kacheln.impl.TileMap"
+      },
+      "positionen": [
+        {
+          "stufe": 1,
+          "wert": 3,
+          "posX": 255.0,
+          "posY": 15.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Schwert"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 285.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Mango"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 315.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Heiltrank"
+        },
+        {
+          "wert": 0,
+          "posX": 345.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 375.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Apfel"
+        },
+        {
+          "stufe": 1,
+          "wert": 3,
+          "posX": 405.0,
+          "posY": 15.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Bogen"
+        },
+        {
+          "wert": 0,
+          "posX": 435.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Stern"
+        },
+        {
+          "stufe": 1,
+          "wert": 0,
+          "posX": 465.0,
+          "posY": 15.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Spezialattacke"
+        },
+        {
+          "isImmun": false,
+          "isSternAngewandt": false,
+          "GESCHWINDIGKEIT": 3.0,
+          "gold": 5,
+          "abgeschossen": false,
+          "pfeilrichtung": "N",
+          "lebensenergie": 100,
+          "inventarGuiGroeße": 10,
+          "guiGroeße": 50,
+          "spezialAktiviert": false,
+          "countSpezialDauer": 0,
+          "posX": 495.0,
+          "posY": 15.0,
+          "groesse": 40,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.impl.Spielfigur"
+        },
+        {
+          "wert": 0,
+          "posX": 555.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Levelende"
+        },
+        {
+          "tileMap": {
+            "hoehe": 20,
+            "breite": 30,
+            "kacheln": [
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Baum"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.DummyHindernis"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Fels"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Holzbrücke"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Levelausgang"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wasser"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Weg"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ],
+              [
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                },
+                {
+                  "classname": "class grind.kacheln.impl.Wiese"
+                }
+              ]
+            ],
+            "classname": "class grind.kacheln.impl.TileMap"
+          },
+          "lebensenergie": 100,
+          "schaden": 20,
+          "posX": 585.0,
+          "posY": 15.0,
+          "groesse": 30,
+          "classname": "class grind.movables.monster.DornPflanze"
+        },
+        {
+          "deltaX": -2,
+          "deltaY": -2,
+          "schussZaehler": 0,
+          "feuerRate": 2,
+          "hatKollidiert": false,
+          "startTime": 0,
+          "feuerModus": "KONSTANT",
+          "lebensenergie": 100,
+          "schaden": 20,
+          "posX": 615.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.monster.FeuerMonster"
+        },
+        {
+          "lebensenergie": 100,
+          "schaden": 15,
+          "posX": 645.0,
+          "posY": 15.0,
+          "groesse": 15,
+          "classname": "class grind.movables.monster.Geist"
+        },
+        {
+          "laufModus": "DEFAULT",
+          "hilfsVariable": false,
+          "lebensenergie": 100,
+          "schaden": 10,
+          "posX": 675.0,
+          "posY": 15.0,
+          "groesse": 30,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.monster.Zombie"
+        }
+      ],
+      "classname": "class grind.welt.impl.DummyLevel"
+    },
+    {
+      "tileMap": {
+        "hoehe": 20,
+        "breite": 30,
+        "kacheln": [
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Baum"
+            },
+            {
+              "classname": "class grind.kacheln.impl.DummyHindernis"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Fels"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Holzbrücke"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Levelausgang"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wasser"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Weg"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ],
+          [
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            },
+            {
+              "classname": "class grind.kacheln.impl.Wiese"
+            }
+          ]
+        ],
+        "classname": "class grind.kacheln.impl.TileMap"
+      },
+      "positionen": [
+        {
+          "stufe": 1,
+          "wert": 3,
+          "posX": 195.0,
+          "posY": 195.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Schwert"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 255.0,
+          "posY": 195.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Mango"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 315.0,
+          "posY": 195.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Heiltrank"
+        },
+        {
+          "wert": 0,
+          "posX": 405.0,
+          "posY": 195.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Gold"
+        },
+        {
+          "punkte": 3,
+          "wert": 3,
+          "posX": 495.0,
+          "posY": 195.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Apfel"
+        },
+        {
+          "stufe": 1,
+          "wert": 3,
+          "posX": 555.0,
+          "posY": 195.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Bogen"
+        },
+        {
+          "wert": 0,
+          "posX": 615.0,
+          "posY": 195.0,
+          "groesse": 15,
+          "classname": "class grind.movables.impl.Stern"
+        },
+        {
+          "stufe": 1,
+          "wert": 0,
+          "posX": 675.0,
+          "posY": 195.0,
+          "groesse": 40,
+          "ausrichtung": "S",
+          "classname": "class grind.movables.impl.Spezialattacke"
+        },
+        {
+          "isImmun": false,
+          "isSternAngewandt": false,
+          "GESCHWINDIGKEIT": 3.0,
+          "gold": 5,
+          "abgeschossen": false,
+          "pfeilrichtung": "N",
+          "lebensenergie": 100,
+          "inventarGuiGroeße": 10,
+          "guiGroeße": 50,
+          "spezialAktiviert": false,
+          "countSpezialDauer": 0,
+          "posX": 765.0,
+          "posY": 195.0,
+          "groesse": 40,
+          "ausrichtung": "N",
+          "classname": "class grind.movables.impl.Spielfigur"
+        }
+      ],
+      "classname": "class grind.welt.impl.DummySiedlung"
+    }
+  ],
+  "anzahlSzenen": 2
+}

@@ -1,4 +1,4 @@
-package grind.kacheln.impl.test_Leveleditor;
+package grind.kacheln.impl;
 
 import grind.kacheln.impl.Baum;
 import grind.movables.impl.Spielfigur;
@@ -10,7 +10,7 @@ import processing.core.PImage;
 
 import static org.junit.Assert.*;
 
-public class BaumTest {
+public class BaumTestLeveleditor {
 
     Baum baum = new Baum();
 
@@ -23,6 +23,5 @@ public class BaumTest {
     public void istHindernis() {
         Assert.assertTrue(baum.istHindernis());
     }
-
 
 }
