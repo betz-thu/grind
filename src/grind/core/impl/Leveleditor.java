@@ -201,6 +201,7 @@ public class Leveleditor extends Spielsteuerung {
                 + stringBreite
                 + einstellungenUntenPlus.getBreite();
 
+
         //Befüllen des Menuarrays mit den Kachelarten
         this.menuArrayKacheln.add( new Baum());
         this.menuArrayKacheln.add( new DummyHindernis());
@@ -991,74 +992,139 @@ public class Leveleditor extends Spielsteuerung {
         this.images = images;
     }
 
+    /**
+     * Gibt die aktuelle Kachel zurück
+     * @return aktuelleKachel
+     */
     public IKachel getAktuelleKachel() {
         return aktuelleKachel;
     }
 
+    /**
+     * Gibt das aktuelle Movable zurück
+     * @return aktuellesMovable
+     */
     public IMovable getAktuellesMovable() {
         return aktuellesMovable;
     }
 
+    /**
+     * Gibt die Anzahl der Level zurück
+     * @return levelanzahl
+     */
     public int getLevelCount() {
         return levelCount;
     }
 
+    /**
+     * Gibt die aktuelle Levelnummer zurück
+     * Levelnummer fängt bei null an, wird aber für den User erst mit eins beginnend angezeigt
+     * @return levelnummer
+     */
     public int getLevelNr() {
         return levelNr;
     }
 
-    public int getFeuerRate() {
-        return feuerRate;
-    }
-
+    /**
+     * Gibt die eingestellte Stufe zurück
+     * @return stufe
+     */
     public int getStufe() {
         return stufe;
     }
 
+    /**
+     * Gibt den eingestellten Wert zurück
+     * @return wert
+     */
     public int getWert() {
         return wert;
     }
 
+    /**
+     * Gibt die eingestellte Punkteanzahl zurück
+     * @return punkte
+     */
     public int getPunkte() {
         return punkte;
     }
 
+    /**
+     * Gibt das Enum des FeuerModus zurück
+     * @return feuerModus
+     */
     public FeuerModus getFeuerModus() {
         return feuerModus;
     }
 
+    /**
+     * Gibt das Enum des LaufModus zurück
+     * @return laufModus
+     */
     public LaufModus getLaufModus() {
         return laufModus;
     }
 
+    /**
+     * Gibt die Menüliste der Kacheln zurück
+     * @return menuArrayKacheln
+     */
     public ArrayList<IKachel> getMenuArrayKacheln() {
         return menuArrayKacheln;
     }
 
+    /**
+     * Gibt die Menüliste der Movables zurück
+     * @return menuArrayMovables
+     */
     public ArrayList<IMovable> getMenuArrayMovables() {
         return menuArrayMovables;
     }
 
+    /**
+     * Gibt die aktuelle Spielwelt zurück
+     * @return spielwelt
+     */
     public ISpielwelt getSpielwelt() {
         return spielwelt;
     }
 
+    /**
+     * Setzt die Spielfeldbreite auf eine gewünschte Größe
+     * @param spielfeldBreite Die einzustellende Spielfeldbreite
+     */
     public void setSpielfeldBreite(int spielfeldBreite) {
         SpielfeldBreite = spielfeldBreite;
     }
 
+    /**
+     * Setzt die Spielfeldhoehe auf eine gewünschte Größe
+     * @param spielfeldHoehe Die einzustellende Spielfeldhoehe
+     */
     public void setSpielfeldHoehe(int spielfeldHoehe) {
         SpielfeldHoehe = spielfeldHoehe;
     }
 
+    /**
+     * Gibt die aktuelle Tilemap des Leveleditors zurück
+     * @return die aktuelle Tilemap
+     */
     public ITileMap getTilemap() {
         return tileMap;
     }
 
+    /**
+     * Gibt die Speicherhinweisnummer zurück
+     * @return speicherHinweis
+     */
     public int getSpeicherHinweis() {
         return speicherHinweis;
     }
 
+    /**
+     * Setzt den Dateinamen der spielweltJSON
+     * @param dateiname der zu setzende Dateiname in form "text.json"
+     */
     public void setSpielweltJson(String dateiname) {
         spielweltJson = dateiname;
     }

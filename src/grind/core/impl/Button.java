@@ -133,4 +133,20 @@ public class Button extends PApplet {
     public int getHoehe(){
         return hoehe;
     }
+
+    /**
+     * Setzt den Startwert x0 des Buttons auf den gewünschten Wert
+     * @param x0 Startwert x0
+     */
+    public void setX0(int x0) {
+        this.x0 = x0;
+    }
+
+    /**
+     * Setzt den Startwert y0 des Buttons auf den gewünschten Wert
+     * @param y0 Startwert y0
+     */
+    public void setY0(int y0) {
+        this.y0 = y0;
+    }
 }
