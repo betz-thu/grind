@@ -90,18 +90,18 @@ public class LeveleditorTest {
         this.dateiService = new DateiService(this.spielsteuerung);
         this.aktuelleKachel = null;
         this.aktuellesMovable = null;
-        this.exitButton = new Button(0);
-        this.speichernButton = new Button(1);
-        this.ladeButton = new Button(2);
-        this.leerenButton = new Button(3);
-        this.levelButton = new Button(4);
-        this.siedlungButton = new Button(5);
-        this.bildZurueck = new Button(6);
-        this.bildVor = new Button(7);
-        this.einstellungenObenMinus = new Button(8);
-        this.einstellungenUntenMinus = new Button(8);
-        this.einstellungenObenPlus = new Button(9);
-        this.einstellungenUntenPlus = new Button(9);
+//        this.exitButton = new Button(0);
+//        this.speichernButton = new Button(1);
+//        this.ladeButton = new Button(2);
+//        this.leerenButton = new Button(3);
+//        this.levelButton = new Button(4);
+//        this.siedlungButton = new Button(5);
+//        this.bildZurueck = new Button(6);
+//        this.bildVor = new Button(7);
+//        this.einstellungenObenMinus = new Button(8);
+//        this.einstellungenUntenMinus = new Button(8);
+//        this.einstellungenObenPlus = new Button(9);
+//        this.einstellungenUntenPlus = new Button(9);
 
         try {
             spielsteuerung.settings();

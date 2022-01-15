@@ -42,9 +42,9 @@ public class LeveleditorTestLeveleditor {
     int mouseYButtonLevelVorTest = 619;
     int mouseXButtonLevelZurueckTest = 550;
     int mouseYButtonLevelZureuckTest = 619;
-    int mouseXButtonEinstellungenObenPlusTest = 715;
+    int mouseXButtonEinstellungenObenPlusTest = 697;
     int mouseYButtonEinstellungenObenPlusTest = 607;
-    int mouseXButtonEinstellungenUntenPlusTest = 715;
+    int mouseXButtonEinstellungenUntenPlusTest = 697;
     int mouseYButtonEinstellungenUntenPlusTest = 621;
     int mouseXButtonEinstellungenUntenMinusTest = 607;
     int mouseYButtonEinstellungenUntenMinusTest = 621;
@@ -53,6 +53,8 @@ public class LeveleditorTestLeveleditor {
 
     @Before
     public void setUp() throws Exception {
+        Einstellungen.LAENGE_KACHELN_Y = 30;
+        Einstellungen.LAENGE_KACHELN_X = 30;
         this.leveleditor = new Leveleditor();
         this.leveleditor.setSpielfeldBreite(Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X);
         this.leveleditor.setSpielfeldHoehe(Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y);

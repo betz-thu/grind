@@ -6,19 +6,25 @@ import processing.core.PApplet;
 public class Button extends PApplet {
 
     private final int typ;
-    private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
-    private int hoehe = Einstellungen.LAENGE_KACHELN_Y;
-    private int x0 = 0;
-    private int y0 = 0;
+    private int breite;
+    private int hoehe;
+//    private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
+//    private int hoehe = Einstellungen.LAENGE_KACHELN_Y;
+    private int x0;
+    private int y0;
 
-    public Button(int typ){
+    public Button(int typ, int x, int y, int breite, int hoehe){
         this.typ = typ;
-        if(typ == 6 || typ == 7){
-            this.breite = Einstellungen.LAENGE_KACHELN_X;
-        } else if(typ == 8 || typ == 9){
-            this.breite = Einstellungen.LAENGE_KACHELN_X/2;
-            this.hoehe = Einstellungen.LAENGE_KACHELN_Y/2;
-        }
+        this.x0 = x;
+        this.y0 = y;
+        this.breite = breite;
+        this.hoehe = hoehe;
+//        if(typ == 6 || typ == 7){
+//            this.breite = Einstellungen.LAENGE_KACHELN_X;
+//        } else if(typ == 8 || typ == 9){
+//            this.breite = Einstellungen.LAENGE_KACHELN_X/2;
+//            this.hoehe = Einstellungen.LAENGE_KACHELN_Y/2;
+//        }
     }
 
     /**
@@ -38,10 +44,8 @@ public class Button extends PApplet {
     /**
      * Zeichnet den Button abhängig vom Typ an der Stelle x0, y0
      * @param app Applet auf das gezeichnet werden soll
-     * @param x0 Anfangsposition in x
-     * @param y0 Anfangsposition in y
      */
-    public void zeichne(PApplet app, int x0, int y0){
+    public void zeichne(PApplet app){
         app.pushStyle();
         float textverhaeltnis = ((Einstellungen.LAENGE_KACHELN_X * Einstellungen.LAENGE_KACHELN_Y) / 1600f);
         app.textSize((int)(16 * textverhaeltnis));
@@ -134,19 +138,11 @@ public class Button extends PApplet {
         return hoehe;
     }
 
-    /**
-     * Setzt den Startwert x0 des Buttons auf den gewünschten Wert
-     * @param x0 Startwert x0
-     */
-    public void setX0(int x0) {
-        this.x0 = x0;
+    public int getX0() {
+        return x0;
     }
 
-    /**
-     * Setzt den Startwert y0 des Buttons auf den gewünschten Wert
-     * @param y0 Startwert y0
-     */
-    public void setY0(int y0) {
-        this.y0 = y0;
+    public int getY0() {
+        return y0;
     }
 }
