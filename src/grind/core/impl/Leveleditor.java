@@ -29,18 +29,27 @@ public class Leveleditor extends Spielsteuerung {
     private static int SpielfeldHoehe;
     private final Spielsteuerung spielsteuerung;
 
-    private final int breiteExit;
-    private final int breiteSpeichern;
-    private final int breiteLaden;
-    private final int breiteLeeren;
-    private final int breiteLevel;
-    private final int breiteSiedlung;
-    private final int breiteVor;
-    private final int breiteZurueck;
-    private final int breiteEinstObenPlus;
-    private final int breiteEinstUntenPlus;
-    private final int breiteEinstObenMinus;
-    private final int breiteEinstUntenMinus;
+    private final int breiteGroßerButton = Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR * 3;
+    private final int hoeheGroßerButton = Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR;
+    private final int breiteMittlererButton = Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR;
+    private final int hoeheMittlererButton = Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR;
+    private final int breiteKleinerButton = Einstellungen.LAENGE_KACHELN_X_LEVELEDITOR / 2;
+    private final int hoeheKleinerButton = Einstellungen.LAENGE_KACHELN_Y_LEVELEDITOR / 2;
+
+
+
+//    private final int breiteExit;
+//    private final int breiteSpeichern;
+//    private final int breiteLaden;
+//    private final int breiteLeeren;
+//    private final int breiteLevel;
+//    private final int breiteSiedlung;
+//    private final int breiteVor;
+//    private final int breiteZurueck;
+//    private final int breiteEinstObenPlus;
+//    private final int breiteEinstUntenPlus;
+//    private final int breiteEinstObenMinus;
+//    private final int breiteEinstUntenMinus;
 
     private int levelCount = 1;
     private int levelNr = 1;
@@ -90,6 +99,8 @@ public class Leveleditor extends Spielsteuerung {
     public Leveleditor(){
         Einstellungen.LAENGE_KACHELN_Y = 30;
         Einstellungen.LAENGE_KACHELN_X = 30;
+        SpielfeldBreite = Einstellungen.LAENGE_KACHELN_X * Einstellungen.ANZAHL_KACHELN_X;
+        SpielfeldHoehe = Einstellungen.LAENGE_KACHELN_Y * Einstellungen.ANZAHL_KACHELN_Y;
         this.menuArrayKacheln = new ArrayList<>();
         this.menuArrayMovables = new ArrayList<>();
         this.tileMap = new TileMap();
@@ -98,108 +109,19 @@ public class Leveleditor extends Spielsteuerung {
         this.dateiService = new DateiService(this.spielsteuerung);
         this.aktuelleKachel = null;
         this.aktuellesMovable = null;
-        this.exitButton = new Button(0);
-        this.speichernButton = new Button(1);
-        this.ladeButton = new Button(2);
-        this.leerenButton = new Button(3);
-        this.levelButton = new Button(4);
-        this.siedlungButton = new Button(5);
-        this.bildZurueck = new Button(6);
-        this.bildVor = new Button(7);
-        this.einstellungenObenMinus = new Button(8);
-        this.einstellungenUntenMinus = new Button(8);
-        this.einstellungenObenPlus = new Button(9);
-        this.einstellungenUntenPlus = new Button(9);
 
-        //this.spielfigurBild = new PImage();
-
-        this.breiteExit = exitButton.getBreite();
-
-        this.breiteSpeichern = exitButton.getBreite()
-                + speichernButton.getBreite();
-
-        this.breiteLaden = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite();
-
-        this.breiteLeeren = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite();
-
-        this.breiteLevel = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite();
-
-        this.breiteSiedlung = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite();
-
-        this.breiteZurueck = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite();
-
-        this.breiteVor = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite()
-                + bildVor.getBreite();
-
-        this.breiteEinstObenMinus = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite()
-                + bildVor.getBreite()
-                + einstellungenObenMinus.getBreite();
-
-        this.breiteEinstUntenMinus = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite()
-                + bildVor.getBreite()
-                + einstellungenUntenMinus.getBreite();
-
-        this.breiteEinstObenPlus = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite()
-                + bildVor.getBreite()
-                + einstellungenObenMinus.getBreite()
-                + stringBreite
-                + einstellungenObenPlus.getBreite();
-
-        this.breiteEinstUntenPlus = exitButton.getBreite()
-                + speichernButton.getBreite()
-                + ladeButton.getBreite()
-                + leerenButton.getBreite()
-                + levelButton.getBreite()
-                + siedlungButton.getBreite()
-                + bildZurueck.getBreite()
-                + bildVor.getBreite()
-                + einstellungenUntenMinus.getBreite()
-                + stringBreite
-                + einstellungenUntenPlus.getBreite();
+        this.exitButton = new Button(0,0,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.speichernButton = new Button(1,breiteGroßerButton,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.ladeButton = new Button(2,2*breiteGroßerButton,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.leerenButton = new Button(3,3*breiteGroßerButton,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.levelButton = new Button(4,4*breiteGroßerButton,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.siedlungButton = new Button(5,5*breiteGroßerButton,SpielfeldHoehe,breiteGroßerButton,hoeheGroßerButton);
+        this.bildZurueck = new Button(6,6*breiteGroßerButton,SpielfeldHoehe,breiteMittlererButton,hoeheMittlererButton);
+        this.bildVor = new Button(7,6*breiteGroßerButton+breiteMittlererButton,SpielfeldHoehe,breiteMittlererButton,hoeheMittlererButton);
+        this.einstellungenObenMinus = new Button(8,6*breiteGroßerButton+2*breiteMittlererButton,SpielfeldHoehe,breiteKleinerButton,hoeheKleinerButton);
+        this.einstellungenUntenMinus = new Button(8,6*breiteGroßerButton+2*breiteMittlererButton,SpielfeldHoehe+hoeheKleinerButton,breiteKleinerButton,hoeheKleinerButton);
+        this.einstellungenObenPlus = new Button(9,6*breiteGroßerButton+2*breiteMittlererButton+stringBreite,SpielfeldHoehe,breiteKleinerButton,hoeheKleinerButton);
+        this.einstellungenUntenPlus = new Button(9,6*breiteGroßerButton+2*breiteMittlererButton+stringBreite,SpielfeldHoehe+hoeheKleinerButton,breiteKleinerButton,hoeheKleinerButton);
 
         //Befüllen des Menuarrays mit den Kachelarten
         this.menuArrayKacheln.add( new Baum());
@@ -268,8 +190,8 @@ public class Leveleditor extends Spielsteuerung {
     private void zeichne() {
         zeichneTileMap();
         zeichneMovables();
-        zeichneAssetMenu(this.menuArrayKacheln);
-        zeichneMovableMenu(this.menuArrayMovables);
+        zeichneAssetMenu(menuArrayKacheln);
+        zeichneMovableMenu(menuArrayMovables);
         zeichneEinstellungsmenu();
         zeichneMausKachel(aktuelleKachel, mouseX, mouseY);
         zeichneMausMovable(aktuellesMovable,mouseX,mouseY);
@@ -409,7 +331,7 @@ public class Leveleditor extends Spielsteuerung {
         } else if (movable instanceof Stern) {
             tempMovable = new Stern(posX, posY);
         }
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel level = (ILevel) this.spielwelt.getSzene(levelNr-1);
         level.addPosition(tempMovable);
     }
 
@@ -537,7 +459,7 @@ public class Leveleditor extends Spielsteuerung {
      * Zeichnet die Movalbes, welche auf der Tilemap platziert wurden
      */
     private void zeichneMovables(){
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel level = (ILevel) this.spielwelt.getSzene(levelNr-1);
         int anzahlPos = level.getPositionen().size();
         IMovable movable;
         for (int i = 0; i < anzahlPos; i++){
@@ -562,19 +484,19 @@ public class Leveleditor extends Spielsteuerung {
         this.textSize((int)(16 * textverhaeltnis));
         this.fill(0, 0, 0);
         if (aktuellesMovable instanceof FeuerMonster){
-            this.text(feuerRate, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
-            this.text(feuerModus.name(), breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
+            this.text(feuerRate,  einstellungenObenMinus.getX0() + 20, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(feuerModus.name(), einstellungenUntenMinus.getX0() + 20, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Zombie){
-            this.text(laufModus.name(), breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
+            this.text(laufModus.name(), einstellungenUntenMinus.getX0() + 20, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Schwert){
-            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(stufe, einstellungenObenMinus.getX0() + 20, SpielfeldHoehe + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Bogen){
-            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(stufe, einstellungenObenMinus.getX0() + 20, SpielfeldHoehe + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Spezialattacke){
-            this.text(stufe, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(stufe, einstellungenObenMinus.getX0() + 20, SpielfeldHoehe + 20 * textverhaeltnis);
         } else if (aktuellesMovable instanceof Apfel || aktuellesMovable instanceof Heiltrank || aktuellesMovable instanceof Mango){
-            this.text(wert, breiteEinstObenMinus + 15, SpielfeldHoehe + 20 * textverhaeltnis);
-            this.text(punkte, breiteEinstUntenMinus + 15, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
+            this.text(wert, einstellungenObenMinus.getX0() + 20, SpielfeldHoehe + 20 * textverhaeltnis);
+            this.text(punkte, einstellungenUntenMinus.getX0() + 20, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2 + 20 * textverhaeltnis);
         }
         this.popStyle();
     }
@@ -584,18 +506,18 @@ public class Leveleditor extends Spielsteuerung {
      */
     private void zeichneButtons(){
 
-        exitButton.zeichne(this,0, SpielfeldHoehe);
-        speichernButton.zeichne(this, breiteExit, SpielfeldHoehe);
-        ladeButton.zeichne(this, breiteSpeichern, SpielfeldHoehe);
-        leerenButton.zeichne(this, breiteLaden, SpielfeldHoehe);
-        levelButton.zeichne(this, breiteLeeren, SpielfeldHoehe);
-        siedlungButton.zeichne(this, breiteLevel, SpielfeldHoehe);
-        bildZurueck.zeichne(this, breiteSiedlung, SpielfeldHoehe);
-        bildVor.zeichne(this, breiteZurueck, SpielfeldHoehe);
-        einstellungenObenMinus.zeichne(this, breiteVor, SpielfeldHoehe);
-        einstellungenUntenMinus.zeichne(this, breiteVor, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2);
-        einstellungenObenPlus.zeichne(this, breiteEinstObenMinus + stringBreite, SpielfeldHoehe);
-        einstellungenUntenPlus.zeichne(this, breiteEinstUntenMinus + stringBreite, SpielfeldHoehe + Einstellungen.LAENGE_KACHELN_Y/2);
+        exitButton.zeichne(this);
+        speichernButton.zeichne(this);
+        ladeButton.zeichne(this);
+        leerenButton.zeichne(this);
+        levelButton.zeichne(this);
+        siedlungButton.zeichne(this);
+        bildZurueck.zeichne(this);
+        bildVor.zeichne(this);
+        einstellungenObenMinus.zeichne(this);
+        einstellungenUntenMinus.zeichne(this);
+        einstellungenObenPlus.zeichne(this);
+        einstellungenUntenPlus.zeichne(this);
     }
 
     /**
@@ -608,6 +530,7 @@ public class Leveleditor extends Spielsteuerung {
         this.text("Levelanzahl: " + levelCount, 20, 25);
         this.text("LevelNr: " + levelNr, 20, 40);
         this.popStyle();
+        anzeigeTitelLevel(levelNr);
     }
 
     /**
@@ -637,42 +560,40 @@ public class Leveleditor extends Spielsteuerung {
      */
     private void buttonAction(int y, int x){
         if (y > SpielfeldHoehe && y < exitButton.getHoehe() + SpielfeldHoehe){
-            if (x < breiteExit){
+            if (exitButton.mausklick(x,y)){
                 exitLeveleditor();
 
-            } else if (x > breiteExit && x < breiteSpeichern){
+            } else if (speichernButton.mausklick(x,y)){
                 speichereSpielwelt();
 
-            } else if (x > breiteSpeichern && x < breiteLaden){
+            } else if (ladeButton.mausklick(x,y)){
                 ladeSpielweltLeveleditor();
 
-            } else if (x > breiteLaden && x < breiteLeeren){
+            } else if (leerenButton.mausklick(x,y)){
                 leereLevel();
 
-            } else if (x > breiteLeeren && x < breiteLevel){
+            } else if (levelButton.mausklick(x,y)){
                 neuesLevel();
 
-            } else if (x > breiteLevel && x < breiteSiedlung){
+            } else if (siedlungButton.mausklick(x,y)){
                 neueSiedlung();
 
-            } else if (x > breiteSiedlung && x < breiteZurueck){
+            } else if (bildZurueck.mausklick(x,y)){
                 springeZurueck();
 
-            } else if (x > breiteZurueck && x < breiteVor){
+            } else if (bildVor.mausklick(x,y)){
                 springeVor();
-            }
-        }
-        if (y > SpielfeldHoehe && y < einstellungenObenMinus.getHoehe() + SpielfeldHoehe){
-            if (x > breiteVor && x < breiteEinstObenMinus){
+
+            } else if (einstellungenObenMinus.mausklick(x,y)){
                 minusobereEinstellung();
-            } else if (x > breiteEinstObenMinus + stringBreite && x < breiteEinstObenPlus){
+
+            } else if (einstellungenObenPlus.mausklick(x,y)){
                 plusobereEinstellung();
-            }
-        }
-        if (y > SpielfeldHoehe + einstellungenObenMinus.getHoehe() && y < einstellungenUntenMinus.getHoehe() + einstellungenObenMinus.getHoehe() + SpielfeldHoehe){
-            if (x > breiteVor && x < breiteEinstUntenMinus){
+
+            } else if (einstellungenUntenMinus.mausklick(x,y)){
                 minusuntereEinstellung();
-            } else if (x > breiteEinstUntenMinus + stringBreite && x < breiteEinstUntenPlus){
+
+            } else if (einstellungenUntenPlus.mausklick(x,y)){
                 plusuntereEinstellung();
             }
         }
@@ -777,7 +698,7 @@ public class Leveleditor extends Spielsteuerung {
      * Speichert die aktulle Spielwelt und resettet die Anzeige
      */
     private void speichereSpielwelt() {
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel level = (ILevel) spielwelt.getSzene(levelNr-1);
         level.setTilemap(tileMap);
         pruefeSpeicherkriterien();
         if (speicherHinweis == 0){
@@ -798,7 +719,7 @@ public class Leveleditor extends Spielsteuerung {
         speicherHinweis = 0;
         levelNr = 1;
         spielwelt = dateiService.ladeSpielwelt(spielweltJson);
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel level = (ILevel) spielwelt.getSzene(levelNr-1);
         tileMap = (TileMap) level.getTileMap();
         levelCount = spielwelt.getSzenenanzahl();
     }
@@ -810,7 +731,7 @@ public class Leveleditor extends Spielsteuerung {
         System.out.println("leeren");
         //Java hat ja einen Garbage Collector. Also wäre auch folgendes möglich.
         tileMap = new TileMap();
-        ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel level = (ILevel) spielwelt.getSzene(levelNr-1);
         level.clearPosition();
         //Anstatt alle Felder mit Wiese zu nullen wie unten
         //leereTilemap();
@@ -822,17 +743,16 @@ public class Leveleditor extends Spielsteuerung {
     private void neuesLevel() {
         System.out.println("level");
         ILevel level = new DummyLevel();
-        ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel iLevel1 = (ILevel) spielwelt.getSzene(levelNr-1);
         iLevel1.setTilemap(tileMap);
         spielwelt.addSzene(level, levelNr);
 
-        ILevel iLevel2 = (ILevel) this.spielwelt.getSzene(levelNr);
+        ILevel iLevel2 = (ILevel) spielwelt.getSzene(levelNr);
         iLevel2.clearPosition();
         tileMap = new TileMap();
         iLevel2.setTilemap(tileMap);
         levelCount++;
         levelNr++;
-//        anzeigeTitelLevel(levelNr);
     }
 
     /**
@@ -841,17 +761,16 @@ public class Leveleditor extends Spielsteuerung {
     private void neueSiedlung() {
         System.out.println("Siedlung");
         ISiedlung siedlung = new DummySiedlung();
-        ILevel iLevel1 = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+        ILevel iLevel1 = (ILevel) spielwelt.getSzene(levelNr-1);
         iLevel1.setTilemap(tileMap);
         spielwelt.addSzene(siedlung, levelNr);
 
-        ISiedlung iSiedlung2 = (ISiedlung) this.spielwelt.getSzene(levelNr);
+        ISiedlung iSiedlung2 = (ISiedlung) spielwelt.getSzene(levelNr);
         iSiedlung2.clearPosition();
         tileMap = new TileMap();
         iSiedlung2.setTilemap(tileMap);
         levelCount++;
         levelNr++;
-//        anzeigeTitelLevel(levelNr);
     }
 
     /**
@@ -859,11 +778,11 @@ public class Leveleditor extends Spielsteuerung {
      */
     private void springeZurueck() {
         if (levelCount >= 2 && levelNr > 1){
-            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            ILevel level = (ILevel) spielwelt.getSzene(levelNr-1);
             level.setTilemap(tileMap);
 
             levelNr -= 1;
-            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level = (ILevel) spielwelt.getSzene(levelNr-1);
             tileMap = (TileMap) level.getTileMap();
         }
         System.out.println("zurück");
@@ -874,11 +793,11 @@ public class Leveleditor extends Spielsteuerung {
      */
     private void springeVor() {
         if (levelCount > levelNr){
-            ILevel level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            ILevel level = (ILevel) spielwelt.getSzene(levelNr-1);
             level.setTilemap(tileMap);
 
             levelNr++;
-            level = (ILevel) this.spielwelt.getSzene(this.levelNr-1);
+            level = (ILevel) spielwelt.getSzene(levelNr-1);
             tileMap = (TileMap) level.getTileMap();
         }
         System.out.println("vor");
@@ -893,9 +812,8 @@ public class Leveleditor extends Spielsteuerung {
 
         for (int i = 0; i < szenenAnzahl; i++){
             speicherHinweisLevel = i + 1;
-            ILevel level = (ILevel) this.spielwelt.getSzene(i);
+            ILevel level = (ILevel) spielwelt.getSzene(i);
             ITileMap pruefTilemap = level.getTileMap();
-//            int sizeKachelarten = pruefTilemap.getKachelarten().size();
             int sizeMovables = level.getPositionen().size();
 
             pruefeLevelausgang(pruefTilemap);
@@ -920,7 +838,7 @@ public class Leveleditor extends Spielsteuerung {
 
         if (speicherHinweis == 0) {
             for (int j = 0; j < sizeMovables; j++) {
-                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                ILevel level = (ILevel) spielwelt.getSzene(szenenNr);
                 IMovable movable = level.getPositionen().get(j);
                 if (movable instanceof Spielfigur) {
                     speicherHinweis = 0;
@@ -943,7 +861,7 @@ public class Leveleditor extends Spielsteuerung {
     private void pruefeLevelende(int szenenNr, int sizeMovables) {
         if (speicherHinweis != 0){
             for (int j = 0; j < sizeMovables; j++) {
-                ILevel level = (ILevel) this.spielwelt.getSzene(szenenNr);
+                ILevel level = (ILevel) spielwelt.getSzene(szenenNr);
                 IMovable movable = level.getPositionen().get(j);
                 if (movable instanceof Levelende) {
                     speicherHinweis = 0;
@@ -991,76 +909,141 @@ public class Leveleditor extends Spielsteuerung {
         this.images = images;
     }
 
+    /**
+     * Gibt die aktuelle Kachel zurück
+     * @return aktuelleKachel
+     */
     public IKachel getAktuelleKachel() {
         return aktuelleKachel;
     }
 
+    /**
+     * Gibt das aktuelle Movable zurück
+     * @return aktuellesMovable
+     */
     public IMovable getAktuellesMovable() {
         return aktuellesMovable;
     }
 
+    /**
+     * Gibt die Anzahl der Level zurück
+     * @return levelanzahl
+     */
     public int getLevelCount() {
         return levelCount;
     }
 
+    /**
+     * Gibt die aktuelle Levelnummer zurück
+     * Levelnummer fängt bei null an, wird aber für den User erst mit eins beginnend angezeigt
+     * @return levelnummer
+     */
     public int getLevelNr() {
         return levelNr;
     }
 
-    public int getFeuerRate() {
-        return feuerRate;
-    }
-
+    /**
+     * Gibt die eingestellte Stufe zurück
+     * @return stufe
+     */
     public int getStufe() {
         return stufe;
     }
 
+    /**
+     * Gibt den eingestellten Wert zurück
+     * @return wert
+     */
     public int getWert() {
         return wert;
     }
 
+    /**
+     * Gibt die eingestellte Punkteanzahl zurück
+     * @return punkte
+     */
     public int getPunkte() {
         return punkte;
     }
 
+    /**
+     * Gibt das Enum des FeuerModus zurück
+     * @return feuerModus
+     */
     public FeuerModus getFeuerModus() {
         return feuerModus;
     }
 
+    /**
+     * Gibt das Enum des LaufModus zurück
+     * @return laufModus
+     */
     public LaufModus getLaufModus() {
         return laufModus;
     }
 
+    /**
+     * Gibt die Menüliste der Kacheln zurück
+     * @return menuArrayKacheln
+     */
     public ArrayList<IKachel> getMenuArrayKacheln() {
         return menuArrayKacheln;
     }
 
+    /**
+     * Gibt die Menüliste der Movables zurück
+     * @return menuArrayMovables
+     */
     public ArrayList<IMovable> getMenuArrayMovables() {
         return menuArrayMovables;
     }
 
+    /**
+     * Gibt die aktuelle Spielwelt zurück
+     * @return spielwelt
+     */
     public ISpielwelt getSpielwelt() {
         return spielwelt;
     }
 
+    /**
+     * Setzt die Spielfeldbreite auf eine gewünschte Größe
+     * @param spielfeldBreite Die einzustellende Spielfeldbreite
+     */
     public void setSpielfeldBreite(int spielfeldBreite) {
         SpielfeldBreite = spielfeldBreite;
     }
 
+    /**
+     * Setzt die Spielfeldhoehe auf eine gewünschte Größe
+     * @param spielfeldHoehe Die einzustellende Spielfeldhoehe
+     */
     public void setSpielfeldHoehe(int spielfeldHoehe) {
         SpielfeldHoehe = spielfeldHoehe;
     }
 
+    /**
+     * Gibt die aktuelle Tilemap des Leveleditors zurück
+     * @return die aktuelle Tilemap
+     */
     public ITileMap getTilemap() {
         return tileMap;
     }
 
+    /**
+     * Gibt die Speicherhinweisnummer zurück
+     * @return speicherHinweis
+     */
     public int getSpeicherHinweis() {
         return speicherHinweis;
     }
 
+    /**
+     * Setzt den Dateinamen der spielweltJSON
+     * @param dateiname der zu setzende Dateiname in form "text.json"
+     */
     public void setSpielweltJson(String dateiname) {
-        spielweltJson = dateiname;
+        this.spielweltJson = dateiname;
     }
 
 }
