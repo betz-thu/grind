@@ -9,11 +9,9 @@ import java.util.List;
 public class DummySpielwelt implements ISpielwelt {
 
     private List<ISzene> szenen = new ArrayList<>();
-    private int anzahlSzenen;
 
     public DummySpielwelt(){
         this.szenen.add(0,new DummyLevel());
-        this.anzahlSzenen = szenen.size();
     }
 
     /**
@@ -36,8 +34,7 @@ public class DummySpielwelt implements ISpielwelt {
      */
     @Override
     public void addSzene(ISzene szene, int szenenNummer){
-        szenen.add(szenenNummer, szene);
-        anzahlSzenen = szenen.size();
+        this.szenen.add(szenenNummer, szene);
     }
 
     /**

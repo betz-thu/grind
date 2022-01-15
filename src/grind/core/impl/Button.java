@@ -6,25 +6,26 @@ import processing.core.PApplet;
 public class Button extends PApplet {
 
     private final int typ;
-    private int breite;
-    private int hoehe;
-//    private int breite = Einstellungen.LAENGE_KACHELN_X * 3;
-//    private int hoehe = Einstellungen.LAENGE_KACHELN_Y;
-    private int x0;
-    private int y0;
+    private final int breite;
+    private final int hoehe;
+    private final int x0;
+    private final int y0;
 
+    /**
+     * Konstruktor für Klasse Button
+     * Erstellt einen Button anhand der eingestellten Parameter
+     * @param typ möglich von 0-9 in folgender Reihenfolge (Exit, Speichern, Laden, Leeren, Neues Level, Neue Siedlung, <, >, -, +)
+     * @param x X-Koordinate des Startpunkts
+     * @param y Y-Koordinate des Startpunkts
+     * @param breite Breite des Buttons
+     * @param hoehe Hoehe des Buttons
+     */
     public Button(int typ, int x, int y, int breite, int hoehe){
         this.typ = typ;
         this.x0 = x;
         this.y0 = y;
         this.breite = breite;
         this.hoehe = hoehe;
-//        if(typ == 6 || typ == 7){
-//            this.breite = Einstellungen.LAENGE_KACHELN_X;
-//        } else if(typ == 8 || typ == 9){
-//            this.breite = Einstellungen.LAENGE_KACHELN_X/2;
-//            this.hoehe = Einstellungen.LAENGE_KACHELN_Y/2;
-//        }
     }
 
     /**
@@ -138,10 +139,18 @@ public class Button extends PApplet {
         return hoehe;
     }
 
+    /**
+     * Gibt die X-Koordinate des Buttonspunkts oben links zurück
+     * @return X-Koordinate
+     */
     public int getX0() {
         return x0;
     }
 
+    /**
+     * Gibt die Y-Koordinate des Buttonspunkts oben links zurück
+     * @return Y-Koordinate
+     */
     public int getY0() {
         return y0;
     }
