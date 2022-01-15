@@ -242,7 +242,7 @@ public class Leveleditor extends Spielsteuerung {
                     aktuellesMovable = getMenukacheliMovable(mausYmenu, mausXmenu - 1, menuArrayMovables);
                 }
             }
-            if (mouseX <= SpielfeldBreite && mouseY <= SpielfeldHoehe) {
+            if (mouseX < SpielfeldBreite && mouseY < SpielfeldHoehe) {
                 if (aktuelleKachel != null){
                     tileMap.setKachel(aktuelleKachel, mausYkachel, mausXkachel);
                 } else if (aktuellesMovable != null){
@@ -880,7 +880,7 @@ public class Leveleditor extends Spielsteuerung {
     private void pruefeLevelausgang(ITileMap pruefTilemap) {
         for (int i = 0; i < Einstellungen.ANZAHL_KACHELN_Y; i++) {
             for (int j = 0; j < Einstellungen.ANZAHL_KACHELN_X; j++) {
-                if (pruefTilemap.getKachel(j,i) instanceof Levelausgang){
+                if (pruefTilemap.getKachel(i,j) instanceof Levelausgang){
                     speicherHinweis = 0;
                     j = Einstellungen.ANZAHL_KACHELN_X;
                     i = Einstellungen.ANZAHL_KACHELN_Y;
