@@ -30,9 +30,9 @@ public class SpielfigurTest_Avalon {
 
     @Test
     public void getInvPos() {
-        Assert.assertEquals(0, figur.getInvPos(200,200));
-        Assert.assertEquals(1, figur.getInvPos(10,50));
-        Assert.assertEquals(-1, figur.getInvPos(50,50));
+        Assert.assertEquals(0, figur.getInventarPosition(200,200));
+        Assert.assertEquals(1, figur.getInventarPosition(10,50));
+        Assert.assertEquals(-1, figur.getInventarPosition(50,50));
 
     }
 

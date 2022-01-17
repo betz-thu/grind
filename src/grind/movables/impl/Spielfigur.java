@@ -27,10 +27,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
     int gold = 5;
     private boolean abgeschossen = false;
     Richtung pfeilrichtung = Richtung.N;
-    transient Waffe testwaffe = new Schwert(35,35,1,3);
-    transient Bogen testbogen = new Bogen(35,35,1,3);
-    transient Pfeil testpfeil = new Pfeil(35,35,1);
-    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
+    transient Waffe testwaffe = new Schwert(35, 35, 1, 3);
+    transient Bogen testbogen = new Bogen(35, 35, 1, 3);
+    transient Pfeil testpfeil = new Pfeil(35, 35, 1);
+    transient Spezialattacke testattacke = new Spezialattacke(200, 200, 1);
 
     int lebensenergie = 100;//Kapselung?
     transient final List<Gegenstand> inventar;
@@ -44,11 +44,13 @@ public class Spielfigur extends Movable implements ISpielfigur {
     transient Waffe aktiverPfeil = testpfeil;
     public boolean spezialAktiviert = false;
     private int countSpezialDauer=0;
+
     //Waffe aktiveWaffe = testbogen;
 
     Dictionary<String, File> Sounds = new Hashtable<String, File>();
 
     public Gegenstand auswahl;
+
     /**
      * @Autor MEGAtroniker
      * Methode getGeschwindigkeit, Getter für die Geschwindigkeit.
@@ -161,7 +163,6 @@ public class Spielfigur extends Movable implements ISpielfigur {
         /*
         //testattacke.zeichne(app);
         if(app.key == ' '& app.keyPressed) { //Schwert nur anzeigen, wenn Leertaste gedrückt wurde
-
             if (!abgeschossen) {
 
                  //Wenn der Pfeil noch nicht abgeschossen wurde wird die Pfeilrichtung und die Abschussposition festgelegt.
@@ -230,7 +231,18 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     }
 
-    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße){
+    /**
+     * Zeichnet Quadrate,ausgehend von den x-y Startkoordinaten (von rechts nach links), mit Seitenlängen der guiGröße
+     * Bei jedem 10. Quadrat wird ein Zeilenumbruch nach oben (-y Richtung) gezeichnet
+     *
+     * @param app Main PApplet von Processing
+     * @param groeße Inventargröße die gezeichnet werden soll
+     * @param startkoordinateX x-Startposition von der aus das Inventar gezeichnet wird
+     * @param startkoordinateY y-Startposition von der aus das Inventar gezeichnet wird
+     * @param guiGroeße Größe des grafischen Overlays
+     */
+
+    public void zeichneInventar(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         // Zeichne Inventar
         int zaehler = 0;
         app.pushStyle();
@@ -262,6 +274,18 @@ public class Spielfigur extends Movable implements ISpielfigur {
         app.popStyle();
     }
 
+    /**
+     * Methode verschiebt Gegenstände aus dem Inventar an x-y-Koordinaten
+     * Gegenstände werden mit Abstand der guiGröße gezeichnet
+     * Bei jedem 10. Gegenstand wird ein Zeilenumbruch nach oben (-y Richtung) gezeichnet
+     *
+     * @param app Main PApplet von Processing
+     * @param groeße Inventargröße die ausgefüllt werden soll
+     * @param startkoordinateX x-Startposition von der aus das Inventar gezeichnet wird
+     * @param startkoordinateY y-Startposition von der aus das Inventar gezeichnet wird
+     * @param guiGroeße Größe des grafischen Overlays
+     */
+
     public void zeichneInventarInhalt(Spielsteuerung app, int groeße, int startkoordinateX, int startkoordinateY, int guiGroeße) {
         for (int j = 0; j < inventar.size(); j++) {
             if (j % 10 == 0 && j > 0) {
@@ -276,8 +300,9 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
 //        app.popStyle();
     }
+
     //Methode zum benutzen oder ausrüsten von Gegenständen
-    public void benutze(int position){
+    public void benutze(int position) {
         if (inventar.size() > position) {
             if (inventar.get(position) instanceof Nahrung || inventar.get(position) instanceof Stern) {
                 inventar.get(position).beimAnwenden(this);
@@ -398,6 +423,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
      * Ob die Koordinaten auf belaufbarem Feld liegen, wird schon vor Aufruf in der Spielsteuerung getestet.
      * @param richtung enum für die Richtungsangabe.
      */
+
     @Override
     public void bewege(Richtung richtung) {
         switch (richtung) {
@@ -536,20 +562,35 @@ public class Spielfigur extends Movable implements ISpielfigur {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(Sound));
             clip.start();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void klickItems(int x, int y){
-        int invPos = getInvPos(x,y);
-        if(invPos>=0) {
+    /**
+     * Verwendet Gegenstände aus dem Inventar, wenn Koordinaten des Gegenstands mit übergebenen Parametern (+gui Größe) übereinstimmt
+     * (z.B. Mausposition)
+     *
+     * @param x x-K
+     * @param y y-Wert der Mausposition
+     */
+
+    public void klickItems(int x, int y) {
+        int invPos = getInventarPosition(x, y);
+        if (invPos >= 0) {
             benutze(invPos);
         }
     }
 
-
-    public int getInvPos(int x, int y){
+    /**
+     * Ermittelt die Inventarposition, die zur übergebenen Mausposition gehört. Der Rückgabewert ist der Index der
+     * zugehörigen Inventarposition, falls der Mauszeiger über dem Inventar steht, andernfalls -1.
+     *
+     * @param x x-Wert der Mausposition
+     * @param y y-Wert der Mausposition
+     * @return der Index der zugehörigen Inventarposition; -1 falls nicht der Mauszeiger nicht über dem Inventar steht
+     */
+    public int getInventarPosition(int x, int y) {
         boolean xBereich;
         boolean yBereich;
         for(int i=0; i<inventar.size(); i++){
@@ -568,7 +609,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
         return gold;
     }
 
-    public void verringereGold(int betrag){
+    /**
+     * Zieht übergebenen Betrag vom Kontostand (Spieler Gold) ab
+     * @param betrag
+     */
+    public void verringereGold(int betrag) {
         this.gold = this.gold - betrag;
     }
 

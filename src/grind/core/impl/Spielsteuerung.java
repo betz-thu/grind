@@ -20,7 +20,6 @@ import grind.welt.ISpielwelt;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -38,15 +37,17 @@ public class Spielsteuerung extends PApplet {
     private String fTaste;
     private DateiService dateiService;
     private boolean abgeschossen = false;
-    transient Pfeil testpfeil = new Pfeil(35,35,1);
-    transient Waffe testwaffe = new Schwert(35,35,1, 3);
-    transient Spezialattacke testattacke = new Spezialattacke(200,200,1);
+    transient Pfeil testpfeil = new Pfeil(35, 35, 1);
+    transient Waffe testwaffe = new Schwert(35, 35, 1, 3);
+    transient Spezialattacke testattacke = new Spezialattacke(200, 200, 1);
     Dictionary<String, PImage> images = new Hashtable<String, PImage>();
 
     public ISpielmodell getSpielmodell() {
         return spielmodell;
     }
+
     PApplet app;
+
     public void setSpielmodell(ISpielmodell spielmodell) {
         this.spielmodell = spielmodell;
     }
@@ -60,10 +61,11 @@ public class Spielsteuerung extends PApplet {
     int CountStart;
     int duration = 150;
     int time = 150;
-    private int countSpezialDauer=0;
+    private int countSpezialDauer = 0;
     Waffe alteWaffe = testwaffe;
 
     Richtung pfeilrichtung = Richtung.N;
+
     /**
      * Konstruktor Spielsteuerung, instanziierung des Spielmodells, enthält Szene, Spielfigur, SpielerGeschwindigkeit
      * und Tilemap.
@@ -106,30 +108,30 @@ public class Spielsteuerung extends PApplet {
         imageMode(PConstants.CORNER);
         //Spieler.ladeIMGSpielfigur(this);
         ladeBilder(this);
-        anzeigeTitelLevel(this.spielmodell.getSzeneNr()+1);
+        anzeigeTitelLevel(this.spielmodell.getSzeneNr() + 1);
         CountStart = millis();
 
     }
 
     /**
+     * @param spielsteuerung Spielsteuerung, in welcher das Dictionary gesetzt werden soll.
+     *                       (wichtig für den Leveleditor, dass dieser seine images auch
+     *                       durch diese Methode laden lassen kann.)
      * @Autor MEGAtroniker
      * Methode ladeBilder
      * Lädt alle Bilder der Movables, und speichert diese in das Dictionary images.
      * Jeweiliger Key ist die Klasse und Stufe des Movables.
-     * @param spielsteuerung Spielsteuerung, in welcher das Dictionary gesetzt werden soll.
-     *                       (wichtig für den Leveleditor, dass dieser seine images auch
-     *                       durch diese Methode laden lassen kann.)
      */
     public void ladeBilder(Spielsteuerung spielsteuerung) {
         Dictionary images = new Hashtable();
-        images.put("class grind.movables.monster.Zombie0",(PImage) spielsteuerung.loadImage("Zombie.png"));
-        images.put("class grind.movables.impl.Spielfigur",(PImage) spielsteuerung.loadImage("Spielfigur.png"));
-        images.put("class grind.movables.impl.Heiltrank0",(PImage) spielsteuerung.loadImage("Heiltrank.png"));
-        images.put("class grind.movables.impl.Apfel0",(PImage) spielsteuerung.loadImage("Apfel.png"));
-        images.put("class grind.movables.impl.Mango0",(PImage) spielsteuerung.loadImage("Mango.png"));
-        images.put("class grind.movables.impl.Gold0",(PImage) spielsteuerung.loadImage("Gold.png"));
-        images.put("class grind.movables.monster.FeuerMonster0",(PImage) spielsteuerung.loadImage("Feuermonster.png"));
-        images.put("class grind.movables.monster.DornPflanze0",(PImage) spielsteuerung.loadImage("Dornpflanze.png"));
+        images.put("class grind.movables.monster.Zombie0", (PImage) spielsteuerung.loadImage("Zombie.png"));
+        images.put("class grind.movables.impl.Spielfigur", (PImage) spielsteuerung.loadImage("Spielfigur.png"));
+        images.put("class grind.movables.impl.Heiltrank0", (PImage) spielsteuerung.loadImage("Heiltrank.png"));
+        images.put("class grind.movables.impl.Apfel0", (PImage) spielsteuerung.loadImage("Apfel.png"));
+        images.put("class grind.movables.impl.Mango0", (PImage) spielsteuerung.loadImage("Mango.png"));
+        images.put("class grind.movables.impl.Gold0", (PImage) spielsteuerung.loadImage("Gold.png"));
+        images.put("class grind.movables.monster.FeuerMonster0", (PImage) spielsteuerung.loadImage("Feuermonster.png"));
+        images.put("class grind.movables.monster.DornPflanze0", (PImage) spielsteuerung.loadImage("Dornpflanze.png"));
         images.put("class grind.movables.impl.Schwert1", (PImage) spielsteuerung.loadImage("newSword1.png"));
         images.put("class grind.movables.impl.Schwert2", (PImage) spielsteuerung.loadImage("newSword2.png"));
         images.put("class grind.movables.impl.Bogen1", (PImage) spielsteuerung.loadImage("Bogen1.png"));
@@ -137,7 +139,7 @@ public class Spielsteuerung extends PApplet {
         images.put("class grind.movables.impl.Pfeil0", (PImage) spielsteuerung.loadImage("pfeil.png"));
         images.put("class grind.movables.impl.Spezialattacke1", (PImage) spielsteuerung.loadImage("bluefirering.png"));
         images.put("class grind.movables.impl.Spezialattacke2", (PImage) spielsteuerung.loadImage("bluefirering.png"));
-        images.put("class grind.movables.impl.Stern0",(PImage) spielsteuerung.loadImage("Stern.png"));
+        images.put("class grind.movables.impl.Stern0", (PImage) spielsteuerung.loadImage("Stern.png"));
         spielsteuerung.setImages(images);
     }
 
@@ -157,9 +159,9 @@ public class Spielsteuerung extends PApplet {
      * @Autor MEGAtroniker
      * Methode eingabe
      * bei Eingabe der Tasten w, a, s, d:
-     *  -Richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
-     *  -Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
-     *  damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
+     * -Richtet Figur in Laufrichtung aus, wenn möglich bewegt sie die Figur in Laufrichtung.
+     * -Beim Prüfen, ob die Figur in Laufrichtung bewegt werden kann, werden zwei punkte auf Schulterbreite überprüft,
+     * damit die Figur nicht teilweise in unbetretbare Kacheln läuft.
      */
     private void eingabe() {
         int x = Spieler.getPosX();
@@ -229,20 +231,31 @@ public class Spielsteuerung extends PApplet {
 
             }
             //Inventar öffnen
-            if(keyPressed) {
-                if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
-                    Spieler.setInventarGuiGroeße(30);
-                    Spieler.playSound("openBackPack");
-                    keyPressed = false;
-                } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
-                    Spieler.setInventarGuiGroeße(10);
-                    keyPressed = false;
-                    Spieler.playSound("closeBackPack");
-                }
+
+        }
+        inventarOeffen();
+
+
+    szeneUeberspringen();
+
+}
+
+
+    /**
+     * Öffnet erweitertes Inventar, indem es die gezeichnete Inventar größe auf 30 erhöht
+     */
+    private void inventarOeffen() {
+        if(keyPressed) {
+            if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 10) {
+                Spieler.setInventarGuiGroeße(30);
+                Spieler.playSound("openBackPack");
+                keyPressed = false;
+            } else if (key == Einstellungen.TASTE_INVENTAR && Spieler.getInventarGuiGroeße() == 30) {
+                Spieler.setInventarGuiGroeße(10);
+                keyPressed = false;
+                Spieler.playSound("closeBackPack");
             }
         }
-
-        szeneUeberspringen();
     }
 
     /**
@@ -441,8 +454,18 @@ public class Spielsteuerung extends PApplet {
         }
 
         //Items verschieben
+        dragAndDrop();
+
+
+    }
+
+    /**
+     * Items lassen sich mit erstem Mausklick (Linke Maustaste) aufheben und mit zweitem Klick an Mausposition wieder ablegen
+     * Wenn bei zweitem Klick nicht Gegenstand aus Inventar ausgewählt wird, wird der Gegenstand am Ende des Inventars eingefügt
+     */
+    private void dragAndDrop() {
         if(mouseButton==LEFT && klicked==false){
-            int invPos = Spieler.getInvPos(mouseX, mouseY);
+            int invPos = Spieler.getInventarPosition(mouseX, mouseY);
             if(invPos>=0){
                 klicked = true;
                 Spieler.auswahl = Spieler.getInventar().get(invPos);
@@ -451,7 +474,7 @@ public class Spielsteuerung extends PApplet {
                 Spieler.auswahl.zeichne(this);
             }
         }else if(mouseButton==LEFT && klicked==true){
-            int neuePos = Spieler.getInvPos(mouseX, mouseY);
+            int neuePos = Spieler.getInventarPosition(mouseX, mouseY);
             if(neuePos>=0) {
                 Spieler.getInventar().add(neuePos,Spieler.auswahl);
             }else{
@@ -461,8 +484,6 @@ public class Spielsteuerung extends PApplet {
             klicked = false;
 
         }
-
-
     }
 
     /**
@@ -535,7 +556,6 @@ public class Spielsteuerung extends PApplet {
                             if (!(movable instanceof Waffe)) {
                                 spielmodell.removeMovable(movable);
                             } // löscht Schatz aus Level
-
                             return;
                         }
                         //Wenn Spielfigur auf gleicher Position wie Waffen-Item, soll es aufgesammelt werden
@@ -543,7 +563,6 @@ public class Spielsteuerung extends PApplet {
                             ((ISchatz) movable).beimSammeln(figur);
                             System.out.println("Waffe wurde aufgesammelt!");
                             spielmodell.removeMovable(movable);
-
                             //Spieler.waffeAusgestattet = true;
                         } else if (movable instanceof Nahrung) {
                             // TODO: Nahrung zu Inventar hinzufügen
@@ -552,55 +571,48 @@ public class Spielsteuerung extends PApplet {
                 } else {
                     beiKollisionSiedlung(movable);
                 }
-            }
-                else if(pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke){//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
+            } else if (pruefeKollision(waffe, movable) & waffe instanceof Spezialattacke) {//else if ((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & waffe instanceof Spezialattacke) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
-//                else {
-//                    beiKollisionSiedlung(movable);
-//                }
-
+//               else {
+//                   beiKollisionSiedlung(movable);
+//               }
                 } else if (pruefeKollision(waffe, movable) & (key == ' '))/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' '))*/ {
                 } else if (pruefeKollision(waffe, movable) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)/*((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & this.spielmodell.getFigur().getWaffe() instanceof Spezialattacke)*/ {
                     if (movable instanceof Monster) {
                         System.out.println(((Monster) movable).getLebensenergie());
                         System.out.println("Kollision!!");
-
                         ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
                     }
-
-
                 }
-            } else if (pruefeKollision(waffe, movable) & (key == ' ') & keyPressed){//((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
+            } else if (pruefeKollision(waffe, movable) & (key == ' ') & keyPressed) {//((WaffeXp > MovableXn) & (WaffeXn < MovableXp) & (WaffeYp > MovableYn) & (WaffeYn < MovableYp) & (key == ' ') & keyPressed) {
                 if (movable instanceof Monster) {
                     System.out.println(((Monster) movable).getLebensenergie());
                     System.out.println("Kollision!!");
                     ((Monster) movable).reduziereLebensenergie(waffe.getSchaden());
-
                 }
-            } else if (pruefeKollision(pfeil,movable)){//((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
+            } else if (pruefeKollision(pfeil, movable)) {//((PfeilXp > MovableXn) & (PfeilXn < MovableXp) & (PfeilYp > MovableYn) & (PfeilYn < MovableYp)) {
                 if (movable instanceof Monster) {
                     System.out.println("Pfeil: " + ((Monster) movable).getLebensenergie());
                     ((Monster) movable).reduziereLebensenergie(figur.getPfeil().getSchaden());
                     spielmodell.removeMovable(figur.getPfeil());
-                    abgeschossen=false;
+                    abgeschossen = false;
                     //figur.setPfeilAbgeschossen(false);
                     figur.getPfeil().setPosition(1000, 1000);
                 }
-
             }
             if (this.isSpielfeldrand(figur.getPfeil().getPosX(), figur.getPfeil().getPosY())) {
                 //spielmodell.removeMovable(figur.getPfeil());
                 spielmodell.removeMovable(Spieler.getPfeil());
                 //figur.setPfeilAbgeschossen(false);
-                abgeschossen=false;
+                abgeschossen = false;
                 Spieler.getPfeil().setPosition(1000, 1000);
                 //Spieler.getPfeil()
             }
-
         }
     }
+
 
     private boolean pruefeKollision(IMovable eins, IMovable movable) {
         int WaffeXp = eins.getPosX() + (eins.getGroesse() / 2);
@@ -702,7 +714,7 @@ public class Spielsteuerung extends PApplet {
  * Spieler Geschwindigkeit auf 0, damit keine Bewegung im Hintergrund
  * Monster Geschwindigkeit auch auf 0
  *
- * Gameove Screen
+ * Gameover Screen
  * */
 
     public boolean pruefeGameOver(){
@@ -800,6 +812,13 @@ public class Spielsteuerung extends PApplet {
         this.images = images;
     }
 
+    /**
+     * Die Methode beiKollisionSiedlung wird bei Kollisionen in der Siedlung aufgerufen.
+     * Beim Aufheben von Gegenständen wird der Kontostand der Spielfigur verringert
+     * und der Gegenstand in das Inventar aufgenommen.
+     * Schätze werden normal aufgehoben und erhöhten den Kontostand der Spielfigur
+     * @param movable Movable mit dem kollidiert wird
+     */
     public void beiKollisionSiedlung(IMovable movable){
         if(movable instanceof Gegenstand){
             if(((Gegenstand) movable).getWert() <= spielmodell.getFigur().getGold())
