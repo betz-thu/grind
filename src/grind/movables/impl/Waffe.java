@@ -26,6 +26,12 @@ public abstract class Waffe extends Gegenstand{
 //
 //        }
 
+    /**
+     * @return String in Format:
+     * Schaden: "schadenswert"
+     * Stufe: "waffenstufe"
+     * wird für die Darstellung in der Siedlung benötigt
+     */
     @Override
     public String toString(){
         return "Schaden: "+ getSchaden()+"\nStufe: " + getStufe() ;

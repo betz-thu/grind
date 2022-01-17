@@ -12,6 +12,11 @@ public abstract class Waehrung extends Schatz {
         super(posX, posY, groesse);
     }
 
+
+    /**
+     * Ruft erhoeheGold methode auf wenn Spielfigur über Gold läuft
+     * @param figur Spielfigur
+     */
     @Override
     public void beimSammeln(ISpielfigur figur) {
         figur.erhoeheGold(this.getWert());

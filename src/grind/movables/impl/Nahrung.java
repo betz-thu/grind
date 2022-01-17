@@ -21,6 +21,12 @@ public abstract class Nahrung extends Gegenstand{
     public void beimAnwenden(ISpielfigur figur){
         figur.setLebensenergie((figur.getLebensenergie()+this.getPunkte()));
     }
+
+    /**
+     * @return String in Format:
+     * Heilung: "wert der Heilung"
+     * wird für die Darstellung in der Siedlung benötigt
+     */
     @Override
     public String toString(){
         return "Heilung: "+ getPunkte();
