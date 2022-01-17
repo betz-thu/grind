@@ -558,6 +558,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
     }
 
     /**
+     * @Autor Avalon
      * Die Methode setupSound dient zum inititalisieren aller benötigten Komponenten zur Tonwiedergabe.
      * Als Parameter wird eine File Variable mit dem pathname zur abzuspielenden Tondatei übergeben.
      * Die Tonwiedergabe wird ebenfalls in dieser Funktion gestartet
@@ -617,7 +618,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
 
     /**
      * Zieht übergebenen Betrag vom Kontostand (Spieler Gold) ab
-     * @param betrag
+     * @param betrag Betrag der vom Kontostand abgezogen wird
      */
     public void verringereGold(int betrag) {
         this.gold = this.gold - betrag;
