@@ -557,6 +557,12 @@ public class Spielfigur extends Movable implements ISpielfigur {
         }
     }
 
+    /**
+     * Die Methode setupSound dient zum inititalisieren aller benötigten Komponenten zur Tonwiedergabe.
+     * Als Parameter wird eine File Variable mit dem pathname zur abzuspielenden Tondatei übergeben.
+     * Die Tonwiedergabe wird ebenfalls in dieser Funktion gestartet
+     * @param Sound Dateipfad zur .wav Datei
+     */
         private void setupSound(File Sound){
         try{
             Clip clip = AudioSystem.getClip();
