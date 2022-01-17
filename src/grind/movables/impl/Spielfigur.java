@@ -301,6 +301,11 @@ public class Spielfigur extends Movable implements ISpielfigur {
 //        app.popStyle();
     }
 
+    /**
+     * Methode benutze
+     * Überprüft die Inverntargröße und entfernt den benutzten Gegenstand aus der Inventar Liste
+     * @param position int Wert zum überprüfen der Inventargröe / Wert der Position eines Gegenstands
+     */
     //Methode zum benutzen oder ausrüsten von Gegenständen
     public void benutze(int position) {
         if (inventar.size() > position) {
