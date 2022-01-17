@@ -461,7 +461,7 @@ public class Spielsteuerung extends PApplet {
 
     /**
      * Items lassen sich mit erstem Mausklick (Linke Maustaste) aufheben und mit zweitem Klick an Mausposition wieder ablegen
-     * Wenn bei zweitem Klick nicht Gegenstand aus Inventar ausgewählt wird, wird der Gegenstand am Ende des Inventars eingefügt
+     * Wenn bei zweitem Klick nicht ein Gegenstand aus Inventar ausgewählt wird, wird der Gegenstand am Ende des Inventars eingefügt
      */
     private void dragAndDrop() {
         if(mouseButton==LEFT && klicked==false){
