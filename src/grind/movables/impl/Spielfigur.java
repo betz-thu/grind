@@ -74,7 +74,7 @@ public class Spielfigur extends Movable implements ISpielfigur {
         setAktiveWaffe(testwaffe);
         //setAktiveWaffe(testbogen);
         inventarGuiGroeße =10;
-        guiGroeße=50;
+        guiGroeße=Einstellungen.LAENGE_KACHELN_X;
         setSounds();
 }
 
@@ -91,9 +91,10 @@ public class Spielfigur extends Movable implements ISpielfigur {
         zeichneKontostand(spielsteuerung);
         zeichneWaffe(spielsteuerung);
 
+
         //Zeichne kleines Inventar
-        zeichneInventar(spielsteuerung, inventarGuiGroeße, 850, 720, guiGroeße);
-        zeichneInventarInhalt(spielsteuerung, inventarGuiGroeße, 550, 720, guiGroeße);
+        zeichneInventar(spielsteuerung, inventarGuiGroeße, spielsteuerung.getSpielfeldBreite()/2+5*guiGroeße /*850*/, spielsteuerung.getSpielfeldHoehe()-2*guiGroeße/*720*/, guiGroeße);
+        zeichneInventarInhalt(spielsteuerung, inventarGuiGroeße, spielsteuerung.getSpielfeldBreite()/2-guiGroeße, spielsteuerung.getSpielfeldHoehe()-2*guiGroeße, guiGroeße);
         if(auswahl!=null) {
             auswahl.setPosition(spielsteuerung.mouseX, spielsteuerung.mouseY);
             auswahl.zeichne(spielsteuerung);
