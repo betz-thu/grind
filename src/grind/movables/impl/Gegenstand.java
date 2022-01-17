@@ -8,6 +8,11 @@ public abstract class Gegenstand extends Schatz{
         super(posX, posY, groesse);
     }
 
+    /**
+     * Fügt Gegenstand dem Inventar hinzu,
+     * wenn die Spielfigur mit dem Gegenstand kollidiert.
+     * @param figur Spielfigur
+     */
     @Override
     public void beimSammeln(ISpielfigur figur){
         figur.getInventar().add(this);
