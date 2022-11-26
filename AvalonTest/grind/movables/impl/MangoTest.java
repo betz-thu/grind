@@ -11,6 +11,8 @@ public class MangoTest {
     
     // minor change for testing purposes
 
+    // test
+
     private Spielfigur figur;
     private Mango mango;
 
