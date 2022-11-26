@@ -9,7 +9,8 @@ import static org.junit.Assert.*;
 
 public class MangoTest {
     
-    // minor change for testing purposes
+    // minor change 
+    //    for testing purposes
 
     private Spielfigur figur;
     private Mango mango;
